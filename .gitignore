@@ -1,0 +1,13 @@
+app/*.pak
+app/*.dll
+app/*.dat
+app/*.bin
+app/debug.log
+app/license.txt
+
+app/locales/
+app/webcache/
+app/php/
+
+app/phpdesktop-chrome.exe
+app/wow_helper.exe
