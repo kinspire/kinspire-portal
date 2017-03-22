@@ -8,6 +8,9 @@
     <div class="resources-title">Resources</div>
     <div class="resources-body">
       <div class="col-lg-9">
+        <div><a href="vocab">Vocab</a></div>
+        <div><a href="notes">Notes</a></div>
+        <div><a href="readings">Readings</a></div>
       </div>
       <div class="col-lg-3">
         Let's get learning!
