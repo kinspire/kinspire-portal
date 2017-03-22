@@ -1,0 +1,316 @@
+- 16:22:18.047 INFO: --------------------------------------------------------
+- 16:22:18.047 INFO: Started application
+- 16:22:18.047 INFO: Logging to: C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\debug.log
+- 16:22:18.047 INFO: Log level = DEBUG4
+- 16:22:18.047 INFO: Starting Mongoose 3.9c web server
+- 16:22:18.047 INFO: WWW directory: C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\www
+- 16:22:18.047 INFO: Index files: index.html,index.php
+- 16:22:18.047 INFO: CGI interpreter: C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\php\php-cgi.exe
+- 16:22:18.047 INFO: CGI pattern: **.php$
+- 16:22:18.047 INFO: Hide files patterns: 
+- 16:22:18.047 INFO: CGI environment variables set: TMP=C:\Users\saran\AppData\Local\Temp\,TEMP=C:\Users\saran\AppData\Local\Temp\,TMPDIR=C:\Users\saran\AppData\Local\Temp\,SERVER_NAME=127.0.0.1,PHPDESKTOP_VERSION=47.5
+- 16:22:18.047 INFO: Web server url: http://127.0.0.1:50286/
+- 16:22:18.047 INFO: remote_debugging_port = 51580
+- 16:22:18.063 DEBUG: Command line string for the browser process: "C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome.exe" --no-sandbox --lang=en-US --log-file="C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\debug.log" --remote-debugging-port=51580
+[0321/162219:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 16:22:19.015 DEBUG: Command line string for the gpu-process process: "C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome.exe" --type=gpu-process --channel="9000.0.1462733610\1791281686" --no-sandbox --lang=en-US --log-file="C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\debug.log" --supports-dual-gpus=false --gpu-driver-bug-workarounds=2,23,51 --gpu-vendor-id=0x8086 --gpu-device-id=0x191b --gpu-driver-vendor="Intel Corporation" --gpu-driver-version=20.19.15.4463 --lang=en-US --log-file="C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\debug.log" /prefetch:822062411
+- 16:22:19.625 DEBUG: App::OnContextInitialized()
+- 16:22:19.625 INFO: DPI, window enlarged by 25% new width/height = 1000/750
+- 16:22:19.625 DEBUG: Window max width/height = 1842/984
+- 16:22:19.625 DEBUG: GetBrowserWindow(): not found, hwnd = 67266
+- 16:22:19.625 DEBUG: WindowProc(): event WM_GETMINMAXINFO: could not fetch BrowserWindow
+- 16:22:19.625 DEBUG: BrowserWindow::CreateBrowserControl()
+- 16:22:19.625 DEBUG: StoreBrowserWindow(): hwnd = 67266
+- 16:22:19.672 DEBUG: ClientHandler::OnAfterCreated()
+- 16:22:19.672 DEBUG: SetCefBrowser() called in ClientHandler::OnAfterCreated()
+- 16:22:19.688 DEBUG: OnLoadingStateChange: loading=1, url=
+- 16:22:19.000 DEBUG: Command line string for the renderer process: "C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome.exe" --type=renderer --no-sandbox --lang=en-US --lang=en-US --log-file="C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\debug.log" --enable-pinch --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --channel="9000.1.325877657\273759611" /prefetch:673131151
+- 16:22:19.156 DEBUG: OnBrowserCreated()
+- 16:22:20.250 INFO: GET 200 /
+- 16:22:20.266 INFO: GET 200 /style.css
+- 16:22:20.609 DEBUG: OnContextCreated()
+- 16:22:20.360 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:50286/
+[0321/162224:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 16:22:26.750 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:50286/
+- 16:22:26.782 INFO: GET 200 /
+- 16:22:26.109 DEBUG: OnContextCreated()
+- 16:22:26.797 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:50286/
+[0321/162229:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 16:22:32.532 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:50286/
+- 16:22:32.906 DEBUG: OnContextCreated()
+- 16:22:32.594 INFO: GET 200 /download.php
+- 16:22:32.594 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:50286/download.php
+[0321/162234:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 16:22:34.422 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:50286/download.php
+- 16:22:35.454 INFO: GET 200 /download.php?getit=1
+- 16:22:35.469 DEBUG: OnLoadError, errorCode=-3, failedUrl=http://127.0.0.1:50286/download.php?getit=1
+- 16:22:35.469 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:50286/download.php
+- 16:22:35.469 INFO: About to download a file: phpdesktop.txt
+- 16:22:36.250 INFO: Download was cancelled
+- 16:22:38.625 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:50286/download.php
+- 16:22:38.984 DEBUG: OnContextCreated()
+- 16:22:38.672 INFO: GET 200 /index.php
+- 16:22:38.688 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:50286/index.php
+[0321/162239:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 16:22:41.938 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:50286/index.php
+- 16:22:41.297 DEBUG: OnContextCreated()
+- 16:22:41.985 INFO: GET 200 /google.php
+- 16:22:41.000 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:50286/google.php
+- 16:22:42.141 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:50286/google.php
+- 16:22:43.922 DEBUG: OnContextCreated()
+- 16:22:43.375 DEBUG: OnLoadingStateChange: loading=0, url=https://www.google.com/
+[0321/162244:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/162249:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 16:22:49.000 DEBUG: Command line string for the utility process: "C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome.exe" --type=utility --channel="9000.2.1624292568\54109319" --lang=en-US --no-sandbox --no-sandbox --lang=en-US --log-file="C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\debug.log" /prefetch:-645351001
+- 16:22:52.750 DEBUG: WM_DESTROY
+- 16:22:52.750 DEBUG: RemoveBrowserWindow(): hwnd = 67266
+- 16:22:52.750 INFO: Stopping Mongoose web server
+- 16:22:52.750 DEBUG: Mongoose webserver stopped immediately
+- 16:22:52.750 DEBUG: OnBeforeClose() hwnd=67274
+- 16:22:52.750 DEBUG: RemoveBrowserWindow(): hwnd = 67274
+- 16:22:52.750 DEBUG: GetBrowserWindow(): not found, hwnd = 67274
+- 16:22:52.750 WARNING: RemoveBrowserWindow() failed: GetBrowserWindow() failed
+- 16:22:52.750 DEBUG: Calling CefQuitMessageLoop()
+- 16:22:52.078 DEBUG: OnBrowserDestroyed()
+- 16:22:52.813 INFO: Ended application
+- 16:22:52.813 INFO: --------------------------------------------------------
+- 17:37:31.047 INFO: --------------------------------------------------------
+- 17:37:31.047 INFO: Started application
+- 17:37:31.047 INFO: Logging to: C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\debug.log
+- 17:37:31.047 INFO: Log level = DEBUG4
+- 17:37:31.047 INFO: Starting Mongoose 3.9c web server
+- 17:37:31.047 INFO: WWW directory: C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\www
+- 17:37:31.047 INFO: Index files: index.html,index.php
+- 17:37:31.047 INFO: CGI interpreter: C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\php\php-cgi.exe
+- 17:37:31.047 INFO: CGI pattern: **.php$
+- 17:37:31.047 INFO: Hide files patterns: 
+- 17:37:31.047 INFO: CGI environment variables set: TMP=C:\Users\saran\AppData\Local\Temp\,TEMP=C:\Users\saran\AppData\Local\Temp\,TMPDIR=C:\Users\saran\AppData\Local\Temp\,SERVER_NAME=127.0.0.1,PHPDESKTOP_VERSION=47.5
+- 17:37:31.047 INFO: Web server url: http://127.0.0.1:49956/
+- 17:37:31.047 INFO: remote_debugging_port = 62719
+- 17:37:31.047 DEBUG: Command line string for the browser process: "C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome.exe" --no-sandbox --lang=en-US --log-file="C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\debug.log" --remote-debugging-port=62719
+[0321/173732:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 17:37:32.000 DEBUG: Command line string for the gpu-process process: "C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome.exe" --type=gpu-process --channel="12120.0.860153041\336415042" --no-sandbox --lang=en-US --log-file="C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\debug.log" --supports-dual-gpus=false --gpu-driver-bug-workarounds=2,23,51 --gpu-vendor-id=0x8086 --gpu-device-id=0x191b --gpu-driver-vendor="Intel Corporation" --gpu-driver-version=20.19.15.4463 --lang=en-US --log-file="C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\debug.log" /prefetch:822062411
+- 17:37:32.485 DEBUG: App::OnContextInitialized()
+- 17:37:32.485 INFO: DPI, window enlarged by 25% new width/height = 1000/750
+- 17:37:32.485 DEBUG: Window max width/height = 1842/984
+- 17:37:32.500 DEBUG: GetBrowserWindow(): not found, hwnd = 67098
+- 17:37:32.500 DEBUG: WindowProc(): event WM_GETMINMAXINFO: could not fetch BrowserWindow
+- 17:37:32.500 DEBUG: BrowserWindow::CreateBrowserControl()
+- 17:37:32.500 DEBUG: StoreBrowserWindow(): hwnd = 67098
+- 17:37:32.563 DEBUG: ClientHandler::OnAfterCreated()
+- 17:37:32.563 DEBUG: SetCefBrowser() called in ClientHandler::OnAfterCreated()
+- 17:37:32.578 DEBUG: OnLoadingStateChange: loading=1, url=
+- 17:37:32.000 DEBUG: Command line string for the renderer process: "C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome.exe" --type=renderer --no-sandbox --lang=en-US --lang=en-US --log-file="C:\Users\saran\phpdesktop-chrome-47.5-rc-php-5.4.33\phpdesktop-chrome-47.5-rc-php-5.4.33\debug.log" --enable-pinch --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --channel="12120.1.1169175547\1133818225" /prefetch:673131151
+- 17:37:32.172 DEBUG: OnBrowserCreated()
+- 17:37:34.453 INFO: GET 200 /
+- 17:37:34.469 INFO: GET 200 /style.css
+- 17:37:34.922 DEBUG: OnContextCreated()
+- 17:37:34.657 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/
+[0321/173737:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173742:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173747:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173752:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173757:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173802:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173807:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173812:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 17:38:13.000 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/
+- 17:38:13.047 INFO: GET 200 /index.php
+- 17:38:13.469 DEBUG: OnContextCreated()
+- 17:38:13.063 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/index.php
+- 17:38:15.438 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/index.php
+- 17:38:15.891 DEBUG: OnContextCreated()
+- 17:38:15.469 INFO: GET 200 /index.php
+- 17:38:15.485 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/index.php
+- 17:38:15.922 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/index.php
+- 17:38:15.953 INFO: GET 200 /index.php
+- 17:38:15.375 DEBUG: OnContextCreated()
+- 17:38:15.969 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/index.php
+- 17:38:16.391 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/index.php
+- 17:38:16.860 DEBUG: OnContextCreated()
+- 17:38:16.438 INFO: GET 200 /index.php
+- 17:38:16.453 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/index.php
+- 17:38:16.547 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/index.php
+- 17:38:16.594 INFO: GET 200 /index.php
+- 17:38:16.016 DEBUG: OnContextCreated()
+- 17:38:16.594 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/index.php
+- 17:38:16.703 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/index.php
+- 17:38:16.157 DEBUG: OnContextCreated()
+- 17:38:16.735 INFO: GET 200 /index.php
+- 17:38:16.750 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/index.php
+- 17:38:16.860 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/index.php
+- 17:38:16.907 INFO: GET 200 /index.php
+- 17:38:16.329 DEBUG: OnContextCreated()
+- 17:38:16.907 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/index.php
+- 17:38:16.016 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/index.php
+- 17:38:16.500 DEBUG: OnContextCreated()
+- 17:38:16.078 INFO: GET 200 /index.php
+- 17:38:16.078 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/index.php
+[0321/173817:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 17:38:22.250 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/index.php
+- 17:38:22.672 DEBUG: OnContextCreated()
+- 17:38:22.250 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/
+[0321/173822:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173827:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 17:38:27.969 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/
+- 17:38:27.016 INFO: GET 200 /iframe.php
+- 17:38:27.438 DEBUG: OnContextCreated()
+- 17:38:27.063 INFO: GET 200 /index.php
+- 17:38:27.485 DEBUG: OnContextCreated()
+- 17:38:27.063 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/iframe.php
+- 17:38:29.547 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/iframe.php
+- 17:38:29.985 DEBUG: OnContextCreated()
+- 17:38:29.578 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/
+[0321/173832:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173837:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173842:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173842:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173847:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173847:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173852:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173852:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173857:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173857:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173902:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173902:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173907:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173907:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173912:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173913:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 17:39:13.344 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/
+- 17:39:13.797 DEBUG: OnContextCreated()
+- 17:39:13.375 INFO: GET 200 /
+- 17:39:13.375 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/
+- 17:39:13.047 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/
+- 17:39:13.500 DEBUG: OnContextCreated()
+- 17:39:13.078 INFO: GET 200 /
+- 17:39:13.094 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/
+[0321/173917:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173918:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 17:39:21.485 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/
+- 17:39:21.516 INFO: GET 200 /error-404.php
+- 17:39:21.938 DEBUG: OnContextCreated()
+- 17:39:21.532 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/error-404.php
+[0321/173922:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173923:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173927:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173928:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 17:39:32.500 DEBUG: OnLoadingStateChange: loading=1, url=http://127.0.0.1:49956/error-404.php
+[0321/173932:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 17:39:32.985 DEBUG: OnContextCreated()
+- 17:39:32.563 INFO: GET 200 /company.html
+- 17:39:32.578 DEBUG: OnLoadingStateChange: loading=0, url=http://127.0.0.1:49956/company.html
+[0321/173933:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173937:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173938:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173942:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173943:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173947:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173948:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173952:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173953:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173957:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/173958:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174002:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174003:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174007:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174008:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174012:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174013:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174017:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174018:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174022:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174023:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174027:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174028:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174032:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174033:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174037:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174038:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174042:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174043:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174047:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174048:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174052:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174053:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174057:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174058:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174102:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174103:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174107:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174108:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174112:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174113:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174113:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174117:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174118:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174118:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174122:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174123:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174123:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174127:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174128:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174128:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174132:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174133:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174133:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174137:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174138:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174138:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174142:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174143:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174143:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174147:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174148:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174148:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174152:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174153:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174153:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174157:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174158:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174158:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174202:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174203:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174203:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174207:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174208:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174208:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174212:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174213:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174213:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174217:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174218:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174218:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174222:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174223:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174223:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174227:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174228:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174228:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174232:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174233:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174233:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174237:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174238:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174238:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174242:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174243:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174243:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174247:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174248:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174248:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174252:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174253:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+[0321/174253:WARNING:dns_config_service_win.cc(673)] Failed to read DnsConfig.
+- 17:42:55.375 DEBUG: WM_DESTROY
+- 17:42:55.391 DEBUG: RemoveBrowserWindow(): hwnd = 67098
+- 17:42:55.391 INFO: Stopping Mongoose web server
+- 17:42:55.407 DEBUG: Mongoose webserver stopped immediately
+- 17:42:55.407 DEBUG: OnBeforeClose() hwnd=67104
+- 17:42:55.407 DEBUG: RemoveBrowserWindow(): hwnd = 67104
+- 17:42:55.407 DEBUG: GetBrowserWindow(): not found, hwnd = 67104
+- 17:42:55.407 WARNING: RemoveBrowserWindow() failed: GetBrowserWindow() failed
+- 17:42:55.407 DEBUG: Calling CefQuitMessageLoop()
+- 17:42:55.844 DEBUG: OnBrowserDestroyed()
+- 17:42:55.438 INFO: Ended application
+- 17:42:55.438 INFO: --------------------------------------------------------
