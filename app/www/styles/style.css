@@ -1,0 +1,11 @@
+@font-face {
+  font-family: edoFont;
+  src: url(../fonts/edo.ttf);
+}
+
+.portal-header {
+  font-size: 72pt;
+  text-align: center;
+  width: 100%;
+  font-family: edoFont;
+}
