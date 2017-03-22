@@ -1,5 +1,6 @@
 <head>
-  <?php require "includes/style.php"; ?>
+  <link rel="stylesheet" href="styles/style.css" type="text/css"/>
+  <link rel="stylesheet" href="styles/bootstrap.min.css" type="text/css"/>
 </head>
 <body>
   <?php require "includes/header.php"; ?>

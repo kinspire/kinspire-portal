@@ -3,8 +3,13 @@
   src: url(../fonts/edo.ttf);
 }
 
+@font-face {
+  font-family: cabinSketch;
+  src: url(../fonts/cabinSketch.ttf);
+}
+
 .portal-content {
-  border: 40px solid blue;
+  /*border: 40px solid blue;*/
 }
 
 .portal-header {
@@ -21,4 +26,12 @@
 .portal-section {
   font-size: 48pt;
   text-align: center;
+}
+
+.resources-title {
+  font-size: 64pt;
+  text-align: right;
+  width: 100%;
+  text-transform: uppercase;
+  font-family: cabinSketch;
 }
