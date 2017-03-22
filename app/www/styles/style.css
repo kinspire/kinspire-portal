@@ -3,9 +3,22 @@
   src: url(../fonts/edo.ttf);
 }
 
+.portal-content {
+  border: 40px solid blue;
+}
+
 .portal-header {
   font-size: 72pt;
   text-align: center;
   width: 100%;
   font-family: edoFont;
+}
+
+.portal-body {
+  height: 100%;
+}
+
+.portal-section {
+  font-size: 48pt;
+  text-align: center;
 }
