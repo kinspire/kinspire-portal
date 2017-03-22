@@ -10,6 +10,9 @@
 
 .portal-content {
   /*border: 40px solid blue;*/
+  background-image: url(../images/home-border.png);
+  background-size: 5120px 2840px;
+  background-repeat: no-repeat;
 }
 
 .portal-header {
