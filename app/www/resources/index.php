@@ -1,9 +1,8 @@
 <head>
-  <link rel="stylesheet" href="../styles/style.css" type="text/css"/>
-  <link rel="stylesheet" href="../styles/bootstrap.min.css" type="text/css"/>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/includes/style.php"; ?>
 </head>
 <body>
-  <?php require "../includes/header.php"; ?>
+  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/header.php"; ?>
   <div class="portal-content">
     <div class="resources-title">Resources</div>
     <div class="resources-body">
