@@ -10,10 +10,13 @@
 
 .portal-content {
   /*border: 40px solid blue;*/
+  background-image: url(../images/home-border.png);
+  background-size: 5120px 2840px;
+  background-repeat: no-repeat;
 }
 
 .portal-header {
-  font-size: 72pt;
+  font-size: 375pt;
   text-align: center;
   width: 100%;
   font-family: edoFont;
@@ -21,6 +24,7 @@
 
 .portal-body {
   height: 100%;
+  font-family: cabinSketch;
 }
 
 .portal-section {
