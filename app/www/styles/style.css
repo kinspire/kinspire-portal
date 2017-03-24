@@ -8,6 +8,15 @@
   src: url(../fonts/cabinSketch.ttf);
 }
 
+@font-face {
+  font-family: gochi;
+  src: url(../fonts/gochi.ttf);
+}
+
+div {
+  font-family: gochi;
+}
+
 .portal-content {
   padding: 6%;
   background-image: url(../images/home-border.png);
@@ -25,15 +34,25 @@
 }
 
 .portal-body {
-  display: inline-block;
+  /*display: inline-block;*/
   height: auto;
   font-family: cabinSketch;
+  /*width: 100%;*/
 }
 
-.portal-section {
+.home-section {
   border: 1px solid black;
-  font-size: 48pt;
+}
+
+.home-section-title {
+  font-size: 18pt;
   text-align: center;
+  color: green;
+}
+
+.home-section-content {
+  font-size: 16pt;
+  color: deeppink;
 }
 
 /* Menu */
@@ -46,7 +65,11 @@
 }
 
 #menu-content {
-  visibility: hidden;
+  display: none;
+}
+
+.portal-menu-title {
+  font-size: 24px;
 }
 
 .portal-menu-content {
