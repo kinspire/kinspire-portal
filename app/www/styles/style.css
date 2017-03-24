@@ -8,25 +8,80 @@
   src: url(../fonts/cabinSketch.ttf);
 }
 
+@font-face {
+  font-family: gochi;
+  src: url(../fonts/gochi.ttf);
+}
+
+div {
+  font-family: gochi;
+  font-size: 16px;
+}
+
 .portal-content {
-  /*border: 40px solid blue;*/
+  padding: 6%;
+  background-image: url(../images/home-border.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
 .portal-header {
-  font-size: 72pt;
+  line-height: 80pt;
+  font-size: 80pt;
   text-align: center;
   width: 100%;
   font-family: edoFont;
+  color: green;
 }
 
 .portal-body {
-  height: 100%;
+  /*display: inline-block;*/
+  height: auto;
+  font-family: cabinSketch;
+  /*width: 100%;*/
 }
 
-.portal-section {
-  font-size: 48pt;
+.home-section {
+  border: 1px solid black;
+}
+
+.home-section-title {
+  font-size: 18pt;
+  text-align: center;
+  color: green;
+}
+
+.home-section-content {
+  font-size: 16pt;
+  color: deeppink;
+}
+
+/* Menu */
+
+.portal-menu {
+  position: absolute;
+  top: 25%;
+  left: 10%;
   text-align: center;
 }
+
+#menu-content {
+  display: none;
+}
+
+.portal-menu-title {
+  font-size: 24px;
+}
+
+.portal-menu-content {
+  background-color: white;
+  border: 3px solid green;
+  height: 400px;
+  width: 200px;
+}
+
+/* Resources */
 
 .resources-title {
   font-size: 64pt;

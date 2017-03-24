@@ -1,20 +1,18 @@
 <head>
-  <link rel="stylesheet" href="../styles/style.css" type="text/css"/>
-  <link rel="stylesheet" href="../styles/bootstrap.min.css" type="text/css"/>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/includes/style.php"; ?>
 </head>
 <body>
-  <?php require "../includes/header.php"; ?>
+  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/header.php"; ?>
   <div class="portal-content">
-    <div class="resources-title">Resources</div>
-    <div class="resources-body">
-      <div class="col-lg-9">
-        <div><a href="vocab">Vocab</a></div>
-        <div><a href="notes">Notes</a></div>
-        <div><a href="readings">Readings</a></div>
+    <div class="portal-header">Resources</div>
+    <div class="portal-body container">
+      <div class="col-xs-9">
       </div>
-      <div class="col-lg-3">
+      <div class="col-xs-3">
         Let's get learning!
       </div>
     </div>
+    <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
   </div>
+  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>
 </body>
