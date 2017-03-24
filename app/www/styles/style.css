@@ -15,6 +15,7 @@
 
 div {
   font-family: gochi;
+  font-size: 16px;
 }
 
 .portal-content {
@@ -26,11 +27,12 @@ div {
 }
 
 .portal-header {
-  line-height: 140pt;
-  font-size: 140pt;
+  line-height: 80pt;
+  font-size: 80pt;
   text-align: center;
   width: 100%;
   font-family: edoFont;
+  color: green;
 }
 
 .portal-body {
@@ -73,6 +75,7 @@ div {
 }
 
 .portal-menu-content {
+  background-color: white;
   border: 3px solid green;
   height: 400px;
   width: 200px;
