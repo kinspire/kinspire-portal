@@ -9,6 +9,6 @@
     <div class="portal-menu-item">Volunteer Access</div>
     <div class="portal-menu-item">Profile</div>
     <div class="portal-menu-item">Contact</div>
-    <div class="portal-menu-item">Kinspire UW- Contact us: kinspire.uw.edu 2017</div>
+    <div class="portal-menu-item">Contact us: kinspire@uw.edu</div>
   </div>
 </div>
