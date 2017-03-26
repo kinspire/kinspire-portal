@@ -1,0 +1,13 @@
+*.pak
+*.dll
+*.dat
+*.bin
+debug.log
+license.txt
+
+locales/
+webcache/
+php/
+
+phpdesktop-chrome.exe
+wow_helper.exe
