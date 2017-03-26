@@ -32,7 +32,7 @@ div {
   text-align: center;
   width: 100%;
   font-family: edoFont;
-  color: green;
+  color: lightgreen;
 }
 
 .portal-body {
@@ -42,9 +42,9 @@ div {
   /*width: 100%;*/
 }
 
-.home-section {
+/*.home-section {
   border: 1px solid black;
-}
+} */
 
 .home-section-title {
   font-size: 18pt;
@@ -67,18 +67,29 @@ div {
 }
 
 #menu-content {
-  display: none;
+  display: block;
 }
 
 .portal-menu-title {
   font-size: 24px;
+  cursor: pointer;
 }
 
 .portal-menu-content {
   background-color: white;
-  border: 3px solid green;
-  height: 400px;
-  width: 200px;
+  border: 3px outset white;
+  height: 360px;
+  width: 250px;
+}
+
+.portal-menu-item {
+  /* STYLE FOR each ITEM */
+  /* Set font */
+  font-size: 20pt;
+  height: 50px;
+  color: skyblue;
+  /* Set font size */
+  /* BOrders for each element */
 }
 
 /* Resources */
