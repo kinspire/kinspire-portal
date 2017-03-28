@@ -19,9 +19,11 @@
       </div>
       <div class="home-section col-xs-4">
         <div class="home-section-title">Next Activity to Try</div>
+        <div class="home-section-content">No more activities! Well done :)</div>
       </div>
       <div class="home-section col-xs-4">
         <div class="home-section-title">Your Progress</div>
+        <div class="home-section-content">Progress coming soon!</div>
       </div>
     </div>
     <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
