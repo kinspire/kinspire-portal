@@ -32,13 +32,14 @@ div {
   text-align: center;
   width: 100%;
   font-family: edoFont;
-  color: lightgreen;
+  color: lightgreen; /* TODO: update to correct green */
 }
 
 .portal-body {
   /*display: inline-block;*/
   height: auto;
   font-family: cabinSketch;
+  padding-top: 4%;
   /*width: 100%;*/
 }
 
@@ -67,7 +68,7 @@ div {
 }
 
 #menu-content {
-  display: block;
+  display: none;
 }
 
 .portal-menu-title {
@@ -92,6 +93,10 @@ div {
   /* BOrders for each element */
 }
 
+.portal-menu-item a {
+  color: skyblue;
+}
+
 /* Resources */
 
 .resources-title {
@@ -100,4 +105,39 @@ div {
   width: 100%;
   text-transform: uppercase;
   font-family: cabinSketch;
+}
+
+/* Volunteer access */
+
+.volunteer-access-question {
+  width: 100%;
+  border: 5px solid orange;
+  margin: 3% 0;
+}
+
+.volunteer-access-text {
+  width: 100%;
+}
+
+.volunteer-access-comments {
+  width: 100%;
+  border: 5px solid red;
+  margin: 3% 0;
+}
+
+.volunteer-access-submit-area {
+  display: inline-flex;
+  width: 100%;
+}
+
+.volunteer-access-file {
+  margin-right: auto;
+}
+
+.volunteer-access-submit {
+  margin-left: auto;
+  background-color: orange;
+  color: white;
+  text-transform: uppercase;
+  padding: 20px;
 }
