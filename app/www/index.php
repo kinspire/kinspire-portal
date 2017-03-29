@@ -1,11 +1,14 @@
 <head>
-  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/style.php"; ?>
+  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
   <title>Welcome</title>
 </head>
 <body>
-  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/header.php"; ?>
+  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
   <div class="portal-content">
-    <div class="portal-header">Welcome</div>
+    <div class="portal-header">
+      <div class="portal-title portal-title-home">Welcome</div>
+      <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
+    </div>
     <div class="portal-body container">
       <div class="home-section col-xs-4">
         <div class="home-section-date">
@@ -26,7 +29,6 @@
         <div class="home-section-content">Progress coming soon!</div>
       </div>
     </div>
-    <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
   </div>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>
 </body>

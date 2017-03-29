@@ -1,21 +1,17 @@
 <head>
-  <?php include $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
-  <title>Resources</title>
+  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
+  <title>Activities</title>
 </head>
 <body>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
   <div class="portal-content">
     <div class="portal-header">
-      <div class="portal-title">Resources</div>
+      <div class="portal-title">Activities</div>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
     </div>
-    <div class="portal-body container">
-      <div class="col-xs-9">
-      </div>
-      <div class="col-xs-3">
-        Let's get learning!
-      </div>
+    <div class="portal-body">
+      Coming soon!
     </div>
   </div>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>

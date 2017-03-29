@@ -15,7 +15,7 @@
 
 div {
   font-family: gochi;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .portal-content {
@@ -27,12 +27,22 @@ div {
 }
 
 .portal-header {
-  line-height: 80pt;
-  font-size: 80pt;
-  text-align: center;
+  position: relative;
   width: 100%;
+}
+
+.portal-title {
+  width: 100%;
+  line-height: 64pt;
+  font-size: 64pt;
+  text-align: center;
   font-family: edoFont;
   color: lightgreen; /* TODO: update to correct green */
+}
+
+.portal-title-home {
+  line-height: 80pt;
+  font-size: 80pt;
 }
 
 .portal-body {
@@ -43,28 +53,14 @@ div {
   /*width: 100%;*/
 }
 
-/*.home-section {
-  border: 1px solid black;
-} */
-
-.home-section-title {
-  font-size: 18pt;
-  text-align: center;
-  color: green;
-}
-
-.home-section-content {
-  font-size: 16pt;
-  color: deeppink;
-}
-
 /* Menu */
 
 .portal-menu {
   position: absolute;
-  top: 25%;
-  left: 10%;
+  top: 0;
+  left: 4%;
   text-align: center;
+  z-index: 9; /* TODO constant for this? */
 }
 
 #menu-content {
@@ -79,22 +75,54 @@ div {
 .portal-menu-content {
   background-color: white;
   border: 3px outset white;
-  height: 360px;
   width: 250px;
 }
 
 .portal-menu-item {
   /* STYLE FOR each ITEM */
-  /* Set font */
-  font-size: 20pt;
   height: 50px;
   color: skyblue;
+  /* Set font */
   /* Set font size */
+  font-size: 20pt;
   /* BOrders for each element */
+  margin: 5px 15px;
+  border-bottom: 5px solid gray;
 }
 
 .portal-menu-item a {
   color: skyblue;
+}
+
+.portal-menu-item-contact {
+  color: gray;
+}
+
+/* Back button */
+
+.portal-back {
+  position: absolute;
+  top: 0;
+  right: 4%;
+  text-align: center;
+  font-size: 24px;
+}
+
+/* Login */
+
+/*.home-section {
+  border: 1px solid black;
+} */
+
+.home-section-title {
+  font-size: 18pt;
+  text-align: center;
+  color: green;
+}
+
+.home-section-content {
+  font-size: 16pt;
+  color: deeppink;
 }
 
 /* Resources */
@@ -117,6 +145,8 @@ div {
 
 .volunteer-access-text {
   width: 100%;
+  border: 0;
+  resize: none;
 }
 
 .volunteer-access-comments {
