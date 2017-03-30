@@ -1,3 +1,4 @@
+<?php require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php"; ?>
 <head>
   <?php include $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
   <title>Resources</title>

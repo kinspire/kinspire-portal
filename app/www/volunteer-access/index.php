@@ -1,3 +1,4 @@
+<?php require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php"; ?>
 <head>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
   <title>Volunteer Access</title>
