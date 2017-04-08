@@ -27,7 +27,7 @@
       </div>
       <div class="home-section col-xs-4">
         <div class="home-section-title">Your Progress</div>
-        <div class="home-section-content">Progress coming soon!</div>
+        <a href="/achievements">View your progress!</a>
       </div>
     </div>
   </div>
