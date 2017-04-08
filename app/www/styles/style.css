@@ -12,6 +12,11 @@
   font-family: gochi;
   src: url(../fonts/gochi.ttf);
 }
+@font-face {
+  font-family: marker;
+  src: url(../fonts/PermanentMarker.ttf);
+}
+
 
 div {
   font-family: gochi;
@@ -57,8 +62,8 @@ div {
 
 .portal-menu {
   position: absolute;
-  top: 0;
-  left: 4%;
+  top: 60;
+  left: 150;
   text-align: center;
   z-index: 9; /* TODO constant for this? */
 }
@@ -85,10 +90,12 @@ div {
   color: skyblue;
   /* Set font */
   /* Set font size */
-  font-size: 20pt;
+  font-size: 13.5pt;
   /* BOrders for each element */
   margin: 5px 15px;
   border-bottom: 5px solid gray;
+  text-transform: uppercase;
+  font-family: marker;
 }
 
 .portal-menu-item a {
