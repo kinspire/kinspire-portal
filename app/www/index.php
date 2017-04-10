@@ -24,7 +24,7 @@
       </div>
       <div class="home-section col-xs-4">
         <div class="home-section-title">Next Activity to Try</div>
-        <div class="home-section-content">No more activities! Well done :)</div>
+        <div class="home-section-content">Worksheet 1</div>
       </div>
       <div class="home-section col-xs-4">
         <div class="home-section-title">Your Progress</div>
