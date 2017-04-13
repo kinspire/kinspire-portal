@@ -17,9 +17,10 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] != '')) {
     <div class="portal-body container">
       <div class="login-area">
         <form method="post" action="login.php">
-          <input class="login-email" placeholder="email"/>
-          <input class="login-password" placeholder="pass"/>
-          <button type="submit" class="login-button">Log in</button>
+          <input class="login-email" type="email" name="email" placeholder="email"/>
+          <input class="login-password" type="password" name="password" placeholder="pass"/>
+          <button type="submit" name="login" class="login-button">Log in</button>
+          <button type="submit" name="signup" class="login-button">Sign up</button>
         </form>
       </div>
     </div>
