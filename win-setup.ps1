@@ -1,12 +1,19 @@
-if (!(Test-Path "phpdesktop.zip")) {
+if (!(Test-Path "phpdesktop.zip") -And !(Test-Path "phpdesktop/")) {
+  "Downloading PHPDesktop package"
   Invoke-WebRequest https://github.com/cztomczak/phpdesktop/releases/download/chrome-v47.5-rc/phpdesktop-chrome-47.5-rc-php-5.4.33.zip -OutFile phpdesktop.zip
 }
 
-if (!(Test-Path "phpdesktop.zip")) {
-  Expand-Archive "phpdesktop.zip" -DestinationPath "phpdesktop"
-  rm "phpdesktop.zip"
+if (!(Test-Path "phpdesktop/")) {
+  "Extracting PHPDesktop files"
+  Expand-Archive "phpdesktop.zip" -DestinationPath "."
+  "Deleting arcane PHPDesktop ZIP package"
+  # rm "phpdesktop.zip"
 }
 
-Remove-Item -path "phpdesktop/www"
-Move-Item "phpdesktop/*" "app/"
-Remove-Item "phpdesktop"
+if (Test-Path "phpdesktop/") {
+  "Moving files around"
+  # Remove-Item -path "phpdesktop/www"
+  Move-Item "phpdesktop/*" "app/*"
+  "Deleting PHPDesktop folder"
+  # Remove-Item "phpdesktop/"
+}
