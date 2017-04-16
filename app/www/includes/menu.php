@@ -1,11 +1,8 @@
 <div class="portal-menu">
   <div class="portal-menu-title" id="menu-title">
      <div>
-       <img
-       class = "menu-magnet"
-        src="/images/owl-magnet.png"
-        height = "60"
-        width = "60" >
+       <img class="menu-magnet" src="/images/owl-magnet.png"
+        height="60" width="60"></img>
       </div>
      <div> menu title </div>
   </div>
