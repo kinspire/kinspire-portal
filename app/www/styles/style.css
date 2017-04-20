@@ -4,11 +4,6 @@
 }
 
 @font-face {
-  font-family: cabinSketch;
-  src: url(../fonts/cabinSketch.ttf);
-}
-
-@font-face {
   font-family: gochi;
   src: url(../fonts/gochi.ttf);
 }
@@ -53,7 +48,6 @@ div {
 .portal-body {
   /*display: inline-block;*/
   height: auto;
-  font-family: cabinSketch;
   padding-top: 4%;
   /*width: 100%;*/
 }
@@ -137,16 +131,6 @@ div {
 .home-section-content {
   font-size: 16pt;
   color: #99e265;
-}
-
-/* Resources */
-
-.resources-title {
-  font-size: 64pt;
-  text-align: right;
-  width: 100%;
-  text-transform: uppercase;
-  font-family: cabinSketch;
 }
 
 /* Volunteer access */

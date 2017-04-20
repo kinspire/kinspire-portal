@@ -10,7 +10,7 @@
       <div class="portal-title portal-title-home">Welcome</div>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
     </div>
-    <div class="portal-body container">
+    <div class="portal-body">
       <div class="home-section col-xs-4">
         <div class="home-section-date">
           <div class="home-section-title">Today's date</div>

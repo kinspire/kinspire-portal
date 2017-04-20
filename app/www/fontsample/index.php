@@ -12,24 +12,10 @@
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
     </div>
     <div class="portal-body">
-        
-        <div class="row justify-content-start">
-            <div class="col-xs-2">
-                Creating Account
-            </div>
-            <div class="col-xs-2">
-                First assignment
-            </div>
-            <div class="col-xs-2">
-                Choosing an avatar
-            </div>
-            <div class="col-xs-2">
-                Adding clothing
-            </div>
-            <div class="col-xs-2">
-                Passing first quiz
-            </div>
-        </div>
+      <div style="font-size:300%;font-family: edoFont;">Testing testing, hello world, ABCabc</div>
+      <div style="font-size:300%;font-family: cabinSketch;">Testing testing, hello world, ABCabc</div>
+      <div style="font-size:300%;font-family: gochi;">Testing testing, hello world, ABCabc</div>
+      <div style="font-size:300%;font-family: marker;">Testing testing, hello world, ABCabc</div>
     </div>
   </div>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>
