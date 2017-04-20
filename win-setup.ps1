@@ -8,7 +8,7 @@ if (!(Test-Path "phpdesktop.zip") -And !(Test-Path "phpdesktop/")) {
 if (!(Test-Path "phpdesktop/")) {
   "Extracting PHPDesktop files"
   Expand-Archive "phpdesktop.zip" -DestinationPath "."
-  mv phpdesktop-chrome-47.5-rc-php-5.4.33/ phpdesktop/
+  Move-Item phpdesktop-chrome-47.5-rc-php-5.4.33/ phpdesktop/
   "Deleting arcane PHPDesktop ZIP package"
   # rm "phpdesktop.zip"
 }
@@ -20,5 +20,5 @@ if (Test-Path "phpdesktop/") {
   "Moving important files into app folder"
   Move-Item "phpdesktop/*" "app/"
   "Deleting PHPDesktop folder"
-  # Remove-Item "phpdesktop/"
+  Remove-Item "phpdesktop/"
 }

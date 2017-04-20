@@ -21,11 +21,10 @@
       <!-- category list -> two columns if overflow -->
       <!-- category #1: stories -->
       <div class="resources-categories">
-        <div class="resources-category">
-          <a href="stories/">Stories</a>
-        </div>
+        <div class="resources-category" onclick="stories()">Stories</div>
       </div>
     </div>
   </div>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>
+  <script src="/js/resources.js"></script>
 </body>

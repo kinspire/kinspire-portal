@@ -47,7 +47,7 @@ div {
 
 .portal-body {
   /*display: inline-block;*/
-  height: auto;
+  height: 100%;
   padding-top: 4%;
   /*width: 100%;*/
 }

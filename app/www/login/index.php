@@ -17,14 +17,11 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] != '')) {
     <div class="portal-body">
       <div class="login-area">
         <form method="post" action="login.php">
-          <input class="login-email" type="email" name="email" placeholder="email"/>
-          <input class="login-password" type="password" name="password" placeholder="pass"/>
+          <input class="login-email" type="email" name="email" placeholder="email" value="test@test.org"/>
+          <input class="login-password" type="password" name="password" placeholder="pass" value="test"/>
           <button type="submit" name="login" class="login-button">Log in</button>
           <button type="submit" name="signup" class="login-button">Sign up</button>
         </form>
-      </div>
-      <div>
-        Use this: username = test@test.org, password = test
       </div>
     </div>
   </div>
