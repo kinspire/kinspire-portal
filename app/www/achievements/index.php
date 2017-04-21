@@ -6,13 +6,13 @@
 <body>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
   <div class="portal-content">
+    <img class="portal-background" src="/images/home-border.png"/>
     <div class="portal-header">
       <div class="portal-title">Achievements</div>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
     </div>
-    <div class="portal-body">
-        
+    <div class="portal-body">    
         <div class="row justify-content-start">
             <div class="col-xs-2">
                 Creating Account

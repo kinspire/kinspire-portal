@@ -6,6 +6,7 @@
 <body>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
   <div class="portal-content">
+    <img class="portal-background" src="/images/home-border.png"/>
     <div class="portal-header">
       <div class="portal-title">Volunteer Access</div>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>

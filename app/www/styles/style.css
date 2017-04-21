@@ -20,10 +20,25 @@ div {
 
 .portal-content {
   padding: 6%;
-  background-image: url(../images/home-border.png);
+  /*background-image: url(../images/home-border.png);
   background-size: 100%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat;*/
   position: relative;
+}
+
+.portal-background {
+  /*position: absolute;
+  top: 0;
+  left: 0;*/
+  width: 100%;
+  z-index: -1;
+}
+
+.portal-content-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .portal-header {
@@ -47,7 +62,6 @@ div {
 
 .portal-body {
   /*display: inline-block;*/
-  height: 100%;
   padding-top: 4%;
   /*width: 100%;*/
 }

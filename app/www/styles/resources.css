@@ -30,7 +30,6 @@
 
 .stories-content {
   position: relative;
-  height: 100%;
 }
 
 .stories-title {
@@ -69,15 +68,12 @@
 
 #stories-story {
   display: none;
-  position: relative;
   position: absolute;
   top: 0;
-  height: 100%;
 }
 
 .stories-story-section {
   width: 50%;
   border: 1px solid black;
   padding: 15px;
-  overflow: scroll;
 }
