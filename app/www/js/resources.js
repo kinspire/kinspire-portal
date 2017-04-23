@@ -4,13 +4,15 @@ function stories() {
 
 // Stories
 $("#story-1").click(function() {
-  $("#stories-home").fadeOut();
-  $("#stories-story").css("display", "flex")
+  $("#stories-home").fadeOut(function() {
+    $("#stories-story").css("display", "flex")
     .hide()
-    .fadeIn();
-  $("#stories-back").css("display", "inline")
-    .hide()
-    .fadeIn();
+    .fadeIn(function() {
+      $("#stories-back").css("display", "inline")
+        .hide()
+        .fadeIn();
+    });
+  });
 });
 
 $("#stories-back").click(function() {

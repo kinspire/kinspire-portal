@@ -10,9 +10,9 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 </head>
 <body>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
-  <div class="portal-content">
-    <img class="portal-background" src="/images/home-border.png"/>
-    <div class="portal-header">
+  <div id="portal-content">
+    <img id="portal-background" src="/images/home-border.png"/>
+    <div id="portal-header">
       <div class="portal-title portal-title-home">Kinspire's Portal</div>
     </div>
     <div class="portal-body">
