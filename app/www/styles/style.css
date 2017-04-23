@@ -1,20 +1,25 @@
 @font-face {
-  font-family: edoFont;
+  font-family: titleFont;
   src: url(../fonts/edo.ttf);
 }
 
 @font-face {
-  font-family: gochi;
-  src: url(../fonts/gochi.ttf);
-}
-@font-face {
-  font-family: marker;
-  src: url(../fonts/PermanentMarker.ttf);
+  font-family: contentFont;
+  src: url(../fonts/amarill.ttf);
 }
 
+@font-face {
+  font-family: menuFont;
+  src: url(../fonts/permanentMarker.ttf);
+}
+
+@font-face {
+  font-family: headingFont;
+  src: url(../fonts/sunnySpringDay.ttf);
+}
 
 div {
-  font-family: gochi;
+  font-family: contentFont;
   font-size: 18px;
 }
 
@@ -36,7 +41,7 @@ div {
   line-height: 64pt;
   font-size: 64pt;
   text-align: center;
-  font-family: edoFont;
+  font-family: titleFont;
   color: #35b729;
 }
 
@@ -84,13 +89,12 @@ div {
   margin: 5px 15px;
   border-bottom: 5px solid gray;
   text-transform: uppercase;
-  font-family: marker;
-}
+  font-family: menuFont;
+p
 
 .portal-menu-item-resources a {
   color: #b760e6;
-}
-
+headingFont;
 .portal-menu-item-activities a{
   color: #5271ff;
 }
