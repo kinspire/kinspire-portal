@@ -5,8 +5,9 @@
 </head>
 <body>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
-  <div class="portal-content">
-    <div class="portal-header">
+  <div id="portal-content">
+    <img id="portal-background" src="/images/home-border.png"/>
+    <div id="portal-header">
       <div class="portal-title portal-title-home">Welcome</div>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
     </div>

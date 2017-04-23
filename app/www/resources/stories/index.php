@@ -2,21 +2,18 @@
 <head>
   <?php include $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
   <link rel="stylesheet" href="/styles/resources.css" type="text/css"/>
-  <title>Resources</title>
+  <title>Stories</title>
 </head>
 <body>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
-  <div class="portal-content">
-    <div class="portal-header">
-      <div class="portal-title">Resources</div>
+  <div id="portal-content">
+    <img id="portal-background" src="/images/home-border.png"/>
+    <div id="portal-header">
+      <div class="portal-title">Stories</div>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
     </div>
     <div class="portal-body">
-      <div class="stories-title">
-        <div>Stories</div>
-        <div id="stories-back">Choose Story</div>
-      </div>
       <div class="stories-content">
         <div id="stories-home">
           <div id="story-1" class="stories-choose-story">Story 1</div>
@@ -40,7 +37,7 @@
             ?>
           </div>
           <div class="stories-story-section">
-            
+            Questions
           </div>
         </div>
       </div>

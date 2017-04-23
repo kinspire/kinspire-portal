@@ -23,16 +23,26 @@ div {
   font-size: 18px;
 }
 
-.portal-content {
+#portal-content {
   padding: 6%;
-  background-image: url(../images/home-border.png);
+  /*background-image: url(../images/home-border.png);
   background-size: 100%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat;*/
   position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.portal-header {
-  position: relative;
+#portal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+#portal-header {
   width: 100%;
 }
 
@@ -52,8 +62,9 @@ div {
 
 .portal-body {
   /*display: inline-block;*/
-  height: 100%;
-  padding-top: 4%;
+  margin-top: 4%;
+  overflow-y: auto;
+  overflow-x: hidden;
   /*width: 100%;*/
 }
 

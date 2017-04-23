@@ -29,31 +29,16 @@
 /* Stories */
 
 .stories-content {
-  position: relative;
-  height: 100%;
-}
-
-.stories-title {
-  width: 100%;
-  text-align: center;
-  position: relative;
-}
-
-#stories-back {
-  display: none;
-  cursor: pointer;
-  background-color: black;
-  color: white;
-  position: absolute;
-  right: 0;
-  top: 0;
+  /*position: relative;*/
+  display: flex;
+  flex-direction: column;
 }
 
 #stories-home {
   display: inline-flex;
   width: 100%;
-  position: absolute;
-  top: 0;
+  /*position: absolute;*/
+  /*top: 0;*/
 }
 
 .stories-choose-story {
@@ -69,15 +54,12 @@
 
 #stories-story {
   display: none;
-  position: relative;
-  position: absolute;
-  top: 0;
-  height: 100%;
+  /*position: absolute;
+  top: 0;*/
 }
 
 .stories-story-section {
   width: 50%;
   border: 1px solid black;
   padding: 15px;
-  overflow: scroll;
 }
