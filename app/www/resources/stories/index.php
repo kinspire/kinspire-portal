@@ -21,23 +21,27 @@
         </div>
         <div id="stories-story">
           <div class="stories-story-section">
-            <?php
-            $storyFile = fopen($_SERVER['DOCUMENT_ROOT'].'/content/stories/1.txt', 'r');
-            $storyParagraphs = array();
-            while (!feof($storyFile)) {
-              array_push($storyParagraphs, fgets($storyFile));
-            }
-            
-            // TODO: format this properly for whatever interaction we want the
-            // students to have
-            foreach ($storyParagraphs as $paragraph) {
-              echo $paragraph;
-              echo '<br/><br/>';
-            }
-            ?>
+            <div class="stories-story-section-text">
+              <?php
+              $storyFile = fopen($_SERVER['DOCUMENT_ROOT'].'/content/stories/1.txt', 'r');
+              $storyParagraphs = array();
+              while (!feof($storyFile)) {
+                array_push($storyParagraphs, fgets($storyFile));
+              }
+
+              // TODO: format this properly for whatever interaction we want the
+              // students to have
+              foreach ($storyParagraphs as $paragraph) {
+                echo $paragraph;
+                echo '<br/><br/>';
+              }
+              ?>
+            </div>
           </div>
           <div class="stories-story-section">
-            Questions
+            <div class="stories-story-section-text">
+              Questions
+            </div>
           </div>
         </div>
       </div>
