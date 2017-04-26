@@ -22,7 +22,11 @@
       <!-- category list -> two columns if overflow -->
       <!-- category #1: stories -->
       <div class="resources-categories">
-        <div class="resources-category" onclick="stories()">Stories</div>
+        <a class="resources-category" href="stories/">Stories</a>
+        <a class="resources-category" href="notes/">Notes</a>
+        <a class="resources-category" href="vocab/">Vocabulary</a>
+        <a class="resources-category" href="quizzes/">Quizzes</a>
+        <a class="resources-category" href="templates/">Templates</a>
       </div>
     </div>
   </div>
