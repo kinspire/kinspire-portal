@@ -23,6 +23,11 @@ div {
   font-size: 18px;
 }
 
+a, a:hover, a:focus, a:visited {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 #portal-content {
   padding: 6%;
   /*background-image: url(../images/home-border.png);
