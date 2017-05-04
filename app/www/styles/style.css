@@ -190,3 +190,10 @@ a, a:focus, a:visited {
   text-transform: uppercase;
   padding: 20px;
 }
+li {
+  color: green ;
+  fornt-size = 36px;
+}
+li span {
+  color: green
+}
