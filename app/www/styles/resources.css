@@ -49,8 +49,8 @@
   cursor: pointer;
   margin: 0 auto;
 }
-#stories-story {
-  display: none;
+.stories-story {
+  display: flex;
   /*position: absolute;
   top: 0;*/
 }

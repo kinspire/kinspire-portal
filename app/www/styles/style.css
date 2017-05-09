@@ -23,7 +23,7 @@ div {
   font-size: 18px;
 }
 
-a, a:hover, a:focus, a:visited {
+a, a:focus, a:visited {
   color: inherit;
   text-decoration: inherit;
 }
