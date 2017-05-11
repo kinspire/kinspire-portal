@@ -23,9 +23,9 @@
       <!-- category #1: stories -->
       <div class="resources-categories">
         <a class="resources-category" href="stories/">Stories</a>
-        <a class="resources-category" href="notes/">Notes</a>
+        <!--<a class="resources-category" href="notes/">Notes</a>-->
         <a class="resources-category" href="vocab/">Vocabulary</a>
-        <a class="resources-category" href="quizzes/">Quizzes</a>
+        <!--<a class="resources-category" href="quizzes/">Quizzes</a>-->
         <a class="resources-category" href="templates/">Templates</a>
       </div>
     </div>
