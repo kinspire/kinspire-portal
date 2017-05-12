@@ -18,17 +18,12 @@
         <div class="stories-story">
           <div class="stories-story-section">
             <?php
-            // TODO: replace 1 with GET[id] or something
-            $storyFile = fopen($_SERVER['DOCUMENT_ROOT'].'/content/stories/1.txt', 'r');
-            $storyParagraphs = array();
-            while (!feof($storyFile)) {
-              array_push($storyParagraphs, fgets($storyFile));
-            }
+            $storyJson = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/content/stories/'.$_GET['id'].'.json'), true);
 
-            // TODO: format this properly for whatever interaction we want the
-            // students to have
-            foreach ($storyParagraphs as $paragraph) {
-              echo $paragraph;
+            foreach ($storyJson["story"] as $paragraph) {
+              $words = split(" ", $paragraph);
+              
+              
               echo '<br/><br/>';
             }
             ?>
