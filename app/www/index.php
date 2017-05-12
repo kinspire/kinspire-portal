@@ -15,7 +15,7 @@
       <div class="home-section col-xs-4">
         <div class="home-section-date">
           <div class="home-section-title">Today's date</div>
-          <div class="home-section-content">03/24/17</div>
+          <div class="home-section-content">05/09/17</div>
         </div>
         <div class="home-section-quote">
           <div class="home-section-title">Quote of the Day</div>
@@ -28,7 +28,7 @@
       </div>
       <div class="home-section col-xs-4">
         <div class="home-section-title">Your Progress</div>
-        <a href="/achievements">View your progress!</a>
+        <div class="home-section-content">Coming soon!</div>
       </div>
     </div>
   </div>
