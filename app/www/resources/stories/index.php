@@ -13,13 +13,9 @@
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
     </div>
-    <div class="portal-body">
-      <div class="stories-content">
-        <div id="stories-home">
-          <a class="stories-choose-story" href="story/?id=1">Story 1</a>
-          <a class="stories-choose-story" href="story/?id=2">Story 2</a>
-        </div>
-      </div>
+    <div class="portal-body flexbox">
+      <a class="resources-category" href="story/?id=1">Story 1</a>
+      <a class="resources-category" href="story/?id=2">Story 2</a>
     </div>
   </div>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>

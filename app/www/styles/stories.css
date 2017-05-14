@@ -1,10 +1,5 @@
 /* Stories */
 
-.stories-content {
-  /*position: relative;*/
-  display: flex;
-  flex-direction: column;
-}
 #stories-home {
   display: inline-flex;
   width: 100%;
@@ -36,8 +31,4 @@
 }
 .stories-story-section-text {
   /*overflow: auto;*/
-}
-
-.portal-body {
-  display: flex;
 }
