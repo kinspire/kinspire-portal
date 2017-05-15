@@ -17,9 +17,11 @@
     <div class="portal-body flexbox">
       <div class="stories-story">
         <div class="stories-story-section">
-          <?php
-          require $_SERVER['DOCUMENT_ROOT'].'/content/stories/'.$_GET['id'].'.html';
-          ?>
+          <div class="stories-story-text">
+            <?php
+            require $_SERVER['DOCUMENT_ROOT'].'/content/stories/'.$_GET['id'].'.html';
+            ?>
+          </div>
         </div>
         <div class="stories-story-section">
           Questions
