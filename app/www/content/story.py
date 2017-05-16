@@ -32,5 +32,8 @@ for paragraph in paragraphs:
 
         paragraph = parts[1]
 
+    if i == len(vocab):
+        outputFile.write(paragraph + '\n')
+
     # outputFile.write(paragraph);
     outputFile.write('<br/><br/>');
