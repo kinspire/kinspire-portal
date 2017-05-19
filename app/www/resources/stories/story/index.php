@@ -14,24 +14,19 @@
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
     </div>
-    <div class="portal-body">
-        <div class="stories-story">
-          <div class="stories-story-section">
+    <div class="portal-body flexbox">
+      <div class="stories-story">
+        <div class="stories-story-section">
+          <div class="stories-story-text">
             <?php
-            $storyJson = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/content/stories/'.$_GET['id'].'.json'), true);
-
-            foreach ($storyJson["story"] as $paragraph) {
-              $words = split(" ", $paragraph);
-              
-              
-              echo '<br/><br/>';
-            }
+            require $_SERVER['DOCUMENT_ROOT'].'/content/stories/'.$_GET['id'].'.html';
             ?>
           </div>
-          <div class="stories-story-section">
-            Questions
-          </div>
         </div>
+        <div class="stories-story-section">
+          Questions
+        </div>
+      </div>
     </div>
   </div>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>

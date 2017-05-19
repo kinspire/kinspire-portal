@@ -1,10 +1,5 @@
 /* Stories */
 
-.stories-content {
-  /*position: relative;*/
-  display: flex;
-  flex-direction: column;
-}
 #stories-home {
   display: inline-flex;
   width: 100%;
@@ -38,6 +33,29 @@
   /*overflow: auto;*/
 }
 
-.portal-body {
-  display: flex;
+/* Vocab words */
+
+.stories-vocab {
+  position: relative;
+  display: inline-block;
+}
+
+.stories-vocab-word {
+  background-color: skyblue;
+  overflow: visible;
+}
+
+.stories-vocab-def {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  z-index: 9;
+
+  background-color: white;
+  border: 1px solid black;
+  padding: 4px;
+}
+.stories-vocab:hover .stories-vocab-def {
+  display: block;
 }
