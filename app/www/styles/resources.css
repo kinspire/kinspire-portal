@@ -1,0 +1,27 @@
+/* Resources */
+
+.resources-banner {
+  width: 100%;
+  background-color: #9bd1e8;
+  height: 130px;
+  line-height: 130px;
+  margin-bottom: 25px;
+
+  font-size: 40px;
+  text-align: center;
+}
+.resources-categories {
+  width: 100%;
+  display: inline-flex;
+}
+.resources-category {
+  height: 200px;
+  width: 200px;
+  line-height: 200px;
+
+  background-color: orange;
+  cursor: pointer;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 32px;
+}

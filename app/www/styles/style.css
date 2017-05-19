@@ -1,39 +1,59 @@
 @font-face {
-  font-family: edoFont;
+  font-family: titleFont;
   src: url(../fonts/edo.ttf);
 }
 
 @font-face {
-  font-family: cabinSketch;
-  src: url(../fonts/cabinSketch.ttf);
+  font-family: contentFont;
+  src: url(../fonts/amarill.ttf);
 }
 
 @font-face {
-  font-family: gochi;
-  src: url(../fonts/gochi.ttf);
-}
-@font-face {
-  font-family: marker;
-  src: url(../fonts/PermanentMarker.ttf);
+  font-family: menuFont;
+  src: url(../fonts/permanentMarker.ttf);
 }
 
+@font-face {
+  font-family: headingFont;
+  src: url(../fonts/sunnySpringDay.ttf);
+}
 
 div {
-  font-family: gochi;
+  font-family: contentFont;
   font-size: 18px;
 }
 
-.portal-content {
-  padding: 6%;
-  background-image: url(../images/home-border.png);
-  background-size: 100%;
-  background-repeat: no-repeat;
-  position: relative;
+a, a:focus, a:visited {
+  color: inherit;
+  text-decoration: inherit;
 }
 
-.portal-header {
+.flexbox {
+  display: flex;
+}
+
+#portal-content {
+  padding: 6%;
+  /*background-image: url(../images/home-border.png);
+  background-size: 100%;
+  background-repeat: no-repeat;*/
   position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#portal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  z-index: -1;
+}
+
+#portal-header {
+  width: 100%;
+  position: relative;
 }
 
 .portal-title {
@@ -41,7 +61,7 @@ div {
   line-height: 64pt;
   font-size: 64pt;
   text-align: center;
-  font-family: edoFont;
+  font-family: titleFont;
   color: #35b729;
 }
 
@@ -52,9 +72,9 @@ div {
 
 .portal-body {
   /*display: inline-block;*/
-  height: auto;
-  font-family: cabinSketch;
-  padding-top: 4%;
+  margin-top: 4%;
+  overflow-y: auto;
+  overflow-x: hidden;
   /*width: 100%;*/
 }
 
@@ -62,7 +82,7 @@ div {
 
 .portal-menu {
   position: absolute;
-  top: 60;
+  top: 0;
   left: 150;
   text-align: center;
   z-index: 9; /* TODO constant for this? */
@@ -75,7 +95,6 @@ div {
 .portal-menu-title {
   font-size: 24px;
   cursor: pointer;
-  image: <img src = "/images/blue_magnet.png"/>
 }
 
 .portal-menu-content {
@@ -90,7 +109,7 @@ div {
   margin: 5px 15px;
   border-bottom: 5px solid gray;
   text-transform: uppercase;
-  font-family: marker;
+  font-family: menuFont;
 }
 
 .portal-menu-item-resources a {
@@ -137,16 +156,6 @@ div {
 .home-section-content {
   font-size: 16pt;
   color: #99e265;
-}
-
-/* Resources */
-
-.resources-title {
-  font-size: 64pt;
-  text-align: right;
-  width: 100%;
-  text-transform: uppercase;
-  font-family: cabinSketch;
 }
 
 /* Volunteer access */

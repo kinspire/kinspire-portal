@@ -1,0 +1,61 @@
+/* Stories */
+
+#stories-home {
+  display: inline-flex;
+  width: 100%;
+  /*position: absolute;*/
+  /*top: 0;*/
+}
+.stories-choose-story {
+  margin: 10px;
+  height: 150px;
+  width: 150px;
+  line-height: 150px;
+  text-align: center;
+  background-color: lightseagreen;
+  cursor: pointer;
+  margin: 0 auto;
+}
+.stories-story {
+  display: flex;
+  /*position: absolute;
+  top: 0;*/
+}
+.stories-story-section {
+  display: flex;
+  width: 50%;
+  border: 1px solid black;
+  padding: 15px;
+  /*height: 100%;*/
+  overflow: auto;
+}
+.stories-story-section-text {
+  /*overflow: auto;*/
+}
+
+/* Vocab words */
+
+.stories-vocab {
+  position: relative;
+  display: inline-block;
+}
+
+.stories-vocab-word {
+  background-color: skyblue;
+  overflow: visible;
+}
+
+.stories-vocab-def {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  z-index: 9;
+
+  background-color: white;
+  border: 1px solid black;
+  padding: 4px;
+}
+.stories-vocab:hover .stories-vocab-def {
+  display: block;
+}

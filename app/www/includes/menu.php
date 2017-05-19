@@ -4,7 +4,7 @@
        <img class="menu-magnet" src="/images/owl-magnet.png"
         height="60" width="60"></img>
       </div>
-     <div> menu title </div>
+     <div>menu</div>
   </div>
   <div class="portal-menu-content" id="menu-content">
     <div class="portal-menu-item portal-menu-item-resources"><a href="/resources/">Learning Resources</a></div>

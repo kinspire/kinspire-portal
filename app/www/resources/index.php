@@ -1,23 +1,35 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php"; ?>
 <head>
   <?php include $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
+  <link rel="stylesheet" href="/styles/resources.css" type="text/css"/>
   <title>Resources</title>
 </head>
 <body>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
-  <div class="portal-content">
-    <div class="portal-header">
+  <div id="portal-content">
+    <img id="portal-background" src="/images/home-border.png"/>
+    <div id="portal-header">
       <div class="portal-title">Resources</div>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
     </div>
-    <div class="portal-body container">
-      <div class="col-xs-9">
+    <div class="portal-body">
+      <!-- banner - can be dynamic, changing banner messages, three dots at the bottom -->
+      <!-- padding -->
+      <div class="resources-banner">
+        Congratulations! You completed Exercise #1.
       </div>
-      <div class="col-xs-3">
-        Let's get learning!
+      <!-- category list -> two columns if overflow -->
+      <!-- category #1: stories -->
+      <div class="resources-categories">
+        <a class="resources-category" href="stories/">Stories</a>
+        <!--<a class="resources-category" href="notes/">Notes</a>-->
+        <a class="resources-category" href="vocab/">Vocabulary</a>
+        <!--<a class="resources-category" href="quizzes/">Quizzes</a>-->
+        <a class="resources-category" href="templates/">Templates</a>
       </div>
     </div>
   </div>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>
+  <script src="/js/resources.js"></script>
 </body>
