@@ -22,7 +22,6 @@
   top: 0;*/
 }
 .stories-story-section {
-  display: flex;
   width: 50%;
   border: 1px solid black;
   padding: 15px;
