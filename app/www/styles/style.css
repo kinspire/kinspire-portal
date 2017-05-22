@@ -107,7 +107,7 @@ a, a:focus, a:visited {
   height: 50px;
   font-size: 13.5pt;
   margin: 5px 15px;
-  border-bottom: 5px solid gray;
+  border-bottom: 3px solid silver;
   text-transform: uppercase;
   font-family: menuFont;
 }
