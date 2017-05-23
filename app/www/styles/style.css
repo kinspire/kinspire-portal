@@ -86,6 +86,9 @@ a, a:focus, a:visited {
   left: 150;
   text-align: center;
   z-index: 9; /* TODO constant for this? */
+  width: 250px;
+  display: flex;
+  flex-direction: column;
 }
 
 #menu-content {
@@ -100,7 +103,6 @@ a, a:focus, a:visited {
 .portal-menu-content {
   background-color: white;
   border: 3px outset white;
-  width: 250px;
 }
 
 .portal-menu-item {
