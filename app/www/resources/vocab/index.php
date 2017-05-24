@@ -14,33 +14,7 @@
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
     </div>
     <div class="portal-body">
-      <div class="stories-content">
-        <div id="stories-home">
-          <div id="story-1" class="stories-choose-story">Story 1</div>
-          <div id="story-2" class="stories-choose-story">Story 2</div>
-        </div>
-        <div id="stories-story">
-          <div class="stories-story-section">
-            <?php
-            $storyFile = fopen($_SERVER['DOCUMENT_ROOT'].'/content/stories/1.txt', 'r');
-            $storyParagraphs = array();
-            while (!feof($storyFile)) {
-              array_push($storyParagraphs, fgets($storyFile));
-            }
-            
-            // TODO: format this properly for whatever interaction we want the
-            // students to have
-            foreach ($storyParagraphs as $paragraph) {
-              echo $paragraph;
-              echo '<br/><br/>';
-            }
-            ?>
-          </div>
-          <div class="stories-story-section">
-            Questions
-          </div>
-        </div>
-      </div>
+      Coming soon!
     </div>
   </div>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>

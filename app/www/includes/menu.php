@@ -7,11 +7,11 @@
      <div>menu</div>
   </div>
   <div class="portal-menu-content" id="menu-content">
+    <div class="portal-menu-item portal-menu-item-home"><a href= "/">Home</a></div>
     <div class="portal-menu-item portal-menu-item-resources"><a href="/resources/">Learning Resources</a></div>
     <div class="portal-menu-item portal-menu-item-activities"><a href="/activities/">Activities</a></div>
     <div class="portal-menu-item portal-menu-item-access"><a href="/volunteer-access/">Volunteer Access</a></div>
     <div class="portal-menu-item portal-menu-item-profile"><a href="/profile/">Profile</a></div>
-    <div class="portal-menu-item portal-menu-item-home"><a href= "/">Home</a></div>
 
     <div class="portal-menu-item-contact">
       Kinspire UW <br/>

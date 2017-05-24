@@ -1,8 +1,6 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php"; ?>
 <head>
   <?php include $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
-  <link rel="stylesheet" href="/styles/resources.css" type="text/css"/>
-  <link rel="stylesheet" href="/styles/stories.css" type="text/css"/>
   <title>Story</title>
 </head>
 <body>

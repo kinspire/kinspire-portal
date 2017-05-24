@@ -1,7 +1,6 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php"; ?>
 <head>
   <?php include $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
-  <link rel="stylesheet" href="/styles/resources.css" type="text/css"/>
   <title>Stories</title>
 </head>
 <body>
@@ -14,8 +13,10 @@
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
     </div>
     <div class="portal-body flexbox">
-      <a class="resources-category" href="story/?id=1">Story 1</a>
-      <a class="resources-category" href="story/?id=2">Story 2</a>
+      <div class="resources-categories">
+        <a class="resources-subcategory" href="story/?id=1">Story 1</a>
+        <a class="resources-subcategory" href="story/?id=2">Story 2</a>
+      </div>
     </div>
   </div>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>
