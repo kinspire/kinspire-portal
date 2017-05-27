@@ -22,15 +22,15 @@
         <a class="resources-category" href="stories/">
           <div class="resources-category-text">Stories</div>
         </a>
-        <a class="resources-category" href="vocab/">
+        <!--<a class="resources-category" href="vocab/">
           <div class="resources-category-text">Vocabulary</div>
-        </a>
+        </a>-->
       </div>
-      <div class="resources-categories">
+      <!--<div class="resources-categories">
         <a class="resources-category" href="templates/">
           <div class="resources-category-text">Templates</div>
         </a>
-      </div>
+      </div>-->
     </div>
   </div>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>

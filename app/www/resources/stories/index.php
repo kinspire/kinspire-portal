@@ -14,8 +14,9 @@
     </div>
     <div class="portal-body flexbox">
       <div class="resources-categories">
-        <a class="resources-subcategory" href="story/?id=1">Story 1</a>
-        <a class="resources-subcategory" href="story/?id=2">Story 2</a>
+        <a class="resources-subcategory" href="story/?id=1">
+          <div class="resources-category-text">Story 1</div>
+        </a>
       </div>
     </div>
   </div>
