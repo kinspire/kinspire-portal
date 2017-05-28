@@ -14,9 +14,15 @@
     </div>
     <div class="portal-body flexbox">
       <div class="resources-categories">
-        <a class="resources-subcategory" href="story/?id=1">
-          <div class="resources-category-text">Story 1</div>
-        </a>
+        <?php 
+        $filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/details.json';
+        $stories_json = json_decode(file_get_contents($filename), true);
+        foreach ($stories_json as $id => $details) {
+        ?>
+        <div class="resources-subcategory">
+          <a class="resources-category-text" href="story/?id=<?php echo $id;?>"><?php echo $details["name"];?></a>
+        </div>
+        <?php } ?>
       </div>
     </div>
   </div>

@@ -14,6 +14,7 @@
 
     // Switch on login or signup
     if (isset($_POST['signup'])) {
+      // TODO: check to see if this user already exists
       PDO_Execute("INSERT INTO users (email, password) VALUES (:email, :password)",
         array("email"=>$email, "password"=>$password));
       $success = true;

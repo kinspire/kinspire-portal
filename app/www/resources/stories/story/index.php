@@ -5,6 +5,9 @@
 </head>
 <body>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
+  <?php
+  // TODO: read in JSON file for other story information such as title
+  ?>
   <div id="portal-content">
     <img id="portal-background" src="/images/home-border.png"/>
     <div id="portal-header">
