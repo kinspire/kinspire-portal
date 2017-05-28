@@ -1,12 +1,13 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php"; ?>
 <head>
   <?php include $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
-  <link rel="stylesheet" href="/styles/resources.css" type="text/css"/>
-  <link rel="stylesheet" href="/styles/stories.css" type="text/css"/>
   <title>Story</title>
 </head>
 <body>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
+  <?php
+  // TODO: read in JSON file for other story information such as title
+  ?>
   <div id="portal-content">
     <img id="portal-background" src="/images/home-border.png"/>
     <div id="portal-header">

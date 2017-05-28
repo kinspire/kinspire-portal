@@ -28,7 +28,11 @@
       </div>
       <div class="home-section col-xs-4">
         <div class="home-section-title">Your Progress</div>
-        <div class="home-section-content">Coming soon!</div>
+        <div class="home-section-progress">
+          <a href="achievements/">
+            <img class="home-section-progress-image" src="images/envelope-with-medal.png"/>
+          </a>
+        </div>
       </div>
     </div>
   </div>
