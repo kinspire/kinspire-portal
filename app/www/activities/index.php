@@ -15,6 +15,12 @@
     <div class="portal-body">
       Coming soon!
     </div>
+    <ul style="list-style-type:circle">
+      <!-- TODO: replace with something meaningful -->
+      <li><a href="#"><span>Link 1</span></a></li>
+      <li><a href="#"><span>Link 2</span></a></li>
+      <li><a href="#"><span>Link 3</span></a></li>
+    </ul>
   </div>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>
 </body>
