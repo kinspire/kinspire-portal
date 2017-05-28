@@ -88,7 +88,7 @@ a:visited {
   height: 50px;
   font-size: 13.5pt;
   margin: 5px 15px;
-  border-bottom: 3px solid silver;
+  border-bottom: 5px solid gray;
   text-transform: uppercase;
   font-family: menuFont;
 }
@@ -225,7 +225,6 @@ a:visited {
   display: flex;
 }
 .stories-story-section {
-  display: flex;
   width: 50%;
   border: 1px solid black;
   padding: 15px;

@@ -16,9 +16,10 @@
       Coming soon!
     </div>
     <ul style="list-style-type:circle">
-      <li><a href = "http://kinspire.org/" target  = "_blank"><span>Link 1</span></a></li>
-      <li><a href = "http://kinspire.org/" target  = "_blank"><span>Link 2</span></a></li>
-      <li><a href = "http://kinspire.org/" target  = "_blank"><span>Link 3</span></a></li>
+      <!-- TODO: replace with something meaningful -->
+      <li><a href="#"><span>Link 1</span></a></li>
+      <li><a href="#"><span>Link 2</span></a></li>
+      <li><a href="#"><span>Link 3</span></a></li>
     </ul>
   </div>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>

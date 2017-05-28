@@ -35,17 +35,13 @@
               <li><a href = "#"><span>Gopi didn't listen to the teacher</span></a></li>
             </ol>
             <li>Where did everyone go for the big meeting? State the line #.</li>
-              <form action="/action_page.php">
-                <input type="text" name="firstname">
+            <input type="text" name="firstname">
             <li>Who did Gopi become good friends with?</li>
-              <form action="/action_page.php">
-                <input type="text" name="firstname">
+            <input type="text" name="firstname">
             <li>Why was Priya crying near the locker rooms?</li>
-              <form action="/action_page.php">
-                <input type="text" name="firstname">
+            <input type="text" name="firstname">
             <li>What do you remember from your first day of school? Explain in two sentences</li>
-              <form action="/action_page.php">
-                <input type="text" name="firstname">
+            <input type="text" name="firstname">
           </ol>
           <center><button type="button">Submit!</button></center>
         </div>
