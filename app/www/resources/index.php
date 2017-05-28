@@ -1,7 +1,6 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php"; ?>
 <head>
   <?php include $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
-  <link rel="stylesheet" href="/styles/resources.css" type="text/css"/>
   <title>Resources</title>
 </head>
 <body>
@@ -19,15 +18,19 @@
       <div class="resources-banner">
         Congratulations! You completed Exercise #1.
       </div>
-      <!-- category list -> two columns if overflow -->
-      <!-- category #1: stories -->
       <div class="resources-categories">
-        <a class="resources-category" href="stories/">Stories</a>
-        <!--<a class="resources-category" href="notes/">Notes</a>-->
-        <a class="resources-category" href="vocab/">Vocabulary</a>
-        <!--<a class="resources-category" href="quizzes/">Quizzes</a>-->
-        <a class="resources-category" href="templates/">Templates</a>
+        <a class="resources-category" href="stories/">
+          <div class="resources-category-text">Stories</div>
+        </a>
+        <!--<a class="resources-category" href="vocab/">
+          <div class="resources-category-text">Vocabulary</div>
+        </a>-->
       </div>
+      <!--<div class="resources-categories">
+        <a class="resources-category" href="templates/">
+          <div class="resources-category-text">Templates</div>
+        </a>
+      </div>-->
     </div>
   </div>
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>

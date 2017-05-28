@@ -7,6 +7,9 @@
      <div>menu</div>
   </div>
   <div class="portal-menu-content" id="menu-content">
+    <div class="portal-menu-item portal-menu-item-home">
+        <img class="home-button" src="/images/grey house.png" height="25" width="25"></img>
+      <a href= "/">Home</a></div>
     <div class="portal-menu-item portal-menu-item-resources">
       <img class="purple-pencil" src="/images/purple pencil.png" height="25" width="25"></img>
       <a href="/resources/">Learning Resources</a>
@@ -20,9 +23,6 @@
     <div class="portal-menu-item portal-menu-item-profile">
       <img class="orange-computer" src="/images/orange computer.png" height="25" width="25"></img>
       <a href="/profile/">Profile</a></div>
-    <div class="portal-menu-item portal-menu-item-home">
-        <img class="home-button" src="/images/grey house.png" height="25" width="25"></img>
-      <a href= "/">Home</a></div>
 
     <div class="portal-menu-item-contact">
       Kinspire UW <br/>
