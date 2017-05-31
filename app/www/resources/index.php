@@ -19,12 +19,17 @@
         Congratulations! You completed Exercise #1.
       </div>
       <div class="resources-categories">
-        <a class="resources-category" href="stories/">
-          <div class="resources-category-text">Stories</div>
-        </a>
-        <!--<a class="resources-category" href="vocab/">
-          <div class="resources-category-text">Vocabulary</div>
-        </a>-->
+          <a class="resources-category" href="stories/">
+            <div class="resources-category-content">
+              <div class="resources-category-text">Stories</div>
+            </div>
+          </a>
+          <a class="resources-category" href="vocab/">
+            <div class="resources-category-content">
+              <div class="resources-category-text">Vocabulary</div>
+            </div>
+          </a>
+        </div>
       </div>
       <!--<div class="resources-categories">
         <a class="resources-category" href="templates/">

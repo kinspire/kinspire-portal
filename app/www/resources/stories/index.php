@@ -20,7 +20,9 @@
         foreach ($stories_json as $id => $details) {
         ?>
         <div class="resources-subcategory">
-          <a class="resources-category-text" href="story/?id=<?php echo $id;?>"><?php echo $details["name"];?></a>
+          <div class="resources-category-content">
+            <a class="resources-category-text" href="story/?id=<?php echo $id;?>"><?php echo $details["name"];?></a>
+          </div>
         </div>
         <?php } ?>
       </div>

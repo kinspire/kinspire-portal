@@ -1,10 +1,10 @@
 <div class="portal-menu">
   <div class="portal-menu-title" id="menu-title">
+     <div>menu</div>
      <div>
        <img class="menu-magnet" src="/images/owl-magnet.png"
         height="60" width="60"></img>
       </div>
-     <div>menu</div>
   </div>
   <div class="portal-menu-content" id="menu-content">
   <!-- TODO: Change the hardcoded 25 height/width -->
@@ -28,8 +28,7 @@
 
     <div class="portal-menu-item-contact">
       Kinspire UW <br/>
-      Contact us:<br/>
-      kinspire@uw.edu<br/>
+      Contact us: kinspire@uw.edu<br/>
       2017
     </div>
   </div>

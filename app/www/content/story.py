@@ -1,39 +1,55 @@
-import re
+#!/c/Python27/python
+
+import io
 import json
 
 STORY_NUMBER = '1'
 CONTENT_FOLDER = 'stories/'
 
-filename = open(CONTENT_FOLDER + STORY_NUMBER + '.json')
-story_json = json.load(filename)
 
-outputFile = open(CONTENT_FOLDER + STORY_NUMBER + '.html', 'w');
+def main():
+    '''
+    Creates the story HTML to be injected into the stories page from the respective JSON files.
+    '''
+    filename = io.open(CONTENT_FOLDER + STORY_NUMBER + '.json', 'r', encoding='utf8')
+    story_json = json.load(filename)
 
-paragraphs = story_json['story'];
-vocab = story_json['vocab'];
-i = 0
+    output_file = io.open(CONTENT_FOLDER + STORY_NUMBER +
+                          '.html', 'w', encoding='utf8')
+    # output_file = open(, 'w')
 
-for paragraph in paragraphs:
-    # words = re.split("\W+", paragraph)
-    while i < len(vocab):
-        parts = paragraph.split(vocab[i], 1)
+    paragraphs = story_json['story']
+    vocab = story_json['vocab']
+    translations = story_json['translation-te']
+    i = 0
 
-        outputFile.write(parts[0] + '\n')
+    for paragraph in paragraphs:
+        # words = re.split("\W+", paragraph)
+        while i < len(vocab):
+            parts = paragraph.split(vocab[i], 1)
 
-        if len(parts) < 2:
-            break
+            output_file.write(parts[0] + '\n')
 
-        # Write out the vocab word with scaffolding
-        outputFile.write('<span class="stories-vocab">\n')
-        outputFile.write('\t<span class="stories-vocab-word">' + vocab[i] + '</span>')
-        outputFile.write('\t<div class="stories-vocab-def">Definition</div>')
-        outputFile.write('</span>')
-        i += 1
+            if len(parts) < 2:
+                break
 
-        paragraph = parts[1]
+            # Write out the vocab word with scaffolding
+            output_file.write(u'<span class="stories-vocab">\n')
+            output_file.write(
+                u'\t<span class="stories-vocab-word">' + vocab[i] + u'</span>')
+            output_file.write(u'\t<div class="stories-vocab-def">' + (
+                translations[i] if i < len(translations) else '[translation]') + u'</div>')
+            output_file.write(u'</span>')
+            i += 1
 
-    if i == len(vocab):
-        outputFile.write(paragraph + '\n')
+            paragraph = parts[1]
 
-    # outputFile.write(paragraph);
-    outputFile.write('<br/><br/>');
+        if i == len(vocab):
+            output_file.write(paragraph + '\n')
+
+        # outputFile.write(paragraph)
+        output_file.write(u'<br/><br/>')
+
+
+if __name__ == "__main__":
+    main()

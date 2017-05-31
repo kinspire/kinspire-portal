@@ -1,12 +1,14 @@
 /* Menu */
 
+@menu-width: 300px;
+
 .portal-menu {
   position: absolute;
   top: 0;
-  left: 150;
+  left: 5%;
   text-align: center;
   z-index: 9; /* TODO constant for this? */
-  width: 250px;
+  width: @menu-width;
   display: flex;
   flex-direction: column;
 }
@@ -29,28 +31,29 @@
 .portal-menu-item {
   // height: 50px;
   font-size: 13.5pt;
-  margin: 5px 15px;
+  margin: 5px 15px 0px 15px;
+  padding: 6px 0;
   border-bottom: 5px solid gray;
   text-transform: uppercase;
   font-family: menuFont;
 }
 
 .portal-menu-item-resources a {
-  color: #b760e6;
+  color: @menu-resources;
 }
 
 .portal-menu-item-activities a{
-  color: #5271ff;
+  color: @menu-activities;
 }
 
 .portal-menu-item-access a {
-  color: #ff5c5c;
+  color: @menu-access;
 }
 
 .portal-menu-item-profile a {
-  color: #ffbd4a;
+  color: @menu-profile;
 }
 
 .portal-menu-item-home a {
-  color: #35b729;
+  color: @menu-home;
 }

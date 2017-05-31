@@ -7,11 +7,14 @@
   <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
   <?php
   // TODO: read in JSON file for other story information such as title
+  $filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/details.json';
+  $stories_json = json_decode(file_get_contents($filename), true);
   ?>
   <div id="portal-content">
     <img id="portal-background" src="/images/home-border.png"/>
     <div id="portal-header">
-      <div class="portal-title">Story</div>
+      <div class="portal-title"><?php echo $stories_json[$_GET['id']]['name'];?></div>
+      <div class="portal-subtitle">Stories</div>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
       <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
     </div>
