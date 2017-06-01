@@ -14,10 +14,9 @@
     </div>
     <div class="portal-body">
       <!-- banner - can be dynamic, changing banner messages, three dots at the bottom -->
-      <!-- padding -->
-      <div class="resources-banner">
+      <!--<div class="resources-banner">
         Congratulations! You completed Exercise #1.
-      </div>
+      </div>-->
       <div class="resources-categories">
           <a class="resources-category" href="stories/">
             <div class="resources-category-content">
@@ -29,7 +28,6 @@
               <div class="resources-category-text">Vocabulary</div>
             </div>
           </a>
-        </div>
       </div>
       <!--<div class="resources-categories">
         <a class="resources-category" href="templates/">
