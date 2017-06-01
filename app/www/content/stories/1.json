@@ -5,6 +5,35 @@
         "When he comes to school the next day, Gopi is given a seat right beside Priya, the new friend he met on the first day of school. In Art class, Priya and Gopi concentrate on all the new things they are learning, like the names of shapes, colors, and how to paint! During Sports, however, after doing his 10 push ups as a punishment from the day before, Gopi cannot find Priya anywhere. He looks for her all over the huge sports field. Everyone is in their sports uniforms and look so similar that Gopi cannot find Priya in the crowd.",
         "After a few minutes, he hears someone crying near the locker rooms and sees that it is Priya. Her uniform is soiled, and her finger is hurt. Gopi knows he has to help his new friend so he follows the instructions his teacher gave him on the first day about what to do when someone gets hurt and informs the teacher. The coach sends Priya with Gopi to the nurse's office where the nurse gives Priya first aid. Priya still doesn't stop crying. To make her feel better, Gopi tells her what his mother taught him about being brave and comforts her saying she is going to be all right. After that day, Gopi and Priya became the best of friends!"
     ],
+    "questions": [
+        {
+            "type": "mcq",
+            "question": "Why did the coach make Gopi do push-ups?",
+            "choices": [
+                "Gopi went to class late",
+                "Gopi yawned",
+                "Gopi cried",
+                "Gopi didn't listen to the teacher"
+            ],
+            "correctChoice": 1
+        }, {
+            "type": "free",
+            "question": "Where did everyone go for the big meeting? State the line #.",
+            "correctAnswer": "Answer"
+        }, {
+            "type": "free",
+            "question": "Who did Gopi become good friends with?",
+            "correctAnswer": "Answer"
+        }, {
+            "type": "free",
+            "question": "Why was Priya crying near the locker rooms?",
+            "correctAnswer": "Answer"
+        }, {
+            "type": "free",
+            "question": "What do you remember from your first day of school? Explain in two sentences.",
+            "correctAnswer": "Answer"
+        }
+    ],
     "vocab": [
         "nervous",
         "breath",

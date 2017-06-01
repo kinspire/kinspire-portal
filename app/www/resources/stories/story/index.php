@@ -23,28 +23,14 @@
         <div class="stories-story-section">
           <div class="stories-story-text">
             <?php
-            require $_SERVER['DOCUMENT_ROOT'].'/content/stories/'.$_GET['id'].'.html';
+            require $_SERVER['DOCUMENT_ROOT'].'/content/stories/story-'.$_GET['id'].'.html';
             ?>
           </div>
         </div>
         <div class="stories-story-section">
           Questions
           <ol type="1">
-            <li>Why did the coach make Gopi do push-ups?</li>
-            <ol type="a">
-              <li><a href = "#"><span>Gopi went to class late</span></a></li>
-              <li><a href = "#"><span>Gopi yawned</span></a></li>
-              <li><a href = "#"><span>Gopi cried</span></a></li>
-              <li><a href = "#"><span>Gopi didn't listen to the teacher</span></a></li>
-            </ol>
-            <li>Where did everyone go for the big meeting? State the line #.</li>
-            <input type="text" name="firstname">
-            <li>Who did Gopi become good friends with?</li>
-            <input type="text" name="firstname">
-            <li>Why was Priya crying near the locker rooms?</li>
-            <input type="text" name="firstname">
-            <li>What do you remember from your first day of school? Explain in two sentences</li>
-            <input type="text" name="firstname">
+          <?php require $_SERVER['DOCUMENT_ROOT'].'/content/stories/questions-'.$_GET['id'].'.html';?>
           </ol>
           <center><button type="button">Submit!</button></center>
         </div>
