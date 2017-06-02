@@ -3,7 +3,7 @@
 $filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/details.json';
 $stories_json = json_decode(file_get_contents($filename), true);
 $story_name = $stories_json[$_GET['id']]['name'];
-head($story_name);
+head($story_name, 1);
 ?>
 <div class="portal-body flexbox">
   <div class="stories-story">

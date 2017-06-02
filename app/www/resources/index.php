@@ -1,6 +1,6 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
-head("Resources");
+head("Resources", 1);
 ?>
 <div class="portal-body">
   <!-- banner - can be dynamic, changing banner messages, three dots at the bottom -->
