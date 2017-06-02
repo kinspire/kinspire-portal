@@ -10,7 +10,56 @@
         "\"I wonder why flamingos are pink?\" Gopi wonders.",
         "\"They turn pink because they eat a lot of shrimp!\" Priya replies. Once they finish looking at all of the fish in the aquarium, it is time to go home. It has been a great day visiting the zoo!"
     ],
-    "questions": [],
-    "vocab": [],
+    "questions": [
+        {
+            "type": "free",
+            "question": "Where did Priya and Gopi go?"
+        },
+        {
+            "type": "mcq",
+            "question": "Why did Priya want to see the tigers?",
+            "choices": [
+                "Her favorite animal is a tiger",
+                "She likes the color orange",
+                "Her cat looks like a tiger",
+                "She wants to touch the tiger"
+            ],
+            "correctChoice": 1
+        },
+        {
+            "type": "free",
+            "question": "What is the first animal Priya and Gopi see? State the line #"
+        },
+        {
+            "type": "free",
+            "question": "Why does Priya laugh? "
+        },
+        {
+            "type": "free",
+            "question": "What is your favorite animal to see at the zoo? Why? Explain in two sentences."
+        }
+    ],
+    "vocab": [
+        "going",
+        "hop",
+        "excited",
+        "yells",
+        "stripes",
+        "exclaims",
+        "trunks",
+        "roar",
+        "around",
+        "able",
+        "reach",
+        "grumble",
+        "grabbed",
+        "quickly",
+        "exhibit",
+        "follows",
+        "mocking",
+        "while",
+        "almost",
+        "aquarium"
+    ],
     "translation-te": []
 }
