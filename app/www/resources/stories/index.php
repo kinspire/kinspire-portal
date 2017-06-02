@@ -4,6 +4,7 @@ head("Stories", 1);
 ?>
 <div class="portal-body flexbox">
   <div class="resources-categories">
+    <div class="resources-category-container">
     <?php 
     $filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/details.json';
     $stories_json = json_decode(file_get_contents($filename), true);
@@ -15,8 +16,9 @@ head("Stories", 1);
       </div>
     </div>
     <?php } ?>
+    </div>
   </div>
 </div>
 <?php
-tail("resources");
+tail(array("resources"));
 ?>

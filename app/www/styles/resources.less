@@ -13,9 +13,9 @@
 
 .resources-categories {
   text-align: center;
-  display: inline-block;
+  display: inline-flex; //block;
  	width: 100%;
-   border: 1px solid black;
+  // border: 1px solid black;
 }
 
 .resources-category-container {
@@ -25,16 +25,18 @@
 
 .resources-category {
   margin: 15px;
-  display: inline-block;
+  display: /*inline-*/block;
 
   height: 200px;
   width: 200px;
 
-  background-color: @orange;
-  border: 1px solid black;
+  background-image: url(../images/resources-page-box.png);
+  background-size: contain;
+  // background-color: @orange;
+  // border: 1px solid black;
   cursor: pointer;
   text-align: center;
-  border-radius: 8px;
+  padding: 20px;
 }
 
 .resources-category-content {

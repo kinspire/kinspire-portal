@@ -2,6 +2,8 @@
 head("Activities", 2);
 ?>
 <div class="portal-body">
-  Coming soon!
+  <div class="filler">
+    Coming soon!
+  </div>
 </div>
 <?php tail(); ?>

@@ -16,11 +16,13 @@ head($story_name, 1);
     </div>
     <div class="stories-story-section">
       Questions
-      <ol type="1">
-        <?php require $_SERVER['DOCUMENT_ROOT'].'/content/stories/questions-'.$_GET['id'].'.html';?>
-      </ol>
-      <center><button type="button">Submit!</button></center>
+      <form action="submit.php">
+        <ol type="1">
+          <?php require $_SERVER['DOCUMENT_ROOT'].'/content/stories/questions-'.$_GET['id'].'.html';?>
+        </ol>
+        <input type="submit" value="Submit!">
+      </form>
     </div>
   </div>
 </div>
-<?php tail('resources'); ?>
+<?php tail(array('resources')); ?>

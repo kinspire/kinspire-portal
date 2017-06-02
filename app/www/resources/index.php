@@ -8,16 +8,18 @@ head("Resources", 1);
     Congratulations! You completed Exercise #1.
   </div>-->
   <div class="resources-categories">
-    <a class="resources-category" href="stories/">
-      <div class="resources-category-content">
-        <div class="resources-category-text">Stories</div>
-      </div>
-    </a>
-    <a class="resources-category" href="templates/">
-      <div class="resources-category-content">
-        <div class="resources-category-text">Templates</div>
-      </div>
-    </a>
+    <div class="resources-category-container">
+      <a class="resources-category" href="stories/">
+        <div class="resources-category-content">
+          <div class="resources-category-text">Stories</div>
+        </div>
+      </a>
+      <a class="resources-category" href="templates/">
+        <div class="resources-category-content">
+          <div class="resources-category-text">Templates</div>
+        </div>
+      </a>
+    </div>
     <!--<a class="resources-category" href="vocab/">
       <div class="resources-category-content">
         <div class="resources-category-text">Vocabulary</div>

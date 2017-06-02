@@ -4,7 +4,7 @@ function menu($active) { ?>
     <div class="portal-menu-title" id="menu-title">
       <div>menu</div>
       <div>
-        <img class="menu-magnet" src="/images/owl-magnet-inactive.png"
+        <img id="menu-magnet" src="/images/owl-magnet-inactive.png"
           height="60" width="60"></img>
         </div>
     </div>
