@@ -3,6 +3,6 @@
 head("Submitted!", 1);
 ?>
 <div class="portal-body">
-    <div class="filler">Thanks for your answers!</div>
+  <div class="filler">Thanks for your answers!</div>
 </div>
 <?php tail(array('resources')); ?>

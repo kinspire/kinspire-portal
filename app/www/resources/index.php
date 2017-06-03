@@ -20,11 +20,6 @@ head("Resources", 1);
         </div>
       </a>
     </div>
-    <!--<a class="resources-category" href="vocab/">
-      <div class="resources-category-content">
-        <div class="resources-category-text">Vocabulary</div>
-      </div>
-    </a>-->
   </div>
 </div>
 <?php
