@@ -1,11 +1,12 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
-head("Word Search woo", 2); ?>
+head("Word Search ".$_GET['id'], 2); ?>
 <div class="portal-body flexbox">
   <div class="wordsearch-grid">
     <?php
-    $filename = $_SERVER['DOCUMENT_ROOT'].'/content/wordsearch/1.json';
+    $filename = $_SERVER['DOCUMENT_ROOT'].'/content/wordsearch/'.$_GET['id'].'.json';
     $wordsearch_json = json_decode(file_get_contents($filename), true);
     $grid = $wordsearch_json['grid'];
+    $words = $wordsearch_json['words'];
     ?>
     <?php foreach ($grid as $rowN => $row) {
     ?>
@@ -16,10 +17,14 @@ head("Word Search woo", 2); ?>
     </div>
     <?php } ?>
   </div>
-  <div class="wordsearch-words">Words</div>
+  <div class="wordsearch-words">
+    <?php foreach ($words as $word) {?>
+      <div id="wordsearch-word-<?php echo $word;?>"><?php echo $word;?></div>
+    <?php }?>
+  </div>
 </div>
 <script>
-var grid = <?php echo json_encode($wordsearch_json['grid']);?>;
-var words = <?php echo json_encode($wordsearch_json['words']);?>;
+var grid = <?php echo json_encode($grid);?>;
+var words = <?php echo json_encode($words);?>;
 </script>
 <?php tail(array('wordsearch')); ?>

@@ -11,7 +11,12 @@ head("Word Search", 2);
     ?>
     <div class="activities-category">
       <div class="resources-category-content">
-        <a class="resources-category-text" href="wordsearch/?id=1">Level 1</a>
+        <a class="resources-category-text" href="play/?id=1">Level 1</a>
+      </div>
+    </div>
+    <div class="activities-category">
+      <div class="resources-category-content">
+        <a class="resources-category-text" href="play/?id=2">Level 2</a>
       </div>
     </div>
   </div>
