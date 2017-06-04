@@ -79,13 +79,22 @@ def generate_questions(i, story_json):
         output_file.write(u'<li>{0}</li>'.format(question['question']))
 
         if question['type'] == 'mcq':
-            output_file.write(u'<ol type="a">')
+            # output_file.write(u'<ol type="a">')
+            # output_file.write(u'<form>')
 
-            for choice in question['choices']:
+            for j, choice in enumerate(question['choices']):
                 output_file.write(
-                    u'<li><a href="#">{0}</a></li>'.format(choice))
+                    u'<div class="radio"><label><input type="radio" name="optradio">{0}</label></div>'.format(choice))
 
-            output_file.write(u'</ol>')
+# <div class="radio">
+#   <label><input type="radio" name="optradio">Option 2</label>
+# </div>
+# <div class="radio disabled">
+#   <label><input type="radio" name="optradio" disabled>Option 3</label>
+# </div>                    u'<input type="radio">&nbsp;{0}<br>'.format(choice))
+
+            # output_file.write(u'</ol>')
+            # output_file.write(u'</form>')
 
         elif question['type'] == 'free':
             output_file.write(

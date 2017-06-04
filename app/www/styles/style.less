@@ -19,6 +19,8 @@ a:hover {
   display: flex;
 }
 
+@import "menu.less";
+
 #portal-content {
   padding: 6%;
   /*background-image: url(../images/home-border.png);
@@ -40,13 +42,17 @@ a:hover {
 
 #portal-header {
   width: 100%;
-  position: relative;
+  display: flex;
+  // position: relative;
+  min-height: 100px;
+  max-height: 100px;
 }
 
 .portal-title {
-  width: 100%;
-  line-height: 64pt;
-  font-size: 64pt;
+  margin: 0 auto;
+  // width: 100%;
+  line-height: 86px;
+  font-size: 86px;
   text-align: center;
   font-family: titleFont;
   color: @primary;
@@ -57,26 +63,33 @@ a:hover {
   font-size: 80pt;
 }
 
+.portal-back {
+  // position: absolute;
+  // top: 0;
+  // right: 4%;
+  width: @menu-width;
+  text-align: center;
+}
+
+.portal-back-text {
+  line-height: 18px;
+}
+
+.portal-back-arrow {
+  height: 80px;
+}
+
 .portal-body {
   /*display: inline-block;*/
-  margin-top: 4%;
+  margin-top: 6%;
   overflow-y: auto;
   overflow-x: hidden;
   /*width: 100%;*/
 }
 
-/* Back button */
-
-.portal-back {
-  position: absolute;
-  top: 0;
-  right: 4%;
+.filler {
   text-align: center;
-  font-size: 24px;
-}
-
-.portal-back-arrow {
-  height: 80px;
+  font-size: 100px;
 }
 
 /* Home */
@@ -105,43 +118,8 @@ a:hover {
   width: 100%;
 }
 
-/* Volunteer access */
-
-.volunteer-access-question {
-  width: 100%;
-  border: 5px solid orange;
-  margin: 3% 0;
-}
-
-.volunteer-access-text {
-  width: 100%;
-  border: 0;
-  resize: none;
-}
-
-.volunteer-access-comments {
-  width: 100%;
-  border: 5px solid red;
-  margin: 3% 0;
-}
-
-.volunteer-access-submit-area {
-  display: inline-flex;
-  width: 100%;
-}
-
-.volunteer-access-file {
-  margin-right: auto;
-}
-
-.volunteer-access-submit {
-  margin-left: auto;
-  background-color: orange;
-  color: white;
-  text-transform: uppercase;
-  padding: 20px;
-}
-
 @import "resources.less";
+@import "activities.less";
 @import "stories.less";
-@import "menu.less";
+@import "access.less";
+@import "templates.less";

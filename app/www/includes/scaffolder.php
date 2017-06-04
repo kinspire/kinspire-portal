@@ -10,8 +10,8 @@ function head($title, $active = 0) {
         <div id="portal-content">
             <img id="portal-background" src="/images/home-border.png"/>
             <div id="portal-header">
-                <div class="portal-title"><?php echo $title;?></div>
                 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";menu($active);?>
+                <div class="portal-title"><?php echo $title;?></div>
                 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
             </div>
 <?php }
