@@ -9,4 +9,5 @@ A desktop portal for the students in Kinspire's orphanages to use to access lear
   - Then navigate to the `kinspire-portal` directory and run `./win-setup.ps1`.
   - Run `Set-ExecutionPolicy -ExecutionPolicy Restricted`.
 - If on a Unix-based platform (Mac/Linux)
-  - The source directory is `app/www/`.
+  - Install [PHP](http://php.net) if you haven't already.
+  - Spin up a PHP server in the source directory (`app/www/`).
