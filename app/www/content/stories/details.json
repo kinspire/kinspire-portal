@@ -1,6 +1,11 @@
 {
     "1": {
-        "name": "First Days of School"
+        "name": "First Days of School",
+        "colors": {
+            "text-color": "white",
+            "background-color": "#99e265",
+            "border": "#35b729"
+        }
     },
     "2": {
         "name": "Going to the Zoo"

@@ -18,7 +18,7 @@
             "correctChoice": 1
         }, {
             "type": "free",
-            "question": "Where did everyone go for the big meeting? State the line #.",
+            "question": "Where did everyone go for the big meeting?",
             "correctAnswer": "Answer"
         }, {
             "type": "free",
