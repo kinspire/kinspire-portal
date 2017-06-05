@@ -1,11 +1,11 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
-head('Welcome', 0);
+head('Welcome!', 0);
 ?>
 <div class="portal-body">
   <div class="home-section col-xs-4">
     <div class="home-section-date">
       <div class="home-section-title">Today's date</div>
-      <div class="home-section-content">05/09/17</div>
+      <div class="home-section-content"><?php echo date('d/m/Y'); ?></div>
     </div>
     <div class="home-section-quote">
       <div class="home-section-title">Quote of the Day</div>
@@ -15,14 +15,9 @@ head('Welcome', 0);
   <div class="home-section col-xs-4">
     <div class="home-section-title">Next Activity to Try</div>
     <div class="home-section-content">
-      Worksheet 1<br/>
-      Worksheet 2<br/>
-      Worksheet 3<br/>
-      Worksheet 4<br/>
-      Worksheet 5<br/>
-      Worksheet 6<br/>
-      Worksheet 7<br/>
-      Worksheet 8<br/>
+      <div class="home-next-activity">Story 1</div>
+      <div class="home-next-activity">Worksheet 2</div>
+      <div class="home-next-activity">Worksheet 3</div>
     </div>
   </div>
   <div class="home-section col-xs-4">

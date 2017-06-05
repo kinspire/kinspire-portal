@@ -6,13 +6,9 @@ div {
   font-size: 18px;
 }
 
-a, a:focus {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: inherit;
+a, a:focus, a:hover, a:visited {
+  // color: inherit;
+  text-decoration: none;
 }
 
 .flexbox {
@@ -118,20 +114,35 @@ a:hover {
 
 /* Home */
 
-/*.home-section {
-  border: 1px solid black;
-} */
-
 .home-section-title {
   font-size: 18pt;
   text-align: center;
-  color: @primary;
+  color: @primary-green;
 }
 
 .home-section-content {
   font-size: 16pt;
   color: @secondary;
   text-align: center;
+}
+
+.home-next-activity {
+  padding: 16px;
+  margin: 4px;
+  box-shadow: 1px 1px 2px;
+  border: 1px solid @primary-brown;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:active {
+    box-shadow: 0;
+  }
+
+  &:hover {
+    background-color: @primary-brown;
+    color: white;
+    box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.7);
+  }
 }
 
 .home-section-progress {
