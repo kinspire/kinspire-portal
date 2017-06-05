@@ -17,19 +17,19 @@
             ],
             "correctChoice": 1
         }, {
-            "type": "free",
+            "type": "short",
             "question": "Where did everyone go for the big meeting?",
             "correctAnswer": "Answer"
         }, {
-            "type": "free",
+            "type": "short",
             "question": "Who did Gopi become good friends with?",
             "correctAnswer": "Answer"
         }, {
-            "type": "free",
+            "type": "long",
             "question": "Why was Priya crying near the locker rooms?",
             "correctAnswer": "Answer"
         }, {
-            "type": "free",
+            "type": "long",
             "question": "What do you remember from your first day of school? Explain in two sentences.",
             "correctAnswer": "Answer"
         }
