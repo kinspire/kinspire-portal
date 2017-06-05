@@ -16,7 +16,7 @@
             "question": "Where did Priya and Gopi go?"
         },
         {
-            "type": "mcq",
+            "type": "long",
             "question": "Why did Priya want to see the tigers?",
             "choices": [
                 "Her favorite animal is a tiger",
@@ -27,15 +27,15 @@
             "correctChoice": 1
         },
         {
-            "type": "free",
+            "type": "short",
             "question": "What is the first animal Priya and Gopi see? State the line #"
         },
         {
-            "type": "free",
+            "type": "long",
             "question": "Why does Priya laugh? "
         },
         {
-            "type": "free",
+            "type": "long",
             "question": "What is your favorite animal to see at the zoo? Why? Explain in two sentences."
         }
     ],
