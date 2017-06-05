@@ -11,7 +11,8 @@ head("Stories", 1);
     foreach ($stories_json as $id => $details) {
     ?>
     <div class="resources-category">
-      <div class="resources-category-content">
+      <div class="resources-category-content"
+        style="background-color: <?php echo $details['colors']['secondary-color']; ?>; border-color: <?php echo $details['colors']['primary-color'];?>;">
         <a class="resources-category-text" href="story/?id=<?php echo $id;?>"><?php echo $details["name"];?></a>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <?php
-function head($title, $active = 0, $is_login = false) {
+function head($title, $active = 0, $is_login = false, $title_color = null) {
     if (!$is_login) {
         require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php";
     } ?>
@@ -17,7 +17,12 @@ function head($title, $active = 0, $is_login = false) {
             <!--<img id="portal-background" src="/images/home-border.png"/>-->
             <div id="portal-header">
                 <?php if (!$is_login) { require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php"; menu($active); } ?>
-                <div class="portal-title"><?php echo $title;?></div>
+                <div class="portal-title"
+                    <?php
+                    if ($title_color != null) {?>
+                        style="color: <?php echo $title_color;?>"
+                    <?php } ?>>
+                    <?php echo $title;?></div>
                 <?php if (!$is_login) { require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";} ?>
             </div>
 <?php }
