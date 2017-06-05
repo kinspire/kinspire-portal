@@ -61,7 +61,8 @@ def generate_story(i, story_json):
             paragraph = parts[1]
 
         if i == len(vocab):
-            output_file.write(paragraph + '\n')
+            output_file.write(u'<span class="stories-story-text">{0}</span>\n'.format(paragraph))
+            # output_file.write(paragraph + '\n')
 
         # outputFile.write(paragraph)
         output_file.write(u'</div><br/>')
