@@ -6,7 +6,7 @@ div {
   font-size: 18px;
 }
 
-a, a:focus, a:visited {
+a, a:focus {
   color: inherit;
   text-decoration: inherit;
 }
@@ -27,17 +27,41 @@ a:hover {
   background-size: 100%;
   background-repeat: no-repeat;*/
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-#portal-background {
+#portal-background-top {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   z-index: -1;
+}
+
+#portal-background-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+#portal-background-left {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: -2;
+}
+
+#portal-background-right {
+  position: absolute;
+  height: 100%;
+  right: 0;
+  top: 0;
+  z-index: -2;
 }
 
 #portal-header {
@@ -84,7 +108,7 @@ a:hover {
   margin-top: 6%;
   overflow-y: auto;
   overflow-x: hidden;
-  /*width: 100%;*/
+  height: 100%;
 }
 
 .filler {

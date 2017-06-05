@@ -1,18 +1,24 @@
 <?php
-function head($title, $active = 0) {
-    require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php"; ?>
+function head($title, $active = 0, $is_login = false) {
+    if (!$is_login) {
+        require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php";
+    } ?>
     <head>
     <?php include $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
     <title><?php echo $title;?></title>
     </head>
     <body>
-        <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
+        <?php // require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
         <div id="portal-content">
-            <img id="portal-background" src="/images/home-border.png"/>
+            <img id="portal-background-top" src="/images/portal-top-bar.png"/>
+            <img id="portal-background-bottom" src="/images/portal-bottom-bar.png"/>
+            <img id="portal-background-left" src="/images/portal-left-bar.png"/>
+            <img id="portal-background-right" src="/images/portal-right-bar.png"/>
+            <!--<img id="portal-background" src="/images/home-border.png"/>-->
             <div id="portal-header">
-                <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";menu($active);?>
+                <?php if (!$is_login) { require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php"; menu($active); } ?>
                 <div class="portal-title"><?php echo $title;?></div>
-                <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
+                <?php if (!$is_login) { require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";} ?>
             </div>
 <?php }
 

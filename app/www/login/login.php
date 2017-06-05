@@ -7,7 +7,7 @@
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check the username and password
-    $email = $_POST['email'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
     include $_SERVER['DOCUMENT_ROOT'].'/includes/db.php';
@@ -15,11 +15,11 @@
     // Switch on login or signup
     if (isset($_POST['signup'])) {
       // TODO: check to see if this user already exists
-      PDO_Execute("INSERT INTO users (email, password) VALUES (:email, :password)",
-        array("email"=>$email, "password"=>$password));
+      PDO_Execute("INSERT INTO users (username, password) VALUES (:username, :password)",
+        array("username"=>$username, "password"=>$password));
       $success = true;
     } else if (isset($_POST['login'])) {
-      $matches = PDO_FetchAll("SELECT * FROM users WHERE email = :email", array("email"=>$email));
+      $matches = PDO_FetchAll("SELECT * FROM users WHERE username = :username", array("username"=>$username));
       if (count($matches) == 1) {
         $success = true;
       }

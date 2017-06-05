@@ -40,10 +40,11 @@ def generate_story(i, story_json):
     i = 0
 
     for paragraph in paragraphs:
+        output_file.write(u'<div class="stories-story-paragraph">')
         while i < len(vocab):
             parts = paragraph.split(vocab[i], 1)
 
-            output_file.write(parts[0] + '\n')
+            output_file.write(u'<span class="stories-story-text">{0}</span>\n'.format(parts[0]))
 
             if len(parts) < 2:
                 break
@@ -63,7 +64,7 @@ def generate_story(i, story_json):
             output_file.write(paragraph + '\n')
 
         # outputFile.write(paragraph)
-        output_file.write(u'<br/><br/>')
+        output_file.write(u'</div><br/>')
 
 
 def generate_questions(i, story_json):
