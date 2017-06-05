@@ -3,11 +3,17 @@
         "name": "First Days of School",
         "colors": {
             "text-color": "white",
-            "background-color": "#99e265",
-            "border": "#35b729"
+            "primary-color": "#35b729",
+            "secondary-color": "#99e265",
+            "highlight-color": "#5271ff"
         }
     },
     "2": {
-        "name": "Going to the Zoo"
+        "name": "Going to the Zoo",
+        "colors": {
+            "text-color": "white",
+            "primary-color": "#ed8b34",
+            "secondary-color": "#ffbd4a"
+        }
     }
 }
