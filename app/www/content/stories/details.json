@@ -13,7 +13,26 @@
         "colors": {
             "text-color": "white",
             "primary-color": "#ed8b34",
-            "secondary-color": "#ffbd4a"
+            "secondary-color": "#ffbd4a",
+            "highlight-color": "ff5c5c"
         }
-    }
+    },
+    "3": {
+        "name": "Third Story",
+        "colors": {
+            "text-color": "white",
+            "primary-color": "#cc2b44",
+            "secondary-color": "#ff5c5c",
+            "highlight-color": "#ffbd4a"
+        }
+    },
+     "4": {
+        "name": "Fourth Story",
+        "colors": {
+            "text-color": "white",
+            "primary-color": "#b760e6",
+            "secondary-color": "#8f4bb4",
+            "highlight-color": "#35b729"
+        }
+     }
 }
