@@ -72,10 +72,6 @@
 .stories-story {
   display: flex;
  
-  div {
-  font-family: storyFont;
-  font-size: 24px;
-  }
 }
 
 .stories-story-section {
@@ -83,6 +79,14 @@
   border: 10px solid;
   padding: 15px;
   overflow: auto;
+}
+
+
+.stories-story-section-story {
+  div {
+    font-family: storyFont;
+    font-size: 24px;
+  }
 }
 
 .stories-story-paragraph {
@@ -146,6 +150,7 @@
   background-color: white;
   border: 1px solid black;
   padding: 4px;
+  text-indent: 0;
 }
 .stories-vocab:hover .stories-vocab-def {
   display: block;
@@ -153,4 +158,45 @@
 
 .portal-subtitle {
   text-align: center;
+}
+
+/* Questions */
+
+.stories-story-section-questions {
+  input[type=radio] {
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+
+  input[type=radio] + label {
+    span {
+      background-color: green;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin: auto 5px;
+
+
+
+#diamond {
+	width: 0;
+	height: 0;
+	border: 50px solid transparent;
+	border-bottom-color: red;
+	position: relative;
+	top: -50px;
+}
+#diamond:after {
+	content: '';
+	position: absolute;
+	left: -50px;
+	top: 50px;
+	width: 0;
+	height: 0;
+	border: 50px solid transparent;
+	border-top-color: red;
+}
+    }
+  }
 }

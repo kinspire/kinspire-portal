@@ -44,7 +44,8 @@ def generate_story(i, story_json):
         while i < len(vocab):
             parts = paragraph.split(vocab[i], 1)
 
-            output_file.write(u'<span class="stories-story-text">{0}</span>\n'.format(parts[0]))
+            output_file.write(
+                u'<span class="stories-story-text">{0}</span>\n'.format(parts[0]))
 
             if len(parts) < 2:
                 break
@@ -61,7 +62,8 @@ def generate_story(i, story_json):
             paragraph = parts[1]
 
         if i == len(vocab):
-            output_file.write(u'<span class="stories-story-text">{0}</span>\n'.format(paragraph))
+            output_file.write(
+                u'<span class="stories-story-text">{0}</span>\n'.format(paragraph))
             # output_file.write(paragraph + '\n')
 
         # outputFile.write(paragraph)
@@ -86,7 +88,14 @@ def generate_questions(i, story_json):
 
             for j, choice in enumerate(question['choices']):
                 output_file.write(
-                    u'<div class="radio"><label><input type="radio" name="optradio">{0}</label></div>'.format(choice))
+                    (
+                        u'<div>' +
+                        u'<input id="q{0}a{1}" type="radio" name="optradio">' +
+                        u'<label class="flexbox" for="q{0}a{1}"><span></span>{2}</label>' +
+                        u'</div>'
+                    ).format(i, j, choice)
+                )
+
 
 # <div class="radio">
 #   <label><input type="radio" name="optradio">Option 2</label>

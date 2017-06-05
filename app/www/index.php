@@ -28,6 +28,14 @@ head('Welcome!', 0);
       </a>
     </div>
   </div>
+  <div class="home-avatars">
+    <img class="home-avatar" src="/images/avatar/brownsquare.svg">
+    <img class="home-avatar" src="/images/avatar/greenpentagon.svg">
+    <img class="home-avatar" src="/images/avatar/orangetriangle.svg">
+    <img class="home-avatar" src="/images/avatar/bluehexagon.svg">
+    <img class="home-avatar" src="/images/avatar/purplecircle.svg">
+    <img class="home-avatar" src="/images/avatar/redrhombus.svg">
+  </div>
 </div>
 <?php
 tail();

@@ -105,6 +105,8 @@ a, a:focus, a:hover, a:visited {
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
+
+  position: relative;
 }
 
 .filler {
@@ -122,7 +124,6 @@ a, a:focus, a:hover, a:visited {
 
 .home-section-content {
   font-size: 16pt;
-  color: @secondary;
   text-align: center;
 }
 
@@ -151,6 +152,16 @@ a, a:focus, a:hover, a:visited {
 
 .home-section-progress-image {
   width: 100%;
+}
+
+.home-avatars {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.home-avatar {
+  width: 100px;
 }
 
 @import "resources.less";
