@@ -11,7 +11,7 @@ function head($title, $active = 0, $is_login = false, $title_color = null) {
         <?php // require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
         <div id="portal-content">
             <img id="portal-background-top" src="/images/portal-top-bar.png"/>
-            <img id="portal-background-bottom" src="/images/portal-bottom-bar.png"/>
+            <img id="portal-background-bottom" src="/images/portal-bottom-bar-final-01.png"/>
             <img id="portal-background-left" src="/images/portal-left-bar.png"/>
             <img id="portal-background-right" src="/images/portal-right-bar.png"/>
             <!--<img id="portal-background" src="/images/home-border.png"/>-->

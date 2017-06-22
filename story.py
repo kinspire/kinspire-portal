@@ -91,25 +91,18 @@ def generate_questions(i, story_json):
                     (
                         u'<div>' +
                         u'<input id="q{0}a{1}" type="radio" name="optradio">' +
-                        u'<label class="flexbox" for="q{0}a{1}"><span></span>{2}</label>' +
+                        u'<label class="flexbox" for="q{0}a{1}"><span id="outside"></span><span id="inside"></span>{2}</label>' +
                         u'</div>'
                     ).format(i, j, choice)
                 )
-
-
-# <div class="radio">
-#   <label><input type="radio" name="optradio">Option 2</label>
-# </div>
-# <div class="radio disabled">
-#   <label><input type="radio" name="optradio" disabled>Option 3</label>
-# </div>                    u'<input type="radio">&nbsp;{0}<br>'.format(choice))
-
-            # output_file.write(u'</ol>')
-            # output_file.write(u'</form>')
-
-        elif question['type'] == 'free':
+        elif question['type'] == 'short':
             output_file.write(
-                u'<input type="text" name="question-{0}">'.format(i))
+                u'<input type="text" name="question-{0}">'.format(i)
+            )
+        elif question['type'] == 'long':
+            output_file.write(
+                u'<textarea name="question-{0}"></textarea>'.format(i)
+            )
 
 
 if __name__ == "__main__":

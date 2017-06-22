@@ -114,6 +114,32 @@ a, a:focus, a:hover, a:visited {
   font-size: 100px;
 }
 
+.shadow-button {
+  // padding: 48px 16px;
+  margin: 4px;
+  box-shadow: 1px 1px 2px;
+  border: 1px solid @primary-brown;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  height: 120px;
+
+  display: flex;
+  color: @primary-brown;
+
+  &:hover {
+    background-color: @primary-brown;
+    color: white;
+    box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.shadow-button-text {
+  font-size: 36px;
+  text-align: center;
+  margin: auto 0;
+  width: 100%;
+}
+
 /* Home */
 
 .home-section-title {
@@ -128,22 +154,17 @@ a, a:focus, a:hover, a:visited {
 }
 
 .home-next-activity {
-  padding: 16px;
-  margin: 4px;
-  box-shadow: 1px 1px 2px;
-  border: 1px solid @primary-brown;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
+  .shadow-button;
+}
 
-  &:active {
-    box-shadow: 0;
-  }
+.home-next-activity-category {
+  .shadow-button-text;
+  width: 40%;
+}
 
-  &:hover {
-    background-color: @primary-brown;
-    color: white;
-    box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.7);
-  }
+.home-next-activity-details {
+  margin: auto 0;
+  width: 60%;
 }
 
 .home-section-progress {
@@ -164,6 +185,7 @@ a, a:focus, a:hover, a:visited {
   width: 100px;
 }
 
+@import "login.less";
 @import "resources.less";
 @import "activities.less";
 @import "stories.less";

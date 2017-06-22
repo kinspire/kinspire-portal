@@ -170,33 +170,63 @@
   }
 
   input[type=radio] + label {
-    span {
-      background-color: green;
+    position: relative;
+
+    // Green diamond
+    span#outside {
+      // background-color: green;
       display: inline-block;
-      width: 20px;
-      height: 20px;
+      // width: 20px;
+      // height: 20px;
       margin: auto 5px;
 
+      // #diamond {
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-bottom-color: green;
+      position: relative;
+      top: -10px;
+    }
 
+    span#outside:after {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 10px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-top-color: green;
+    }
 
-#diamond {
-	width: 0;
-	height: 0;
-	border: 50px solid transparent;
-	border-bottom-color: red;
-	position: relative;
-	top: -50px;
-}
-#diamond:after {
-	content: '';
-	position: absolute;
-	left: -50px;
-	top: 50px;
-	width: 0;
-	height: 0;
-	border: 50px solid transparent;
-	border-top-color: red;
-}
+    // unselected:w hite with green border
+    // selected: green fill
+    span#inside {
+      // background-color: green;
+      display: inline-block;
+      // width: 20px;
+      // height: 20px;
+      margin: auto 5px;
+
+      // #diamond {
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-bottom-color: white;
+      position: absolute;
+      top: -10px;
+    }
+
+    span#inside:after {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 10px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-top-color: white;
     }
   }
 }
