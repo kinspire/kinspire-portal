@@ -1,5 +1,5 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
-head("Word Search", 2);
+head("Word Search");
 ?>
 <div class="portal-body">
   <div class="resources-categories">

@@ -16,19 +16,19 @@ head('Welcome!', 0);
     <div class="home-section-title">Next Activity to Try</div>
     <div class="home-section-content">
       <?php
-      // TODO: get the next activities from database
+      $user = $_SESSION['user'];
+      $next_story = $user['next_story'];
+
       $filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/details.json';
-      $stories_json = json_decode(file_get_contents($filename), true);
-      for ($id = 1; $id <= 1; $id++) { ?>
-        <a class="home-next-activity" href="/resources/stories/story/?id=<?php echo $id;?>">
-          <div class="home-next-activity-category">
-            Story
-          </div>
-          <div class="home-next-activity-details">
-            <?php echo $stories_json['' + $id]['name']; ?>
-          </div>
-        </a>
-      <?php } ?>
+      $stories_json = json_decode(file_get_contents($filename), true); ?>
+      <a class="home-next-activity" href="/resources/stories/story/?id=<?php echo $next_story;?>">
+        <div class="home-next-activity-category">
+          Story
+        </div>
+        <div class="home-next-activity-details">
+          <?php echo $stories_json['' + $next_story]['name']; ?>
+        </div>
+      </a>
     </div>
   </div>
   <div class="home-section col-xs-3">

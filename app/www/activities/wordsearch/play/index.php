@@ -1,5 +1,5 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
-head("Word Search ".$_GET['id'], 2); ?>
+head("Word Search ".$_GET['id'], -1); ?>
 <div class="portal-body flexbox">
   <div class="wordsearch-grid">
     <?php

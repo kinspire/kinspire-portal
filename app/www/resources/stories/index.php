@@ -1,6 +1,6 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
-head("Stories", 1);
+head("Stories", -1);
 ?>
 <div class="portal-body">
   <div class="resources-categories">

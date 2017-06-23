@@ -15,6 +15,7 @@
     $matches = PDO_FetchAll("SELECT * FROM users WHERE username = :username", array("username"=>$username));
     if (count($matches) == 1) {
       $success = true;
+      $_SESSION['user'] = $matches[0];
     }
   }
 

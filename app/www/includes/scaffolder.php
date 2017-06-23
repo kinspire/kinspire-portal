@@ -1,5 +1,5 @@
 <?php
-function head($title, $active = 0, $is_login = false, $title_color = null) {
+function head($title, $active = -1, $is_login = false, $title_color = null) {
     if (!$is_login) {
         require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php";
     } ?>

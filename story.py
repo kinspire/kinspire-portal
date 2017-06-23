@@ -89,9 +89,10 @@ def generate_questions(i, story_json):
             for j, choice in enumerate(question['choices']):
                 output_file.write(
                     (
-                        u'<div>' +
-                        u'<input id="q{0}a{1}" type="radio" name="optradio">' +
-                        u'<label class="flexbox" for="q{0}a{1}"><span id="outside"></span><span id="inside"></span>{2}</label>' +
+                        u'<div class="radio">' +
+                        u'<label><input type="radio" name="question-{0}" value="question-{0}-answer-{1}">{2}</label>' +
+# u'<input id="q{0}a{1}" type="radio" name="optradio">' +
+# u'<label class="flexbox" for="q{0}a{1}"><span id="outside"></span><span id="inside"></span>{2}</label>' +
                         u'</div>'
                     ).format(i, j, choice)
                 )
