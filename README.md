@@ -8,7 +8,7 @@ A desktop portal for the students in Kinspire's orphanages to use to access lear
     - Run `Set-ExecutionPolicy -ExecutionPolicy Unrestricted`. If there is a confirmation prompt, press `Y` to continue.
     - Then navigate to the `kinspire-portal` directory and run `./win-setup.ps1`.
     - Run `Set-ExecutionPolicy -ExecutionPolicy Restricted` if you care about Powershell script security.
-* From the home directory run `./story.py` to prepare the story HTML files from the JSON input.
+* From the home directory run `python story.py` (with Python 2.7) to prepare the story HTML files from the JSON input.
 
 ## Usage
 ### Windows platform
