@@ -3,10 +3,10 @@ head('Welcome!', 0);
 ?>
 <div class="portal-body">
   <div class="home-section col-xs-3">
-    <div class="home-section-date">
+    <!-- <div class="home-section-date">
       <div class="home-section-title">Today's date</div>
-      <div class="home-section-content"><?php echo date('d/m/Y'); ?></div>
-    </div>
+      <div class="home-section-content"></div>
+    </div> -->
     <div class="home-section-quote">
       <div class="home-section-title">Quote of the Day</div>
       <div class="home-section-content">An apple a day keeps the doctor away!</div>
