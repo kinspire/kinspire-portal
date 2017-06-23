@@ -26,7 +26,7 @@ head('Welcome!', 0);
           Story
         </div>
         <div class="home-next-activity-details">
-          <?php echo $stories_json['' + $next_story]['name']; ?>
+          <?php echo $next_story.': '.$stories_json['' + $next_story]['name']; ?>
         </div>
       </a>
     </div>

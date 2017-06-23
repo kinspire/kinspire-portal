@@ -45,13 +45,14 @@ head($story_name, -1, false, $story_colors['primary-color']);
     </div>
     <div class="stories-story-section stories-story-section-questions">
       Questions
-      <form action="../submitted/?id=<?php echo $_GET['id'];?>" method="post">
+      <form action="../submitted/?id=<?php echo $_GET['id'];?>" method="post" name="story-answers">
         <ol type="1">
           <?php require $_SERVER['DOCUMENT_ROOT'].'/content/stories/questions-'.$_GET['id'].'.html';?>
         </ol>
-        <input type="submit" value="Submit!">
+        <input type="button" value="Submit!" id="submit-answers">
+        <div id="error"></div>
       </form>
     </div>
   </div>
 </div>
-<?php tail(array('resources')); ?>
+<?php tail(array('resources', 'story')); ?>

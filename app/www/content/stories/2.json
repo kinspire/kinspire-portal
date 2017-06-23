@@ -12,10 +12,12 @@
     ],
     "questions": [
         {
+            "number": 1,
             "type": "free",
             "question": "Where did Priya and Gopi go?"
         },
         {
+            "number": 2,
             "type": "long",
             "question": "Why did Priya want to see the tigers?",
             "choices": [
@@ -27,14 +29,17 @@
             "correctChoice": 1
         },
         {
+            "number": 3,
             "type": "short",
             "question": "What is the first animal Priya and Gopi see? State the line #"
         },
         {
+            "number": 4,
             "type": "long",
             "question": "Why does Priya laugh? "
         },
         {
+            "number": 5,
             "type": "long",
             "question": "What is your favorite animal to see at the zoo? Why? Explain in two sentences."
         }

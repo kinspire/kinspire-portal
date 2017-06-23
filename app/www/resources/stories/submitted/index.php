@@ -6,25 +6,27 @@ if (!isset($_GET['id'])) { // Need a story
 
 // Retrieve information from the $_POST variable
 
+// Save answers to the database
 
-// TODO: read in JSON file for other story information such as title
+// Read in JSON file for other story information such as title
 $filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/'.$_GET['id'].'.json';
 $story_json = json_decode(file_get_contents($filename), true);
 $story_questions = $story_json["questions"];
 
-// This is only for the colors for now, maybe reconsider this
+// This is only for the colors for now, maybe (TODO) reconsider this file reading
 $filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/details.json';
 $stories_json = json_decode(file_get_contents($filename), true);
 $story_details = $stories_json[$_GET['id']];
 $story_colors = $story_details['colors'];
-head("Story answers", -1, false, $story_colors['primary-color']);
+head("Story Answers", -1, false, $story_colors['primary-color']);
 ?>
 <div class="portal-body">
   <style>
   </style>
   Here are your quiz results!
   <?php
-  foreach ($story_questions as $i => $question) {
+  foreach ($story_questions as $question) {
+    $i = $question["number"];
     $question_value = $_POST['question-'.$i];
     switch ($question["type"]) {
       case "mcq":
