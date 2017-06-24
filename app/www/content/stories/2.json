@@ -13,7 +13,7 @@
     "questions": [
         {
             "number": 1,
-            "type": "free",
+            "type": "short",
             "question": "Where did Priya and Gopi go?"
         },
         {

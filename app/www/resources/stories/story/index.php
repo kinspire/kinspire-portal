@@ -33,6 +33,10 @@ head($story_name, -1, false, $story_colors['primary-color']);
       color: <?php echo $story_colors['primary-color'];?>;
     }
 
+    .stories-story-section-questions label {
+      color: <?php echo $story_colors['primary-color'];?>;
+    }
+
     .stories-vocab-word {
       color: <?php echo $story_colors['highlight-color'];?>;
     }

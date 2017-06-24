@@ -1,6 +1,23 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
-head("Word Search ".$_GET['id'], -1); ?>
+
+// Get information for title and color
+$filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/details.json';
+$stories_json = json_decode(file_get_contents($filename), true);
+$story_details = $stories_json[$_GET['id']];
+$story_colors = $story_details['colors'];
+$story_name = $story_details['name'];
+head($story_name, -1, false, $story_colors['primary-color']); ?>
 <div class="portal-body flexbox">
+  <style>
+    /* TODO: Do better with color assignment */
+    .wordsearch-letter {
+      color: <?php echo $story_colors['primary-color'];?>
+    }
+
+    .wordsearch-word {
+      color: <?php echo $story_colors['primary-color'];?>
+    }
+  </style>
   <div class="wordsearch-grid">
     <?php
     $filename = $_SERVER['DOCUMENT_ROOT'].'/content/wordsearch/'.$_GET['id'].'.json';
@@ -19,7 +36,7 @@ head("Word Search ".$_GET['id'], -1); ?>
   </div>
   <div class="wordsearch-words">
     <?php foreach ($words as $word) {?>
-      <div id="wordsearch-word-<?php echo $word;?>"><?php echo $word;?></div>
+      <div class="wordsearch-word" id="wordsearch-word-<?php echo $word;?>"><?php echo $word;?></div>
     <?php }?>
   </div>
 </div>

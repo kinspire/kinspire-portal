@@ -17,16 +17,32 @@ head('Welcome!', 0);
     <div class="home-section-content">
       <?php
       $user = $_SESSION['user'];
+      $filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/details.json';
+      $stories_json = json_decode(file_get_contents($filename), true);
+
+      // 1. STORIES
       $next_story = $user['next_story'];
 
-      $filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/details.json';
-      $stories_json = json_decode(file_get_contents($filename), true); ?>
+      // TODO: check if next story even exists ?>
       <a class="home-next-activity" href="/resources/stories/story/?id=<?php echo $next_story;?>">
         <div class="home-next-activity-category">
           Story
         </div>
         <div class="home-next-activity-details">
           <?php echo $next_story.': '.$stories_json['' + $next_story]['name']; ?>
+        </div>
+      </a>
+
+      <?php 
+      // 2. WORD SEARCH
+      $next_word_search = $user['next_word_search'];
+      // TODO: check if next word search even exists ?>
+      <a class="home-next-activity" href="/activities/wordsearch/play/?id=<?php echo $next_word_search;?>">
+        <div class="home-next-activity-category">
+          Word Search
+        </div>
+        <div class="home-next-activity-details">
+          <?php echo $next_word_search.': '.$stories_json['' + $next_word_search]['name']; ?>
         </div>
       </a>
     </div>

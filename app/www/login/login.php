@@ -1,6 +1,4 @@
 <?php
-  include $_SERVER['DOCUMENT_ROOT'].'/var/pdo.php';
-
   session_start();
 
   $success = false;
