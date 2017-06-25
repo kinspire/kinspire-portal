@@ -51,7 +51,7 @@ function getElement(rowCol) {
 function getSelectedWord(wordEnd) {
     var wordDel = [wordEnd[0] - wordStart[0], wordEnd[1] - wordStart[1]];
     if ((wordDel[0] === 0 && wordDel[1] === 0)
-        || (wordDel[0] !== wordDel[1] && wordDel[0] !== 0 && wordDel[1] !== 0)) {
+            || (Math.abs(wordDel[0]) !== Math.abs(wordDel[1]) && wordDel[0] !== 0 && wordDel[1] !== 0)) {
         return null;
     }
     // We have a word!

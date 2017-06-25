@@ -36,15 +36,17 @@ head('Welcome!', 0);
       <?php 
       // 2. WORD SEARCH
       $next_word_search = $user['next_word_search'];
-      // TODO: check if next word search even exists ?>
-      <a class="home-next-activity" href="/activities/wordsearch/play/?id=<?php echo $next_word_search;?>">
-        <div class="home-next-activity-category">
-          Word Search
-        </div>
-        <div class="home-next-activity-details">
-          <?php echo $next_word_search.': '.$stories_json['' + $next_word_search]['name']; ?>
-        </div>
-      </a>
+      for ($i = $next_word_search; $i < $next_story; $i++) {
+        // TODO: check if next word search even exists ?>
+        <a class="home-next-activity" href="/activities/wordsearch/play/?id=<?php echo $i;?>">
+          <div class="home-next-activity-category">
+            Word Search
+          </div>
+          <div class="home-next-activity-details">
+            <?php echo $i.': '.$stories_json['' + $i]['name']; ?>
+          </div>
+        </a>
+      <?php } ?>
     </div>
   </div>
   <div class="home-section col-xs-3">

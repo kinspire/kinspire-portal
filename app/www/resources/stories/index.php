@@ -21,9 +21,11 @@ head("Stories", -1);
         $details = $stories_json[$id];
         ?>
         <div class="resources-category">
-          <div class="resources-category-content"
-          <?php if ($id == $next_story) { ?>
-            style="background-color: <?php echo $details['colors']['secondary-color']; ?>;" <?php } ?>>
+        <?php if ($id == $next_story) { ?>
+          <div class="resources-category-content" style="background-color: <?php echo $details['colors']['secondary-color']; ?>;">
+        <?php } else { ?>
+          <div class="resources-category-content-done">
+        <?php } ?>
             <a class="resources-category-text" href="story/?id=<?php echo $id;?>"><?php echo $details["name"];?></a>
           </div>
         </div>
