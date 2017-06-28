@@ -24,8 +24,8 @@ head('Welcome!', 0);
       $next_story = $user['next_story'];
 
       // TODO: check if next story even exists ?>
-      <a class="home-next-activity" href="/resources/stories/story/?id=<?php echo $next_story;?>">
-        <div class="home-next-activity-category">
+      <a class="home-next-activity shadow-button" href="/resources/stories/story/?id=<?php echo $next_story;?>">
+        <div class="shadow-button-text home-next-activity-category">
           Story
         </div>
         <div class="home-next-activity-details">
@@ -38,8 +38,8 @@ head('Welcome!', 0);
       $next_word_search = $user['next_word_search'];
       for ($i = $next_word_search; $i < $next_story; $i++) {
         // TODO: check if next word search even exists ?>
-        <a class="home-next-activity" href="/activities/wordsearch/play/?id=<?php echo $i;?>">
-          <div class="home-next-activity-category">
+        <a class="home-next-activity shadow-button" href="/activities/wordsearch/play/?id=<?php echo $i;?>">
+          <div class="shadow-button-text home-next-activity-category">
             Word Search
           </div>
           <div class="home-next-activity-details">
