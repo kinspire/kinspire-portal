@@ -34,7 +34,7 @@
   // background-size: contain;
   // background-color: @orange;
   border: 10px solid @primary-brown;
-  cursor: pointer;
+  // cursor: pointer;
   text-align: center;
   padding: 20px;
 }
@@ -76,18 +76,17 @@
 
 .stories-story {
   display: flex;
- 
+  border: 10px solid;
 }
 
 .stories-story-section {
   width: 50%;
-  border: 10px solid;
   padding: 15px;
   overflow: auto;
 }
 
-
 .stories-story-section-story {
+  // border-left: 10px solid;
   div {
     font-family: storyFont;
     font-size: 24px;
@@ -96,6 +95,11 @@
 
 .stories-story-paragraph {
   text-indent: 60px;
+}
+
+.stories-story-divider {
+  margin: 0 5px;
+  width: 10px;
 }
 
 /* Scrollbar */

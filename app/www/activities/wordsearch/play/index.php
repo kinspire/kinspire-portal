@@ -11,11 +11,21 @@ head($story_name, -1, false, $story_colors['primary-color']); ?>
   <style>
     /* TODO: Do better with color assignment */
     .wordsearch-letter {
-      color: <?php echo $story_colors['primary-color'];?>
+      color: <?php echo $story_colors['primary-color'];?>;
     }
 
     .wordsearch-word {
-      color: <?php echo $story_colors['primary-color'];?>
+      color: <?php echo $story_colors['primary-color'];?>;
+    }
+
+    .wordsearch-letter-start {
+      background-color: <?php echo $story_colors['secondary-color'];?>;
+      color: <?php echo $story_colors['text-color'];?>;
+    }
+
+    .wordsearch-letter-completed {
+      background-color: <?php echo $story_colors['primary-color'];?>;
+      color: <?php echo $story_colors['text-color'];?>;
     }
   </style>
   <div class="wordsearch-grid">

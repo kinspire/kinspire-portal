@@ -17,7 +17,7 @@ head($story_name, -1, false, $story_colors['primary-color']);
       color: <?php echo $story_colors['text-color'];?>;
     }
 
-    .stories-story-section {
+    .stories-story {
       border-color: <?php echo $story_colors['primary-color'];?>;
     }
 
@@ -26,6 +26,10 @@ head($story_name, -1, false, $story_colors['primary-color']);
     }
 
     .stories-story-section::-webkit-scrollbar-thumb {
+      background-color: <?php echo $story_colors['primary-color'];?>;
+    }
+    
+    .stories-story-divider {
       background-color: <?php echo $story_colors['primary-color'];?>;
     }
 
@@ -47,6 +51,7 @@ head($story_name, -1, false, $story_colors['primary-color']);
       require $_SERVER['DOCUMENT_ROOT'].'/content/stories/story-'.$_GET['id'].'.html';
       ?>
     </div>
+    <div class="stories-story-divider"></div>
     <div class="stories-story-section stories-story-section-questions">
       Questions
       <form action="../submitted/?id=<?php echo $_GET['id'];?>" method="post" name="story-answers">

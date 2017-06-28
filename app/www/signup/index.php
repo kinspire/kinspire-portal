@@ -11,11 +11,11 @@ head("Signup", 0, true);
   <form method="post" action="signup.php">
     <div class="flexbox">
       <span class="form-label">First Name:</span>
-      <input type="text" name="firstname" placeholder="firstname" />
+      <input type="text" name="firstname" placeholder="First Name" />
     </div>
     <div class="flexbox">
       <span class="form-label">Last Name:</span>
-      <input type="text" name="lastname" placeholder="lastname" />
+      <input type="text" name="lastname" placeholder="Last Name" />
     </div>
     <button class="signup-button">Sign up!</button>
   </form>
