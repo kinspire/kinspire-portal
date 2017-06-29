@@ -10,6 +10,10 @@ head($story_name, -1, false, $story_colors['primary-color']); ?>
 <div class="portal-body flexbox">
   <style>
     /* TODO: Do better with color assignment */
+    .wordsearch-grid {
+      border-color: <?php echo $story_colors['primary-color'];?>;
+    }
+
     .wordsearch-letter {
       color: <?php echo $story_colors['primary-color'];?>;
     }
@@ -28,21 +32,23 @@ head($story_name, -1, false, $story_colors['primary-color']); ?>
       color: <?php echo $story_colors['text-color'];?>;
     }
   </style>
-  <div class="wordsearch-grid">
-    <?php
-    $filename = $_SERVER['DOCUMENT_ROOT'].'/content/wordsearch/'.$_GET['id'].'.json';
-    $wordsearch_json = json_decode(file_get_contents($filename), true);
-    $grid = $wordsearch_json['grid'];
-    $words = $wordsearch_json['words'];
-    ?>
-    <?php foreach ($grid as $rowN => $row) {
-    ?>
-    <div class="wordsearch-row">
-      <?php for ($i = 0; $i < strlen($row); $i++) { ?>
-        <div class="wordsearch-letter" id="letter-<?php echo $rowN.'-'.$i;?>"><?php echo $row[$i];?></div>
+  <div class="wordsearch-grid-area">
+    <div class="wordsearch-grid">
+      <?php
+      $filename = $_SERVER['DOCUMENT_ROOT'].'/content/wordsearch/'.$_GET['id'].'.json';
+      $wordsearch_json = json_decode(file_get_contents($filename), true);
+      $grid = $wordsearch_json['grid'];
+      $words = $wordsearch_json['words'];
+      ?>
+      <?php foreach ($grid as $rowN => $row) {
+      ?>
+      <div class="wordsearch-row">
+        <?php for ($i = 0; $i < strlen($row); $i++) { ?>
+          <div class="wordsearch-letter" id="letter-<?php echo $rowN.'-'.$i;?>"><?php echo $row[$i];?></div>
+        <?php } ?>
+      </div>
       <?php } ?>
     </div>
-    <?php } ?>
   </div>
   <div class="wordsearch-words">
     <?php foreach ($words as $word) {?>

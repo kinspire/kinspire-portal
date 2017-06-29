@@ -37,6 +37,10 @@ head($story_name, -1, false, $story_colors['primary-color']);
       color: <?php echo $story_colors['primary-color'];?>;
     }
 
+    .stories-story-section-questions-title {
+      color: <?php echo $story_colors['primary-color'];?>;
+    }
+
     .stories-story-section-questions label {
       color: <?php echo $story_colors['primary-color'];?>;
     }
@@ -52,8 +56,9 @@ head($story_name, -1, false, $story_colors['primary-color']);
       ?>
     </div>
     <div class="stories-story-divider"></div>
+    <!-- Two classes needed for the special color style for the scrollbar -->
     <div class="stories-story-section stories-story-section-questions">
-      Questions
+      <div class="stories-story-section-questions-title">Questions</div>
       <form action="../submitted/?id=<?php echo $_GET['id'];?>" method="post" name="story-answers">
         <ol type="1">
           <?php require $_SERVER['DOCUMENT_ROOT'].'/content/stories/questions-'.$_GET['id'].'.html';?>
