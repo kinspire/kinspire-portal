@@ -18,7 +18,7 @@
         },
         {
             "number": 2,
-            "type": "long",
+            "type": "mcq",
             "question": "Why did Priya want to see the tigers?",
             "choices": [
                 "Her favorite animal is a tiger",

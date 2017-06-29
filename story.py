@@ -4,7 +4,8 @@ import io
 import json
 import collections
 
-STORY_NUMBERS = 2
+# TODO: update this to be all files in details
+STORY_NUMBERS = 3
 CONTENT_FOLDER = 'app/www/content/stories/'
 
 
