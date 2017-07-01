@@ -63,6 +63,7 @@ PDO_Execute("UPDATE users SET story_answers = :story_answers WHERE username = :u
   </style>
   <div class="filler">
     Thanks for submitting! A tutor is grading your work.
+    <!-- TODO add link back to home, or next activity -->
   </div>
 </div>
 <?php tail(array('resources')); ?>

@@ -6,7 +6,16 @@ $stories_json = json_decode(file_get_contents($filename), true);
 $story_details = $stories_json[$_GET['id']];
 $story_colors = $story_details['colors'];
 $story_name = $story_details['name'];
-head($story_name, -1, false, $story_colors['primary-color']); ?>
+head($story_name, -1, false, $story_colors['primary-color']);
+
+// Retrieve already-solved words
+$user = $_SESSION['user'];
+$ws_answers = json_decode($user['wordsearch_answers'], true);
+var_dump($ws_answers);
+$chosenWords = new ArrayObject();
+if (isset($ws_answers[$_GET['id']])) {
+  $chosenWords = $ws_answers[$_GET['id']];
+} ?>
 <div class="portal-body flexbox">
   <style>
     /* TODO: Do better with color assignment */
@@ -55,9 +64,18 @@ head($story_name, -1, false, $story_colors['primary-color']); ?>
       <div class="wordsearch-word" id="wordsearch-word-<?php echo $word;?>"><?php echo $word;?></div>
     <?php }?>
   </div>
+  <form name="wordsearch" action="../submitted/?id=<?php echo $_GET['id'];?>" method="post">
+    <input type="hidden" name="chosenWords" id="chosen-words">
+    <div class="wordsearch-submit shadow-button">
+      <div class="shadow-button-text">
+        Submit
+      </div>
+    </div>
+  </form>
 </div>
 <script>
 var grid = <?php echo json_encode($grid);?>;
 var words = <?php echo json_encode($words);?>;
+var chosenWords = <?php echo json_encode($chosenWords);?>;
 </script>
 <?php tail(array('wordsearch')); ?>

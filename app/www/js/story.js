@@ -3,7 +3,7 @@ $(function() {
     $('#submit-answers').click(function() {
         var resp = validateStoryAnswers();
         if (resp.length) {
-            $('#error').text(resp);
+            $('#error').text("Please answer question " + resp);
         } else {
             document.forms["story-answers"].submit();
         }
@@ -11,7 +11,7 @@ $(function() {
 
     function validateStoryAnswers() {
         // Go through all the questions, check to see what type it is, then check if it has been answered
-        var error = "";
+        var error = [];
         var i = 1;
         while (true) {
             // Attempt to retrieve question
@@ -21,13 +21,13 @@ $(function() {
                     // Free response
                     var text = answer.val().trim();
                     if (!text.length) {
-                        error += "Error on question " + i + ". ";
+                        error.push(i);
                     }
                 } else {
                     // Multiple choice
                     answer = answer.filter(':checked');
                     if (answer.length != 1) {
-                        error += "Error on question " + i + ". ";
+                        error.push(i);
                     }
                 }
             } else {
@@ -37,7 +37,7 @@ $(function() {
                     // Free response
                     var text = answer.val().trim();
                     if (!text.length) {
-                        error += "Error on question " + i + ". ";
+                        error.push(i);
                     }
                 } else {
                     break;
