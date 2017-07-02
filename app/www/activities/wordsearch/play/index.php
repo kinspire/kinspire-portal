@@ -11,7 +11,7 @@ head($story_name, -1, false, $story_colors['primary-color']);
 // Retrieve already-solved words
 $user = $_SESSION['user'];
 $ws_answers = json_decode($user['wordsearch_answers'], true);
-var_dump($ws_answers);
+// var_dump($ws_answers);
 $chosenWords = new ArrayObject();
 if (isset($ws_answers[$_GET['id']])) {
   $chosenWords = $ws_answers[$_GET['id']];

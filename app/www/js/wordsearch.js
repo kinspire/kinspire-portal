@@ -19,17 +19,19 @@ $(".wordsearch-letter").click(function () {
             alert('Choose a word! Resetting choice.');
         } else if (selectedWord in chosenWords) {
             alert('Word already chosen! Resetting choice.');
-        } else if (words.includes(selectedWord)) {
-            alert('Nice job! You chose: ' + selectedWord);
-            wordIsChosen(wordEnd, selectedWord);
+        } else {
+            if (words.includes(selectedWord)) {
+                alert('Nice job! You chose: ' + selectedWord);
+                wordIsChosen(wordEnd, selectedWord);
+            } else {
+                // Check for completion
+                if (Object.keys(chosenWords).length == words.length) {
+                    alert("Nice job! Game over :)");
+                }
+            }
         }
         getElement(wordStart).toggleClass('wordsearch-letter-start');
         wordStart = [-1, -1];
-
-        // Check for completion
-        if (Object.keys(chosenWords).length == words.length) {
-            alert("Nice job! Game over :)");
-        }
     } else {
         // Start word selection
         wordStart = getRowCol(this.id);

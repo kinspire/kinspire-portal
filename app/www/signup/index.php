@@ -5,7 +5,7 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 }
 ?>
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
-head("Signup", 0, true);
+head("Signup", 0, 2);
 ?>
 <div class="portal-body">
   <form method="post" action="signup.php">

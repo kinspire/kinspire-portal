@@ -1,5 +1,5 @@
 <?php
-function head($title, $active = -1, $is_login = false, $title_color = null) {
+function head($title, $active = -1, $is_login = 0 /* 0 = not login, 1 = login, 2 = signup */, $title_color = null) {
     if (!$is_login) {
         require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php";
     } ?>
@@ -23,7 +23,7 @@ function head($title, $active = -1, $is_login = false, $title_color = null) {
                         style="color: <?php echo $title_color;?>"
                     <?php } ?>>
                     <?php echo $title;?></div>
-                <?php if (!$is_login) { require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";} ?>
+                <?php if ($is_login != 1) { require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";} ?>
             </div>
 <?php }
 
