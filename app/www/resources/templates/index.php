@@ -1,5 +1,5 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php"; 
-head("Templates", 1);?>
+head("Templates", -1);?>
 <div class="portal-body">
   <div class="templates">
     <a class="template-link" href="/content/templates/PortalCoverletter.pdf">

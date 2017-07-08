@@ -1,5 +1,14 @@
-var wordStart = [-1, -1];
-var chosenWords = [];
+var wordStart;
+
+// Initial setup with chosenWords
+for (chosenWord in chosenWords) {
+    var details = chosenWords[chosenWord];
+    wordStart = details[0];
+    var wordEnd = details[1];
+    wordIsChosen(wordEnd, chosenWord);
+}
+
+wordStart = [-1, -1];
 
 $(".wordsearch-letter").click(function () {
     if (wordStart[0] >= 0) {
@@ -8,20 +17,21 @@ $(".wordsearch-letter").click(function () {
         var selectedWord = getSelectedWord(wordEnd);
         if (!selectedWord) {
             alert('Choose a word! Resetting choice.');
-        } else if (words.includes(selectedWord)) {
-            alert('Nice job! You chose: ' + selectedWord);
-            // TODO: mark the word completed
-            markWordCompleted(wordEnd);
-            chosenWords.push(selectedWord);
-            $('#wordsearch-word-' + selectedWord).addClass('strikethrough');
+        } else if (selectedWord in chosenWords) {
+            alert('Word already chosen! Resetting choice.');
+        } else {
+            if (words.includes(selectedWord)) {
+                alert('Nice job! You chose: ' + selectedWord);
+                wordIsChosen(wordEnd, selectedWord);
+            } else {
+                // Check for completion
+                if (Object.keys(chosenWords).length == words.length) {
+                    alert("Nice job! Game over :)");
+                }
+            }
         }
         getElement(wordStart).toggleClass('wordsearch-letter-start');
         wordStart = [-1, -1];
-
-        // Check for completion
-        if (chosenWords.length == words.length) {
-            alert("Nice job! Game over :)");
-        }
     } else {
         // Start word selection
         wordStart = getRowCol(this.id);
@@ -51,7 +61,7 @@ function getElement(rowCol) {
 function getSelectedWord(wordEnd) {
     var wordDel = [wordEnd[0] - wordStart[0], wordEnd[1] - wordStart[1]];
     if ((wordDel[0] === 0 && wordDel[1] === 0)
-        || (wordDel[0] !== wordDel[1] && wordDel[0] !== 0 && wordDel[1] !== 0)) {
+            || (Math.abs(wordDel[0]) !== Math.abs(wordDel[1]) && wordDel[0] !== 0 && wordDel[1] !== 0)) {
         return null;
     }
     // We have a word!
@@ -65,7 +75,7 @@ function getSelectedWord(wordEnd) {
     return word;
 }
 
-function markWordCompleted(wordEnd) {
+function wordIsChosen(wordEnd, selectedWord) {
     var wordDel = [wordEnd[0] - wordStart[0], wordEnd[1] - wordStart[1]];
     var wordLen = Math.max.apply(null, wordDel.map(Math.abs));
     for (var i = 0; i <= wordLen; i++) {
@@ -73,4 +83,13 @@ function markWordCompleted(wordEnd) {
         var col = wordStart[1] + i * (wordDel[1] / wordLen);
         getElement([row, col]).addClass('wordsearch-letter-completed');
     }
+    // Update array
+    chosenWords[selectedWord] = [wordStart, wordEnd];
+    $('#wordsearch-word-' + selectedWord).addClass('strikethrough');
 }
+
+// Submission
+$('.wordsearch-submit').click(function() {
+    $('#chosen-words').val(JSON.stringify(chosenWords));
+    document.forms["wordsearch"].submit();
+});

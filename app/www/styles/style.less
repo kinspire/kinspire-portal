@@ -4,6 +4,7 @@
 div {
   font-family: contentFont;
   font-size: 18px;
+  color: @primary-brown;
 }
 
 a, a:focus, a:hover, a:visited {
@@ -114,6 +115,38 @@ a, a:focus, a:hover, a:visited {
   font-size: 100px;
 }
 
+.shadow-button {
+  // padding: 48px 16px;
+  margin: 4px;
+  box-shadow: 1px 1px 2px;
+  border: 1px solid @primary-brown;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  // height: 120px;
+  text-align: center;
+
+  display: flex;
+  color: @primary-brown;
+  background-color: white;
+
+  &:hover {
+    background-color: @primary-brown;
+    color: white;
+    box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.shadow-button-text {
+  font-size: 36px;
+  text-align: center;
+  margin: auto 0;
+  width: 100%;
+}
+
+.shadow-button:hover .shadow-button-text {
+  color: white;
+}
+
 /* Home */
 
 .home-section-title {
@@ -128,22 +161,21 @@ a, a:focus, a:hover, a:visited {
 }
 
 .home-next-activity {
-  padding: 16px;
-  margin: 4px;
-  box-shadow: 1px 1px 2px;
-  border: 1px solid @primary-brown;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
+  height: 120px;
+}
 
-  &:active {
-    box-shadow: 0;
-  }
+.home-next-activity-category {
+  width: 40%;
+}
 
-  &:hover {
-    background-color: @primary-brown;
-    color: white;
-    box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.7);
-  }
+.home-next-activity-details {
+  margin: auto 0;
+  padding: 5px;
+  width: 60%;
+}
+
+.home-next-activity:hover .home-next-activity-details {
+  color: white;
 }
 
 .home-section-progress {
@@ -163,7 +195,6 @@ a, a:focus, a:hover, a:visited {
 .home-avatar {
   width: 100px;
 }
-
 .achievements-section-medal-image {
     width: 30%;
     display: block;
@@ -179,9 +210,8 @@ a, a:focus, a:hover, a:visited {
   color: @primary-blue;
 }
 
-
+@import "login.less";
 @import "resources.less";
 @import "activities.less";
-@import "stories.less";
 @import "access.less";
 @import "templates.less";

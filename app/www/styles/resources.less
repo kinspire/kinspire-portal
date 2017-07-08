@@ -34,7 +34,7 @@
   // background-size: contain;
   // background-color: @orange;
   border: 10px solid @primary-brown;
-  cursor: pointer;
+  // cursor: pointer;
   text-align: center;
   padding: 20px;
 }
@@ -45,6 +45,11 @@
   width: 100%;
   box-shadow: 1px 1px 2px;
   background-color: @primary-brown;
+}
+
+.resources-category-content-done {
+  .resources-category-content;
+  background-color: gray;
 }
 
 .resources-category-pic {
@@ -71,18 +76,17 @@
 
 .stories-story {
   display: flex;
- 
+  border: 10px solid;
 }
 
 .stories-story-section {
   width: 50%;
-  border: 10px solid;
   padding: 15px;
   overflow: auto;
 }
 
-
 .stories-story-section-story {
+  // border-left: 10px solid;
   div {
     font-family: storyFont;
     font-size: 24px;
@@ -91,6 +95,16 @@
 
 .stories-story-paragraph {
   text-indent: 60px;
+}
+
+.stories-story-divider {
+  margin: 0 5px;
+  width: 10px;
+}
+
+.stories-story-section-questions-title {
+  font-size: 140%;
+  font-weight: bold;
 }
 
 /* Scrollbar */
@@ -158,45 +172,4 @@
 
 .portal-subtitle {
   text-align: center;
-}
-
-/* Questions */
-
-.stories-story-section-questions {
-  input[type=radio] {
-    opacity: 0;
-    height: 0;
-    width: 0;
-  }
-
-  input[type=radio] + label {
-    span {
-      background-color: green;
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      margin: auto 5px;
-
-
-
-#diamond {
-	width: 0;
-	height: 0;
-	border: 50px solid transparent;
-	border-bottom-color: red;
-	position: relative;
-	top: -50px;
-}
-#diamond:after {
-	content: '';
-	position: absolute;
-	left: -50px;
-	top: 50px;
-	width: 0;
-	height: 0;
-	border: 50px solid transparent;
-	border-top-color: red;
-}
-    }
-  }
 }

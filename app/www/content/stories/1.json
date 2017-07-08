@@ -7,6 +7,7 @@
     ],
     "questions": [
         {
+            "number": 1,
             "type": "mcq",
             "question": "Why did the coach make Gopi do push-ups?",
             "choices": [
@@ -17,18 +18,22 @@
             ],
             "correctChoice": 1
         }, {
+            "number": 2,
             "type": "short",
             "question": "Where did everyone go for the big meeting?",
             "correctAnswer": "Answer"
         }, {
+            "number": 3,
             "type": "short",
             "question": "Who did Gopi become good friends with?",
             "correctAnswer": "Answer"
         }, {
+            "number": 4,
             "type": "long",
             "question": "Why was Priya crying near the locker rooms?",
             "correctAnswer": "Answer"
         }, {
+            "number": 5,
             "type": "long",
             "question": "What do you remember from your first day of school? Explain in two sentences.",
             "correctAnswer": "Answer"

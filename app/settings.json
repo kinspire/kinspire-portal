@@ -10,7 +10,7 @@
         "log_file": "debug.log"
     },
     "main_window": {
-        "title": "PHP Desktop Chrome",
+        "title": "Kinspire Portal",
         "icon": "",
         "default_size": [800, 600],
         "minimum_size": [640, 480],

@@ -4,7 +4,8 @@ import io
 import json
 import collections
 
-STORY_NUMBERS = 2
+# TODO: update this to be all files in details
+STORY_NUMBERS = 3
 CONTENT_FOLDER = 'app/www/content/stories/'
 
 
@@ -27,12 +28,12 @@ def handle_story(i):
     generate_questions(i, story_json)
 
 
-def generate_story(i, story_json):
+def generate_story(story_num, story_json):
     '''
     Creates the story HTML to be injected into the stories page from the respective JSON files.
     '''
     output_file = io.open(
-        '{0}story-{1}.html'.format(CONTENT_FOLDER, str(i)), 'w', encoding='utf8')
+        '{0}story-{1}.html'.format(CONTENT_FOLDER, str(story_num)), 'w', encoding='utf8')
 
     paragraphs = story_json['story']
     vocab = story_json['vocab']
@@ -64,52 +65,42 @@ def generate_story(i, story_json):
         if i == len(vocab):
             output_file.write(
                 u'<span class="stories-story-text">{0}</span>\n'.format(paragraph))
-            # output_file.write(paragraph + '\n')
 
-        # outputFile.write(paragraph)
         output_file.write(u'</div><br/>')
 
 
-def generate_questions(i, story_json):
+def generate_questions(story_num, story_json):
     '''
     Generates the questions HTML from the various json files.
     '''
     output_file = io.open(
-        '{0}questions-{1}.html'.format(CONTENT_FOLDER, str(i)), 'w', encoding='utf8')
+        '{0}questions-{1}.html'.format(CONTENT_FOLDER, str(story_num)), 'w', encoding='utf8')
 
     questions = story_json['questions']
 
-    for i, question in enumerate(questions):
+    for question in questions:
+        question_num = question['number']
         output_file.write(u'<li>{0}</li>'.format(question['question']))
 
         if question['type'] == 'mcq':
-            # output_file.write(u'<ol type="a">')
-            # output_file.write(u'<form>')
-
             for j, choice in enumerate(question['choices']):
                 output_file.write(
                     (
-                        u'<div>' +
-                        u'<input id="q{0}a{1}" type="radio" name="optradio">' +
-                        u'<label class="flexbox" for="q{0}a{1}"><span></span>{2}</label>' +
-                        u'</div>'
-                    ).format(i, j, choice)
+                        u'<div class="radio"><label>' +
+                        u'<input type="radio" name="question-{0}" id="question-{0}" value="question-{0}-{1}">{2}' +
+# u'<input id="q{0}a{1}" type="radio" name="optradio">' +
+# u'<label class="flexbox" for="q{0}a{1}"><span id="outside"></span><span id="inside"></span>{2}</label>' +
+                        u'</label></div>'
+                    ).format(question_num, j, choice)
                 )
-
-
-# <div class="radio">
-#   <label><input type="radio" name="optradio">Option 2</label>
-# </div>
-# <div class="radio disabled">
-#   <label><input type="radio" name="optradio" disabled>Option 3</label>
-# </div>                    u'<input type="radio">&nbsp;{0}<br>'.format(choice))
-
-            # output_file.write(u'</ol>')
-            # output_file.write(u'</form>')
-
-        elif question['type'] == 'free':
+        elif question['type'] == 'short':
             output_file.write(
-                u'<input type="text" name="question-{0}">'.format(i))
+                u'<input type="text" name="question-{0}" id="question-{0}">'.format(question_num)
+            )
+        elif question['type'] == 'long':
+            output_file.write(
+                u'<textarea name="question-{0}" id="question-{0}"></textarea>'.format(question_num)
+            )
 
 
 if __name__ == "__main__":

@@ -1,17 +1,16 @@
-.activities-category {
-  .resources-category;
-
-  background-image: url(../images/activities-page-box.png);
-}
-
 /* Word Search */
 
+.wordsearch-grid-area {
+  width: 50%;
+}
+
 .wordsearch-grid {
-  width: 60%;
+  border: 1px solid;
+  display: inline-grid;
 }
 
 .wordsearch-row {
-  width: 100%;
+  // width: 100%;
   display: inline-flex;
 }
 
@@ -22,19 +21,26 @@
   font-size: 20px;
   line-height: 20px;
   text-align: center;
+  cursor: default;
 }
 
 .wordsearch-letter-start {
   background-color: green;
 }
+
 .wordsearch-letter-completed {
   background-color: orange;
   color: white;
 }
+
 .wordsearch-words {
-  width: 40%;
+  width: 30%;
 }
 
 .strikethrough {
   text-decoration: line-through;
+}
+
+.wordsearch-submit {
+  height: 100px;
 }
