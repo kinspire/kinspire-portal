@@ -16,7 +16,7 @@ head("Login", 0, true);
   <div class="login-area">
     <div class="login-title">Welcome back!</div>
     <form method="post" action="login.php">
-      <input class="login-textbox" type="text" name="username" placeholder="username" value="test"/>
+      <input class="login-textbox" type="text" name="username" placeholder="username"/>
       <!--<input type="password" name="password" placeholder="pass" value="test"/>-->
       <button class="login-button" type="submit" name="login" >Log in</button>
       <!--<button type="submit" name="signup" class="login-button">Sign up</button>-->

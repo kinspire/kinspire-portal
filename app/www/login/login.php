@@ -5,7 +5,7 @@
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check the username and password
-    $username = $_POST['username'];
+    $username = strtolower($_POST['username']);
 
     require $_SERVER['DOCUMENT_ROOT'].'/includes/db.php';
 

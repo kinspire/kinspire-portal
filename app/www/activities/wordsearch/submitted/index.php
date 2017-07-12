@@ -60,6 +60,7 @@ PDO_Execute("UPDATE users SET wordsearch_answers=:wordsearch_answers WHERE usern
   <div class="filler">
     Thanks for playing!
     <!-- TODO add link back to home, or next activity -->
+    <a class="shadow-button" href="/">Home</a>
   </div>
 </div>
 <?php tail(array('resources')); ?>

@@ -1,5 +1,5 @@
 <?php
-function head($title, $active = -1, $is_login = 0 /* 0 = not login, 1 = login, 2 = signup */, $title_color = null) {
+function head($title, $active_page = -1, $is_login = 0 /* 0 = not login, 1 = login, 2 = signup */, $title_color = null) {
     if (!$is_login) {
         require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php";
     } ?>
@@ -16,7 +16,7 @@ function head($title, $active = -1, $is_login = 0 /* 0 = not login, 1 = login, 2
             <img id="portal-background-right" src="/images/portal-right-bar.png"/>
             <!--<img id="portal-background" src="/images/home-border.png"/>-->
             <div id="portal-header">
-                <?php if (!$is_login) { require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php"; menu($active); } ?>
+                <?php if (!$is_login) { require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php"; menu($active_page); } ?>
                 <div class="portal-title"
                     <?php
                     if ($title_color != null) {?>
