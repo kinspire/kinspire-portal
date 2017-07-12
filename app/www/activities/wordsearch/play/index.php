@@ -16,13 +16,9 @@ $chosenWords = new ArrayObject();
 if (isset($ws_answers[$_GET['id']])) {
   $chosenWords = $ws_answers[$_GET['id']];
 } ?>
-<div class="portal-body flexbox">
+<div class="portal-body">
   <style>
     /* TODO: Do better with color assignment */
-    .wordsearch-grid {
-      border-color: <?php echo $story_colors['primary-color'];?>;
-    }
-
     .wordsearch-letter {
       color: <?php echo $story_colors['primary-color'];?>;
     }
@@ -41,8 +37,8 @@ if (isset($ws_answers[$_GET['id']])) {
       color: <?php echo $story_colors['text-color'];?>;
     }
   </style>
-  <div class="wordsearch-grid-area">
-    <div class="wordsearch-grid">
+  <div class="flexbox">
+    <div class="wordsearch-grid-area">
       <?php
       $filename = $_SERVER['DOCUMENT_ROOT'].'/content/wordsearch/'.$_GET['id'].'.json';
       $wordsearch_json = json_decode(file_get_contents($filename), true);
@@ -58,11 +54,11 @@ if (isset($ws_answers[$_GET['id']])) {
       </div>
       <?php } ?>
     </div>
-  </div>
-  <div class="wordsearch-words">
-    <?php foreach ($words as $word) {?>
-      <div class="wordsearch-word" id="wordsearch-word-<?php echo $word;?>"><?php echo $word;?></div>
-    <?php }?>
+    <div class="wordsearch-words">
+      <?php foreach ($words as $word) {?>
+        <div class="wordsearch-word" id="wordsearch-word-<?php echo $word;?>"><?php echo $word;?></div>
+      <?php }?>
+    </div>
   </div>
   <form name="wordsearch" action="../submitted/?id=<?php echo $_GET['id'];?>" method="post">
     <input type="hidden" name="chosenWords" id="chosen-words">

@@ -9,6 +9,7 @@ DefaultGroupName=Kinspire Portal
 Compression=lzma2
 SolidCompression=yes
 OutputDir=userdocs:Kinspire Portal Installer
+OutputBaseFilename=KinspirePortal-Installer
 
 [Files]
 Source: "app/*"; DestDir: "{app}/app"; Flags: recursesubdirs; Permissions: users-modify
