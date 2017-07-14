@@ -1,3 +1,3 @@
 #!/bin/bash
 
-app/phpdesktop-chrome.exe &
+app/phpdesktop-chrome.exe &> /dev/null &
