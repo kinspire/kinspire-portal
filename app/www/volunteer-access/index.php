@@ -8,7 +8,6 @@ head('Volunteer Access', 3);?>
         <textarea class="volunteer-access-text" rows="3" placeholder="Additional comments"></textarea>
       </div>
       <div class="volunteer-access-submit-area">
-        <div class="volunteer-access-file">Add a file</div>
         <div class="volunteer-access-submit">Submit</div>
       </div>
     </div>
