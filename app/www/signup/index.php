@@ -23,7 +23,7 @@ head("Signup", 0, 2);
     </div>
     <div class="flexbox">
       <span class="form-label">Class Level:</span>
-      <input type="text" name="class-level" placeholder="Class Level" />
+      <input type="number" name="class-level" placeholder="Class Level" />
     </div>
     <div class="signup-avatars">
       <?php

@@ -66,17 +66,23 @@ a, a:focus, a:hover, a:visited {
   display: flex;
   // position: relative;
   min-height: 100px;
-  max-height: 100px;
+  // max-height: 100px;
 }
+
+@title-font-size: 72px;
 
 .portal-title {
   margin: 0 auto;
-  // width: 100%;
-  line-height: 86px;
-  font-size: 86px;
+  line-height: @title-font-size;
+  font-size: @title-font-size;
   text-align: center;
   font-family: titleFont;
   color: @primary-brown;
+}
+
+.portal-title-lower {
+  font-size: 42px;
+  line-height: 42px;
 }
 
 .portal-title-home {
@@ -102,7 +108,7 @@ a, a:focus, a:hover, a:visited {
 
 .portal-body {
   /*display: inline-block;*/
-  margin-top: 6%;
+  // margin-top: 6%;
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
