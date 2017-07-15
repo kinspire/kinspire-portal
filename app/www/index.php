@@ -1,5 +1,5 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
-head('Welcome!', 0);
+head('Welcome to the Portal!', 0);
 ?>
 <div class="portal-body">
   <div class="home-section col-xs-3">
