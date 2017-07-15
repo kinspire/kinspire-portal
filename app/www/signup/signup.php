@@ -7,8 +7,9 @@
     // Check the first and last names
     $first = $_POST['firstname'];
     $last = $_POST['lastname'];
-
-    // TODO: sanitize and check for empty
+    $birthday = $_POST['birthday'];
+    $class_level = $_POST['class-level'];
+    $avatar = substr($_POST['avatar'], 7);
 
     $username = str_replace(" ", "", strtolower($first.$last));
 
@@ -30,9 +31,8 @@
       }
     }
 
-    // TODO: add more fields
-    PDO_Execute("INSERT INTO users (username, name) VALUES (:username, :name)",
-      array("username"=>$username, "name"=>($first." ".$last)));
+    PDO_Execute("INSERT INTO users (username, name, birthday, class_level, avatar) VALUES (:username, :name, :birthday, :class_level, :avatar)",
+      array("username"=>$username, "name"=>($first." ".$last), "birthday"=>$birthday, "class_level"=>$class_level, "avatar"=>$avatar));
  
     $matches = PDO_FetchAll("SELECT * FROM users WHERE username = :username", array("username"=>$username));
     if (count($matches) == 1) {

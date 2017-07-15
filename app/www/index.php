@@ -58,8 +58,7 @@ head('Welcome!', 0);
     </div>
   </div>
   <div class="home-avatars">
-    <img class="home-avatar" src="/images/avatar/brownsquare.svg">
-    <img class="home-avatar" src="/images/avatar/greenpentagon.svg">
+    <img class="home-avatar" src="/images/avatar/<?php echo $user['avatar'];?>.svg">
   </div>
 </div>
 <?php

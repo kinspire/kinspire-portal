@@ -12,7 +12,7 @@ function menu($active) { ?>
       <?php
       $sections = array("home", "resources", "activities", "access", "profile", "logout");
       $urls = array("", "resources", "activities", "volunteer-access", "profile", "logout");
-      $names = array("Home", "Learning Resources", "Activities", "Volunteer Access", "Profile", "Log out");
+      $names = array("Home", "Materials", "Activities", "Volunteer Access", "Profile", "Log out");
       foreach ($sections as $i => $section) { ?>
         <!-- TODO: Change the hardcoded 25 height/width -->
         <div class="portal-menu-item">
