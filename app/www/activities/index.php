@@ -1,20 +1,23 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php"; ?>
-<head>
-  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
-  <title>Activities</title>
-</head>
-<body>
-  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
-  <div id="portal-content">
-    <img id="portal-background" src="/images/home-border.png"/>
-    <div id="portal-header">
-      <div class="portal-title">Activities</div>
-      <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
-      <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
-    </div>
-    <div class="portal-body">
-      Coming soon!
+<?php
+require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
+head("Activities", 2);
+?>
+<div class="portal-body">
+  <div class="resources-categories">
+    <div class="resources-category-container">
+      <a class="resources-category" href="wordsearch/">
+        <div class="resources-category-content">
+          <div class="resources-category-text">Word Search</div>
+        </div>
+      </a>
+      <!--<a class="resources-category" href="crosswords/">
+        <div class="resources-category-content">
+          <div class="resources-category-text">Crosswords</div>
+        </div>
+      </a>-->
     </div>
   </div>
-  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>
-</body>
+</div>
+<?php
+tail(array('resources'));
+?>

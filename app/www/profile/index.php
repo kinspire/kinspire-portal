@@ -1,20 +1,31 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php"; ?>
-<head>
-  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
-  <title>Profile</title>
-</head>
-<body>
-  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
-  <div id="portal-content">
-    <img id="portal-background" src="/images/home-border.png"/>
-    <div id="portal-header">
-      <div class="portal-title">Profile</div>
-      <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
-      <?php require $_SERVER['DOCUMENT_ROOT']."/includes/back.php";?>
-    </div>
-    <div class="portal-body">
-      Coming soon!
-    </div>
+<?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php"; 
+head('Profile', 4);
+
+$user = $_SESSION['user'];
+
+// Birthday
+$birthday_str = $user['birthday']; // "Birthday str";
+
+// Class level
+$number = $user['class_level'];
+$ends = array('th','st','nd','rd','th','th','th','th','th','th');
+if (($number %100) >= 11 && ($number%100) <= 13)
+   $abbreviation = $number. 'th';
+else
+   $abbreviation = $number. $ends[$number % 10];
+$class_ord = $abbreviation;
+?>
+<div class="portal-body flexbox">
+  <div class="profile-avatar">
+    <img class="profile-avatar-img" src="/images/avatar/<?php echo $user['avatar'];?>.svg"/>
   </div>
-  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>
-</body>
+  <div class="profile-details">
+    <div>Hello,
+      <span class="profile-detail"><?php echo $user['name'];?>!</span>
+      <!-- <input type="text" name="firstname"><input type="text" name="lastname"> -->
+    </div>
+    <div>Your birthday is on <span class="profile-detail"><?php echo $birthday_str;?></span></div> 
+    <div>You are in <span class="profile-detail"><?php echo $class_ord;?></span> class.</div>
+  </div>
+</div>
+<?php tail(); ?>

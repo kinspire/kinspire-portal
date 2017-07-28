@@ -1,0 +1,175 @@
+/* Resources */
+
+.resources-banner {
+  width: 100%;
+  background-color: #9bd1e8;
+  height: 130px;
+  line-height: 130px;
+  margin-bottom: 25px;
+
+  font-size: 40px;
+  text-align: center;
+}
+
+.resources-categories {
+  text-align: center;
+  display: inline-flex; //block;
+ 	width: 100%;
+  // border: 1px solid black;
+}
+
+.resources-category-container {
+  margin: 0 auto;
+  display: inline-flex;
+}
+
+.resources-category {
+  margin: 15px;
+  display: /*inline-*/block;
+
+  height: 200px;
+  width: 200px;
+
+  // background-image: url(../images/resources-page-box.png);
+  // background-size: contain;
+  // background-color: @orange;
+  border: 10px solid @primary-brown;
+  // cursor: pointer;
+  text-align: center;
+  padding: 20px;
+}
+
+.resources-category-content {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  box-shadow: 1px 1px 2px;
+  background-color: @primary-brown;
+}
+
+.resources-category-content-done {
+  .resources-category-content;
+  background-color: gray;
+}
+
+.resources-category-pic {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.resources-category-text {
+  margin: auto;
+  font-size: 32px;
+  color: white;
+}
+
+/* Stories */
+
+#stories-home {
+  display: inline-flex;
+  width: 100%;
+  /*position: absolute;*/
+  /*top: 0;*/
+}
+
+.stories-story {
+  display: flex;
+  border: 10px solid;
+}
+
+.stories-story-section {
+  width: 50%;
+  padding: 15px;
+  overflow: auto;
+}
+
+.stories-story-section-story {
+  // border-left: 10px solid;
+  div {
+    font-family: storyFont;
+    font-size: 24px;
+  }
+}
+
+.stories-story-paragraph {
+  text-indent: 60px;
+}
+
+.stories-story-divider {
+  margin: 0 5px;
+  width: 10px;
+}
+
+.stories-story-section-questions-title {
+  font-size: 140%;
+  font-weight: bold;
+}
+
+/* Scrollbar */
+
+.stories-story-section::-webkit-scrollbar {
+    height: 16px;
+    overflow: visible;
+    width: 16px;
+}
+
+.stories-story-section::-webkit-scrollbar-button {
+    // height: 0;
+    // width: 0;
+}
+
+.stories-story-section::-webkit-scrollbar-corner {
+    // background: transparent;
+}
+
+.stories-story-section::-webkit-scrollbar-thumb {
+  background-color: green;
+    // background-color: rgba(0,0,0,.2);
+    // background-clip: padding-box;
+    // border: solid white 1px;
+    // border-width: 1px 1px 1px 6px;
+    // min-height: 28px;
+    // padding: 100px 0 0k;
+    box-shadow: 1px 1px 3px 1px rgba(0,0,0,.1), 0 -1px 0 rgba(0,0,0,.07);
+}
+
+.stories-story-section::-webkit-scrollbar-track {
+  background-color: white;
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0 4px;
+}
+
+/* Vocab words */
+
+.stories-vocab {
+  position: relative;
+}
+
+.stories-vocab-word {
+  font-family: storyFont;
+  font-weight: bolder;
+  font-size: 28px;
+}
+
+.stories-vocab-def {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  z-index: 9;
+
+  background-color: white;
+  border: 1px solid black;
+  padding: 4px;
+  text-indent: 0;
+}
+.stories-vocab:hover .stories-vocab-def {
+  display: block;
+}
+
+.portal-subtitle {
+  text-align: center;
+}

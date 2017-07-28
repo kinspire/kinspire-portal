@@ -1,0 +1,46 @@
+{
+    "story": [
+        "On the weekends, Priya likes to take Gopi to visit her cousins who live on a farm.  They wake up to the cock-a-doodle-doo of the rooster. \"What smells so good?\" asks Gopi.",
+        "\"Good morning Gopi!\" Priya's aunt exclaims. She had made a big breakfast of fresh eggs from the chickens. After breakfast they go help feed the animals. Priya looks at the hay which will be fed to the animals.",
+        "\"This doesn't look as good as our breakfast we had this morning!\" Priya tells Gopi.",
+        "\"All of the animals on the farm are herbivores\" Gopi replies. \"They eat hay, and other types of plants\".",
+        "The sheep are still asleep when they reach their pen. Since it is springtime, their wool had just been cut. \"During the winter, their wool is very thick to keep them warm.\" Priya explains to Gopi.",
+        "The pigs are already awake and rolling around in the mud when Gopi and Priya bring their food. Once they have finished milking the cows, they get to go horseback riding!",
+        "\"What a fun day!\" Gopi tells Priya."
+    ],
+    "questions": [
+        {
+            "number": 1,
+            "type": "short",
+            "question": "Where did Priya and Gopi go?"
+        },
+        {
+            "number": 2,
+            "type": "mcq",
+            "question": "What did they eat for breakfast?",
+            "choices": [
+                "Hay",
+                "Eggs",
+                "Plants",
+                "Mud"
+            ]
+        },
+        {
+            "number": 3,
+            "type": "short",
+            "question": "What is the first animal Priya and Gopi feed?"
+        },
+        {
+            "number": 4,
+            "type": "long",
+            "question": "What happens to the sheep wool during the springtime?"
+        },
+        {
+            "number": 5,
+            "type": "long",
+            "question": "What is your favorite animal to see at a farm? Why? Explain in two sentences."
+        }
+    ],
+    "vocab": [],
+    "translation-te": []
+}

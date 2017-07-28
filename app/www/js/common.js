@@ -1,5 +1,6 @@
 var setHeight = function () {
-    var bgHeight = $("#portal-background").height();
+    var bgHeight = window.innerHeight;
+    // var bgHeight = $("#portal-background").height();
     $("#portal-content")
         .css("max-height", bgHeight)
         .css("min-height", bgHeight);

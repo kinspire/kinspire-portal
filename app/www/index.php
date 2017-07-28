@@ -1,40 +1,66 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/includes/logincheck.php"; ?>
-<head>
-  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/head.php"; ?>
-  <title>Welcome</title>
-</head>
-<body>
-  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/main-menu.php"; ?>
-  <div id="portal-content">
-    <img id="portal-background" src="/images/home-border.png"/>
-    <div id="portal-header">
-      <div class="portal-title portal-title-home">Welcome</div>
-      <?php require $_SERVER['DOCUMENT_ROOT']."/includes/menu.php";?>
-    </div>
-    <div class="portal-body">
-      <div class="home-section col-xs-4">
-        <div class="home-section-date">
-          <div class="home-section-title">Today's date</div>
-          <div class="home-section-content">05/09/17</div>
-        </div>
-        <div class="home-section-quote">
-          <div class="home-section-title">Quote of the Day</div>
-          <div class="home-section-content">An apple a day keeps the doctor away!</div>
-        </div>
-      </div>
-      <div class="home-section col-xs-4">
-        <div class="home-section-title">Next Activity to Try</div>
-        <div class="home-section-content">No more activities! Well done :)</div>
-      </div>
-      <div class="home-section col-xs-4">
-        <div class="home-section-title">Your Progress</div>
-        <div class="home-section-content">
-          <a href = "achievements/">
-            <img class="progress-envelope" src="/images/envelope.png" height="250" width="250"></img>
-          </a>
-        </div>
-      </div>
+<?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
+head('Welcome to the Portal!', 0);
+?>
+<div class="portal-body">
+  <div class="home-section col-xs-3">
+    <!-- <div class="home-section-date">
+      <div class="home-section-title">Today's date</div>
+      <div class="home-section-content"></div>
+    </div> -->
+    <div class="home-section-quote">
+      <div class="home-section-title">Quote of the Day</div>
+      <div class="home-section-content">An apple a day keeps the doctor away!</div>
     </div>
   </div>
-  <?php require $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>
-</body>
+  <div class="home-section col-xs-6">
+    <div class="home-section-title">Next Activity to Try</div>
+    <div class="home-section-content">
+      <?php
+      $user = $_SESSION['user'];
+      $filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/details.json';
+      $stories_json = json_decode(file_get_contents($filename), true);
+
+      // 1. STORIES
+      $next_story = $user['next_story'];
+
+      // TODO: check if next story even exists ?>
+      <a class="home-next-activity shadow-button" href="/resources/stories/story/?id=<?php echo $next_story;?>">
+        <div class="shadow-button-text home-next-activity-category">
+          Story
+        </div>
+        <div class="home-next-activity-details">
+          <?php echo $next_story.': '.$stories_json['' + $next_story]['name']; ?>
+        </div>
+      </a>
+
+      <?php 
+      // 2. WORD SEARCH
+      $next_word_search = $user['next_word_search'];
+      for ($i = $next_word_search; $i < $next_story; $i++) {
+        // TODO: check if next word search even exists ?>
+        <a class="home-next-activity shadow-button" href="/activities/wordsearch/play/?id=<?php echo $i;?>">
+          <div class="shadow-button-text home-next-activity-category">
+            Word Search
+          </div>
+          <div class="home-next-activity-details">
+            <?php echo $i.': '.$stories_json['' + $i]['name']; ?>
+          </div>
+        </a>
+      <?php } ?>
+    </div>
+  </div>
+  <div class="home-section col-xs-3">
+    <div class="home-section-title">Your Progress</div>
+    <div class="home-section-progress">
+      <a href="achievements/">
+        <img class="home-section-progress-image" src="images/home-page-envelope-with-medal.png"/>
+      </a>
+    </div>
+  </div>
+  <div class="home-avatars">
+    <img class="home-avatar" src="/images/avatar/<?php echo $user['avatar'];?>.svg">
+  </div>
+</div>
+<?php
+tail();
+?>

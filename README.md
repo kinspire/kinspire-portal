@@ -1,7 +1,20 @@
 # kinspire-portal
 A desktop portal for the students in Kinspire's orphanages to use to access learning materials.
 
-## Installation
-- Clone the repository.
-- If on a windows platform, run `./win-setup.sh` on Bash on WSL.
-- The source directory is `app/www/`.
+## Setup
+* Clone the repository.
+* If on a Windows platform, you can run the portal as a standalone application &ndash; but this requires some setup:
+    - Open Powershell with Admin privileges.
+    - Run `Set-ExecutionPolicy -ExecutionPolicy Unrestricted`. If there is a confirmation prompt, press `Y` to continue.
+    - Then navigate to the `kinspire-portal` directory and run `./win-setup.ps1`.
+    - Run `Set-ExecutionPolicy -ExecutionPolicy Restricted` if you care about Powershell script security.
+* [Optional] From the home directory run `python story.py` (with Python 2.7) to prepare the story HTML files from the JSON input.
+    - As of now, the story HTML files are included in the repo, so this step is not necessary.
+
+## Usage
+### Windows platform
+Run `./win-run.sh` from Git BASH, or `./nix-run.sh` from Bash on WSL, or `./win-run.ps1` from Powershell, or just run `app/phpdesktop-chrome.exe` from Windows Explorer.
+
+### Unix-based platforms (Mac/Linux)
+1. Install [PHP](http://php.net) if you haven't already.
+2. Spin up a PHP server by running `./nix-run.sh` from a Terminal window.

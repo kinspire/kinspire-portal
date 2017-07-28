@@ -1,0 +1,100 @@
+.login-region {
+    margin: 5% 5%;
+}
+
+/* Sign up */
+
+.first-time {
+    .shadow-button;
+    .login-region;
+    width: 40%;
+    height: 200px;
+}
+
+.first-time-text {
+    .shadow-button-text;
+    font-size: 64px;
+}
+
+.first-time:hover .first-time-text {
+    color: white;
+}
+
+/* Login */
+
+.login-area {
+    .login-region;
+    width: 40%;
+}
+
+.login-title {
+    text-align: center;
+    color: @primary-brown;
+    font-size: 28px;
+}
+
+.login-textbox {
+    width: 100%;
+}
+
+.login-button {
+    .shadow-button;
+
+    width: 100%;
+    background-color: white;
+    margin: 6px 0;
+}
+
+/* Signup */
+
+.form-label {
+    width: 45%;
+    margin: 0 2.5%;
+    text-align: center;
+}
+
+.signup-button {
+    .shadow-button;
+
+    display: block;    
+    width: 100%;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.signup-avatar-container {
+    .flexbox;
+    flex-direction: column;
+}
+
+.signup-avatars {
+    .flexbox;
+    overflow-x: auto;
+    min-height: 200px;
+    padding: 20px;
+}
+
+.signup-avatar {
+    height: 150px;
+    margin: 10px;
+    transition: all 0.4s ease-in-out;
+
+    &:hover {
+        transform: scale(1.20);
+    }
+}
+
+.signup-avatar-selected {
+    transform: scale(1.20);
+    background-color: @secondary-gray;
+    border: 1px solid @primary-brown;
+}
+
+.signup-avatar-radio {
+  margin: 0 auto !important;
+  display: none;
+}
+
+.error {
+    border: 3px solid red;
+}
