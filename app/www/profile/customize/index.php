@@ -1,10 +1,11 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
-head('Your Avatar', 5); //
+head('Your Avatar', 4); //
 ?>
-<link rel="stylesheet" href="/styles/style.css" type="text/css"/>
+<div class= "portal-body">
 <span class="boxset">
   <span class="box">Color</span>
   <span class="box">Shoes</span>
   <span class="box">Accessories</span>
 </span>
+</div>
 <?php tail(); ?>
