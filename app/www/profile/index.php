@@ -18,7 +18,7 @@ $class_ord = $abbreviation;
 <div class="portal-body flexbox">
   <div class="profile-avatar">
     <img class="profile-avatar-img" src="/images/avatar/<?php echo $user['avatar'];?>.svg"/>
-  <a href="profile/customize/"><div class = "customize">Customize Me!</div></a>
+  <a href="profile/customize/"><div class="customize">Customize Me!</div></a>
   </div>
   <div class="profile-details">
     <div>Hello,
@@ -32,7 +32,4 @@ $class_ord = $abbreviation;
     </div>
   </div>
 </div>
-  <!--<span class="box">Shoes</span>
-  <span class="box">Accessories</span>
-</span> -->
 <?php tail(); ?>
