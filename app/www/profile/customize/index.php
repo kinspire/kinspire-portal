@@ -7,9 +7,30 @@ head('Your Avatar', 4); //
   </div>
   <span class="portal-body flexbox">
     <span class="boxset">
-      <span class="box1">Color</span>
-      <span class="box2">Shoes</span>
-      <span class="box3">Accessories</span>
+      <span class="box1">Color
+        <div class ="dropdown">
+          <button class="dropdown-content"
+          <div class="dropdown-content">
+          <a href = #Pink>Pink</a>
+        </div>
+      </div>
+    </span>
+      <span class="box2">Shoes
+        <div class ="dropdown">
+          <button class="dropdown-content"
+          <div class="dropdown-content">
+          <a href ="google.com">Pink</a>
+        </div>
+      </div>
+    </span>
+      <span class="box3">Accessories
+        <div class ="dropdown">
+          <button class="dropdown-content"
+          <div class="dropdown-content">
+          <a href ="google.com">Pink</a>
+        </div>
+      </div>
+     </span>
     </span>
   </span>
 </div>
