@@ -11,7 +11,7 @@ $user = $_SESSION['user'];
       <div class = "dropdown">
         <span class="box1">Color</span>
         <div class = "dropdown-content">
-          <p>addpink</p>
+          <p>option1</p>
           <p>addgreen</p>
           <p>addblue</p>
           <p>addorange</p>
