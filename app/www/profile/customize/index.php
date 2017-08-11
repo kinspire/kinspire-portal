@@ -1,5 +1,6 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
-head('Your Avatar', 4); //
+head('Your Avatar', 4);
+$user = $_SESSION['user'];
 ?>
 <div class="portal-body flexbox">
   <div class="profile-avatar">
@@ -7,30 +8,27 @@ head('Your Avatar', 4); //
   </div>
   <span class="portal-body flexbox">
     <span class="boxset">
-      <span class="box1">Color
-        <div class ="dropdown">
-          <button class="dropdown-content"
-          <div class="dropdown-content">
-          <a href = #Pink>Pink</a>
+      <div class = "dropdown">
+        <span class="box1">Color</span>
+        <div class = "dropdown-content">
+          <p>addpink</p>
+          <p>addgreen</p>
+          <p>addblue</p>
+          <p>addorange</p>
         </div>
       </div>
-    </span>
-      <span class="box2">Shoes
-        <div class ="dropdown">
-          <button class="dropdown-content"
-          <div class="dropdown-content">
-          <a href ="google.com">Pink</a>
-        </div>
+      <div class ="dropdown">
+      <span class="box2">Shoes</span>
+      <div class="dropdown-content">
+        <p>add4options</p>
       </div>
-    </span>
-      <span class="box3">Accessories
-        <div class ="dropdown">
-          <button class="dropdown-content"
-          <div class="dropdown-content">
-          <a href ="google.com">Pink</a>
-        </div>
+    </div>
+    <div class="dropdown">
+      <span class="box3">Accessories</span>
+      <div class ="dropdown-content">
+        <p>add4options</p>
       </div>
-     </span>
+    </div>
     </span>
   </span>
 </div>
