@@ -20,7 +20,7 @@ $user = $_SESSION['user'];
       <div class ="dropdown">
       <span class="box2">Shoes</span>
       <div class="dropdown-content">
-        <p>add4options</p>
+        <img class = "shoes-1"src = "/images/Grey Sneakers.png">
       </div>
     </div>
     <div class="dropdown">
