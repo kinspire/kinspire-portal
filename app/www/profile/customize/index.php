@@ -21,12 +21,18 @@ $user = $_SESSION['user'];
       <span class="box2">Shoes</span>
       <div class="dropdown-content">
         <img class = "shoes-1"src = "/images/Grey Sneakers.png">
+        <img class = "shoes-2"src = "/images/Blue Sneakers.png">
+        <img class = "shoes-3"src = "/images/Green Sneakers.png">
+        <img class = "shoes-4"src = "/images/Orange Sneakers.png">
       </div>
     </div>
     <div class="dropdown">
       <span class="box3">Accessories</span>
       <div class ="dropdown-content">
-        <p>add4options</p>
+        <img class = "shirt-1"src = "/images/Blue Shirt.png">
+        <img class = "shirt-2"src = "/images/Green Tank.png">
+        <img class = "shirt-3"src = "/images/Red Shirt.png">
+        <img class = "shirt-4"src = "/images/Grey tank.png">
       </div>
     </div>
     </span>
