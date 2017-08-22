@@ -11,10 +11,10 @@ $user = $_SESSION['user'];
       <div class = "dropdown">
         <span class="box1">Color</span>
         <div class = "dropdown-content">
-          <p>option1</p>
-          <p>addgreen</p>
-          <p>addblue</p>
-          <p>addorange</p>
+          <img class="color-1"src="/images/new purple.png">
+          <img class="color-2"src="/images/red.png">
+          <img class="color-3"src="/images/yellow.png">
+          <img class="color-4"src="/images/blue.png">
         </div>
       </div>
       <div class ="dropdown">
