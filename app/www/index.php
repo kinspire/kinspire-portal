@@ -24,7 +24,7 @@ head('Welcome to the Portal!', 0);
       $next_story = $user['next_story'];
 
       // TODO: check if next story even exists ?>
-      <a class="home-next-activity shadow-button" href="/resources/stories/story/?id=<?php echo $next_story;?>">
+      <a class="home-next-activity shadow-button" href="/materials/stories/story/?id=<?php echo $next_story;?>">
         <div class="shadow-button-text home-next-activity-category">
           Story
         </div>
