@@ -6,8 +6,11 @@ head("Word Search");
     <div class="resources-category-container">
       <?php
       $user = $_SESSION['user'];
-      $next_story = $user['next_story'];
-      $next_word_search = $user['next_word_search'];
+
+      require $_SERVER["DOCUMENT_ROOT"]."/includes/db.php";
+
+      $next_story = PDO_FetchOne("SELECT stories_num FROM learning_resources WHERE student_id = :student_id", array("student_id" => $user["student_id"]));
+      $next_word_search = PDO_FetchOne("SELECT wordsearch_num FROM activities WHERE student_id = :student_id", array("student_id" => $user["student_id"]));
 
       if ($next_story - $next_word_search == 0) { ?>
         <div class="filler">
@@ -20,7 +23,7 @@ head("Word Search");
         for ($i = $next_word_search; $i < $next_story; $i++) { ?>
         <a class="resources-category" href="play/?id=<?php echo $i;?>">
           <div class="resources-category-content">
-            <div class="resources-category-text"><?php echo $stories_json[$i]["name"];?></div>
+            <div class="resources-category-text"><?php echo $stories_json[$user["difficulty_level"]][$i]["name"];?></div>
           </div>
         </a>
         <?php }

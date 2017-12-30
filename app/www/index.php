@@ -42,7 +42,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/includes/db.php';
       $next_word_search = PDO_FetchOne("SELECT wordsearch_num FROM activities WHERE student_id = :student_id", array("student_id" => $user["student_id"]));
       for ($i = $next_word_search; $i < $next_story; $i++) {
         // TODO: check if next word search even exists ?>
-        <a class="home-next-activity shadow-button" href="/activities/wordsearch/play/?id=<?php echo $i;?>">
+        <a class="home-next-activity shadow-button" href="/activities/wordsearch/play/?level=<?php echo $level;?>&id=<?php echo $i;?>">
           <div class="shadow-button-text home-next-activity-category">
             Word Search
           </div>
