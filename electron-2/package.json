@@ -1,0 +1,19 @@
+{
+    "name": "kinspire-portal",
+    "productName": "Kinspire Portal",
+    "version": "0.0.1",
+    "description": "Kinspire Portal application for children in Kinspire's orphanages",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kinspire/kinspire-portal"
+    },
+    "license": "MIT",
+    "main": "main.js",
+    "scripts": {
+        "start": "NODE_ENV=development electron ."
+    },
+    "devDependencies": {
+        "cross-env": "^5.0.0",
+        "electron": "^1.6.10"
+    }
+}
