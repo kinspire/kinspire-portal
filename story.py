@@ -3,37 +3,34 @@
 import io
 import json
 import collections
+import os.path
 
 # TODO: update this to be all files in details
-STORY_NUMBERS = 3
+N_DIFFICULTY = 1
 CONTENT_FOLDER = 'app/www/content/stories/'
 
 
 def main():
-    '''
-    Main routine
-    '''
-    i = 1
-    while i <= STORY_NUMBERS:
-        handle_story(i)
-        i += 1
+    for level in range(N_DIFFICULTY):
+        # off-by-one for level
+        handle_story(level + 1, 0);
 
 
-def handle_story(i):
-    filename = io.open(CONTENT_FOLDER + str(i) +
-                       '.json', 'r', encoding='utf8')
+def handle_story(level, i):
+    filename = io.open(os.path.join(CONTENT_FOLDER, str(level), str(i) + '.json'), 'r', encoding='utf8')
     story_json = json.load(filename, object_pairs_hook=collections.OrderedDict)
 
-    generate_story(i, story_json)
-    generate_questions(i, story_json)
+    generate_story(level, i, story_json)
+    generate_questions(level, i, story_json)
 
 
-def generate_story(story_num, story_json):
-    '''
+def generate_story(story_level, story_num, story_json):
+    """
     Creates the story HTML to be injected into the stories page from the respective JSON files.
-    '''
-    output_file = io.open(
-        '{0}story-{1}.html'.format(CONTENT_FOLDER, str(story_num)), 'w', encoding='utf8')
+    The story HTML is stored in /level/story-num.html
+    """
+    output_file = io.open(os.path.join(CONTENT_FOLDER, str(story_level), "story-" + str(story_num) + ".html"),
+        'w', encoding='utf8')
 
     paragraphs = story_json['story']
     vocab = story_json['vocab']
@@ -69,12 +66,12 @@ def generate_story(story_num, story_json):
         output_file.write(u'</div><br/>')
 
 
-def generate_questions(story_num, story_json):
-    '''
+def generate_questions(story_level, story_num, story_json):
+    """
     Generates the questions HTML from the various json files.
-    '''
-    output_file = io.open(
-        '{0}questions-{1}.html'.format(CONTENT_FOLDER, str(story_num)), 'w', encoding='utf8')
+    """
+    output_file = io.open(os.path.join(CONTENT_FOLDER, str(story_level), "questions-" + str(story_num) + ".html"),
+        'w', encoding='utf8')
 
     questions = story_json['questions']
 

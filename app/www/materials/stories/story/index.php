@@ -1,12 +1,13 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
-if (!isset($_GET['id'])) { // Need a story
+if (!isset($_GET['level']) || !isset($_GET['id'])) { // Need a story
   header("Location: ../");
   return;
 }
 // TODO: read in JSON file for other story information such as title
 $filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/details.json';
 $stories_json = json_decode(file_get_contents($filename), true);
-$story_details = $stories_json[$_GET['id']];
+$level_details = $stories_json[$_GET['level']];
+$story_details = $level_details[$_GET['id']];
 $story_colors = $story_details['colors'];
 $story_name = $story_details['name'];
 head($story_name, -1, false, $story_colors['primary-color']);
@@ -52,16 +53,16 @@ head($story_name, -1, false, $story_colors['primary-color']);
   <div class="stories-story">
     <div class="stories-story-section stories-story-section-story">
       <?php
-      require $_SERVER['DOCUMENT_ROOT'].'/content/stories/story-'.$_GET['id'].'.html';
+      require $_SERVER['DOCUMENT_ROOT'].'/content/stories/'.$_GET['level'].'/story-'.$_GET['id'].'.html';
       ?>
     </div>
     <div class="stories-story-divider"></div>
     <!-- Two classes needed for the special color style for the scrollbar -->
     <div class="stories-story-section stories-story-section-questions">
       <div class="stories-story-section-questions-title">Questions</div>
-      <form action="../submitted/?id=<?php echo $_GET['id'];?>" method="post" name="story-answers">
+      <form action="../submitted/?level=<?php echo $_GET['level'];?>&id=<?php echo $_GET['id'];?>" method="post" name="story-answers">
         <ol type="1">
-          <?php require $_SERVER['DOCUMENT_ROOT'].'/content/stories/questions-'.$_GET['id'].'.html';?>
+          <?php require $_SERVER['DOCUMENT_ROOT'].'/content/stories/'.$_GET['level'].'/questions-'.$_GET['id'].'.html';?>
         </ol>
         <input type="button" value="Submit!" id="submit-answers">
         <div id="error"></div>
