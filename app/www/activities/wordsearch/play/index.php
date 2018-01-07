@@ -1,21 +1,29 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
 
+if (!isset($_GET['level']) || !isset($_GET['id'])) {
+    header("Location: ..");
+    return;
+}
+
 // Get information for title and color
 $filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/details.json';
 $stories_json = json_decode(file_get_contents($filename), true);
-$story_details = $stories_json[$_GET['id']];
+$level_details = $stories_json[$_GET['level']];
+$story_details = $level_details[$_GET['id']];
 $story_colors = $story_details['colors'];
 $story_name = $story_details['name'];
 head($story_name, -1, false, $story_colors['primary-color']);
 
-// Retrieve already-solved words
 $user = $_SESSION['user'];
-$ws_answers = json_decode($user['wordsearch_answers'], true);
-// var_dump($ws_answers);
-$chosenWords = new ArrayObject();
-if (isset($ws_answers[$_GET['id']])) {
-  $chosenWords = $ws_answers[$_GET['id']];
-} ?>
+
+require $_SERVER['DOCUMENT_ROOT']."/includes/db.php";
+
+// Retrieve already-solved words
+$chosenWords = array();
+if ($result = PDO_FetchOne("SELECT answers FROM activities_statistics WHERE student_id = :student_id AND level = :level AND activity_num = :a_num", array("student_id" => $user["student_id"], "level" => $_GET['level'], "a_num" => $_GET['id']))) {
+    $chosenWords = json_decode($result);
+}
+?>
 <div class="portal-body">
   <style>
     /* TODO: Do better with color assignment */

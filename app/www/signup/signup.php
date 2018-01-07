@@ -31,9 +31,19 @@
       }
     }
 
+    // Insert into:
+    // 1) users
     PDO_Execute("INSERT INTO users (username, name, birthday, class_level, avatar) VALUES (:username, :name, :birthday, :class_level, :avatar)",
       array("username"=>$username, "name"=>($first." ".$last), "birthday"=>$birthday, "class_level"=>$class_level, "avatar"=>$avatar));
- 
+
+    $student_id = PDO_LastInsertId();
+
+    // 2) activities
+    PDO_Execute("INSERT INTO activities (student_id) VALUES (:student_id)", array("student_id" => $student_id));
+    // 3) learning_resources
+    PDO_Execute("INSERT INTO learning_resources (student_id) VALUES (:student_id)", array("student_id" => $student_id));
+
+    // TODO: this is the same logic as login.php
     $matches = PDO_FetchAll("SELECT * FROM users WHERE username = :username", array("username"=>$username));
     if (count($matches) == 1) {
       $_SESSION['user'] = $matches[0];
