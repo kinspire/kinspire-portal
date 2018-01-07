@@ -14,6 +14,7 @@ def main():
     for level in range(N_DIFFICULTY):
         # off-by-one for level
         handle_story(level + 1, 0);
+        handle_story(level + 1, 1);
 
 
 def handle_story(level, i):
