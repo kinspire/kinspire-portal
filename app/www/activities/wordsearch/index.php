@@ -6,6 +6,7 @@ head("Word Search");
     <div class="resources-category-container">
       <?php
       $user = $_SESSION['user'];
+      $level = $user["difficulty_level"];
 
       require $_SERVER["DOCUMENT_ROOT"]."/includes/db.php";
 
@@ -21,9 +22,9 @@ head("Word Search");
         $stories_json = json_decode(file_get_contents($filename), true);
 
         for ($i = $next_word_search; $i < $next_story; $i++) { ?>
-        <a class="resources-category" href="play/?id=<?php echo $i;?>">
+        <a class="resources-category" href="play/?level=<?php echo $level;?>&id=<?php echo $i;?>">
           <div class="resources-category-content">
-            <div class="resources-category-text"><?php echo $stories_json[$user["difficulty_level"]][$i]["name"];?></div>
+            <div class="resources-category-text"><?php echo $stories_json[$level][$i]["name"];?></div>
           </div>
         </a>
         <?php }

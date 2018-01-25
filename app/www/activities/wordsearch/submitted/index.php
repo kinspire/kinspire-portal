@@ -1,37 +1,42 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/includes/scaffolder.php";
-if (!isset($_GET['id'])) { // Need a story
+if (!isset($_GET['level']) || !isset($_GET['id'])) { // Need a story
   header("Location: ../");
   return;
 }
+
+$level = $_GET['level'];
+$id = $_GET['id'];
+
 // This is only for the colors for now, maybe (TODO) reconsider this file reading
 $filename = $_SERVER['DOCUMENT_ROOT'].'/content/stories/details.json';
 $stories_json = json_decode(file_get_contents($filename), true);
-$story_details = $stories_json[$_GET['id']];
+$story_details = $stories_json[$level][$id];
 $story_colors = $story_details['colors'];
 head("Word Search", -1, false, $story_colors['primary-color']);
 
 require $_SERVER['DOCUMENT_ROOT']."/includes/db.php";
 
 // Get chosen words from POST variable
-$chosenWordsStr = $_POST['chosenWords'];
-$chosenWords = json_decode($chosenWordsStr, true);
+$chosenWords = json_decode($_POST['chosenWords'], true);
 
 // Check if game over
 $user = $_SESSION['user'];
-$next_word_search = $user['next_word_search'];
+$student_id = $user["student_id"];
 
-$filename = $_SERVER['DOCUMENT_ROOT'].'/content/wordsearch/1.json';
+$filename = $_SERVER['DOCUMENT_ROOT']."/content/wordsearch/$level-$id.json";
 $details = json_decode(file_get_contents($filename), true);
 $allWords = $details['words'];
+
+// Game over!
 if (count($chosenWords) == count($allWords)) {
-  // Game over!
-  if ($next_word_search == $_GET['id']) {
-    // This is the next word search 
+  $next_word_search = PDO_FetchOne("SELECT wordsearch_num FROM activities WHERE student_id = :student_id", array("student_id" => $user["student_id"]));
+
+  if ($next_word_search == $id) {
+    // This is the next word search, update
     // TODO combine these steps
-    PDO_Execute("UPDATE users SET next_word_search=:next_word_search WHERE username=:username",
-      array('next_word_search' => $next_word_search + 1, 'username' => $user['username']));
-    $user['next_word_search'] = $next_word_search + 1;
-  } else if ($next_word_search > $_GET['id']) {
+    PDO_Execute("UPDATE activities SET wordsearch_num=:next_word_search WHERE student_id=:student_id",
+      array('next_word_search' => $next_word_search + 1, 'student_id' => $user['student_id']));
+  } else if ($next_word_search > $id) {
     // Do nothing, redoing this word search
   } else {
     // Bad skip or something
@@ -40,17 +45,8 @@ if (count($chosenWords) == count($allWords)) {
   }
 }
 
-// Save in session
-$wordsearch_answers = json_decode($user['wordsearch_answers'], true);
-$wordsearch_answers[$_GET['id']] = $chosenWords;
-$user['wordsearch_answers'] = json_encode($wordsearch_answers);
-$_SESSION['user'] = $user;
-
-// Save on db
-PDO_Execute("UPDATE users SET wordsearch_answers=:wordsearch_answers WHERE username=:username",
-  array('wordsearch_answers' => $user['wordsearch_answers'], 'username' => $user['username']));
-
-?>
+PDO_Execute("INSERT INTO activities_statistics (student_id,activity,level,activity_num,answers) VALUES (:student_id,:activity,:level,:activity_num,:answers)",
+    array('student_id' => $student_id, 'activity' => "wordsearch", 'level' => $level, 'activity_num' => $id, 'answers' => json_encode($chosenWords))); ?>
 <div class="portal-body">
   <style>
     .filler {

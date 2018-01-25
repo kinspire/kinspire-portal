@@ -22,6 +22,8 @@ require $_SERVER['DOCUMENT_ROOT']."/includes/db.php";
 $chosenWords = array();
 if ($result = PDO_FetchOne("SELECT answers FROM activities_statistics WHERE student_id = :student_id AND level = :level AND activity_num = :a_num", array("student_id" => $user["student_id"], "level" => $_GET['level'], "a_num" => $_GET['id']))) {
     $chosenWords = json_decode($result);
+} else {
+    $chosenWords = array();
 }
 ?>
 <div class="portal-body">
@@ -48,7 +50,7 @@ if ($result = PDO_FetchOne("SELECT answers FROM activities_statistics WHERE stud
   <div class="flexbox">
     <div class="wordsearch-grid-area">
       <?php
-      $filename = $_SERVER['DOCUMENT_ROOT'].'/content/wordsearch/'.$_GET['id'].'.json';
+      $filename = $_SERVER['DOCUMENT_ROOT'].'/content/wordsearch/'.$_GET['level'].'-'.$_GET['id'].'.json';
       $wordsearch_json = json_decode(file_get_contents($filename), true);
       $grid = $wordsearch_json['grid'];
       $words = $wordsearch_json['words'];
@@ -68,7 +70,7 @@ if ($result = PDO_FetchOne("SELECT answers FROM activities_statistics WHERE stud
       <?php }?>
     </div>
   </div>
-  <form name="wordsearch" action="../submitted/?id=<?php echo $_GET['id'];?>" method="post">
+  <form name="wordsearch" action="../submitted/?level=<?php echo $_GET['level'];?>&id=<?php echo $_GET['id'];?>" method="post">
     <input type="hidden" name="chosenWords" id="chosen-words">
     <div class="wordsearch-submit shadow-button">
       <div class="shadow-button-text">
@@ -80,6 +82,6 @@ if ($result = PDO_FetchOne("SELECT answers FROM activities_statistics WHERE stud
 <script>
 var grid = <?php echo json_encode($grid);?>;
 var words = <?php echo json_encode($words);?>;
-var chosenWords = <?php echo json_encode($chosenWords);?>;
+var chosenWords = <?php echo json_encode($chosenWords, JSON_FORCE_OBJECT);?>;
 </script>
 <?php tail(array('wordsearch')); ?>
