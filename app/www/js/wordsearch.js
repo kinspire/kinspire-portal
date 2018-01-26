@@ -1,6 +1,15 @@
+// PHP passes in
+// - chosenWords: { word : [start, finish] }
+// - grid
+// - words
+
+// Global variable to store the starting point of the word
+// This keeps track of which mode we are in right now in terms of choosing a single
+// letter or completing an attempted word.
 var wordStart;
 
-// Initial setup with chosenWords
+// Initial setup: go through chosen words and highlight the ones that have been passed
+// in from PHP
 for (chosenWord in chosenWords) {
   var details = chosenWords[chosenWord];
   wordStart = details[0];
@@ -8,11 +17,15 @@ for (chosenWord in chosenWords) {
   wordIsChosen(wordEnd, chosenWord);
 }
 
+// Reset to normal state
 wordStart = [-1, -1];
 
-$(".wordsearch-letter").click(function () {
+/**
+ * The click handler for when a letter is clicked.
+ */
+function onLetterClicked() {
   if (wordStart[0] >= 0) {
-    // Register word selection
+    // This is the case that one letter has been clicked and we are selecting the word end
     var wordEnd = getRowCol(this.id);
     var selectedWord = getSelectedWord(wordEnd);
     if (!selectedWord) {
@@ -30,6 +43,7 @@ $(".wordsearch-letter").click(function () {
         }
       }
     }
+    // Unset the "start"ness of the wordStart
     getElement(wordStart).toggleClass('wordsearch-letter-start');
     wordStart = [-1, -1];
   } else {
@@ -37,7 +51,9 @@ $(".wordsearch-letter").click(function () {
     wordStart = getRowCol(this.id);
     $(this).toggleClass('wordsearch-letter-start');
   }
-});
+}
+
+$(".wordsearch-letter").click(onLetterClicked);
 
 /**
  * Gets the row and column of the selected letter from its id.
@@ -50,13 +66,16 @@ function getRowCol(id) {
   });
 }
 
+/**
+ * Gets an element given its row-column pair
+ */
 function getElement(rowCol) {
   return $(`#letter-${rowCol[0]}-${rowCol[1]}`);
 }
 
 /**
- * 
- * @param {string} wordEnd 
+ * Returns a string representing the word chosen from wordStart to
+ * wordEnd.
  */
 function getSelectedWord(wordEnd) {
   var wordDel = [wordEnd[0] - wordStart[0], wordEnd[1] - wordStart[1]];
@@ -75,6 +94,12 @@ function getSelectedWord(wordEnd) {
   return word;
 }
 
+/**
+ * Helper function when a word is chosen.
+ *
+ * wordEnd: the location of the end of the word
+ * selectedWord: the string of the chosen word
+ */
 function wordIsChosen(wordEnd, selectedWord) {
   var wordDel = [wordEnd[0] - wordStart[0], wordEnd[1] - wordStart[1]];
   var wordLen = Math.max.apply(null, wordDel.map(Math.abs));
