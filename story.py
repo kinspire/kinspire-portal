@@ -1,5 +1,3 @@
-#!/c/Python27/python
-
 import io
 import json
 import collections
@@ -10,20 +8,12 @@ N_DIFFICULTY = 1
 CONTENT_FOLDER = 'app/www/content/stories/'
 
 
-def main():
-    for level in range(N_DIFFICULTY):
-        # off-by-one for level
-        handle_story(level + 1, 0);
-        handle_story(level + 1, 1);
-
-
 def handle_story(level, i):
     filename = io.open(os.path.join(CONTENT_FOLDER, str(level), str(i) + '.json'), 'r', encoding='utf8')
     story_json = json.load(filename, object_pairs_hook=collections.OrderedDict)
 
     generate_story(level, i, story_json)
     generate_questions(level, i, story_json)
-
 
 def generate_story(story_level, story_num, story_json):
     """
@@ -66,7 +56,6 @@ def generate_story(story_level, story_num, story_json):
 
         output_file.write(u'</div><br/>')
 
-
 def generate_questions(story_level, story_num, story_json):
     """
     Generates the questions HTML from the various json files.
@@ -100,6 +89,10 @@ def generate_questions(story_level, story_num, story_json):
                 u'<textarea name="question-{0}" id="question-{0}"></textarea>'.format(question_num)
             )
 
+def main():
+    for level in range(1, 1 + N_DIFFICULTY):
+        # TODO get all the stories in the level, don't hardcode
+        [handle_story(level, x) for x in range(3)]
 
 if __name__ == "__main__":
     main()
