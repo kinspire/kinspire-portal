@@ -9,13 +9,15 @@
         "react-scripts": "1.1.4"
     },
     "scripts": {
-        "start": "PORT=3001 react-scripts start",
+        "start": "cross-env PORT=3001 react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
         "electron": "electron ."
     },
     "devDependencies": {
+        "aws-sdk": "^2.233.1",
+        "cross-env": "^5.1.4",
         "electron": "^2.0.0"
     },
     "main": "src/electron-main.js"

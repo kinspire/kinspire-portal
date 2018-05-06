@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from 'react';
 import './App.css';
-import top from '../images/portal-top-bar.png';
-import left from '../images/portal-left-bar.png';
-import bottom from '../images/portal-bottom-bar.png';
-import right from '../images/portal-right-bar.png';
+import top from './images/portal-top-bar.png';
+import left from './images/portal-left-bar.png';
+import bottom from './images/portal-bottom-bar.png';
+import right from './images/portal-right-bar.png';
 
 class App extends Component {
   props: {
@@ -28,15 +28,6 @@ class App extends Component {
         {this.props.children}
       </div>
     );
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <h1 className="App-title">Welcome to React</h1>
-    //   </header>
-    //   <p className="App-intro">
-    //     To get started, edit <code>src/App.js</code> and save to reload.
-    //   </p>
-    // </div>
   }
 }
 
