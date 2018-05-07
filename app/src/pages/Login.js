@@ -17,14 +17,13 @@ export default class Login extends Component {
   }
 
   handleClick() {
-    userService.login(this.state.username).then(
-      function() {
-        alert("success");
-      }, function(err) {
-        alert(err);
-      }
-    )
-    alert("Button clicked");
+    // TODO make this a promise so it's async
+    let user = userService.login(this.state.username);
+    if (user) {
+      alert("success");
+    } else {
+      alert("error");
+    }
   }
 
   render() {

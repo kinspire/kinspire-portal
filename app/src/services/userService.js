@@ -12,11 +12,13 @@ let validUsernames = {
 function login(username) {
 	// TODO: use username/password to query the local SQL database and then
 	// log in
-  if (validUsernames.has(username)) {
-  	return Promise.resolve({
+  if (username in validUsernames) {
+		return {
   		username: username,
   		name: 'Test Name'
-  	});
+  	};
+	}
+	return null;
 }
 
 function logout() {
