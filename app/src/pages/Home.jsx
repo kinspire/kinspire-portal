@@ -2,9 +2,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-// TODO make this common with SASS/LESS
-import '../styles/bootstrap.min.css';
 import './Home.css';
+import SyncButton from '../components/SyncButton';
 import envelopeWithMedal from '../images/home-page-envelope-with-medal.png';
 
 export default class Home extends Component {
@@ -24,7 +23,7 @@ export default class Home extends Component {
           <div className="col-3">
             <div className="home-section-date">
               <div className="home-section-title">Today's date</div>
-              <div className="home-section-content"></div>
+              <div className="home-section-content">{new Date().toDateString()}</div>
             </div>
             <div className="home-section-quote">
               <div className="home-section-title">Quote of the Day</div>
@@ -48,6 +47,7 @@ export default class Home extends Component {
             </div>
           </div>
         </div>
+        <SyncButton/>
       </div>
     );
   }

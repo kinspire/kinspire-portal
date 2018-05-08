@@ -31,7 +31,7 @@ export default class ShadowButton extends Component {
 
     return (
       <a
-        className={"shadow-button " + (this.props.className || "")}
+        className={(this.props.className || "") + " shadow-button"}
         href={this.props.to}
         onClick={this.props.onClick ? this.handleClick.bind(this) : undefined}
         style={buttonStyle}>

@@ -7,6 +7,7 @@ import { store } from './helpers/store';
 import Container from './Container';
 import PrivateRoute from './components/PrivateRoute';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import registerServiceWorker from './registerServiceWorker';
 
 import Achievements from './pages/Achievements';

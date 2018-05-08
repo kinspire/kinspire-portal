@@ -1,7 +1,6 @@
 @import '../styles/shared.scss';
 
 .shadow-button {
-    margin: 4px;
     box-shadow: 1px 1px 2px;
     border: 1px solid $primary-brown;
     transition: all 0.2s ease-in-out;
@@ -9,7 +8,7 @@
     text-align: center;
 
     display: flex;
-    color: $primary-brown;
+    color: $primary-brown !important;
     background-color: white;
 
 }
