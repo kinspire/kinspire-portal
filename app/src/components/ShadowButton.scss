@@ -1,0 +1,32 @@
+@import '../styles/shared.scss';
+
+.shadow-button {
+    margin: 4px;
+    box-shadow: 1px 1px 2px;
+    border: 1px solid $primary-brown;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    text-align: center;
+
+    display: flex;
+    color: $primary-brown;
+    background-color: white;
+
+}
+
+.shadow-button:hover {
+    background-color: $primary-brown;
+    color: white;
+    box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.7);
+}
+
+.shadow-button-text {
+    font-size: 36px;
+    text-align: center;
+    margin: auto 0;
+    width: 100%;
+}
+
+.shadow-button:hover .shadow-button-text {
+    color: white;
+}

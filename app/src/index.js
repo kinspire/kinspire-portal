@@ -9,6 +9,7 @@ import PrivateRoute from './components/PrivateRoute';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
+import Achievements from './pages/Achievements';
 import Home from './pages/Home';
 import Login from './pages/Login';
 
@@ -19,8 +20,9 @@ ReactDOM.render(
     <BrowserRouter>
       <Container title="Kinspire Portal">
         <Switch>
+          <Route path="/login" component={Login} />
           <PrivateRoute exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
+          <PrivateRoute path="/achievements" component={Achievements} />
         </Switch>
       </Container>
     </BrowserRouter>
