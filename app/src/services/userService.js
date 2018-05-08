@@ -1,30 +1,33 @@
+// @flow
+// The user service is a normal JS service independent of Redux
+
 export const userService = {
 	login,
-	logout,
-	register
+	logout
 };
 
+// TODO remove temporary "database"
 let validUsernames = {
-  testaccount: 'Test Account'
+	testaccount: 'Test Account'
 };
 
-// Login service -- the actual login operation
 function login(username) {
-	// TODO: use username/password to query the local SQL database and then
-	// log in
-  if (username in validUsernames) {
-		return {
-  		username: username,
-  		name: 'Test Name'
-  	};
+	// TODO replace with actual db lookup
+	if (username in validUsernames) {
+		return Promise.resolve({ username: username, name: validUsernames[username] })
+		.then(user => {
+			if (user) {
+				localStorage.setItem('user', JSON.stringify(user));
+			}
+
+			return user;
+		});
+	} else {
+		return Promise.reject(new Error("invalid username"));
 	}
-	return null;
 }
 
 function logout() {
-
-}
-
-function register() {
-
+	// remove user from local storage to log user out
+	localStorage.removeItem('user');
 }

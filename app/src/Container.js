@@ -1,12 +1,12 @@
 // @flow
 import React, { Component } from 'react';
-import './App.css';
+import './Container.css';
 import top from './images/portal-top-bar.png';
 import left from './images/portal-left-bar.png';
 import bottom from './images/portal-bottom-bar.png';
 import right from './images/portal-right-bar.png';
 
-class App extends Component {
+class Container extends Component {
   props: {
     children: Children
   };
@@ -17,11 +17,11 @@ class App extends Component {
     // TODO: menu and back button
     // TODO: title component with the explode logic from PHP
     return (
-      <div id="portal-content" style={{"min-height": window.innerHeight, "max-height": window.innerHeight}}>
-        <img id="portal-background-top" src={top}/>
-        <img id="portal-background-bottom" src={bottom}/>
-        <img id="portal-background-left" src={left}/>
-        <img id="portal-background-right" src={right}/>
+      <div id="portal-content" style={{minHeight: window.innerHeight, maxHeight: window.innerHeight}}>
+        <img alt="top" id="portal-background-top" src={top}/>
+        <img alt="bottom" id="portal-background-bottom" src={bottom}/>
+        <img alt="left" id="portal-background-left" src={left}/>
+        <img alt="right" id="portal-background-right" src={right}/>
         <div id="portal-header">
           <div className="portal-title">{ this.props.title }</div>
         </div>
@@ -31,4 +31,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Container;
