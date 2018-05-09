@@ -25,6 +25,7 @@ export default class Home extends Component {
     return (
       <div>
         <Link to="/login">Logout</Link>
+        {localStorage.getItem('user')}
         <div className="portal-body row">
           <div className="col-3">
             <div className="home-section-date">

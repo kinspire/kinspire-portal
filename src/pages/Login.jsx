@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import './Login.css';
 import ShadowButton from '../components/ShadowButton';
 import { userActions } from '../actions/userActions';
-import { store } from '../helpers/store';
 
 class Login extends Component {
   constructor(props) {
@@ -15,17 +14,8 @@ class Login extends Component {
     // confirm logout
     this.props.dispatch(userActions.logout());
 
-    store.subscribe(this.handleStoreChange);
-
-    this.state = {username: '', submitted: false};
+    this.state = {username: ''};
   }
-
-  handleStoreChange = () => {
-    console.log(store.getState());
-    if (store.getState().authentication.loggedIn) {
-      this.setState({ loggedIn: true });
-    }
-  };
 
   handleChange = (event) => {
     this.setState({username: event.target.value});
@@ -38,7 +28,6 @@ class Login extends Component {
   };
 
   handleSubmit = () => {
-    this.setState({ submitted: true });
     if (this.state.username) {
       this.props.dispatch(userActions.login(this.state.username));
     } else {
@@ -47,7 +36,7 @@ class Login extends Component {
   };
 
   render() {
-    if (this.state.loggedIn) {
+    if (this.props.loggedIn) {
       return <Redirect to={{pathname: "/"}}/>;
     }
 
@@ -65,7 +54,8 @@ class Login extends Component {
               onKeyUp={this.handleKeyUp.bind(this)}
               placeholder="Username"
               value={this.state.username}/>
-            <ShadowButton className="login-button" onClick={this.handleSubmit.bind(this)} text="Log in"/>
+            <ShadowButton className="login-button"
+              onClick={this.handleSubmit.bind(this)} text="Log in"/>
           </div>
         </div>
       </div>
@@ -73,16 +63,11 @@ class Login extends Component {
   }
 }
 
-// original form
-//
-// <div>
-//   <form onSubmit={this.handleSubmit.bind(this)}>
-//     <input placeholder="Username" value={this.state.username} onChange={this.handleChange.bind(this)}/>
-//     <button>Log in</button>
-//   </form>
-// </div>
-
-// TODO is there any state in the store that we want to map to the props of this component?
-// TODO if anything, the "logging in" field in the store that we can use to show information
-// during the login process. As of now though, nothing.
-export default connect()(Login);
+// Maps store changes to prop changes
+function mapStateToProps(state) {
+  const { loggedIn } = state.authentication;
+  return {
+    loggedIn
+  };
+}
+export default connect(mapStateToProps)(Login);

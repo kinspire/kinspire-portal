@@ -13,6 +13,7 @@ import registerServiceWorker from './registerServiceWorker';
 import Achievements from './pages/Achievements';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 // TODO need to use store and history somehow
 
@@ -22,6 +23,7 @@ ReactDOM.render(
       <Container title="Kinspire Portal">
         <Switch>
           <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
           <PrivateRoute path="/" component={Home} />
           <PrivateRoute path="/achievements" component={Achievements} />
         </Switch>
