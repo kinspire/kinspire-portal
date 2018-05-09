@@ -14,10 +14,10 @@ export default class ShadowButton extends Component {
     width: PropTypes.string
   }
 
-  handleClick(e) {
+  handleClick = (e) => {
     e.preventDefault();
     this.props.onClick(e);
-  }
+  };
 
   render() {
     // TODO definitely a better way to do this...
@@ -33,7 +33,7 @@ export default class ShadowButton extends Component {
       <a
         className={(this.props.className || "") + " shadow-button"}
         href={this.props.to}
-        onClick={this.props.onClick ? this.handleClick.bind(this) : undefined}
+        onClick={this.props.onClick ? this.handleClick : undefined}
         style={buttonStyle}>
         <div className="shadow-button-text" style={textStyle}>{this.props.text}</div>
       </a>

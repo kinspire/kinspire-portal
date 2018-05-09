@@ -1,5 +1,6 @@
 // @flow
-// The user service is a normal JS service independent of Redux
+// TODO replace with actual db lookup
+// import sqlite from 'sqlite';
 
 export const userService = {
 	login,
@@ -12,7 +13,6 @@ let validUsernames = {
 };
 
 function login(username) {
-	// TODO replace with actual db lookup
 	if (username in validUsernames) {
 		return Promise.resolve({ username: username, name: validUsernames[username] })
 		.then(user => {

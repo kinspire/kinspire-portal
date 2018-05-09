@@ -1,6 +1,6 @@
 import { userService } from '../services/userService';
 import { userConstants } from '../constants/userConstants';
-import { history } from '../helpers/history';
+// import { history } from '../helpers/history';
 
 export const userActions = {
   login,
@@ -8,21 +8,20 @@ export const userActions = {
 }
 
 // Thunk action creator
-function login(username, password) {
+function login(username) {
   return dispatch => {
     // Dispatch #1: Dispatch the synchronous request action to update application state
     dispatch(request({ username }));
 
-    return userService.login(username, password)
+    return userService.login(username)
     .then(
       user => {
         // Dispatch #2: Dispatch the synchronous login action, once login is complete
         dispatch(success(user));
-        history.push('/');
       },
       error => {
+        // Dispatch #2: Dispatch the synchronous failed login action
         dispatch(failure(error));
-        // dispatch(alertActions.error(error));
       }
     );
   };

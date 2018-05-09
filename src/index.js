@@ -22,7 +22,7 @@ ReactDOM.render(
       <Container title="Kinspire Portal">
         <Switch>
           <Route path="/login" component={Login} />
-          <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute path="/" component={Home} />
           <PrivateRoute path="/achievements" component={Achievements} />
         </Switch>
       </Container>

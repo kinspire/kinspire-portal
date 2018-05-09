@@ -1,10 +1,12 @@
 // @flow
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './Login.css';
 import ShadowButton from '../components/ShadowButton';
 import { userActions } from '../actions/userActions';
+import { store } from '../helpers/store';
 
 class Login extends Component {
   constructor(props) {
@@ -13,23 +15,42 @@ class Login extends Component {
     // confirm logout
     this.props.dispatch(userActions.logout());
 
+    store.subscribe(this.handleStoreChange);
+
     this.state = {username: '', submitted: false};
   }
 
-  handleChange(event) {
-    this.setState({username: event.target.value});
-  }
+  handleStoreChange = () => {
+    console.log(store.getState());
+    if (store.getState().authentication.loggedIn) {
+      this.setState({ loggedIn: true });
+    }
+  };
 
-  handleSubmit() {
+  handleChange = (event) => {
+    this.setState({username: event.target.value});
+  };
+
+  handleKeyUp = (event) => {
+    if (event.key === 'Enter') {
+      this.handleSubmit();
+    }
+  };
+
+  handleSubmit = () => {
     this.setState({ submitted: true });
     if (this.state.username) {
       this.props.dispatch(userActions.login(this.state.username));
     } else {
       alert("Enter username");
     }
-  }
+  };
 
   render() {
+    if (this.state.loggedIn) {
+      return <Redirect to={{pathname: "/"}}/>;
+    }
+
     return (
       <div className="portal-body row">
         <div className="col">
@@ -38,14 +59,13 @@ class Login extends Component {
         <div className="col">
           <div className="login-region">
             <div className="login-title">Welcome back!</div>
-            <form onSubmit={this.handleSubmit.bind(this)}>
-              <input
-                className="login-textbox"
-                onChange={this.handleChange.bind(this)}
-                placeholder="Username"
-                value={this.state.username}/>
-              <ShadowButton className="login-button" onClick={this.handleSubmit.bind(this)} text="Log in"/>
-            </form>
+            <input
+              className="login-textbox"
+              onChange={this.handleChange.bind(this)}
+              onKeyUp={this.handleKeyUp.bind(this)}
+              placeholder="Username"
+              value={this.state.username}/>
+            <ShadowButton className="login-button" onClick={this.handleSubmit.bind(this)} text="Log in"/>
           </div>
         </div>
       </div>

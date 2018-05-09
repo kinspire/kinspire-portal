@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 
 import './SyncButton.css';
+import ShadowButton from './ShadowButton';
 
 export default class SyncButton extends Component {
   handleClick(e) {
@@ -10,9 +11,7 @@ export default class SyncButton extends Component {
 
   render() {
     return (
-      <div className="sync-button" onClick={this.handleClick.bind(this)}>
-        Synchronize
-      </div>
+      <ShadowButton onClick={this.handleClick.bind(this)} text="Synchronize"/>
     );
   }
 }
