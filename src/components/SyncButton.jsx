@@ -5,13 +5,13 @@ import './SyncButton.css';
 import ShadowButton from './ShadowButton';
 
 export default class SyncButton extends Component {
-  handleClick(e) {
+  handleClick = (e) => {
 
-  }
+  };
 
   render() {
     return (
-      <ShadowButton onClick={this.handleClick.bind(this)} text="Synchronize"/>
+      <ShadowButton onClick={this.handleClick} text="Synchronize"/>
     );
   }
 }

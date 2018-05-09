@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 import './Home.css';
 import SyncButton from '../components/SyncButton';
+import ActivityLink from '../components/ActivityLink';
 import envelopeWithMedal from '../images/home-page-envelope-with-medal.png';
+import { activityConstants } from '../constants';
 
 export default class Home extends Component {
   /**
@@ -12,6 +14,10 @@ export default class Home extends Component {
    * student.
    */
   getActivities() {
+    // First retrieve the next story to try
+    let nextStory = (
+      <ActivityLink type={activityConstants.STORY} i={0} name="Life on a Farm"/>
+    );
     return "Content incoming!";
   }
 
