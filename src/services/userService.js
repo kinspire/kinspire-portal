@@ -1,6 +1,5 @@
 // @flow
-// TODO replace with actual db lookup
-// import sqlite from 'sqlite';
+import Datastore from 'nedb';
 
 export const userService = {
 	login,
@@ -8,41 +7,39 @@ export const userService = {
 	signup
 };
 
-// TODO remove temporary "database"
-let validUsernames = {
-	testaccount: 'Test Account'
-};
+let db = new Datastore({filename: './test.db', autoload: true});
 
+// Login
 function login(username) {
-	if (username in validUsernames) {
-		return Promise.resolve({ username: username, name: validUsernames[username] })
-		.then(user => {
-			if (user) {
-				localStorage.setItem('user', JSON.stringify(user));
-			}
+	return new Promise(function(resolve, reject) {
+		db.find({ username: username }, function(err, users) {
+			if (err !== null || !users.length) return reject(err);
 
-			return user;
+			localStorage.setItem('user', JSON.stringify(users[0]));
+			resolve(users[0]);
 		});
-	} else {
-		return Promise.reject(new Error("invalid username"));
-	}
+	});
 }
 
+// TODO make a Promise
 function logout() {
 	// remove user from local storage to log user out
 	localStorage.removeItem('user');
 }
 
+// TODO: add error handling
 function signup(details) {
-	const { firstName, lastName } = details;
-	let username = (firstName + lastName).toLowerCase();
-	if (username in validUsernames) {
-		return Promise.reject(new Error("duplicate"));
-	} else {
-		let name = [firstName, lastName].join(' ');
-		// TODO save user in db
-		// TODO save more than just the name lmao
-		validUsernames[username] = name;
-		return login(username);
-	}
+	return new Promise(function(resolve, reject) {
+		details.username = (details.firstName + details.lastName).toLowerCase();
+		db.find({ username: details.username }, function(err, users) {
+			if (users.length) {
+				return reject("Duplicate username");
+			} else {
+				db.insert(details, function(err, newDetails) {
+					localStorage.setItem('user', JSON.stringify(newDetails));
+					resolve(newDetails);
+				});
+			}
+		});
+	});
 }

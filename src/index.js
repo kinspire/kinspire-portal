@@ -15,8 +15,6 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 
-// TODO need to use store and history somehow
-
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

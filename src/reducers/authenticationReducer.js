@@ -25,10 +25,15 @@ export function authentication(state = initialState, action) {
         loggedIn: true,
         user: action.user
       };
+    case userConstants.LOGOUT:
+      return {
+        loggedIn: false
+      };
     case userConstants.LOGIN_FAILURE:
     case userConstants.SIGNUP_FAILURE:
-    case userConstants.LOGOUT:
-      return {};
+      return {
+        error: "Login Failure"
+      };
     default:
       return state;
   }

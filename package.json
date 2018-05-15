@@ -4,13 +4,14 @@
     "dependencies": {
         "bootstrap": "^4.1.1",
         "history": "^4.7.2",
+        "nedb": "^1.8.0",
+        "npm": "^6.0.1",
         "react": "^16.3.2",
         "react-dom": "^16.3.2",
         "react-redux": "^5.0.7",
         "react-router-dom": "^4.2.2",
         "redux": "^4.0.0",
-        "redux-thunk": "^2.2.0",
-        "sqlite": "^2.9.1"
+        "redux-thunk": "^2.2.0"
     },
     "scripts": {
         "build-css": "node-sass-chokidar src/ -o src/",

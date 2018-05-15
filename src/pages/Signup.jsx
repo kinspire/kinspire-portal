@@ -31,7 +31,8 @@ class Signup extends Component {
 
   handleSubmit = () => {
     if (this.state.firstName && this.state.lastName && this.state.birthday && this.state.classLevel) {
-      this.props.dispatch(userActions.signup(this.state));
+      let {submitted, ...user} = this.state;
+      this.props.dispatch(userActions.signup(user));
     } else {
       alert("Enter all details");
     }
