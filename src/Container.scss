@@ -1,5 +1,10 @@
 @import './styles/shared.scss';
 
+@font-face {
+  font-family: titleFont;
+  src: url(./fonts/CarterOne.ttf);
+}
+
 #portal-content {
     padding: 6.5%;
     /*background-image: url(../images/home-border.png);
