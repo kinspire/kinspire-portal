@@ -1,5 +1,8 @@
 // @flow
 import React, { Component } from 'react';
+
+import Menu from './components/Menu';
+
 import './Container.css';
 import top from './images/portal-top-bar.png';
 import left from './images/portal-left-bar.png';
@@ -23,6 +26,7 @@ class Container extends Component {
         <img alt="left" id="portal-background-left" src={left}/>
         <img alt="right" id="portal-background-right" src={right}/>
         <div id="portal-header">
+          <Menu/>
           <div className="portal-title">{ this.props.title }</div>
         </div>
         {this.props.children}

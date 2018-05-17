@@ -22,8 +22,8 @@ ReactDOM.render(
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <PrivateRoute path="/" component={Home} />
           <PrivateRoute path="/achievements" component={Achievements} />
+          <PrivateRoute path="/" component={Home} />
         </Switch>
       </Container>
     </BrowserRouter>

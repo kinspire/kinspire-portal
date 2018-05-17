@@ -7,7 +7,7 @@ export const userService = {
 	signup
 };
 
-let db = new Datastore({filename: './test.db', autoload: true});
+let db = new Datastore({filename: 'users.db', autoload: true});
 
 // Login
 function login(username) {

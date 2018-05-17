@@ -16,9 +16,10 @@ export default class Home extends Component {
   getActivities() {
     // First retrieve the next story to try
     let nextStory = (
-      <ActivityLink type={activityConstants.STORY} i={0} name="Life on a Farm"/>
+      <ActivityLink type={activityConstants.STORY} num={0}/>
     );
-    return "Content incoming!";
+    // return "Content coming!";
+    return nextStory;
   }
 
   render() {
@@ -48,7 +49,7 @@ export default class Home extends Component {
           <div className="col-3">
             <div className="home-section-title">Your Progress</div>
             <div className="home-section-progress">
-              <Link to="achievements/">
+              <Link to="/achievements">
                 <img alt="Progress" className="home-section-progress-image" src={envelopeWithMedal}/>
               </Link>
             </div>

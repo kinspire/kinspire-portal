@@ -1,7 +1,7 @@
 // @flow
 import { Component } from 'react';
 
-export default class Home extends Component {
+export default class Achievements extends Component {
   render() {
     return (
       "Achievements"

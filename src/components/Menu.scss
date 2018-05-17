@@ -1,0 +1,65 @@
+/* Menu */
+
+@import '../styles/shared.scss';
+
+$menu-width: 300px;
+$menu-resources: #b760e6;
+$menu-activities: #5271ff;
+$menu-access: #ff5c5c;
+$menu-profile: #ffbd4a;
+$menu-home: #35b729;
+$menu-home-clicked: #a8a8a8;
+
+.portal-menu {
+  // position: absolute;
+  // top: 0;
+  // left: 5%;
+  text-align: center;
+  z-index: 9; /* TODO constant for this? */
+  width: $menu-width;
+  display: flex;
+  flex-direction: column;
+}
+
+.portal-menu-title {
+  font-size: 24px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.portal-menu-content {
+  background-color: white;
+  // border: 3px outset white;
+  border: 1px solid $primary-brown;
+  box-shadow: 1px 1px 2px;
+}
+
+.portal-menu-item {
+  // height: 50px;
+  font-size: 13.5pt;
+  margin: 5px 15px 0px 15px;
+  padding: 6px 0;
+  border-bottom: 2px solid gray;
+  // text-transform: uppercase;
+  font-family: menuFont;
+}
+
+.portal-menu-item-home {
+  color: $menu-home;
+}
+
+.portal-menu-item-resources {
+  color: $menu-resources;
+}
+
+.portal-menu-item-activities {
+  color: $menu-activities;
+}
+
+.portal-menu-item-access  {
+  color: $menu-access;
+}
+
+.portal-menu-item-profile  {
+  color: $menu-profile;
+}
