@@ -1,0 +1,53 @@
+@import '../styles/shared.scss';
+
+/* Signup */
+
+.form-label {
+    width: 45%;
+    margin: 0 2.5%;
+    text-align: center;
+}
+
+.signup-button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.signup-avatar-container {
+    // .flexbox;
+    flex-direction: column;
+}
+
+.signup-avatars {
+    // .flexbox;
+    overflow-x: auto;
+    min-height: 200px;
+    padding: 20px;
+}
+
+.signup-avatar {
+    height: 150px;
+    margin: 10px;
+    transition: all 0.4s ease-in-out;
+
+    &:hover {
+        transform: scale(1.20);
+    }
+}
+
+.signup-avatar-selected {
+    transform: scale(1.20);
+    background-color: $secondary-gray;
+    border: 1px solid $primary-brown;
+}
+
+.signup-avatar-radio {
+  margin: 0 auto !important;
+  display: none;
+}
+
+.error {
+    border: 3px solid red;
+}

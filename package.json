@@ -1,0 +1,39 @@
+{
+    "name": "kinspire-portal",
+    "version": "0.1.0",
+    "dependencies": {
+        "bootstrap": "^4.1.1",
+        "history": "^4.7.2",
+        "nedb": "^1.8.0",
+        "npm": "^6.0.1",
+        "react": "^16.3.2",
+        "react-dom": "^16.3.2",
+        "react-redux": "^5.0.7",
+        "react-router-dom": "^4.2.2",
+        "redux": "^4.0.0",
+        "redux-thunk": "^2.2.0"
+    },
+    "scripts": {
+        "build-css": "node-sass-chokidar src/ -o src/",
+        "build-js": "react-scripts build",
+        "build": "npm-run-all build-css build-js",
+        "deploy": "npm-run-all build serve",
+        "eject": "react-scripts eject",
+        "electron": "electron .",
+        "serve": "serve -s build",
+        "start-js": "react-scripts start",
+        "start": "npm-run-all -p watch-css start-js",
+        "test": "react-scripts test --env=jsdom",
+        "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
+    },
+    "devDependencies": {
+        "electron": "^2.0.0",
+        "npm-run-all": "^4.1.3",
+        "node-sass-chokidar": "^1.2.2",
+        "react-scripts": "^1.1.4",
+        "serve": "^6.5.6"
+    },
+    "repository": "git://github.com/kinspire/kinspire-portal.git",
+    "license": "MIT",
+    "main": "src/electron-main.js"
+}

@@ -1,0 +1,17 @@
+@import '../styles/shared.scss';
+
+.portal-back {
+    // position: absolute;
+    // top: 0;
+    // right: 4%;
+    width: $menu-width;
+    text-align: center;
+}
+
+.portal-back-text {
+    line-height: 18px;
+}
+
+.portal-back-arrow {
+    height: 80px;
+}
