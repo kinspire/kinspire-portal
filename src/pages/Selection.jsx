@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './Selection.css';
 
-class Selection extends Component {
+export default class Selection extends Component {
   propTypes: {
     items: PropTypes.array.isRequired
   };
@@ -25,5 +25,3 @@ class Selection extends Component {
     );
   }
 }
-
-export default Selection;

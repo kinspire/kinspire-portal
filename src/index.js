@@ -15,11 +15,18 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Selection from './pages/Selection';
+import Story from './pages/Story';
 
 let materials = {
   items: [
     {name: "Stories", link: "stories"},
     {name: "Templates", link: "templates"}
+  ]
+};
+
+let stories = {
+  items: [
+    {name: "Story 1", link: "story/1"}
   ]
 };
 
@@ -32,6 +39,8 @@ ReactDOM.render(
           <Route path="/signup" component={Signup} />
           <PrivateRoute path="/achievements" component={Achievements} />
           <PrivateRoute path="/materials" component={Selection} componentProps={materials} />
+          <PrivateRoute path="/stories" component={Selection} componentProps={stories} />
+          <PrivateRoute path="/story/:storyNumber" component={Story} />
           <PrivateRoute path="/" component={Home} />
         </Switch>
       </Container>
