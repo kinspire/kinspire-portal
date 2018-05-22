@@ -1,3 +1,5 @@
+import React from 'react';
+
 /*
  * Creates a JSX object for the story from the given object.
  */
@@ -13,7 +15,7 @@ export function generateStory(storyNumber) {
     let paragraphContent = [];
 
     while (i < vocab.length) {
-      let parts = paragraph.split(vocab[i], 1);
+      let parts = paragraph.split(vocab[i], 2);
       paragraphContent.push(
         <span className="stories-story-text">{parts[0]}</span>
       );
@@ -21,7 +23,7 @@ export function generateStory(storyNumber) {
       if (parts.length < 2) break;
 
       // Write out the vocab word
-			let word = <span className="stories-vocab-word">{
+			let word = <span className="stories-vocab-word"></span>;
 			let vocabWord = (
 				<span className="stories-vocab">
 					<span className="stories-vocab-word">{vocab[i]}</span>

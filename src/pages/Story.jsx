@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 
-import { generateStory } from '../utils/stories.js';
+import { generateStory } from '../utils/stories';
 
 import './Story.css';
 
