@@ -18,8 +18,8 @@ class Container extends Component {
   // TODO set content height on resize
 
   render() {
-    // TODO: menu and back button
-    // TODO: title component with the explode logic from PHP
+    // TODO: menu and back button only if logged in
+    // TODO: title component with the explode() logic from PHP
     return (
       <div id="portal-content" style={{minHeight: window.innerHeight, maxHeight: window.innerHeight}}>
         <img alt="top" id="portal-background-top" src={top}/>

@@ -9,9 +9,9 @@ export default class Back extends Component {
   render() {
     // TODO actually use history and add a link to go back
     return (
-      <div class="portal-back">
-        <div><img class="portal-back-arrow" src={backButton}/></div>
-        <div class="portal-back-text">Back</div>
+      <div className="portal-back">
+        <div><img className="portal-back-arrow" src={backButton}/></div>
+        <div className="portal-back-text">Back</div>
       </div>
     );
   }

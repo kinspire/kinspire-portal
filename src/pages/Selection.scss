@@ -1,0 +1,43 @@
+@import '../styles/shared.scss';
+
+.selection-categories {
+    text-align: center;
+    width: 100%;
+}
+
+.selection-category {
+    margin: 15px;
+    display: inline-block;
+
+    height: 200px;
+    width: 200px;
+
+    border: 10px solid $primary-brown;
+    text-align: center;
+    padding: 20px;
+}
+
+.selection-category-content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    box-shadow: 1px 1px 2px;
+    background-color: $primary-brown;
+}
+
+.selection-category-content-done {
+    background-color: gray;
+}
+
+.selection-category-pic {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.selection-category-text {
+    margin: auto;
+    font-size: 32px;
+    color: white;
+}

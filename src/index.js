@@ -14,6 +14,14 @@ import Achievements from './pages/Achievements';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Selection from './pages/Selection';
+
+let materials = {
+  items: [
+    {name: "Stories", link: "stories"},
+    {name: "Templates", link: "templates"}
+  ]
+};
 
 ReactDOM.render(
   <Provider store={store}>
@@ -23,6 +31,7 @@ ReactDOM.render(
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <PrivateRoute path="/achievements" component={Achievements} />
+          <PrivateRoute path="/materials" component={Selection} componentProps={materials} />
           <PrivateRoute path="/" component={Home} />
         </Switch>
       </Container>

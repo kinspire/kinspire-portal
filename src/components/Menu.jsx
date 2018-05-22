@@ -31,7 +31,8 @@ export default class Menu extends Component {
 
     let menuItems = sections.map((section, i) => {
       let text = this.props.active === i ? (names[i]) : (
-        <Link className={`portal-menu-item-${section}`} to={`${urls[i]}`}>
+        <Link className={`portal-menu-item-${section}`} onClick={this.handleClick}
+          to={`${urls[i]}`}>
           {names[i]}
         </Link>
       );
