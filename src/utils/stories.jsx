@@ -21,6 +21,15 @@ export function generateStory(storyNumber) {
       if (parts.length < 2) break;
 
       // Write out the vocab word
+			let word = <span className="stories-vocab-word">{
+			let vocabWord = (
+				<span className="stories-vocab">
+					<span className="stories-vocab-word">{vocab[i]}</span>
+					<div className="stories-vocab-def">
+						{(i < translations.length) ? translations[i] : '[translation]'}
+					</div>
+				</span>
+			);
 
       paragraphContent.push(vocabWord);
 
