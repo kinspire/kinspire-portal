@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 
 import Menu from './components/Menu';
+import Back from './components/Back';
 
 import './Container.css';
 import top from './images/portal-top-bar.png';
@@ -28,6 +29,7 @@ class Container extends Component {
         <div id="portal-header">
           <Menu/>
           <div className="portal-title">{ this.props.title }</div>
+          <Back/>
         </div>
         {this.props.children}
       </div>
