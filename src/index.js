@@ -19,8 +19,8 @@ import Story from './pages/Story';
 
 let materials = {
   items: [
-    {name: "Stories", link: "stories"},
-    {name: "Templates", link: "templates"}
+    {name: "Stories", link: "materials/stories"},
+    {name: "Templates", link: "materials/templates"}
   ]
 };
 
@@ -38,9 +38,9 @@ ReactDOM.render(
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <PrivateRoute path="/achievements" component={Achievements} />
+          <PrivateRoute path="/materials/story/:storyNumber" component={Story} />
+          <PrivateRoute path="/materials/stories" component={Selection} componentProps={stories} />
           <PrivateRoute path="/materials" component={Selection} componentProps={materials} />
-          <PrivateRoute path="/stories" component={Selection} componentProps={stories} />
-          <PrivateRoute path="/story/:storyNumber" component={Story} />
           <PrivateRoute path="/" component={Home} />
         </Switch>
       </Container>
