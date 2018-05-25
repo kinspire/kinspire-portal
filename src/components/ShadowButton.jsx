@@ -11,7 +11,7 @@ export default class ShadowButton extends Component {
     className: PropTypes.string,
     height: PropTypes.string,
     onClick: PropTypes.func,
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
     textSize: PropTypes.number,
     to: PropTypes.string,
     width: PropTypes.string
@@ -50,7 +50,7 @@ export default class ShadowButton extends Component {
           {nested}
         </div>
       );
-    } else { // if (this.props.to)
+    } else if (this.props.to) {
       return (
         <Link
           className={(this.props.className || "") + " shadow-button"}
@@ -59,6 +59,8 @@ export default class ShadowButton extends Component {
           {nested}
         </Link>
       );
+    } else {
+      return "Shadow Button";
     }
   }
 }

@@ -26,7 +26,6 @@ function generateStory(storyNumber) {
       if (parts.length < 2) break;
 
       // Write out the vocab word
-			let word = <span className="stories-vocab-word"></span>;
 			let vocabWord = (
 				<span className="stories-vocab">
 					<span className="stories-vocab-word">{vocab[i]}</span>
@@ -42,7 +41,7 @@ function generateStory(storyNumber) {
       paragraph = parts[1];
     }
 
-    if (i == vocab.length) { // sanity check
+    if (i === vocab.length) { // sanity check
       // Fencepost for last word
       paragraphContent.push(
         <span className="stories-story-text">{paragraph}</span>
@@ -98,6 +97,8 @@ function generateQuestions(storyNumber) {
             id={`question-${question.number}`}>
           </textarea>
         )
+        break;
+      default:
         break;
     }
   });

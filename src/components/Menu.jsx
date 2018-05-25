@@ -40,7 +40,7 @@ export default class Menu extends Component {
       // TODO: Change the hardcoded 25 height/width
       return (
         <div key={i} className="portal-menu-item">
-          <img src={`/images/${section}${this.props.active === i ? '-' : '-in'}active.png`} height="25" width="25"/>
+          <img alt="" src={`/images/${section}${this.props.active === i ? '-' : '-in'}active.png`} height="25" width="25"/>
           {text}
         </div>
       );
@@ -62,7 +62,7 @@ export default class Menu extends Component {
         <div className="portal-menu-title" onClick={this.handleClick} id="menu-title">
           <div>menu</div>
           <div>
-            <img id="menu-magnet" src={menuMagnetInactive} height="60" width="60"/>
+            <img alt="" id="menu-magnet" src={menuMagnetInactive} height="60" width="60"/>
           </div>
         </div>
         {this.state.open ? menuContent : ''}
