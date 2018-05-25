@@ -19,3 +19,8 @@ $ npm run electron
 
 ## Release
 In progress.
+
+## Notes
+### Firebase Synchronization
+To enable synchronization, save the `firebase-keys.json` file from the Firebase
+console configuration and save it under `keys/`.

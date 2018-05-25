@@ -1,6 +1,6 @@
+// @flow
 import { userService } from '../services/userService';
 import { userConstants } from '../constants';
-// import { history } from '../helpers/history';
 
 export const userActions = {
   login,
