@@ -22,5 +22,5 @@ In progress.
 
 ## Notes
 ### Firebase Synchronization
-To enable synchronization, save the `firebase-keys.json` file from the Firebase
-console configuration and save it under `keys/`.
+To enable synchronization, get the Firebase console configuration for web and
+save it as `keys/firebase-keys.json`.
