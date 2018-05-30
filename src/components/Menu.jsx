@@ -6,6 +6,7 @@ import './Menu.css';
 import menuMagnetInactive from '../images/owl-magnet-inactive.png';
 
 // TODO component comment
+// TODO copy images
 export default class Menu extends Component {
   propTypes: {
     active: PropTypes.number

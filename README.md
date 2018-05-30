@@ -1,4 +1,4 @@
-# kinspire-portal
+# Kinspire Portal
 A desktop portal for the students in Kinspire's orphanages to use to access learning materials.
 
 ## Setup

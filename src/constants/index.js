@@ -1,3 +1,28 @@
-export * from './activityConstants';
-export * from './remoteDbConstants';
-export * from './userConstants';
+export const userConstants = {
+  SIGNUP_REQUEST: 'USERS_SIGNUP_REQUEST',
+  SIGNUP_SUCCESS: 'USERS_SIGNUP_SUCCESS',
+  SIGNUP_FAILURE: 'USERS_SIGNUP_FAILURE',
+
+  LOGIN_REQUEST: 'USERS_LOGIN_REQUEST',
+  LOGIN_SUCCESS: 'USERS_LOGIN_SUCCESS',
+  LOGIN_FAILURE: 'USERS_LOGIN_FAILURE',
+
+  LOGOUT: 'USERS_LOGOUT',
+};
+
+export const viewConstants = {
+  MATERIALS: "MATERIALS",
+  ACTIVITIES: "ACTIVITIES",
+  STORIES: "STORIES",
+  WORDSEARCH: "WORDSEARCH",
+};
+
+export const activityConstants = {
+  STORY: "STORY"
+};
+
+export const remoteDbConstants = {
+  SYNC_REQUEST: 'USERS_SYNC_REQUEST',
+  SYNC_SUCCESS: 'USERS_SYNC_SUCCESS',
+  SYNC_FAILURE: 'USERS_SYNC_FAILURE',
+};

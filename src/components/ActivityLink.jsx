@@ -11,7 +11,7 @@ export default class ActivityLink extends Component {
 
   render() {
     return (
-      <ShadowButton />
+      <ShadowButton to="/materials/story/1" text="Story"/>
     );
   }
 }

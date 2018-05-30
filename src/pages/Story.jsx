@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 
 import './Story.css';
 
-function generateStory(storyNumber) {
-  let storyJson = require(`../content/stories/${storyNumber}.json`);
+// TODO hmm optimize when to load file
+
+function generateStory(classLevel, storyNumber) {
+  let storyJson = require(`../content/stories/${classLevel}/${storyNumber}.json`);
 
   let paragraphs = storyJson.story;
   let vocab = storyJson.vocab;
@@ -56,8 +58,8 @@ function generateStory(storyNumber) {
   });
 }
 
-function generateQuestions(storyNumber) {
-  let storyJson = require(`../content/stories/${storyNumber}.json`);
+function generateQuestions(classLevel, storyNumber) {
+  let storyJson = require(`../content/stories/${classLevel}/${storyNumber}.json`);
 
   let questions = storyJson.questions;
 
@@ -111,17 +113,23 @@ export default class Story extends Component {
     match: PropTypes.object.isRequired
   };
 
+  // TODO move the generation into getDerivedStateFromProps, so we only
+  // regenerate on actual content changes
+  // TODO or maybe not...?
+
   render() {
+    const { classLevel, storyNumber } = this.props.match.params;
+
     return (
       <div class="stories-story">
         <div class="stories-story-section stories-story-section-story">
-          {generateStory(this.props.match.params.storyNumber)}
+          {generateStory(classLevel, storyNumber)}
         </div>
         <div class="stories-story-divider"></div>
         <div class="stories-story-section stories-story-section-questions">
           <div class="stories-story-section-questions-title">Questions</div>
           <ol type="1">
-            {generateQuestions(this.props.match.params.storyNumber)}
+            {generateQuestions(classLevel, storyNumber)}
           </ol>
           <input type="button" value="Submit!" id="submit-answers" />
           <div id="error"></div>

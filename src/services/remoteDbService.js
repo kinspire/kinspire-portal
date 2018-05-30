@@ -13,6 +13,7 @@ var config = require('../keys/firebase-keys.json');
 firebase.initializeApp(config);
 
 // Sync
+// TODO don't just upload, download and compare too
 function sync() {
   return new Promise(function(resolve, reject) {
     usersDb.find({}, function(err, users) {
