@@ -4,17 +4,6 @@ import React, { Component } from 'react';
 import './WordSearch.css';
 
 /**
- * Gets the row and column of the selected letter from its id.
- *
- * @param {string} id
- */
-function getRowCol(id) {
-  return id.split('-').slice(1).map(function (val) {
-    return Number.parseInt(val);
-  });
-}
-
-/**
  * Gets an element given its row-column pair
  */
 function getElement(rowCol) {
@@ -57,10 +46,10 @@ export default class WordSearch extends Component {
     return word;
   }
 
-  onLetterClicked = (event) => {
+  onLetterClicked = (event, row, col) => {
     if (this.state.wordStart[0] >= 0) {
       // This is the case that one letter has been clicked and we are selecting the word end
-      var wordEnd = getRowCol(this.id);
+      var wordEnd = [row, col];
       var selectedWord = this.getSelectedWord(wordEnd);
       if (!selectedWord) {
         alert('Choose a word! Resetting choice.');
@@ -91,10 +80,11 @@ export default class WordSearch extends Component {
     return grid.map((row, rowN) => {
       console.log(row);
 
+      // TODO remove id dependence
       let rowJsx = row.split("").map((char, i) => (
         <div
           className="wordsearch-letter" id={`letter-${rowN}-${i}`} key={i}
-          onClick={this.onLetterClicked}>
+          onClick={(e) => this.onLetterClicked(e, rowN, i)}>
           {char}
         </div>
       ));
