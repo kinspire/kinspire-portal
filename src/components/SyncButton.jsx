@@ -7,11 +7,11 @@ import ShadowButton from './ShadowButton';
 import { remoteDbActions } from '../actions/remoteDbActions';
 
 class SyncButton extends Component {
-  handleClick = (e) => {
-    if (!this.props.synchronized) {
-      this.props.dispatch(remoteDbActions.sync());
+  handleUpload = (e) => {
+    if (!this.props.synchronizing) {
+      this.props.dispatch(remoteDbActions.upload());
     } else {
-      alert("Already synchronized");
+      alert("Already synchronizing");
     }
   };
 
@@ -21,7 +21,10 @@ class SyncButton extends Component {
     }
 
     return (
-      <ShadowButton onClick={this.handleClick} text="Synchronize"/>
+      <span>
+        <ShadowButton onClick={this.handleUpload} text="Upload"/>
+        <ShadowButton onClick={this.handleUpload} text="Download"/>
+      </span>
     );
   }
 }
