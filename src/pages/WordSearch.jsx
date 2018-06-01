@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
+import ShadowButton from '../components/ShadowButton';
 import HashSet from '../utils/hashset';
 
 import './WordSearch.css';
@@ -57,7 +58,7 @@ export default class WordSearch extends Component {
     return word;
   }
 
-  onLetterClicked = (event, row, col) => {
+  handleLetterClicked = (event, row, col) => {
     if (this.state.wordStart[0] >= 0) {
       // This is the case that one letter has been clicked and we are selecting the word end
       let wordEnd = [row, col];
@@ -88,6 +89,10 @@ export default class WordSearch extends Component {
     }
   }
 
+  handleSave = (event) => {
+    console.log("Save");
+  }
+
   wordIsChosen = (wordEnd, selectedWord) => {
     const { wordStart, chosenWords } = this.state;
     let chosenCells = this.state.chosenCells.copy();
@@ -112,7 +117,6 @@ export default class WordSearch extends Component {
       // TODO add completed to corresponding letters
 
       let rowJsx = row.split("").map((char, col) => {
-        console.log(this.state.chosenCells);
         let letterClasses = classNames({
           "wordsearch-letter": true,
           "wordsearch-letter-start": rowN === this.state.wordStart[0] && col === this.state.wordStart[1],
@@ -122,7 +126,7 @@ export default class WordSearch extends Component {
         return (
           <div
             className={letterClasses}
-            key={col} onClick={(e) => this.onLetterClicked(e, rowN, col)}>
+            key={col} onClick={(e) => this.handleLetterClicked(e, rowN, col)}>
             {char}
           </div>
         );
@@ -149,13 +153,16 @@ export default class WordSearch extends Component {
 
   render() {
     return (
-      <div className="portal-body row">
-        <div className="wordsearch-grid-area">
-          {this.generateGrid()}
+      <div className="portal-body">
+        <div className="row">
+          <div className="wordsearch-grid-area">
+            {this.generateGrid()}
+          </div>
+          <div className="wordsearch-words">
+            {this.generateWords()}
+          </div>
         </div>
-        <div className="wordsearch-words">
-          {this.generateWords()}
-        </div>
+        <ShadowButton text="Save" onClick={this.handleSave} />
       </div>
     );
   }

@@ -4,14 +4,14 @@ function hashCode(v) {
   return v[0] * 31 + v[1] * 41;
 }
 
+/**
+ * A HashSet specifically made for two-element arrays.
+ */
 export default class HashSet {
   constructor() {
-    this.table = [...Array(HASHSET_TABLESIZE)].map(e => []);
+    this.table = [...Array(HASHSET_TABLESIZE)].map(() => []);
   }
 
-  /**
-   * @param v: array of 2 elements
-   */
   put(v) {
     if (!this.has(v)) {
       let index = hashCode(v) % HASHSET_TABLESIZE;
@@ -35,7 +35,9 @@ export default class HashSet {
     let x = new HashSet();
     for (let i = 0; i < this.table.length; i++) {
       for (let j = 0; j < this.table[i].length; j++) {
-        x.put(this.table[i][j]);
+        // hashing is consistent, and tables aren't resized
+        x.table[i].push(this.table[i][j]);
+        // x.put(this.table[i][j]);
       }
     }
     return x;

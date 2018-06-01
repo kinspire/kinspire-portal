@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 import Menu from './components/Menu';
 import Back from './components/Back';
+import SyncButton from './components/SyncButton';
 
 import './Container.css';
 import top from './images/portal-top-bar.png';
@@ -32,6 +33,7 @@ class Container extends Component {
           <Back/>
         </div>
         {this.props.children}
+        <SyncButton/>
       </div>
     );
   }

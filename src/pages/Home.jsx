@@ -51,7 +51,6 @@ export default class Home extends Component {
             </Link>
           </div>
         </div>
-        <SyncButton/>
       </div>
     );
   }
