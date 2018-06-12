@@ -5,13 +5,16 @@ import ShadowButton from './ShadowButton';
 
 export default class ActivityLink extends Component {
   propTypes: {
-    type: PropTypes.string,
-    num: PropTypes.number
+    classLevel: PropTypes.string.isRequired,
+    num: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
   };
 
   render() {
+    const { classLevel, num, text, type } = this.props;
     return (
-      <ShadowButton to="/materials/story/1/0" text="Story"/>
+      <ShadowButton to={`/materials/${type}/${classLevel}/${num}`} text={text}/>
     );
   }
 }

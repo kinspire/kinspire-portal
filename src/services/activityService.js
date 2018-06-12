@@ -1,17 +1,21 @@
 // @flow
 import Datastore from 'nedb';
 
-export const activitiesService = {
-  getNextActivity
+export const activityService = {
+  getNextActivities
 };
 
 let activitiesDb = new Datastore({filename: 'activities.db', autoload: true});
 let contentDb = new Datastore({filename: 'content.db', autoload: true});
 
 // TODO: worry about whether user is logged in?
-
-function getNextActivity(type) {
+// TODO: fix
+function getNextActivities(type) {
   return new Promise(function(resolve, reject) {
+    resolve([{type: "story", text: "Story", classLevel: 1, num: 0}]);
+  });
+
+  // return new Promise(function(resolve, reject) {
     let user = JSON.parse(localStorage.getItem('user'));
 
     // Get current student's activity blob
@@ -30,7 +34,7 @@ function getNextActivity(type) {
           if (!docs.length) {
             // TODO: no info, what do we do?
           } else {
-            resolve(docs[0]);
+            resolve([docs[0]]);
           }
         });
       }

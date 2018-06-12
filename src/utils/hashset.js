@@ -23,7 +23,7 @@ export default class HashSet {
     let index = hashCode(v) % HASHSET_TABLESIZE;
     let bucket = this.table[index];
     for (let i = 0; i < bucket.length; i++) {
-      if (bucket[i][0] == v[0] && bucket[i][1] == v[1]) {
+      if (bucket[i][0] === v[0] && bucket[i][1] === v[1]) {
         return true;
       }
     }

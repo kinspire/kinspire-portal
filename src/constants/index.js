@@ -18,7 +18,9 @@ export const viewConstants = {
 };
 
 export const activityConstants = {
-  STORY: "STORY"
+  NEXT_ACTIVITIES_REQUEST: 'USERS_NEXT_ACTIVITIES_REQUEST',
+  NEXT_ACTIVITIES_SUCCESS: 'USERS_NEXT_ACTIVITIES_SUCCESS',
+  NEXT_ACTIVITIES_FAILURE: 'USERS_NEXT_ACTIVITIES_FAILURE'
 };
 
 export const remoteDbConstants = {

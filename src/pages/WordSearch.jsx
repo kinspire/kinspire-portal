@@ -7,13 +7,6 @@ import HashSet from '../utils/hashset';
 
 import './WordSearch.css';
 
-/**
- * Gets an element given its row-column pair
- */
-function getElement(rowCol) {
-  return document.getElementById(`letter-${rowCol[0]}-${rowCol[1]}`);
-}
-
 export default class WordSearch extends Component {
   propTypes: {
     match: PropTypes.object.isRequired
@@ -73,7 +66,7 @@ export default class WordSearch extends Component {
           this.wordIsChosen(wordEnd, selectedWord);
         } else {
           // Check for completion
-          if (Object.keys(this.state.chosenWords).length == this.state.words.length) {
+          if (Object.keys(this.state.chosenWords).length === this.state.words.length) {
             alert("Nice job! Game over :)");
           }
         }
