@@ -66,6 +66,7 @@ class Signup extends Component {
           <input
             onChange={this.handleChange.bind(this, 'firstName')}
             placeholder="First Name"
+            type="text"
             value={this.state.firstName} />
         </div>
         <div className="flexbox">
@@ -73,6 +74,7 @@ class Signup extends Component {
           <input
             onChange={this.handleChange.bind(this, 'lastName')}
             placeholder="Last Name"
+            type="text"
             value={this.state.lastName} />
         </div>
         <div className="flexbox">

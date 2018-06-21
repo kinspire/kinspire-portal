@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import ShadowButton from './ShadowButton';
 
-export default class ActivityLink extends Component {
+export default class ContentItemLink extends Component {
   propTypes: {
     classLevel: PropTypes.string.isRequired,
     num: PropTypes.number.isRequired,

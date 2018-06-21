@@ -38,6 +38,8 @@ class Login extends Component {
   render() {
     if (this.props.loggedIn) {
       return <Redirect to={{pathname: "/"}}/>;
+    } else if (this.props.loginError) {
+      alert("Login error");
     }
 
     return (
@@ -65,9 +67,9 @@ class Login extends Component {
 
 // Maps store changes to prop changes
 function mapStateToProps(state) {
-  const { loggedIn } = state.authentication;
+  const { loggedIn, error } = state.authentication;
   return {
-    loggedIn
+    loggedIn, loginError: error
   };
 }
 export default connect(mapStateToProps)(Login);

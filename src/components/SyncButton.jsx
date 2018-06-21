@@ -15,6 +15,14 @@ class SyncButton extends Component {
     }
   };
 
+  handleDownload = (e) => {
+    if (!this.props.synchronizing) {
+      this.props.dispatch(remoteDbActions.download());
+    } else {
+      alert("Already synchronizing");
+    }
+  };
+
   render() {
     if (this.props.synchronized) {
       alert("SYNCHRONIZED!!!");
@@ -23,7 +31,7 @@ class SyncButton extends Component {
     return (
       <span>
         <ShadowButton onClick={this.handleUpload} text="Upload"/>
-        <ShadowButton onClick={this.handleUpload} text="Download"/>
+        <ShadowButton onClick={this.handleDownload} text="Download"/>
       </span>
     );
   }
