@@ -2,13 +2,12 @@
 import Datastore from 'nedb';
 import firebase from 'firebase';
 
+import { usersDb } from '../db';
+
 export const remoteDbService = {
   upload,
   download,
 };
-
-// TODO exactly one service should control a single datastore
-let usersDb = new Datastore({filename: 'users.db', autoload: true});
 
 // Initialize Firebase
 var config = require('../keys/firebase-keys.json');
@@ -34,7 +33,7 @@ function upload() {
 function download() {
   return new Promise(function(resolve, reject) {
     firebase.database().ref('users/').once('value').then(function(snapshot) {
-      usersDb.remove({}, {multi: true}, function(err, numRemoved) {
+      usersDb.remove({}, {multi: true}, function(err) {
         if (err !== null) return reject(err);
 
         function done() {
@@ -43,7 +42,7 @@ function download() {
         }
 
         if (snapshot.val()) {
-          usersDb.insert(snapshot.val(), function(err, newUsers) {
+          usersDb.insert(Object.values(snapshot.val()), function(err) {
             if (err !== null) return reject(err);
 
             done();

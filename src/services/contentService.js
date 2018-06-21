@@ -1,12 +1,11 @@
 // @flow
 import Datastore from 'nedb';
 
+import { contentDb, contentProgressDb } from '../db';
+
 export const contentService = {
   getNextContentItems
 };
-
-let contentProgressDb = new Datastore({filename: 'contentProgress.db', autoload: true});
-let contentDb = new Datastore({filename: 'content.db', autoload: true});
 
 // TODO: worry about whether user is logged in?
 // TODO what is type....?

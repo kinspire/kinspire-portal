@@ -1,7 +1,7 @@
 // @flow
 import Datastore from 'nedb';
 
-import contentUtils from '../utils/contentUtils';
+import { usersDb, contentProgressDb } from '../db';
 
 export const userService = {
 	login,
@@ -9,8 +9,7 @@ export const userService = {
 	signup
 };
 
-let usersDb = new Datastore({filename: 'users.db', autoload: true});
-let contentProgressDb = new Datastore({filename: 'contentProgress.db', autoload: true});
+//////// PROMISE HELPER FUNCTIONS ////////
 
 // Login
 function login(username) {
@@ -42,7 +41,13 @@ function signup(details) {
 				usersDb.insert(details, function(err, newDetails) {
 					if (err != null) reject(err);
 
-					contentProgressDb.insert(contentUtils.getDefaultContentProgress(newDetails._id), function(err, newContentProgress) {
+					let newContentProgress = {
+						user_id: newDetails._id,
+						crossword_num: 0,
+						wordsearch_num: 0,
+						stories_num: 0
+					};
+					contentProgressDb.insert(newContentProgress, function(err) {
 						if (err != null) reject(err);
 
 						localStorage.setItem('user', JSON.stringify(newDetails));

@@ -38,9 +38,11 @@ class Login extends Component {
   render() {
     if (this.props.loggedIn) {
       return <Redirect to={{pathname: "/"}}/>;
-    } else if (this.props.loginError) {
-      alert("Login error");
     }
+    // TODO add a "login error handled action"
+    /*else if (this.props.loginError) {
+      alert("Login error");
+    }*/
 
     return (
       <div className="portal-body row">

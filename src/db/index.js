@@ -1,0 +1,5 @@
+import Datastore from 'nedb';
+
+export const usersDb = new Datastore({filename: 'users.db', autoload: true});
+export const contentProgressDb = new Datastore({filename: 'contentProgress.db', autoload: true});
+export const contentDb = new Datastore({filename: 'content.db', autoload: true});
