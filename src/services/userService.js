@@ -42,10 +42,10 @@ function signup(details) {
 					if (err != null) reject(err);
 
 					let newContentProgress = {
-						user_id: newDetails._id,
-						crossword_num: 0,
-						wordsearch_num: 0,
-						stories_num: 0
+						userId: newDetails._id,
+						crosswordNum: 0,
+						wordsearchNum: 0,
+						storiyNum: 0
 					};
 					contentProgressDb.insert(newContentProgress, function(err) {
 						if (err != null) reject(err);

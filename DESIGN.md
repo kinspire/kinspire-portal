@@ -1,6 +1,6 @@
 # Database design
 
-All fields should be snake-case.
+All fields should be camelCase.
 
 Database | Details
 --- | ---

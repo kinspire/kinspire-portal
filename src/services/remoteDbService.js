@@ -2,7 +2,7 @@
 import Datastore from 'nedb';
 import firebase from 'firebase';
 
-import { usersDb } from '../db';
+import { usersDb, contentDb, contentProgressDb } from '../db';
 
 export const remoteDbService = {
   upload,
@@ -13,12 +13,13 @@ export const remoteDbService = {
 var config = require('../keys/firebase-keys.json');
 firebase.initializeApp(config);
 
-// Sync
-function upload() {
+function uploadPromiseGen(dbLink, db) {
   return new Promise(function(resolve, reject) {
-    usersDb.find({}, function(err, users) {
-      // Convert users into firebase format
-      firebase.database().ref('users/').set(users.reduce((acc, cur) => {
+    db.find({}, function(err, docs) {
+      if (err !== null) return reject(err);
+
+      // Convert docs into firebase format
+      firebase.database().ref(`${dbLink}/`).set(docs.reduce((acc, cur) => {
         acc[cur._id] = cur; return acc;
       }, {}), (err) => {
         if (err !== null) return reject(err);
@@ -29,11 +30,19 @@ function upload() {
   });
 }
 
-// TODO doesn't work?
-function download() {
+// Sync
+function upload() {
+  return Promise.all([
+    uploadPromiseGen('users', usersDb),
+    uploadPromiseGen('content', contentDb),
+    uploadPromiseGen('contentProgress', contentProgressDb)
+  ])
+}
+
+function downloadPromiseGen(dbLink, db) {
   return new Promise(function(resolve, reject) {
-    firebase.database().ref('users/').once('value').then(function(snapshot) {
-      usersDb.remove({}, {multi: true}, function(err) {
+    firebase.database().ref(`${dbLink}/`).once('value').then(function(snapshot) {
+      db.remove({}, {multi: true}, function(err) {
         if (err !== null) return reject(err);
 
         function done() {
@@ -42,7 +51,8 @@ function download() {
         }
 
         if (snapshot.val()) {
-          usersDb.insert(Object.values(snapshot.val()), function(err) {
+          let docs = Object.values(snapshot.val());
+          db.insert(docs, function(err) {
             if (err !== null) return reject(err);
 
             done();
@@ -53,6 +63,14 @@ function download() {
       });
     });
   });
+}
+
+function download() {
+  return Promise.all([
+    downloadPromiseGen('users', usersDb),
+    downloadPromiseGen('content', contentDb),
+    downloadPromiseGen('contentProgress', contentProgressDb)
+  ]);
 }
 
 // TODO add function to fetch content from remote db

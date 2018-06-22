@@ -25,8 +25,8 @@ class Home extends Component {
   getContentItems() {
     // Convert the props `nextContentItems` into ContentItemLinks
     if (this.props.nextContentItems) {
-      return this.props.nextContentItems.map((a) => (
-        <ContentItemLink {...a}/>
+      return this.props.nextContentItems.map((a, i) => (
+        <ContentItemLink key={i} {...a}/>
       ));
     }
     return "";

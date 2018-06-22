@@ -8,8 +8,7 @@ export const contentService = {
 };
 
 // TODO: worry about whether user is logged in?
-// TODO what is type....?
-function getNextContentItems(type) {
+function getNextContentItems() {
   // return new Promise(function(resolve, reject) {
   //   resolve([{type: "story", text: "Story", classLevel: 1, num: 0}]);
   // });
@@ -18,7 +17,7 @@ function getNextContentItems(type) {
     let user = JSON.parse(localStorage.getItem('user'));
 
     // Get current student's content progress blob
-    contentProgressDb.find({ user_id: user._id }, function(err, docs) {
+    contentProgressDb.find({ userId: user._id }, function(err, docs) {
       if (err) return reject(err);
 
       let nextStory;
@@ -27,7 +26,7 @@ function getNextContentItems(type) {
       } else {
         let contentProgressBlob = docs[0];
 
-        contentDb.find({ type: type, classLevel: user.classLevel, number: contentProgressBlob[type] }, function(err, docs) {
+        contentDb.find({ classLevel: user.classLevel, num: contentProgressBlob.storyNum, type: "story" }, function(err, docs) {
           if (err) return reject(err);
 
           if (!docs.length) {
