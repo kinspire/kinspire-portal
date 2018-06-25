@@ -1,19 +1,22 @@
 // @flow
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import './Story.css';
 
+import { contentActions } from '../actions/contentActions';
+
 // TODO hmm optimize when to load file
 
-function generateStory(classLevel, storyNumber) {
-  let storyJson = require(`../content/stories/${classLevel}/${storyNumber}.json`);
+function generateStory(story) {
+  if (!story) return '';
 
-  let paragraphs = storyJson.story;
-  let vocab = storyJson.vocab;
-  let translations = storyJson['translation-te'];
+  let paragraphs = story.story;
+  let vocab = story.vocab || [];
+  let translations = story['translation-te'];
   let i = 0;
 
-  return paragraphs.map((paragraph) => {
+  return paragraphs.map((paragraph, paragraphNum) => {
     let paragraphContent = [];
 
     while (i < vocab.length) {
@@ -21,7 +24,7 @@ function generateStory(classLevel, storyNumber) {
       // paragraph up to but not including the vocab word
       let parts = paragraph.split(vocab[i], 2);
       paragraphContent.push(
-        <span className="stories-story-text">{parts[0]}</span>
+        <span key={`pre-vocab-${i}`} className="stories-story-text">{parts[0]}</span>
       );
 
       // Fencepost for if the vocab word is not in the paragraph
@@ -29,7 +32,7 @@ function generateStory(classLevel, storyNumber) {
 
       // Write out the vocab word
 			let vocabWord = (
-				<span className="stories-vocab">
+				<span className="stories-vocab" key={vocab[i]}>
 					<span className="stories-vocab-word">{vocab[i]}</span>
 					<div className="stories-vocab-def">
 						{(i < translations.length) ? translations[i] : '[translation]'}
@@ -46,32 +49,32 @@ function generateStory(classLevel, storyNumber) {
     if (i === vocab.length) { // sanity check
       // Fencepost for last word
       paragraphContent.push(
-        <span className="stories-story-text">{paragraph}</span>
+        <span className="stories-story-text" key={`pre-vocab-${i}`}>{paragraph}</span>
       )
     }
 
     return (
-      <div className="stories-story-paragraph">
+      <div className="stories-story-paragraph" key={`para-${paragraphNum}`}>
         {paragraphContent}
       </div>
     );
   });
 }
 
-function generateQuestions(classLevel, storyNumber) {
-  let storyJson = require(`../content/stories/${classLevel}/${storyNumber}.json`);
+function generateQuestions(story) {
+  if (!story) return '';
 
-  let questions = storyJson.questions;
+  let questions = story.questions;
 
   let output = [];
-  questions.forEach((question) => {
-    output.push(<li>{question.question}</li>);
+  questions.forEach((question, i) => {
+    output.push(<li key={i}>{question.question}</li>);
 
     switch (question.type) {
       case 'mcq':
         question.choices.forEach((choice, j) => {
           output.push(
-            <div className="radio">
+            <div className="radio" key={j}>
               <label>
                 <input
                   type="radio"
@@ -88,6 +91,7 @@ function generateQuestions(classLevel, storyNumber) {
         output.push(
           <input
             type="text"
+            key={`question-${question.number}`}
             name={`question-${question.number}`}
             id={`question-${question.number}`} />
         )
@@ -95,6 +99,7 @@ function generateQuestions(classLevel, storyNumber) {
       case 'long':
         output.push(
           <textarea
+            key={`question-${question.number}`}
             name={`question-${question.number}`}
             id={`question-${question.number}`}>
           </textarea>
@@ -108,10 +113,20 @@ function generateQuestions(classLevel, storyNumber) {
   return output;
 }
 
-export default class Story extends Component {
+class Story extends Component {
   propTypes: {
     match: PropTypes.object.isRequired
   };
+
+  constructor(props) {
+    super(props);
+
+    const { classLevel, num } = this.props.match.params;
+    // TODO constant for story
+    this.props.dispatch(contentActions.getContent("story", classLevel, num));
+
+    this.state = {};
+  }
 
   // TODO move the generation into getDerivedStateFromProps, so we only
   // regenerate on actual content changes
@@ -121,15 +136,15 @@ export default class Story extends Component {
     const { classLevel, storyNumber } = this.props.match.params;
 
     return (
-      <div class="stories-story">
-        <div class="stories-story-section stories-story-section-story">
-          {generateStory(classLevel, storyNumber)}
+      <div className="stories-story">
+        <div className="stories-story-section stories-story-section-story">
+          {generateStory(this.props.content)}
         </div>
-        <div class="stories-story-divider"></div>
-        <div class="stories-story-section stories-story-section-questions">
-          <div class="stories-story-section-questions-title">Questions</div>
+        <div className="stories-story-divider"></div>
+        <div className="stories-story-section stories-story-section-questions">
+          <div className="stories-story-section-questions-title">Questions</div>
           <ol type="1">
-            {generateQuestions(classLevel, storyNumber)}
+            {generateQuestions(this.props.content)}
           </ol>
           <input type="button" value="Submit!" id="submit-answers" />
           <div id="error"></div>
@@ -138,3 +153,9 @@ export default class Story extends Component {
     );
   }
 };
+
+function mapStateToProps(state) {
+  const { content } = state.content;
+  return { content };
+}
+export default connect(mapStateToProps)(Story);

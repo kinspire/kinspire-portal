@@ -32,10 +32,10 @@ ReactDOM.render(
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <PrivateRoute path="/achievements" component={Achievements} />
-          <PrivateRoute path="/materials/story/:classLevel/:storyNumber" component={Story} />
+          <PrivateRoute path="/materials/story/:classLevel/:num" component={Story} />
           <PrivateRoute path="/materials/stories" component={Selection} componentProps={{view: v.STORIES}} />
           <PrivateRoute path="/materials" component={Selection} componentProps={{view: v.MATERIALS}} />
-          <PrivateRoute path="/activities/wsplay/:classLevel/:storyNumber" component={WordSearch} />
+          <PrivateRoute path="/activities/wsplay/:classLevel/:num" component={WordSearch} />
           <PrivateRoute path="/activities/wordsearch" component={Selection} componentProps={{view: v.WORDSEARCH}} />
           <PrivateRoute path="/activities" component={Selection} componentProps={{view: v.ACTIVITIES}} />
           <PrivateRoute path="/" component={Home} />
