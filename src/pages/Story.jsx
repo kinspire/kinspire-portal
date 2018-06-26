@@ -68,13 +68,13 @@ function generateQuestions(story) {
 
   let output = [];
   questions.forEach((question, i) => {
-    output.push(<li key={i}>{question.question}</li>);
+    output.push(<li key={`question-${i}`}>{question.question}</li>);
 
     switch (question.type) {
       case 'mcq':
         question.choices.forEach((choice, j) => {
           output.push(
-            <div className="radio" key={j}>
+            <div className="radio" key={`question-${i}-answer-${j}`}>
               <label>
                 <input
                   type="radio"
@@ -91,7 +91,7 @@ function generateQuestions(story) {
         output.push(
           <input
             type="text"
-            key={`question-${question.number}`}
+            key={`question-${i}-answer`}
             name={`question-${question.number}`}
             id={`question-${question.number}`} />
         )
@@ -99,7 +99,7 @@ function generateQuestions(story) {
       case 'long':
         output.push(
           <textarea
-            key={`question-${question.number}`}
+            key={`question-${i}-answer`}
             name={`question-${question.number}`}
             id={`question-${question.number}`}>
           </textarea>
@@ -133,8 +133,6 @@ class Story extends Component {
   // TODO or maybe not...?
 
   render() {
-    const { classLevel, storyNumber } = this.props.match.params;
-
     return (
       <div className="stories-story">
         <div className="stories-story-section stories-story-section-story">

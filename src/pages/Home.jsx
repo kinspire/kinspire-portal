@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import './Home.css';
 import ContentItemLink from '../components/ContentItemLink';
 import envelopeWithMedal from '../images/home-page-envelope-with-medal.png';
-import { contentConstants } from '../constants';
 import { contentActions } from '../actions/contentActions';
 
 class Home extends Component {

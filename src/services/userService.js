@@ -1,6 +1,4 @@
 // @flow
-import Datastore from 'nedb';
-
 import { usersDb, contentProgressDb } from '../db';
 
 export const userService = {

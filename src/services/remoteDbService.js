@@ -1,5 +1,4 @@
 // @flow
-import Datastore from 'nedb';
 import firebase from 'firebase';
 
 import { usersDb, contentDb, contentProgressDb } from '../db';

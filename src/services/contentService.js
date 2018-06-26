@@ -1,6 +1,4 @@
 // @flow
-import Datastore from 'nedb';
-
 import { contentDb, contentProgressDb } from '../db';
 
 export const contentService = {
@@ -21,7 +19,6 @@ function getNextContentItems() {
     contentProgressDb.find({ userId: user._id }, function(err, docs) {
       if (err) return reject(err);
 
-      let nextStory;
       if (!docs.length) {
         console.error("NO CONTENT PROGRESS");
       } else {
@@ -45,7 +42,7 @@ function getNextContentItems() {
 
 function getContent(type, classLevel, num) {
   return new Promise(function(resolve, reject) {
-    contentDb.find({ type, classLevel: parseInt(classLevel), num: parseInt(num) }, function(err, docs) {
+    contentDb.find({ type, classLevel: parseInt(classLevel, 10), num: parseInt(num, 10) }, function(err, docs) {
       if (err !== null) reject(err);
 
       if (!docs.length) {
