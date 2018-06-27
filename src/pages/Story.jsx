@@ -7,8 +7,6 @@ import './Story.css';
 import { contentActions } from '../actions/contentActions';
 import { contentConstants as c } from '../constants';
 
-// TODO hmm optimize when to load file
-
 function generateStory(story) {
   if (!story) return '';
 
@@ -62,6 +60,8 @@ function generateStory(story) {
   });
 }
 
+// TODO Move this inside, we have to keep state on the current information entered
+// TODO: Then use that in the submission process
 function generateQuestions(story) {
   if (!story) return '';
 
@@ -123,7 +123,6 @@ class Story extends Component {
     super(props);
 
     const { classLevel, num } = this.props.match.params;
-    // TODO constant for story
     this.props.dispatch(contentActions.getContent(c.TYPE_STORY, classLevel, num));
 
     this.state = {};
@@ -132,6 +131,13 @@ class Story extends Component {
   // TODO move the generation into getDerivedStateFromProps, so we only
   // regenerate on actual content changes
   // TODO or maybe not...?
+
+  handleSubmit = (event) => {
+    // TODO alas! form validation!
+    alert("submit");
+
+    this.props.dispatch(contentActions.submitContent())
+  }
 
   render() {
     return (
@@ -145,7 +151,7 @@ class Story extends Component {
           <ol type="1">
             {generateQuestions(this.props.content)}
           </ol>
-          <input type="button" value="Submit!" id="submit-answers" />
+          <input type="button" value="Submit!" onClick={this.handleSubmit}/>
           <div id="error"></div>
         </div>
       </div>

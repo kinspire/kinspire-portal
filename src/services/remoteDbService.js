@@ -1,7 +1,7 @@
 // @flow
 import firebase from 'firebase';
 
-import { usersDb, contentDb, contentProgressDb } from '../db';
+import * as db from '../db';
 
 export const remoteDbService = {
   upload,
@@ -9,10 +9,12 @@ export const remoteDbService = {
 };
 
 // Initialize Firebase
-var config = require('../keys/firebase-keys.json');
+let config = require('../keys/firebase-keys.json');
 firebase.initializeApp(config);
 
-function uploadPromiseGen(dbLink, db) {
+let firebaseDbs = ['users', 'content', 'contentProgress', 'contentSubmissions'];
+
+function uploadPromise(dbLink, db) {
   return new Promise((resolve, reject) => {
     db.find({}, function(err, docs) {
       if (err !== null) return reject(err);
@@ -29,16 +31,11 @@ function uploadPromiseGen(dbLink, db) {
   });
 }
 
-// Sync
 function upload() {
-  return Promise.all([
-    uploadPromiseGen('users', usersDb),
-    uploadPromiseGen('content', contentDb),
-    uploadPromiseGen('contentProgress', contentProgressDb)
-  ])
+  return Promise.all(firebaseDbs.map(x => uploadPromise(x, db[`${x}Db`])));
 }
 
-function downloadPromiseGen(dbLink, db) {
+function downloadPromise(dbLink, db) {
   return new Promise((resolve, reject) => {
     firebase.database().ref(`${dbLink}/`).once('value').then(function(snapshot) {
       db.remove({}, {multi: true}, function(err) {
@@ -65,11 +62,5 @@ function downloadPromiseGen(dbLink, db) {
 }
 
 function download() {
-  return Promise.all([
-    downloadPromiseGen('users', usersDb),
-    downloadPromiseGen('content', contentDb),
-    downloadPromiseGen('contentProgress', contentProgressDb)
-  ]);
+  return Promise.all(firebaseDbs.map(x => downloadPromise(x, db[`${x}Db`])));
 }
-
-// TODO add function to fetch content from remote db
