@@ -13,7 +13,7 @@ var config = require('../keys/firebase-keys.json');
 firebase.initializeApp(config);
 
 function uploadPromiseGen(dbLink, db) {
-  return new Promise(function(resolve, reject) {
+  return new Promise((resolve, reject) => {
     db.find({}, function(err, docs) {
       if (err !== null) return reject(err);
 
@@ -39,7 +39,7 @@ function upload() {
 }
 
 function downloadPromiseGen(dbLink, db) {
-  return new Promise(function(resolve, reject) {
+  return new Promise((resolve, reject) => {
     firebase.database().ref(`${dbLink}/`).once('value').then(function(snapshot) {
       db.remove({}, {multi: true}, function(err) {
         if (err !== null) return reject(err);

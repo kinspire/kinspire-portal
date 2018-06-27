@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import './Story.css';
 
 import { contentActions } from '../actions/contentActions';
+import { contentConstants as c } from '../constants';
 
 // TODO hmm optimize when to load file
 
@@ -123,7 +124,7 @@ class Story extends Component {
 
     const { classLevel, num } = this.props.match.params;
     // TODO constant for story
-    this.props.dispatch(contentActions.getContent("story", classLevel, num));
+    this.props.dispatch(contentActions.getContent(c.TYPE_STORY, classLevel, num));
 
     this.state = {};
   }

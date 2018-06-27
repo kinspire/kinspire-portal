@@ -24,7 +24,10 @@ export const contentConstants = {
 
   GET_CONTENT_REQUEST: 'GET_CONTENT_REQUEST',
   GET_CONTENT_SUCCESS: 'GET_CONTENT_SUCCESS',
-  GET_CONTENT_FAILURE: 'GET_CONTENT_FAILURE'
+  GET_CONTENT_FAILURE: 'GET_CONTENT_FAILURE',
+
+  TYPE_STORY: 'story',
+  TYPE_WORD_SEARCH: 'wordsearch'
 };
 
 export const remoteDbConstants = {
