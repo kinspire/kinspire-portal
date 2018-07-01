@@ -12,6 +12,7 @@ export const remoteDbService = {
 let config = require('../keys/firebase-keys.json');
 firebase.initializeApp(config);
 
+// These are all the databases that will be backed up to Firebase
 let firebaseDbs = ['users', 'content', 'contentProgress', 'contentSubmissions'];
 
 function uploadPromise(dbLink, db) {

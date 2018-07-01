@@ -38,10 +38,10 @@ class SyncButton extends Component {
 }
 
 // Maps store changes to prop changes
-function mapStateToProps(state) {
+function mapStoreToProps(state) {
   const { synchronized } = state.remoteDb;
   return {
     synchronized
   };
 }
-export default connect(mapStateToProps)(SyncButton);
+export default connect(mapStoreToProps)(SyncButton);

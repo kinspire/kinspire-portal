@@ -4,8 +4,9 @@ import { contentConstants } from '../constants';
 
 export const contentActions = {
   getNextContentItems,
-  getContent
-}
+  getContent,
+  submitContent
+};
 
 function getNextContentItems() {
   return dispatch => {
@@ -51,4 +52,28 @@ function getContent(type, classLevel, num) {
   function request() { return { type: contentConstants.GET_CONTENT_REQUEST } }
   function success(content) { return { type: contentConstants.GET_CONTENT_SUCCESS, content } }
   function failure(error) { return { type: contentConstants.GET_CONTENT_FAILURE, error } }
+}
+
+// TODO add parameters
+function submitContent(type, classLevel, num, answers) {
+  return dispatch => {
+    // #1
+    dispatch(request());
+
+    return contentService.submitContent(type, classLevel, num, answers)
+    .then(
+      () => {
+        // #2
+        dispatch(success());
+      },
+      error => {
+        // #2
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() { return { type: contentConstants.SUBMIT_CONTENT_REQUEST } }
+  function success() { return { type: contentConstants.SUBMIT_CONTENT_SUCCESS } }
+  function failure(error) { return { type: contentConstants.SUBMIT_CONTENT_FAILURE, error } }
 }

@@ -1,12 +1,13 @@
 // @flow
 import _ from 'lodash';
 
-import { contentDb, contentProgressDb } from '../db';
+import { contentDb, contentProgressDb, contentSubmissionsDb } from '../db';
 import { contentConstants as c } from '../constants';
 
 export const contentService = {
   getNextContentItems,
-  getContent
+  getContent,
+  submitContent
 };
 
 function queryPromise(query) {
@@ -63,7 +64,7 @@ function getNextContentItems() {
   });
 }
 
-function getContent(type, classLevel, num) {
+function getContent(type: string, classLevel, num) {
   return new Promise((resolve, reject) => {
     contentDb.find({ type, classLevel: parseInt(classLevel, 10), num: parseInt(num, 10) }, function(err, docs) {
       if (err !== null) reject(err);
@@ -72,6 +73,21 @@ function getContent(type, classLevel, num) {
         // TODO no actual content, what do we do
       } else {
         resolve(docs[0]);
+      }
+    });
+  });
+}
+
+function submitContent(type, classLevel, num, answers) {
+  return new Promise((resolve, reject) => {
+    contentSubmissionsDb.insert({type, classLevel, num, answers}, function(err, doc) {
+      if (err !== null) reject(err);
+
+      if (!doc) {
+        // TODO what to do?
+      } else {
+        // TODO anything to resolve with? Maybe if they're done or not?
+        resolve();
       }
     });
   });

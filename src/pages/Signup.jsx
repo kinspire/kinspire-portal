@@ -102,10 +102,10 @@ class Signup extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStoreToProps(state) {
   const { loggedIn } = state.authentication;
   return {
     loggedIn
   };
 }
-export default connect(mapStateToProps)(Signup);
+export default connect(mapStoreToProps)(Signup);

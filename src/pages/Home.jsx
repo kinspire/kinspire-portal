@@ -69,10 +69,10 @@ class Home extends Component {
 //   <img className="home-avatar" src="/images/avatar/<?php echo $user['avatar'];?>.svg"/>
 // </div>
 
-function mapStateToProps(state) {
+function mapStoreToProps(state) {
   const { nextContentItems } = state.content;
   return {
     nextContentItems
   };
 }
-export default connect(mapStateToProps)(Home);
+export default connect(mapStoreToProps)(Home);

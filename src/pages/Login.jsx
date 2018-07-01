@@ -68,10 +68,10 @@ class Login extends Component {
 }
 
 // Maps store changes to prop changes
-function mapStateToProps(state) {
+function mapStoreToProps(state) {
   const { loggedIn, error } = state.authentication;
   return {
     loggedIn, loginError: error
   };
 }
-export default connect(mapStateToProps)(Login);
+export default connect(mapStoreToProps)(Login);

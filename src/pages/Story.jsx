@@ -60,60 +60,6 @@ function generateStory(story) {
   });
 }
 
-// TODO Move this inside, we have to keep state on the current information entered
-// TODO: Then use that in the submission process
-function generateQuestions(story) {
-  if (!story) return '';
-
-  let questions = story.questions;
-
-  let output = [];
-  questions.forEach((question, i) => {
-    output.push(<li key={`question-${i}`}>{question.question}</li>);
-
-    switch (question.type) {
-      case 'mcq':
-        question.choices.forEach((choice, j) => {
-          output.push(
-            <div className="radio" key={`question-${i}-answer-${j}`}>
-              <label>
-                <input
-                  type="radio"
-                  name={`question-${question.number}`}
-                  id={`question-${question.number}`}
-                  value={`question-${question.number}-${j}`} />
-                {choice}
-              </label>
-            </div>
-          );
-        });
-        break;
-      case 'short':
-        output.push(
-          <input
-            type="text"
-            key={`question-${i}-answer`}
-            name={`question-${question.number}`}
-            id={`question-${question.number}`} />
-        )
-        break;
-      case 'long':
-        output.push(
-          <textarea
-            key={`question-${i}-answer`}
-            name={`question-${question.number}`}
-            id={`question-${question.number}`}>
-          </textarea>
-        )
-        break;
-      default:
-        break;
-    }
-  });
-
-  return output;
-}
-
 class Story extends Component {
   propTypes: {
     match: PropTypes.object.isRequired
@@ -128,18 +74,101 @@ class Story extends Component {
     this.state = {};
   }
 
-  // TODO move the generation into getDerivedStateFromProps, so we only
-  // regenerate on actual content changes
-  // TODO or maybe not...?
+  handleOptionChange = (i, event) => {
+    let answers = this.state.answers;
+    answers[i] = parseInt(event.target.value, 10);
+    this.setState({answers});
+  }
+
+  handleInputChange = (i, event) => {
+    let answers = this.state.answers;
+    answers[i] = event.target.value;
+    this.setState({answers});
+  }
+
+  generateQuestions = () => {
+    if (!this.props.content) return '';
+
+    let questions = this.props.content.questions;
+    let answers = this.state.answers;
+
+    let output = [];
+
+    // TODO use question number or index?
+    questions.forEach((question, i) => {
+      output.push(<li key={`question-${i}`}>{question.question}</li>);
+
+      switch (question.type) {
+      case 'mcq':
+        question.choices.forEach((choice, j) => {
+          output.push(
+            <div className="radio" key={`question-${i}-answer-${j}`}>
+              <label>
+                <input
+                  type="radio" name={`question-${i}`} id={`question-${i}`}
+                  value={j}
+                  checked={this.state.answers[i] === j}
+                  onChange={this.handleOptionChange.bind(null, i)}/>
+                {choice}
+              </label>
+            </div>
+          );
+        });
+        break;
+      case 'short':
+        output.push(
+          <input
+            type="text" key={`question-${i}-answer`} name={`question-${i}`}
+            id={`question-${i}`} value={this.state.answers[i]}
+            onChange={this.handleInputChange.bind(null, i)} />
+        )
+        break;
+      case 'long':
+        output.push(
+          <textarea
+            key={`question-${i}-answer`}
+            name={`question-${i}`}
+            id={`question-${i}`}
+            value={this.state.answers[i]} />
+        )
+        break;
+        default:
+        console.log("Unknown question type: " + question.type);
+        break;
+      }
+    });
+
+    return output;
+  }
 
   handleSubmit = (event) => {
     // TODO alas! form validation!
-    alert("submit");
+    const { classLevel, num } = this.props.match.params;
+    this.props.dispatch(contentActions.submitContent(c.TYPE_STORY, classLevel, num, this.state.answers));
+  }
 
-    this.props.dispatch(contentActions.submitContent())
+  // TODO move the generation into getDerivedStateFromProps, so we only
+  // regenerate on actual content changes
+  // TODO or maybe not...?
+  static getDerivedStateFromProps(props, state) {
+    // Okay so we receive the content from the props, convert it into a state object,
+    // and have to correspondingly tie the values to the form elements
+    if (props.content) {
+      return {
+        answers: props.content.questions.map((q, i) => (q.type === 'mcq' ? -1 : ""))
+      };
+    } else {
+      return {
+        answers: []
+      };
+    }
   }
 
   render() {
+    if (this.props.submittedContent) {
+      alert("Submitted!");
+    }
+
     return (
       <div className="stories-story">
         <div className="stories-story-section stories-story-section-story">
@@ -149,7 +178,7 @@ class Story extends Component {
         <div className="stories-story-section stories-story-section-questions">
           <div className="stories-story-section-questions-title">Questions</div>
           <ol type="1">
-            {generateQuestions(this.props.content)}
+            {this.generateQuestions(this.props.content)}
           </ol>
           <input type="button" value="Submit!" onClick={this.handleSubmit}/>
           <div id="error"></div>
@@ -159,8 +188,8 @@ class Story extends Component {
   }
 };
 
-function mapStateToProps(state) {
-  const { content } = state.content;
-  return { content };
+function mapStoreToProps(state) {
+  const { content, submittedContent } = state.content;
+  return { content, submittedContent };
 }
-export default connect(mapStateToProps)(Story);
+export default connect(mapStoreToProps)(Story);
