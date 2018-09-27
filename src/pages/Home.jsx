@@ -53,10 +53,10 @@ class Home extends Component {
           </div>
         </div>
         <div className="col-3">
-          <div className="home-section-title">Your Progress</div>
+          <div className="home-section-title">Your Tasks</div>
           <div className="home-section-progress">
-            <Link to="/achievements">
-              <img alt="Progress" className="home-section-progress-image" src={envelopeWithMedal}/>
+            <Link to="/tasks">
+              <img alt="Tasks" className="home-section-progress-image" src={envelopeWithMedal}/>
             </Link>
           </div>
         </div>

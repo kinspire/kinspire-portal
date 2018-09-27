@@ -14,7 +14,7 @@ import { viewConstants as v } from './constants';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Achievements from './pages/Achievements';
+import Tasks from './pages/Tasks';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -31,7 +31,7 @@ ReactDOM.render(
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <PrivateRoute path="/achievements" component={Achievements} />
+          <PrivateRoute path="/tasks" component={Tasks} />
           <PrivateRoute path="/materials/story/:classLevel/:num" component={Story} />
           <PrivateRoute path="/materials/stories" component={Selection} componentProps={{view: v.STORIES}} />
           <PrivateRoute path="/materials" component={Selection} componentProps={{view: v.MATERIALS}} />
