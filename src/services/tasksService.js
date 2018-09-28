@@ -1,11 +1,8 @@
 // @flow
-import _ from 'lodash';
-
 import { tasksDb } from '../db';
 
 const STATUS_NOT_STARTED = 0;
-const STATUS_IN_PROGRESS = 1;
-const STATUS_DONE = 2;
+const STATUS_DONE = 1;
 
 export const tasksService = {
   markAsDone,
@@ -13,7 +10,7 @@ export const tasksService = {
 
 function markAsDone(taskId) {
   return new Promise((resolve, reject) => {
-    tasksDb.find({ _id: taskId }, function(err, docs) {
+    tasksDb.find({ _id: taskId }, (err, docs) => {
       if (err) return reject(err);
 
       if (!docs.length) {
@@ -21,7 +18,7 @@ function markAsDone(taskId) {
         console.error("Doc not found");
         reject();
       } else {
-        let task = docs[0];
+        const task = docs[0];
         task.status = STATUS_DONE;
         resolve();
       }
