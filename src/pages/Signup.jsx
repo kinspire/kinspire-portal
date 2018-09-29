@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 
 import './Signup.css';
 import ShadowButton from '../components/ShadowButton';
-import { userActions } from '../actions/userActions';
+import { authActions } from '../actions/authActions';
 
 class Signup extends Component {
   constructor(props) {
     super(props);
 
     // confirm logout
-    this.props.dispatch(userActions.logout());
+    this.props.dispatch(authActions.logout());
 
     this.state = {
       username: '', submitted: false
@@ -32,7 +32,7 @@ class Signup extends Component {
   handleSubmit = () => {
     if (this.state.firstName && this.state.lastName && this.state.birthday && this.state.classLevel) {
       let {submitted, ...user} = this.state;
-      this.props.dispatch(userActions.signup(user));
+      this.props.dispatch(authActions.signup(user));
     } else {
       alert("Enter all details");
     }

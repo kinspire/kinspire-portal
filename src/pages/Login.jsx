@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 
 import './Login.css';
 import ShadowButton from '../components/ShadowButton';
-import { userActions } from '../actions/userActions';
+import { authActions } from '../actions/authActions';
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     // confirm logout
-    this.props.dispatch(userActions.logout());
+    this.props.dispatch(authActions.logout());
 
     this.state = {username: ''};
   }
@@ -29,7 +29,7 @@ class Login extends Component {
 
   handleSubmit = () => {
     if (this.state.username) {
-      this.props.dispatch(userActions.login(this.state.username));
+      this.props.dispatch(authActions.login(this.state.username));
     } else {
       alert("Enter username");
     }
@@ -38,11 +38,9 @@ class Login extends Component {
   render() {
     if (this.props.loggedIn) {
       return <Redirect to={{pathname: "/"}}/>;
+    } else if (this.props.loginError) {
+      alert(this.props.loginError);
     }
-    // TODO add a "login error handled action"
-    /*else if (this.props.loginError) {
-      alert("Login error");
-    }*/
 
     return (
       <div className="portal-body row">

@@ -21,6 +21,7 @@ class Container extends Component {
   render() {
     // TODO: menu and back button only if logged in
     // TODO: title component with the explode() logic from PHP
+    // TODO: removed sync button
     return (
       <div id="portal-content" style={{minHeight: window.innerHeight, maxHeight: window.innerHeight}}>
         <img alt="top" id="portal-background-top" src={top}/>
@@ -33,7 +34,6 @@ class Container extends Component {
           <Back/>
         </div>
         {this.props.children}
-        <SyncButton/>
       </div>
     );
   }
