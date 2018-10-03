@@ -1,5 +1,5 @@
 // @flow
-import { usersDb, contentProgressDb } from '../db';
+import { usersDb } from '../db';
 import { firebaseService } from './firebaseService';
 
 export const authService = {
@@ -24,8 +24,8 @@ function login(username) {
         }
 
         querySnapshot.forEach(doc => {
-          localStorage.setItem('user', JSON.stringify(doc));
-          resolve(doc);
+          localStorage.setItem('user', JSON.stringify(doc.data()));
+          resolve(doc.data());
         });
       })
       .catch(error => {
@@ -37,7 +37,7 @@ function login(username) {
 // Login local
 function loginLocal(username) {
   return new Promise((resolve, reject) => {
-    usersDb.find({ username: username }, function(err, users) {
+    usersDb.find({ username: username }, (err, users) => {
       if (err !== null || !users.length) return reject(err);
 
       localStorage.setItem('user', JSON.stringify(users[0]));
@@ -76,35 +76,5 @@ function signup(details) {
       .catch(error => {
         reject(error);
       });
-  });
-}
-
-// TODO: add error handling
-function signupLocal(details) {
-  return new Promise((resolve, reject) => {
-    details.username = (details.firstName + details.lastName).toLowerCase();
-    usersDb.find({ username: details.username }, function(err, users) {
-      if (users.length) {
-        return reject("Duplicate username");
-      } else {
-        // Creation of all new records for this user
-        usersDb.insert(details, function(err, newDetails) {
-          if (err != null) reject(err);
-
-          let newContentProgress = {
-            userId: newDetails._id,
-            crosswordNum: 0,
-            wordsearchNum: 0,
-            storyNum: 0
-          };
-          contentProgressDb.insert(newContentProgress, function(err) {
-            if (err != null) reject(err);
-
-            localStorage.setItem('user', JSON.stringify(newDetails));
-            resolve(newDetails);
-          });
-        });
-      }
-    });
   });
 }

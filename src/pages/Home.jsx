@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -12,7 +13,8 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.props.dispatch(contentActions.getNextContentItems());
+    // TODO replace with dispatching tasks instead
+    // this.props.dispatch(contentActions.getNextContentItems());
 
     this.state = {};
   }
@@ -64,6 +66,10 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  dispatch: PropTypes.function,
+};
 
 // <div className="home-avatars">
 //   <img className="home-avatar" src="/images/avatar/<?php echo $user['avatar'];?>.svg"/>

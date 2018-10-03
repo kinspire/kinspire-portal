@@ -1,6 +1,13 @@
 module.exports = {
-  "extends": "eslint:recommended",
+  "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+  ],
+  "plugins": [
+      "react"
+  ],
   "env": {
+    "browser": true, // sets window, localStorage, document, etc.
     "node": true,
     "es6": true,
   },
