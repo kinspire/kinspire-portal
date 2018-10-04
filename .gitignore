@@ -23,3 +23,6 @@ yarn-error.log*
 # Produced CSS files
 *.css
 .gitsecret/keys/random_seed
+
+# ctags
+tags

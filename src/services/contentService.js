@@ -3,8 +3,7 @@ import _ from 'lodash';
 
 import { contentDb, contentProgressDb, contentSubmissionsDb } from '../db';
 import { contentConstants as c } from '../constants';
-
-// TODO move this online
+import { firebaseService } from './firebaseService';
 
 export const contentService = {
   getNextContentItems,
@@ -23,6 +22,7 @@ function queryPromise(query) {
 }
 
 // TODO: worry about whether user is logged in?
+// TODO move online
 function getNextContentItems() {
   return new Promise((resolve, reject) => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -67,19 +67,22 @@ function getNextContentItems() {
 }
 
 function getContent(type, classLevel, num) {
-  return new Promise((resolve, reject) => {
-    contentDb.find({ type, classLevel: parseInt(classLevel, 10), num: parseInt(num, 10) }, (err, docs) => {
-      if (err !== null) reject(err);
-
-      if (!docs.length) {
-        // TODO no actual content, what do we do
-      } else {
-        resolve(docs[0]);
-      }
-    });
+  return new Promise(resolve => {
+    firebaseService.db.collection("content")
+      .where("type", "==", type)
+      .where("classLevel", "==", parseInt(classLevel, 10))
+      .where("num", "==", parseInt(num, 10))
+      .limit(1)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          resolve(doc.data());
+        });
+      });
   });
 }
 
+// TODO move online
 function submitContent(type, classLevel, num, answers) {
   return new Promise((resolve, reject) => {
     contentSubmissionsDb.insert({type, classLevel, num, answers}, (err, doc) => {

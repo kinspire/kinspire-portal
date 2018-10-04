@@ -12,7 +12,7 @@ const materials = [
   {name: "Templates", link: "/materials/templates"}
 ];
 const activities = [
-  {name: "Word Search", link: "/activities/wordsearch"}
+  // {name: "Word Search", link: "/activities/wordsearch"}
 ];
 
 class Selection extends Component {
@@ -25,7 +25,7 @@ class Selection extends Component {
     case v.STORIES:
       return [{name: "Story 1", link: "/materials/story/1/0"}];
     case v.WORDSEARCH:
-      return [{name: "Story 1", link: "/activities/wsplay/1/0"}];
+      return []; // {name: "Story 1", link: "/activities/wsplay/1/0"}];
     default:
       return [];
     }
