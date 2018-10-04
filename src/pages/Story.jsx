@@ -1,27 +1,27 @@
 // @flow
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import './Story.css';
 
-import { contentActions } from '../actions/contentActions';
 import { contentConstants as c } from '../constants';
+import { contentService } from '../services/contentService';
 
 function generateStory(story) {
   if (!story) return '';
 
-  let paragraphs = story.story;
-  let vocab = story.vocab || [];
-  let translations = story['translation-te'];
+  const paragraphs = story.story;
+  const vocab = story.vocab || [];
+  const translations = story['translation-te'];
   let i = 0;
 
   return paragraphs.map((paragraph, paragraphNum) => {
-    let paragraphContent = [];
+    const paragraphContent = [];
 
     while (i < vocab.length) {
       // Split the paragraph on the vocab word, so that we get just the
       // paragraph up to but not including the vocab word
-      let parts = paragraph.split(vocab[i], 2);
+      const parts = paragraph.split(vocab[i], 2);
       paragraphContent.push(
         <span key={`pre-vocab-${i}`} className="stories-story-text">{parts[0]}</span>
       );
@@ -30,14 +30,14 @@ function generateStory(story) {
       if (parts.length < 2) break;
 
       // Write out the vocab word
-			let vocabWord = (
-				<span className="stories-vocab" key={vocab[i]}>
-					<span className="stories-vocab-word">{vocab[i]}</span>
-					<div className="stories-vocab-def">
-						{(i < translations.length) ? translations[i] : '[translation]'}
-					</div>
-				</span>
-			);
+      const vocabWord = (
+        <span className="stories-vocab" key={vocab[i]}>
+          <span className="stories-vocab-word">{vocab[i]}</span>
+          <div className="stories-vocab-def">
+            {(i < translations.length) ? translations[i] : '[translation]'}
+          </div>
+        </span>
+      );
 
       paragraphContent.push(vocabWord);
 
@@ -49,7 +49,7 @@ function generateStory(story) {
       // Fencepost for last word
       paragraphContent.push(
         <span className="stories-story-text" key={`pre-vocab-${i}`}>{paragraph}</span>
-      )
+      );
     }
 
     return (
@@ -61,38 +61,43 @@ function generateStory(story) {
 }
 
 class Story extends Component {
-  propTypes: {
-    match: PropTypes.object.isRequired
-  };
-
   constructor(props) {
     super(props);
 
-    const { classLevel, num } = this.props.match.params;
-    this.props.dispatch(contentActions.getContent(c.TYPE_STORY, classLevel, num));
+    this.state = {
+      content: null,
+    };
 
-    this.state = {};
+    this.handleOptionChange     = this.handleOptionChange.bind(this);
+    this.handleInputChange      = this.handleInputChange.bind(this);
   }
 
-  handleOptionChange = (i, event) => {
-    let answers = this.state.answers;
+  componentDidMount() {
+    const { classLevel, num } = this.props.match.params;
+    contentService.getContent(c.TYPE_STORY, classLevel, num)
+      .then(content => {
+        this.setState({content});
+      });
+  }
+
+  handleOptionChange(i, event) {
+    const answers = this.state.answers;
     answers[i] = parseInt(event.target.value, 10);
     this.setState({answers});
   }
 
-  handleInputChange = (i, event) => {
-    let answers = this.state.answers;
+  handleInputChange(i, event) {
+    const answers = this.state.answers;
     answers[i] = event.target.value;
     this.setState({answers});
   }
 
-  generateQuestions = () => {
-    if (!this.props.content) return '';
+  generateQuestions() {
+    if (!this.state.content) return '';
 
-    let questions = this.props.content.questions;
-    let answers = this.state.answers;
+    const questions = this.state.content.questions;
 
-    let output = [];
+    const output = [];
 
     // TODO use question number or index?
     questions.forEach((question, i) => {
@@ -121,7 +126,7 @@ class Story extends Component {
             type="text" key={`question-${i}-answer`} name={`question-${i}`}
             id={`question-${i}`} value={this.state.answers[i]}
             onChange={this.handleInputChange.bind(null, i)} />
-        )
+        );
         break;
       case 'long':
         output.push(
@@ -130,10 +135,10 @@ class Story extends Component {
             name={`question-${i}`}
             id={`question-${i}`}
             value={this.state.answers[i]} />
-        )
+        );
         break;
-        default:
-        console.log("Unknown question type: " + question.type);
+      default:
+        console.log(`Unknown question type: ${  question.type}`);
         break;
       }
     });
@@ -141,10 +146,11 @@ class Story extends Component {
     return output;
   }
 
-  handleSubmit = (event) => {
+  handleSubmit() {
     // TODO alas! form validation!
-    const { classLevel, num } = this.props.match.params;
-    this.props.dispatch(contentActions.submitContent(c.TYPE_STORY, classLevel, num, this.state.answers));
+    // const { classLevel, num } = this.props.match.params;
+    // TODO fix actual submission
+    // TODO alert on submission
   }
 
   // TODO move the generation into getDerivedStateFromProps, so we only
@@ -153,9 +159,9 @@ class Story extends Component {
   static getDerivedStateFromProps(props, state) {
     // Okay so we receive the content from the props, convert it into a state object,
     // and have to correspondingly tie the values to the form elements
-    if (props.content) {
+    if (state.content) {
       return {
-        answers: props.content.questions.map((q, i) => (q.type === 'mcq' ? -1 : ""))
+        answers: state.content.questions.map(q => { return (q.type === 'mcq' ? -1 : ""); } )
       };
     } else {
       return {
@@ -165,20 +171,16 @@ class Story extends Component {
   }
 
   render() {
-    if (this.props.submittedContent) {
-      alert("Submitted!");
-    }
-
     return (
       <div className="stories-story">
         <div className="stories-story-section stories-story-section-story">
-          {generateStory(this.props.content)}
+          {generateStory(this.state.content)}
         </div>
         <div className="stories-story-divider"></div>
         <div className="stories-story-section stories-story-section-questions">
           <div className="stories-story-section-questions-title">Questions</div>
           <ol type="1">
-            {this.generateQuestions(this.props.content)}
+            {this.generateQuestions(this.state.content)}
           </ol>
           <input type="button" value="Submit!" onClick={this.handleSubmit}/>
           <div id="error"></div>
@@ -186,10 +188,10 @@ class Story extends Component {
       </div>
     );
   }
+}
+
+Story.propTypes = {
+  match: PropTypes.object.isRequired
 };
 
-function mapStoreToProps(state) {
-  const { content, submittedContent } = state.content;
-  return { content, submittedContent };
-}
-export default connect(mapStoreToProps)(Story);
+export default Story;

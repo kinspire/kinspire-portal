@@ -1,37 +1,26 @@
 // @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import './Home.css';
-import ContentItemLink from '../components/ContentItemLink';
+// import ContentItemLink from '../components/ContentItemLink';
 import envelopeWithMedal from '../images/home-page-envelope-with-medal.png';
-import { tasksActions } from '../actions/tasksActions';
+import { tasksService } from '../services/tasksService';
 
 class Home extends Component {
   constructor(props) {
     super(props);
 
-    // TODO replace with dispatching tasks instead
-    // this.props.dispatch(contentActions.getNextContentItems());
-    this.props.dispatch(tasksActions.getTasks());
-
-    this.state = {};
+    this.state = {
+      tasks: [],
+    };
   }
 
-  /**
-  * Returns a list of links that link to the next content for the logged-in
-  * student.
-  */
-  getContentItems() {
-    // Convert the props `nextContentItems` into ContentItemLinks
-    if (this.props.nextContentItems) {
-      return this.props.nextContentItems.map((a, i) => (
-        <ContentItemLink key={i} {...a}/>
-      ));
-    }
-    return "";
+  componentDidMount() {
+    tasksService.getTasks()
+      .then(tasks => {
+        this.setState({tasks});
+      });
   }
 
   render() {
@@ -39,7 +28,7 @@ class Home extends Component {
       <div className="portal-body row">
         <div className="col-3">
           <div className="home-section-date">
-            <div className="home-section-title">Today's date</div>
+            <div className="home-section-title">Today&#39;s date</div>
             <div className="home-section-content">{new Date().toDateString()}</div>
           </div>
           <div className="home-section-quote">
@@ -52,7 +41,7 @@ class Home extends Component {
         <div className="col-6">
           <div className="home-section-title">Next Content Item to Try</div>
           <div className="home-section-content">
-            { this.getContentItems(this.props.nextContentItems) }
+            { JSON.stringify(this.state.tasks) }
           </div>
         </div>
         <div className="col-3">
@@ -68,18 +57,4 @@ class Home extends Component {
   }
 }
 
-Home.propTypes = {
-  dispatch: PropTypes.func,
-};
-
-// <div className="home-avatars">
-//   <img className="home-avatar" src="/images/avatar/<?php echo $user['avatar'];?>.svg"/>
-// </div>
-
-function mapStoreToProps(state) {
-  const { nextContentItems } = state.content;
-  return {
-    nextContentItems
-  };
-}
-export default connect(mapStoreToProps)(Home);
+export default Home;

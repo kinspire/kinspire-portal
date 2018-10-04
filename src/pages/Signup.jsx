@@ -1,62 +1,68 @@
 // @flow
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import './Signup.css';
 import ShadowButton from '../components/ShadowButton';
-import { authActions } from '../actions/authActions';
+import { authService } from '../services/authService';
 
 class Signup extends Component {
   constructor(props) {
     super(props);
 
     // confirm logout
-    this.props.dispatch(authActions.logout());
+    authService.logout();
 
     this.state = {
-      username: '', submitted: false
+      username: '',
+      loggedIn: false,
     };
+
+    this.handleChange       = this.handleChange.bind(this);
+    this.handleKeyUp        = this.handleKeyUp.bind(this);
+    this.handleSubmit       = this.handleSubmit.bind(this);
   }
 
-  handleChange = (key, event) => {
+  handleChange(key, event) {
     this.setState({[key]: event.target.value});
-  };
+  }
 
-  handleKeyUp = (event) => {
+  handleKeyUp(event) {
     if (event.key === 'Enter') {
       this.handleSubmit();
     }
-  };
+  }
 
-  handleSubmit = () => {
+  handleSubmit() {
     if (this.state.firstName && this.state.lastName && this.state.birthday && this.state.classLevel) {
-      let {submitted, ...user} = this.state;
-      this.props.dispatch(authActions.signup(user));
+      authService.signup(this.state)
+        .then(() => {
+          this.setState({loggedIn: true});
+        });
     } else {
       alert("Enter all details");
     }
-  };
+  }
 
   render() {
-    if (this.props.loggedIn) {
+    if (this.state.loggedIn) {
       return <Redirect to={{pathname: "/"}}/>;
     }
 
-    let avatars = (
+    const avatars = (
       "Choose avatar"
-            // <?php
-            // $directory = ($_SERVER['DOCUMENT_ROOT']."/images/avatar");
-            // $files = array_diff(scandir($directory), array('..', '.'));
-            //
-            // foreach ($files as $file) {
-            //   $name = trim(substr($file, 0, strlen($file) - 4)); ?>
-            //   <div className="signup-avatar-container">
-            //     <img className="signup-avatar" id="avatar-img-<?php echo $name;?>" src="/images/avatar/<?php echo $file; ?>">
-            //       <input className="signup-avatar-radio" type="radio" name="avatar" id="avatar-<?php echo $name; ?>" value="avatar-<?php echo $name; ?>">
-            //       </div>
-            //       <?php }
-            //       ?>
+      // <?php
+      // $directory = ($_SERVER['DOCUMENT_ROOT']."/images/avatar");
+      // $files = array_diff(scandir($directory), array('..', '.'));
+      //
+      // foreach ($files as $file) {
+      //   $name = trim(substr($file, 0, strlen($file) - 4)); ?>
+      //   <div className="signup-avatar-container">
+      //     <img className="signup-avatar" id="avatar-img-<?php echo $name;?>" src="/images/avatar/<?php echo $file; ?>">
+      //       <input className="signup-avatar-radio" type="radio" name="avatar" id="avatar-<?php echo $name; ?>" value="avatar-<?php echo $name; ?>">
+      //       </div>
+      //       <?php }
+      //       ?>
     );
 
     return (
@@ -102,10 +108,4 @@ class Signup extends Component {
   }
 }
 
-function mapStoreToProps(state) {
-  const { loggedIn } = state.authentication;
-  return {
-    loggedIn
-  };
-}
-export default connect(mapStoreToProps)(Signup);
+export default Signup;

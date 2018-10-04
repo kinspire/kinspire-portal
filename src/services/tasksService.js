@@ -15,7 +15,12 @@ function getTasks() {
       .collection("tasks").where("status", "==", STATUS_NOT_STARTED)
       .onSnapshot(snapshot => {
         // TODO sanitize and convert to simple js objects
-        resolve(snapshot.docs);
+        console.log(snapshot.docs);
+        resolve(snapshot.docs.map(doc => {
+          return Object.assign({
+            id: doc.id
+          }, doc.data());
+        }));
       });
   });
 }

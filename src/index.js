@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
 
 import registerServiceWorker from './registerServiceWorker';
 
-import { store } from './helpers/store';
 import Container from './Container';
 import PrivateRoute from './components/PrivateRoute';
 import { viewConstants as v } from './constants';
@@ -25,24 +23,22 @@ import WordSearch from './pages/WordSearch';
 // TODO do something about making the portal-body automatic in all pages
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <Container title="Portal">
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          <PrivateRoute path="/tasks" component={Tasks} />
-          <PrivateRoute path="/materials/story/:classLevel/:num" component={Story} />
-          <PrivateRoute path="/materials/stories" component={Selection} componentProps={{view: v.STORIES}} />
-          <PrivateRoute path="/materials" component={Selection} componentProps={{view: v.MATERIALS}} />
-          <PrivateRoute path="/activities/wsplay/:classLevel/:num" component={WordSearch} />
-          <PrivateRoute path="/activities/wordsearch" component={Selection} componentProps={{view: v.WORDSEARCH}} />
-          <PrivateRoute path="/activities" component={Selection} componentProps={{view: v.ACTIVITIES}} />
-          <PrivateRoute path="/" component={Home} />
-        </Switch>
-      </Container>
-    </BrowserRouter>
-  </Provider>,
+  <BrowserRouter>
+    <Container title="Portal">
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <PrivateRoute path="/tasks" component={Tasks} />
+        <PrivateRoute path="/materials/story/:classLevel/:num" component={Story} />
+        <PrivateRoute path="/materials/stories" component={Selection} componentProps={{view: v.STORIES}} />
+        <PrivateRoute path="/materials" component={Selection} componentProps={{view: v.MATERIALS}} />
+        <PrivateRoute path="/activities/wsplay/:classLevel/:num" component={WordSearch} />
+        <PrivateRoute path="/activities/wordsearch" component={Selection} componentProps={{view: v.WORDSEARCH}} />
+        <PrivateRoute path="/activities" component={Selection} componentProps={{view: v.ACTIVITIES}} />
+        <PrivateRoute path="/" component={Home} />
+      </Switch>
+    </Container>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

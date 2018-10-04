@@ -9,11 +9,11 @@ export const remoteDbService = {
 };
 
 // These are all the databases that will be backed up to Firebase
-let firebaseDbs = ['users', 'content', 'contentProgress', 'contentSubmissions'];
+const firebaseDbs = ['users', 'content', 'contentProgress', 'contentSubmissions'];
 
 function uploadPromise(dbLink, db) {
   return new Promise((resolve, reject) => {
-    db.find({}, function(err, docs) {
+    db.find({}, (err, docs) => {
       if (err !== null) return reject(err);
 
       // Convert docs into firebase format
@@ -34,8 +34,8 @@ function upload() {
 
 function downloadPromise(dbLink, db) {
   return new Promise((resolve, reject) => {
-    firebase.database().ref(`${dbLink}/`).once('value').then(function(snapshot) {
-      db.remove({}, {multi: true}, function(err) {
+    firebase.database().ref(`${dbLink}/`).once('value').then((snapshot) => {
+      db.remove({}, {multi: true}, (err) => {
         if (err !== null) return reject(err);
 
         function done() {
@@ -44,8 +44,8 @@ function downloadPromise(dbLink, db) {
         }
 
         if (snapshot.val()) {
-          let docs = Object.values(snapshot.val());
-          db.insert(docs, function(err) {
+          const docs = Object.values(snapshot.val());
+          db.insert(docs, (err) => {
             if (err !== null) return reject(err);
 
             done();

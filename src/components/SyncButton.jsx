@@ -1,33 +1,31 @@
 // @flow
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import './SyncButton.css';
 import ShadowButton from './ShadowButton';
-import { remoteDbActions } from '../actions/remoteDbActions';
+import { remoteDbService } from '../services/remoteDbService';
 
 class SyncButton extends Component {
-  handleUpload = (e) => {
-    if (!this.props.synchronizing) {
-      this.props.dispatch(remoteDbActions.upload());
-    } else {
-      alert("Already synchronizing");
-    }
-  };
+  constructor(props) {
+    super(props);
 
-  handleDownload = (e) => {
-    if (!this.props.synchronizing) {
-      this.props.dispatch(remoteDbActions.download());
-    } else {
-      alert("Already synchronizing");
-    }
-  };
+    this.handleUpload       = this.handleUpload.bind(this);
+    this.handleDownload     = this.handleDownload.bind(this);
+  }
+
+  handleUpload() {
+    remoteDbService.upload().then(() => {
+      alert("uploaded!!!");
+    });
+  }
+
+  handleDownload() {
+    remoteDbService.download().then(() => {
+      alert("dnloaded!!!");
+    });
+  }
 
   render() {
-    if (this.props.synchronized) {
-      alert("SYNCHRONIZED!!!");
-    }
-
     return (
       <span>
         <ShadowButton onClick={this.handleUpload} text="Upload"/>
@@ -37,11 +35,4 @@ class SyncButton extends Component {
   }
 }
 
-// Maps store changes to prop changes
-function mapStoreToProps(state) {
-  const { synchronized } = state.remoteDb;
-  return {
-    synchronized
-  };
-}
-export default connect(mapStoreToProps)(SyncButton);
+export default SyncButton;

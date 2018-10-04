@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { viewConstants as v } from '../constants';
 
@@ -14,31 +15,25 @@ const activities = [
   {name: "Word Search", link: "/activities/wordsearch"}
 ];
 
-export default class Selection extends Component {
-  propTypes: {
-    view: PropTypes.string.isRequired
-  };
-
-  getItems = () => {
+class Selection extends Component {
+  getItems() {
     switch (this.props.view) {
-      case v.MATERIALS:
-        return materials;
-      case v.ACTIVITIES:
-        return activities;
-      case v.STORIES:
-        // TODO use redux
-        return [{name: "Story 1", link: "/materials/story/1/0"}];
-      case v.WORDSEARCH:
-        // TODO use redux
-        return [{name: "Story 1", link: "/activities/wsplay/1/0"}];
-      default:
-        return [];
+    case v.MATERIALS:
+      return materials;
+    case v.ACTIVITIES:
+      return activities;
+    case v.STORIES:
+      return [{name: "Story 1", link: "/materials/story/1/0"}];
+    case v.WORDSEARCH:
+      return [{name: "Story 1", link: "/activities/wsplay/1/0"}];
+    default:
+      return [];
     }
-  };
+  }
 
   render() {
-    let itemsRendered = this.getItems().map((item) => (
-      <Link className="selection-category" to={item.link}>
+    const itemsRendered = this.getItems().map((item) => (
+      <Link key={item.link} className="selection-category" to={item.link}>
         <div className="selection-category-content">
           <div className="selection-category-text">{item.name}</div>
         </div>
@@ -52,3 +47,9 @@ export default class Selection extends Component {
     );
   }
 }
+
+Selection.propTypes = {
+  view: PropTypes.string.isRequired
+};
+
+export default Selection;

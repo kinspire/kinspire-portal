@@ -1,9 +1,9 @@
 // @flow
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Menu from './components/Menu';
 import Back from './components/Back';
-import SyncButton from './components/SyncButton';
 
 import './Container.css';
 import top from './images/portal-top-bar.png';
@@ -12,10 +12,6 @@ import bottom from './images/portal-bottom-bar.png';
 import right from './images/portal-right-bar.png';
 
 class Container extends Component {
-  props: {
-    children: Children
-  };
-
   // TODO set content height on resize
 
   render() {
@@ -38,5 +34,11 @@ class Container extends Component {
     );
   }
 }
+
+Container.propTypes = {
+  children: PropTypes.element,
+  title: PropTypes.string,
+};
+
 
 export default Container;
