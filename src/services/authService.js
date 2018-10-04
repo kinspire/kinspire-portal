@@ -13,6 +13,11 @@ const db = firebaseService.db;
 
 //////// PROMISE HELPER FUNCTIONS ////////
 
+function saveUserInfo(doc) {
+  localStorage.setItem('user', JSON.stringify(doc.data()));
+  localStorage.setItem('userId', doc.id);
+}
+
 // Login
 function login(username) {
   return new Promise((resolve, reject) => {
@@ -24,7 +29,7 @@ function login(username) {
         }
 
         querySnapshot.forEach(doc => {
-          localStorage.setItem('user', JSON.stringify(doc.data()));
+          saveUserInfo(doc);
           resolve(doc.data());
         });
       })
@@ -47,9 +52,11 @@ function loginLocal(username) {
 }
 
 // TODO make a Promise
+// TODO does this need to be a promise?
 function logout() {
   // remove user from local storage to log user out
   localStorage.removeItem('user');
+  localStorage.removeItem('userId');
 }
 
 function signup(details) {

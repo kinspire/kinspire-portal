@@ -12,7 +12,7 @@ class Login extends Component {
     super(props);
 
     // confirm logout
-    this.props.dispatch(authActions.logout());
+    authService.logout();
 
     this.state = {username: ''};
   }

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import './Home.css';
 import ContentItemLink from '../components/ContentItemLink';
 import envelopeWithMedal from '../images/home-page-envelope-with-medal.png';
-import { contentActions } from '../actions/contentActions';
+import { tasksActions } from '../actions/tasksActions';
 
 class Home extends Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class Home extends Component {
 
     // TODO replace with dispatching tasks instead
     // this.props.dispatch(contentActions.getNextContentItems());
+    this.props.dispatch(tasksActions.getTasks());
 
     this.state = {};
   }
@@ -68,7 +69,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  dispatch: PropTypes.function,
+  dispatch: PropTypes.func,
 };
 
 // <div className="home-avatars">
