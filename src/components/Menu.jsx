@@ -1,37 +1,36 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './Menu.css';
 import menuMagnetInactive from '../images/owl-magnet-inactive.png';
 
 // TODO component comment
 // TODO copy images
-export default class Menu extends Component {
-  propTypes: {
-    active: PropTypes.number
-  };
-
+class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false
     };
+
+    this.handleClick       = this.handleClick.bind(this);
   }
 
-  handleClick = (event) => {
+  handleClick() {
     this.setState({
       open: !this.state.open
     });
   }
 
   render() {
-    let sections = ["home", "resources", "activities", "access", "profile", "logout"];
-    let urls = ["", "/materials", "/activities", "/volunteer-access", "/profile", "/login"];
-    let names = ["Home", "Materials", "Activities", "Volunteer Access", "Profile", "Log out"];
+    const sections = ["home", "resources", "activities", "access", "profile", "logout"];
+    const urls = ["", "/materials", "/activities", "/volunteer-access", "/profile", "/login"];
+    const names = ["Home", "Materials", "Activities", "Volunteer Access", "Profile", "Log out"];
 
-    let menuItems = sections.map((section, i) => {
-      let text = this.props.active === i ? (names[i]) : (
+    const menuItems = sections.map((section, i) => {
+      const text = this.props.active === i ? (names[i]) : (
         <Link className={`portal-menu-item-${section}`} onClick={this.handleClick}
           to={`${urls[i]}`}>
           {names[i]}
@@ -41,13 +40,13 @@ export default class Menu extends Component {
       // TODO: Change the hardcoded 25 height/width
       return (
         <div key={i} className="portal-menu-item">
-          <img alt="" src={`/images/${section}${this.props.active === i ? '-' : '-in'}active.png`} height="25" width="25"/>
+          <img alt="" src={`/images/menu/${section}${this.props.active === i ? '-' : '-in'}active.png`} height="25" width="25"/>
           {text}
         </div>
       );
     }, this);
 
-    let menuContent = (
+    const menuContent = (
       <div className="portal-menu-content" id="menu-content">
         {menuItems}
         <div className="portal-menu-item-contact">
@@ -71,3 +70,9 @@ export default class Menu extends Component {
     );
   }
 }
+
+Menu.propTypes = {
+  active: PropTypes.number
+};
+
+export default Menu;

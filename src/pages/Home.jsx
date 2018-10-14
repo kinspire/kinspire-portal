@@ -39,13 +39,13 @@ class Home extends Component {
           </div>
         </div>
         <div className="col-6">
-          <div className="home-section-title">Next Content Item to Try</div>
+          <div className="home-section-title">Tasks</div>
           <div className="home-section-content">
             { JSON.stringify(this.state.tasks) }
           </div>
         </div>
         <div className="col-3">
-          <div className="home-section-title">Your Tasks</div>
+          <div className="home-section-title">Progress</div>
           <div className="home-section-progress">
             <Link to="/tasks">
               <img alt="Tasks" className="home-section-progress-image" src={envelopeWithMedal}/>
