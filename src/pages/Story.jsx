@@ -65,6 +65,7 @@ class Story extends Component {
     super(props);
 
     this.state = {
+      answers: [],
       content: null,
     };
 
@@ -76,7 +77,13 @@ class Story extends Component {
     const { classLevel, num } = this.props.match.params;
     contentService.getContent(c.TYPE_STORY, classLevel, num)
       .then(content => {
-        this.setState({content});
+        // Now that we've retrieved the content information from the database,
+        // we also create an empty answers
+        let answers = [];
+        if (content) {
+          answers = content.questions.map(q => { return (q.type === 'mcq' ? -1 : ""); } );
+        }
+        this.setState({content, answers});
       });
   }
 
@@ -97,9 +104,9 @@ class Story extends Component {
 
     const questions = this.state.content.questions;
 
-    const output = [];
-
     // TODO use question number or index?
+    // Iterate through the questions and create JSX in `output`
+    const output = [];
     questions.forEach((question, i) => {
       output.push(<li key={`question-${i}`}>{question.question}</li>);
 
@@ -131,43 +138,18 @@ class Story extends Component {
       case 'long':
         output.push(
           <textarea
-            key={`question-${i}-answer`}
-            name={`question-${i}`}
-            id={`question-${i}`}
-            value={this.state.answers[i]} />
+            key={`question-${i}-answer`} name={`question-${i}`}
+            id={`question-${i}`} value={this.state.answers[i]}
+            onChange={this.handleInputChange.bind(null, i)} />
         );
         break;
       default:
-        console.log(`Unknown question type: ${  question.type}`);
+        console.log(`Unknown question type: ${question.type}`);
         break;
       }
     });
 
     return output;
-  }
-
-  handleSubmit() {
-    // TODO alas! form validation!
-    // const { classLevel, num } = this.props.match.params;
-    // TODO fix actual submission
-    // TODO alert on submission
-  }
-
-  // TODO move the generation into getDerivedStateFromProps, so we only
-  // regenerate on actual content changes
-  // TODO or maybe not...?
-  static getDerivedStateFromProps(props, state) {
-    // Okay so we receive the content from the props, convert it into a state object,
-    // and have to correspondingly tie the values to the form elements
-    if (state.content) {
-      return {
-        answers: state.content.questions.map(q => { return (q.type === 'mcq' ? -1 : ""); } )
-      };
-    } else {
-      return {
-        answers: []
-      };
-    }
   }
 
   render() {
@@ -180,9 +162,9 @@ class Story extends Component {
         <div className="stories-story-section stories-story-section-questions">
           <div className="stories-story-section-questions-title">Questions</div>
           <ol type="1">
-            {this.generateQuestions(this.state.content)}
+            {this.generateQuestions()}
           </ol>
-          <input type="button" value="Submit!" onClick={this.handleSubmit}/>
+          <input type="button" value="Submit!"/>
           <div id="error"></div>
         </div>
       </div>

@@ -37,12 +37,12 @@ class Menu extends Component {
         </Link>
       );
 
+      // TODO: add images
+      //<img alt="" src={`/images/menu/${section}${this.props.active === i ? '-' : '-in'}active.png`} height="25" width="25"/>
+
       // TODO: Change the hardcoded 25 height/width
       return (
-        <div key={i} className="portal-menu-item">
-          <img alt="" src={`/images/menu/${section}${this.props.active === i ? '-' : '-in'}active.png`} height="25" width="25"/>
-          {text}
-        </div>
+        <div key={i} className="portal-menu-item">{text}</div>
       );
     }, this);
 

@@ -17,11 +17,21 @@ class Selection extends Component {
   }
 
   componentDidMount() {
-    // TODO query db for content
-    contentService.getSelectionItems(this.props.view)
-      .then(items => {
-        this.setState({items});
-      });
+    // TODO Instead of just emptying items, make a loading thing
+    this.setState({
+      items: []
+    }, () => {
+      contentService.getSelectionItems(this.props.view)
+        .then(items => {
+          this.setState({items});
+        });
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.view !== this.props.view) {
+      this.componentDidMount();
+    }
   }
 
   render() {
