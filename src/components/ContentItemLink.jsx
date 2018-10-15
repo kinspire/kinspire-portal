@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import ShadowButton from './ShadowButton';
+import { contentConstants } from '../constants';
 
 export default class ContentItemLink extends Component {
   render() {
@@ -13,9 +14,15 @@ export default class ContentItemLink extends Component {
   }
 }
 
+ContentItemLink.defaultProps = {
+  classLevel: 0,
+  num: 0,
+  type: contentConstants.TYPE_TASK,
+};
+
 ContentItemLink.propTypes = {
-  classLevel: PropTypes.string.isRequired,
-  num: PropTypes.number.isRequired,
+  classLevel: PropTypes.number,
+  num: PropTypes.number,
   title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };

@@ -2,37 +2,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { viewConstants as v } from '../constants';
+
+import { contentService } from '../services/contentService.js';
 
 import './Selection.css';
 
-// TODO move all of this someplace better
-const materials = [
-  {name: "Stories", link: "/materials/stories"},
-  {name: "Templates", link: "/materials/templates"}
-];
-const activities = [
-  // {name: "Word Search", link: "/activities/wordsearch"}
-];
-
 class Selection extends Component {
-  getItems() {
-    switch (this.props.view) {
-    case v.MATERIALS:
-      return materials;
-    case v.ACTIVITIES:
-      return activities;
-    case v.STORIES:
-      return [{name: "Story 1", link: "/materials/story/1/0"}];
-    case v.WORDSEARCH:
-      return []; // {name: "Story 1", link: "/activities/wsplay/1/0"}];
-    default:
-      return [];
-    }
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      items: [],
+    };
+  }
+
+  componentDidMount() {
+    // TODO query db for content
+    contentService.getSelectionItems(this.props.view)
+      .then(items => {
+        this.setState({items});
+      });
   }
 
   render() {
-    const itemsRendered = this.getItems().map((item) => (
+    const itemsRendered = this.state.items.map((item) => (
       <Link key={item.link} className="selection-category" to={item.link}>
         <div className="selection-category-content">
           <div className="selection-category-text">{item.name}</div>

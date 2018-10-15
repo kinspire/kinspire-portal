@@ -7,5 +7,6 @@ export const viewConstants = {
 
 export const contentConstants = {
   TYPE_STORY: 'story',
-  TYPE_WORD_SEARCH: 'wordsearch'
+  TYPE_WORD_SEARCH: 'wordsearch',
+  TYPE_TASK: 'task',
 };

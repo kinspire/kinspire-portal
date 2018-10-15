@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Home.css';
-// import ContentItemLink from '../components/ContentItemLink';
+import ContentItemLink from '../components/ContentItemLink';
 import envelopeWithMedal from '../images/home-page-envelope-with-medal.png';
 import { tasksService } from '../services/tasksService';
 
@@ -21,6 +21,12 @@ class Home extends Component {
       .then(tasks => {
         this.setState({tasks});
       });
+  }
+
+  getContentLinks() {
+    return this.state.tasks.map((task, i) => (
+      <ContentItemLink key={i} title={task.title}/>
+    ));
   }
 
   render() {
@@ -41,7 +47,7 @@ class Home extends Component {
         <div className="col-6">
           <div className="home-section-title">Tasks</div>
           <div className="home-section-content">
-            { JSON.stringify(this.state.tasks) }
+            { this.getContentLinks() }
           </div>
         </div>
         <div className="col-3">

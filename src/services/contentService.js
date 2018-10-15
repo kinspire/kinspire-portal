@@ -4,11 +4,15 @@ import _ from 'lodash';
 import { contentDb, contentProgressDb, contentSubmissionsDb } from '../db';
 import { contentConstants as c } from '../constants';
 import { firebaseService } from './firebaseService';
+import { viewConstants as v } from '../constants';
+
+const db = firebaseService.db;
 
 export const contentService = {
   getNextContentItems,
   getContent,
-  submitContent
+  submitContent,
+  getSelectionItems,
 };
 
 function queryPromise(query) {
@@ -68,7 +72,7 @@ function getNextContentItems() {
 
 function getContent(type, classLevel, num) {
   return new Promise(resolve => {
-    firebaseService.db.collection("content")
+    db.collection("content")
       .where("type", "==", type)
       .where("classLevel", "==", parseInt(classLevel, 10))
       .where("num", "==", parseInt(num, 10))
@@ -95,5 +99,46 @@ function submitContent(type, classLevel, num, answers) {
         resolve();
       }
     });
+  });
+}
+
+const materials = [
+  {name: "Stories", link: "/materials/stories"},
+  {name: "Templates", link: "/materials/templates"}
+];
+
+const activities = [
+  // {name: "Word Search", link: "/activities/wordsearch"}
+];
+
+function getSelectionItems(view) {
+  return new Promise(resolve => {
+    switch (view) {
+    case v.MATERIALS:
+      resolve(materials);
+      return;
+    case v.ACTIVITIES:
+      resolve(activities);
+      return;
+    // TODO combine this and wordsearch
+    case v.STORIES:
+      db.collection("content")
+        .where("type", "==", "story")
+        .get()
+        .then(snapshot => {
+          resolve(snapshot.docs.map(doc => (
+            {
+              name: doc.get('title'),
+              // TODO make a utility function to convert doc to link
+              link: `/materials/story/${doc.get('classLevel')}/${doc.get('num')}`
+            }
+          )));
+        });
+      return;
+    case v.WORDSEARCH:
+      return []; // {name: "Story 1", link: "/activities/wsplay/1/0"}];
+    default:
+      return [];
+    }
   });
 }
