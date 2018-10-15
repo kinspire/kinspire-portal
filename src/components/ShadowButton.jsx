@@ -1,66 +1,65 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './ShadowButton.css';
 
 // TODO component comment
 export default class ShadowButton extends Component {
-  propTypes: {
-    children: Children,
-    className: PropTypes.string,
-    height: PropTypes.string,
-    onClick: PropTypes.func,
-    text: PropTypes.string,
-    textSize: PropTypes.number,
-    to: PropTypes.string,
-    width: PropTypes.string
+  constructor(props) {
+    super(props);
+
+    this.handleClick        = this.handleClick.bind(this);
   }
 
-  handleClick = (e) => {
+  handleClick(e) {
     e.preventDefault();
     this.props.onClick(e);
-  };
+  }
 
   render() {
-    // TODO definitely a better way to do this...
-    let buttonStyle = {
-      height: this.props.height || undefined,
-      width: this.props.width || undefined
-    };
-
     // Determine children
-    let nested;
+    let children;
     if (this.props.children) {
-      nested = this.props.children;
+      children = this.props.children;
     } else { // if (this.props.text) {
-      let textStyle = {
+      const textStyle = {
         fontSize: this.props.textSize || undefined
-      }
-      nested = <div className="shadow-button-text" style={textStyle}>{this.props.text}</div>;
+      };
+      children = <div className="shadow-button-text" style={textStyle}>{this.props.text}</div>;
     }
 
-    // Determine HTML tag
+    const elementProps = {
+      className: `${this.props.className || ""  } shadow-button`,
+      style: {
+        height: this.props.height || undefined,
+        width: this.props.width || undefined
+      }
+    };
+
+    // Determine HTML tag based on props
     if (this.props.onClick) {
-      return (
-        <div
-          className={(this.props.className || "") + " shadow-button"}
-          onClick={this.props.onClick}
-          style={buttonStyle}>
-          {nested}
-        </div>
-      );
+      return <div onClick={this.props.onClick} {...elementProps}>
+        {children}
+      </div>;
     } else if (this.props.to) {
-      return (
-        <Link
-          className={(this.props.className || "") + " shadow-button"}
-          to={this.props.to}
-          style={buttonStyle}>
-          {nested}
-        </Link>
-      );
+      return <Link to={this.props.to} {...elementProps}>
+        {children}
+      </Link>;
     } else {
       return "Shadow Button";
     }
   }
 }
+
+ShadowButton.propTypes = {
+  children: PropTypes.element,
+  className: PropTypes.string,
+  height: PropTypes.string,
+  onClick: PropTypes.func,
+  text: PropTypes.string,
+  textSize: PropTypes.number,
+  to: PropTypes.string,
+  width: PropTypes.string
+};

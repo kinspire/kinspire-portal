@@ -9,7 +9,10 @@ export default class ContentItemLink extends Component {
   render() {
     const { classLevel, num, title, type } = this.props;
     return (
-      <ShadowButton to={`/materials/${type}/${classLevel}/${num}`} text={`${type}: ${title}`}/>
+      <ShadowButton className="home-next-activity" to={`/materials/${type}/${classLevel}/${num}`}>
+        <div className="shadow-button-text home-next-activity-category">{type}</div>
+        <div className="home-next-activity-details">{title}</div>
+      </ShadowButton>
     );
   }
 }
