@@ -1,68 +1,81 @@
 // @flow
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import ShadowButton from '../components/ShadowButton';
 import HashSet from '../utils/hashset';
+import { contentConstants as c } from '../constants';
+import { contentService } from '../services/contentService';
 
 import './WordSearch.css';
 
 export default class WordSearch extends Component {
-  propTypes: {
-    match: PropTypes.object.isRequired
-  };
-
   constructor(props) {
     super(props);
 
-    // TODO: highlight the initial words
-    const { classLevel, storyNumber } = props.match.params;
-    // TODO optimize when to load file
-    let wsJson = require(`../content/wordsearch/${classLevel}/${storyNumber}.json`);
-
     this.state = {
       wordStart: [-1, -1],
-      grid: wsJson.grid,
-      words: wsJson.words,
+      grid: [],
+      words: [],
       chosenWords: {},
       chosenCells: new HashSet(),
     };
+
+    this.handleLetterClicked          = this.handleLetterClicked.bind(this);
   }
+
+  componentDidMount() {
+    // TODO: highlight the initial words
+    const { classLevel, num } = this.props.match.params;
+    // TODO optimize when to load file
+    // const wsJson = require(`../content/wordsearch/${classLevel}/${storyNumber}.json`);
+    contentService.getContent(c.TYPE_WORD_SEARCH, classLevel, num)
+      .then(content => {
+        // TODO get the saved progress
+
+        // Set up state
+        this.setState({
+          grid: content.grid,
+          words: content.words,
+        });
+      });
+  }
+
 
   /**
   * Returns a string representing the word chosen from wordStart to
   * wordEnd.
   */
-  getSelectedWord = (wordEnd) => {
+  getSelectedWord(wordEnd) {
     const { wordStart, grid } = this.state;
-    let wordDelta = [wordEnd[0] - wordStart[0], wordEnd[1] - wordStart[1]];
-    if ((wordDelta[0] === 0 && wordDelta[1] === 0)
-    || (Math.abs(wordDelta[0]) !== Math.abs(wordDelta[1]) && wordDelta[0] !== 0 && wordDelta[1] !== 0)) {
+    const wordDelta = [wordEnd[0] - wordStart[0], wordEnd[1] - wordStart[1]];
+    if ((wordDelta[0] === 0 && wordDelta[1] === 0) || (Math.abs(wordDelta[0]) !== Math.abs(wordDelta[1]) && wordDelta[0] !== 0 && wordDelta[1] !== 0)) {
       return null;
     }
     // We have a word!
-    let wordLen = Math.max.apply(null, wordDelta.map(Math.abs));
+    const wordLen = Math.max.apply(null, wordDelta.map(Math.abs));
     let word = "";
     for (let i = 0; i <= wordLen; i++) {
-      let row = wordStart[0] + i * (wordDelta[0] / wordLen);
-      let col = wordStart[1] + i * (wordDelta[1] / wordLen);
+      const row = wordStart[0] + i * (wordDelta[0] / wordLen);
+      const col = wordStart[1] + i * (wordDelta[1] / wordLen);
       word += grid[row][col];
     }
     return word;
   }
 
-  handleLetterClicked = (event, row, col) => {
+  handleLetterClicked(row, col) {
     if (this.state.wordStart[0] >= 0) {
       // This is the case that one letter has been clicked and we are selecting the word end
-      let wordEnd = [row, col];
-      let selectedWord = this.getSelectedWord(wordEnd);
+      const wordEnd = [row, col];
+      const selectedWord = this.getSelectedWord(wordEnd);
       if (!selectedWord) {
         alert('Choose a word! Resetting choice.');
       } else if (selectedWord in this.state.chosenWords) {
         alert('Word already chosen! Resetting choice.');
       } else {
         if (this.state.words.includes(selectedWord)) {
-          alert('Nice job! You chose: ' + selectedWord);
+          alert(`Nice job! You chose: ${  selectedWord}`);
           this.wordIsChosen(wordEnd, selectedWord);
         } else {
           // Check for completion
@@ -82,19 +95,20 @@ export default class WordSearch extends Component {
     }
   }
 
-  handleSave = (event) => {
+  handleSave() {
+    // TODO implement
     console.log("Save");
   }
 
-  wordIsChosen = (wordEnd, selectedWord) => {
+  wordIsChosen(wordEnd, selectedWord) {
     const { wordStart, chosenWords } = this.state;
-    let chosenCells = this.state.chosenCells.copy();
-    let wordDel = [wordEnd[0] - wordStart[0], wordEnd[1] - wordStart[1]];
+    const chosenCells = this.state.chosenCells.copy();
+    const wordDel = [wordEnd[0] - wordStart[0], wordEnd[1] - wordStart[1]];
     // Fancy functional programming to get the length of the word
-    let wordLen = Math.max.apply(null, wordDel.map(Math.abs));
+    const wordLen = Math.max.apply(null, wordDel.map(Math.abs));
     for (let i = 0; i <= wordLen; i++) {
-      let row = wordStart[0] + i * (wordDel[0] / wordLen);
-      let col = wordStart[1] + i * (wordDel[1] / wordLen);
+      const row = wordStart[0] + i * (wordDel[0] / wordLen);
+      const col = wordStart[1] + i * (wordDel[1] / wordLen);
       chosenCells.put([row, col]);
       // getElement([row, col]).addClass('wordsearch-letter-completed');
     }
@@ -102,15 +116,15 @@ export default class WordSearch extends Component {
     this.setState({
       chosenWords: Object.assign(chosenWords, {[selectedWord]: [wordStart, wordEnd]}),
       chosenCells: chosenCells
-    })
+    });
   }
 
-  generateGrid = () => {
+  generateGrid() {
     return this.state.grid.map((row, rowN) => {
       // TODO add completed to corresponding letters
 
-      let rowJsx = row.split("").map((char, col) => {
-        let letterClasses = classNames({
+      const rowJsx = row.split("").map((char, col) => {
+        const letterClasses = classNames({
           "wordsearch-letter": true,
           "wordsearch-letter-start": rowN === this.state.wordStart[0] && col === this.state.wordStart[1],
           "wordsearch-letter-completed": this.state.chosenCells.has([rowN, col])
@@ -119,7 +133,7 @@ export default class WordSearch extends Component {
         return (
           <div
             className={letterClasses}
-            key={col} onClick={(e) => this.handleLetterClicked(e, rowN, col)}>
+            key={col} onClick={this.handleLetterClicked.bind(this, rowN, col)}>
             {char}
           </div>
         );
@@ -133,11 +147,11 @@ export default class WordSearch extends Component {
     });
   }
 
-  generateWords = () => {
+  generateWords() {
     // TODO add strikethrough for selected words
 
     return this.state.words.map((word, i) => (
-      <div className={"wordsearch-word" + ((word in this.state.chosenWords) ? ' strikethrough' : '')}
+      <div className={`wordsearch-word${  (word in this.state.chosenWords) ? ' strikethrough' : ''}`}
         key={i}>
         {word}
       </div>
@@ -159,4 +173,8 @@ export default class WordSearch extends Component {
       </div>
     );
   }
+}
+
+WordSearch.propTypes = {
+  match: PropTypes.object.isRequired
 };

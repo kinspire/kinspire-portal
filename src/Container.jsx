@@ -19,7 +19,7 @@ class Container extends Component {
     // TODO: title component with the explode() logic from PHP
     // TODO: removed sync button
     return (
-      <div id="portal-content" style={{minHeight: window.innerHeight, maxHeight: window.innerHeight}}>
+      <div id="portal-content">
         <img alt="top" id="portal-background-top" src={top}/>
         <img alt="bottom" id="portal-background-bottom" src={bottom}/>
         <img alt="left" id="portal-background-left" src={left}/>

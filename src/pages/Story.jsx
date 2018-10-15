@@ -120,7 +120,7 @@ class Story extends Component {
                   type="radio" name={`question-${i}`} id={`question-${i}`}
                   value={j}
                   checked={this.state.answers[i] === j}
-                  onChange={this.handleOptionChange.bind(null, i)}/>
+                  onChange={this.handleOptionChange.bind(this, i)}/>
                 {choice}
               </label>
             </div>
@@ -132,7 +132,7 @@ class Story extends Component {
           <input
             type="text" key={`question-${i}-answer`} name={`question-${i}`}
             id={`question-${i}`} value={this.state.answers[i]}
-            onChange={this.handleInputChange.bind(null, i)} />
+            onChange={this.handleInputChange.bind(this, i)} />
         );
         break;
       case 'long':
@@ -140,7 +140,7 @@ class Story extends Component {
           <textarea
             key={`question-${i}-answer`} name={`question-${i}`}
             id={`question-${i}`} value={this.state.answers[i]}
-            onChange={this.handleInputChange.bind(null, i)} />
+            onChange={this.handleInputChange.bind(this, i)} />
         );
         break;
       default:

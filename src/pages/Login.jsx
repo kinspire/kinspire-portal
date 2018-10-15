@@ -14,6 +14,10 @@ class Login extends Component {
     authService.logout();
 
     this.state = {username: ''};
+
+    this.handleChange       = this.handleChange.bind(this);
+    this.handleKeyUp        = this.handleKeyUp.bind(this);
+    this.handleSubmit       = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -57,12 +61,12 @@ class Login extends Component {
             <div className="login-title">Welcome back!</div>
             <input
               className="login-textbox"
-              onChange={this.handleChange.bind(this)}
-              onKeyUp={this.handleKeyUp.bind(this)}
+              onChange={this.handleChange}
+              onKeyUp={this.handleKeyUp}
               placeholder="Username"
               value={this.state.username}/>
             <ShadowButton className="login-button"
-              onClick={this.handleSubmit.bind(this)} text="Log in"/>
+              onClick={this.handleSubmit} text="Log in"/>
           </div>
         </div>
       </div>

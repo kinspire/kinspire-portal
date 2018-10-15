@@ -6,14 +6,21 @@ import { contentConstants as c } from '../constants';
 import { firebaseService } from './firebaseService';
 import { viewConstants as v } from '../constants';
 
-const db = firebaseService.db;
-
 export const contentService = {
   getNextContentItems,
   getContent,
   submitContent,
   getSelectionItems,
 };
+
+const db = firebaseService.db;
+const materials = [
+  {name: "Stories", link: "/materials/stories"},
+  {name: "Templates", link: "/materials/templates"}
+];
+const activities = [
+  {name: "Word Search", link: "/activities/wordsearch"}
+];
 
 function queryPromise(query) {
   return new Promise((resolve, reject) => {
@@ -70,6 +77,7 @@ function getNextContentItems() {
   });
 }
 
+// Retrieve content from the Firebase db
 function getContent(type, classLevel, num) {
   return new Promise(resolve => {
     db.collection("content")
@@ -102,24 +110,16 @@ function submitContent(type, classLevel, num, answers) {
   });
 }
 
-const materials = [
-  {name: "Stories", link: "/materials/stories"},
-  {name: "Templates", link: "/materials/templates"}
-];
-
-const activities = [
-  // {name: "Word Search", link: "/activities/wordsearch"}
-];
-
+// Get items for the selection screen based on the view
 function getSelectionItems(view) {
   return new Promise(resolve => {
     switch (view) {
     case v.MATERIALS:
       resolve(materials);
-      return;
+      break;
     case v.ACTIVITIES:
       resolve(activities);
-      return;
+      break;
     // TODO combine this and wordsearch
     case v.STORIES:
       db.collection("content")
@@ -134,11 +134,23 @@ function getSelectionItems(view) {
             }
           )));
         });
-      return;
+      break;
     case v.WORDSEARCH:
-      return []; // {name: "Story 1", link: "/activities/wsplay/1/0"}];
+      db.collection("content")
+        .where("type", "==", "wordsearch")
+        .get()
+        .then(snapshot => {
+          resolve(snapshot.docs.map(doc => (
+            {
+              name: doc.get('title'),
+              // TODO make a utility function to convert doc to link
+              link: `/activities/wsplay/${doc.get('classLevel')}/${doc.get('num')}`
+            }
+          )));
+        });
+      break;
     default:
-      return [];
+      break;
     }
   });
 }

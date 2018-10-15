@@ -19,7 +19,6 @@ class Signup extends Component {
     };
 
     this.handleChange       = this.handleChange.bind(this);
-    this.handleKeyUp        = this.handleKeyUp.bind(this);
     this.handleSubmit       = this.handleSubmit.bind(this);
   }
 
@@ -27,6 +26,7 @@ class Signup extends Component {
     this.setState({[key]: event.target.value});
   }
 
+  // TODO implement enter for signup
   handleKeyUp(event) {
     if (event.key === 'Enter') {
       this.handleSubmit();
@@ -102,7 +102,7 @@ class Signup extends Component {
           {avatars}
         </div>
         <ShadowButton className="signup-button"
-          onClick={this.handleSubmit.bind(this)} text="Sign up!"/>
+          onClick={this.handleSubmit} text="Sign up!"/>
       </div>
     );
   }
