@@ -1,10 +1,9 @@
 // @flow
-import { usersDb } from '../db';
 import { firebaseService } from './firebaseService';
 
 export const authService = {
   login,
-  loginLocal,
+  // loginLocal,
   logout,
   signup
 };
@@ -40,16 +39,16 @@ function login(username) {
 }
 
 // Login local
-function loginLocal(username) {
-  return new Promise((resolve, reject) => {
-    usersDb.find({ username: username }, (err, users) => {
-      if (err !== null || !users.length) return reject(err);
-
-      localStorage.setItem('user', JSON.stringify(users[0]));
-      resolve(users[0]);
-    });
-  });
-}
+// function loginLocal(username) {
+//   return new Promise((resolve, reject) => {
+//     usersDb.find({ username: username }, (err, users) => {
+//       if (err !== null || !users.length) return reject(err);
+//
+//       localStorage.setItem('user', JSON.stringify(users[0]));
+//       resolve(users[0]);
+//     });
+//   });
+// }
 
 // TODO make a Promise
 // TODO does this need to be a promise?
