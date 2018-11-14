@@ -22,13 +22,15 @@ module.exports = {
     "indent": ["error", 2],
     "semi": ["error", "always"],
     "eqeqeq": ["warn", "always"],
-    "no-var": "warn",
-    "prefer-const": "warn",
-    "prefer-template": "warn",
+    "quotes": ["warn", "double"],
+    "no-var": "error",
+    "prefer-const": "error",
+    "prefer-template": "error",
     "prefer-arrow-callback": ["warn", {allowUnboundThis: false}],
-    "no-confusing-arrow": "warn",
     "no-useless-return": "warn",
     "no-global-assign": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "no-unused-vars": "error",
+    "no-throw-literal": "warn",
   }
 };

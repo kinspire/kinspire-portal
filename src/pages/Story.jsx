@@ -1,18 +1,17 @@
-// @flow
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import './Story.css';
+import "./Story.css";
 
-import { contentConstants as c } from '../constants';
-import { contentService } from '../services/contentService';
+import { contentConstants as c } from "../constants";
+import { contentService } from "../services/contentService";
 
 function generateStory(story) {
-  if (!story) return '';
+  if (!story) return "";
 
   const paragraphs = story.story;
   const vocab = story.vocab || [];
-  const translations = story['translation-te'];
+  const translations = story["translation-te"];
   let i = 0;
 
   return paragraphs.map((paragraph, paragraphNum) => {
@@ -34,7 +33,7 @@ function generateStory(story) {
         <span className="stories-vocab" key={vocab[i]}>
           <span className="stories-vocab-word">{vocab[i]}</span>
           <div className="stories-vocab-def">
-            {(i < translations.length) ? translations[i] : '[translation]'}
+            {(i < translations.length) ? translations[i] : "[translation]"}
           </div>
         </span>
       );
@@ -71,20 +70,24 @@ class Story extends Component {
 
     this.handleOptionChange     = this.handleOptionChange.bind(this);
     this.handleInputChange      = this.handleInputChange.bind(this);
+    this.handleSubmit           = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     const { classLevel, num } = this.props.match.params;
-    contentService.getContent(c.TYPE_STORY, classLevel, num)
-      .then(content => {
-        // Now that we've retrieved the content information from the database,
-        // we also create an empty answers
-        let answers = [];
-        if (content) {
-          answers = content.questions.map(q => { return (q.type === 'mcq' ? -1 : ""); } );
-        }
-        this.setState({content, answers});
-      });
+    Promise.all([
+      contentService.getContent(c.TYPE_STORY, classLevel, num),
+      contentService.getContentProgress(c.TYPE_STORY, classLevel, num),
+    ])
+      .then(values => {
+        console.log(values);
+        this.setState({
+          content: values[0],
+          answers: values[1].answers ||
+            values[0].questions.map((q) => q.type === "mcq" ? -1 : ""),
+        });
+      })
+      .catch(err => alert(`Error: ${err}`));
   }
 
   handleOptionChange(i, event) {
@@ -99,8 +102,15 @@ class Story extends Component {
     this.setState({answers});
   }
 
+  handleSubmit() {
+    contentService.submitContent(c.TYPE_STORY, this.props.match.params.classLevel,
+      this.props.match.params.num, this.state.answers)
+      .then(() => alert("submitted!"))
+      .catch(err => alert(err));
+  }
+
   generateQuestions() {
-    if (!this.state.content) return '';
+    if (!this.state.content) return "";
 
     const questions = this.state.content.questions;
 
@@ -111,7 +121,7 @@ class Story extends Component {
       output.push(<li key={`question-${i}`}>{question.question}</li>);
 
       switch (question.type) {
-      case 'mcq':
+      case "mcq":
         question.choices.forEach((choice, j) => {
           output.push(
             <div className="radio" key={`question-${i}-answer-${j}`}>
@@ -127,7 +137,7 @@ class Story extends Component {
           );
         });
         break;
-      case 'short':
+      case "short":
         output.push(
           <input
             type="text" key={`question-${i}-answer`} name={`question-${i}`}
@@ -135,7 +145,7 @@ class Story extends Component {
             onChange={this.handleInputChange.bind(this, i)} />
         );
         break;
-      case 'long':
+      case "long":
         output.push(
           <textarea
             key={`question-${i}-answer`} name={`question-${i}`}
@@ -164,7 +174,7 @@ class Story extends Component {
           <ol type="1">
             {this.generateQuestions()}
           </ol>
-          <input type="button" value="Submit!"/>
+          <input type="button" value="Submit!" onClick={this.handleSubmit}/>
           <div id="error"></div>
         </div>
       </div>

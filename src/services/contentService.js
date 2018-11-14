@@ -1,14 +1,11 @@
-// @flow
-import _ from 'lodash';
-
-import { contentConstants as c } from '../constants';
-import { firebaseService } from './firebaseService';
-import { viewConstants as v } from '../constants';
+import { firebaseService } from "./firebaseService";
+import { viewConstants as v } from "../constants";
 
 export const contentService = {
   // getNextContentItems,
   getContent,
-  // submitContent,
+  getContentProgress,
+  submitContent,
   getSelectionItems,
 };
 
@@ -20,16 +17,6 @@ const materials = [
 const activities = [
   {name: "Word Search", link: "/activities/wordsearch"}
 ];
-
-// function queryPromise(query) {
-//   return new Promise((resolve, reject) => {
-//     contentDb.find(query, (err, docs) => {
-//       if (err) return reject(err);
-//
-//       resolve(docs);
-//     });
-//   });
-// }
 
 // TODO: worry about whether user is logged in?
 // TODO move online
@@ -78,36 +65,59 @@ const activities = [
 
 // Retrieve content from the Firebase db
 function getContent(type, classLevel, num) {
-  return new Promise(resolve => {
-    db.collection("content")
-      .where("type", "==", type)
-      .where("classLevel", "==", parseInt(classLevel, 10))
-      .where("num", "==", parseInt(num, 10))
-      .limit(1)
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          resolve(doc.data());
-        });
-      });
-  });
+  return db.collection("content")
+    .where("type", "==", type)
+    .where("classLevel", "==", parseInt(classLevel, 10))
+    .where("num", "==", parseInt(num, 10))
+    .limit(1)
+    .get()
+    .then(snapshot => {
+      if (snapshot.empty) {
+        throw new Error("No content available!");
+      }
+
+      return snapshot.docs[0].data();
+    });
 }
 
-// TODO move online
-// function submitContent(type, classLevel, num, answers) {
-//   return new Promise((resolve, reject) => {
-//     contentSubmissionsDb.insert({type, classLevel, num, answers}, (err, doc) => {
-//       if (err !== null) reject(err);
-//
-//       if (!doc) {
-//         // TODO what to do?
-//       } else {
-//         // TODO anything to resolve with? Maybe if they're done or not?
-//         resolve();
-//       }
-//     });
-//   });
-// }
+function getContentProgress(type, classLevel, num) {
+  return db.collection("contentProgress")
+    .where("type", "==", type)
+    .where("classLevel", "==", parseInt(classLevel, 10))
+    .where("num", "==", parseInt(num, 10))
+    .where("userId", "==", localStorage.getItem("userId"))
+    .limit(1)
+    .get()
+    .then(snapshot => {
+      if (snapshot.empty) {
+        return {};
+      }
+
+      console.log(snapshot.docs[0].data());
+      console.log(localStorage.getItem("userId"));
+      return snapshot.docs[0].data();
+    });
+}
+
+function submitContent(type, classLevel, num, answers) {
+  return db.collection("contentProgress")
+    .where("type", "==", type)
+    .where("classLevel", "==", parseInt(classLevel, 10))
+    .where("num", "==", parseInt(num, 10))
+    .where("userId", "==", localStorage.getItem("userId"))
+    .limit(1)
+    .get()
+    .then(snapshot => {
+      if (snapshot.empty) {
+        return db.collection("contentProgress")
+          .add({
+            type, classLevel: parseInt(classLevel, 10), num: parseInt(num, 10), answers, userId: localStorage.getItem("userId")
+          });
+      } else {
+        return snapshot.docs[0].ref.set({ answers }, { merge: true });
+      }
+    });
+}
 
 // Get items for the selection screen based on the view
 function getSelectionItems(view) {
@@ -127,9 +137,9 @@ function getSelectionItems(view) {
         .then(snapshot => {
           resolve(snapshot.docs.map(doc => (
             {
-              name: doc.get('title'),
+              name: doc.get("title"),
               // TODO make a utility function to convert doc to link
-              link: `/materials/story/${doc.get('classLevel')}/${doc.get('num')}`
+              link: `/materials/story/${doc.get("classLevel")}/${doc.get("num")}`
             }
           )));
         });
@@ -141,9 +151,9 @@ function getSelectionItems(view) {
         .then(snapshot => {
           resolve(snapshot.docs.map(doc => (
             {
-              name: doc.get('title'),
+              name: doc.get("title"),
               // TODO make a utility function to convert doc to link
-              link: `/activities/wsplay/${doc.get('classLevel')}/${doc.get('num')}`
+              link: `/activities/wsplay/${doc.get("classLevel")}/${doc.get("num")}`
             }
           )));
         });
