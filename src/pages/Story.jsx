@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import swal from "sweetalert";
 
 import "./Story.css";
 
@@ -87,7 +88,7 @@ class Story extends Component {
             values[0].questions.map((q) => q.type === "mcq" ? -1 : ""),
         });
       })
-      .catch(err => alert(`Error: ${err}`));
+      .catch(err => swal(`Error: ${err}`));
   }
 
   handleOptionChange(i, event) {
@@ -105,8 +106,8 @@ class Story extends Component {
   handleSubmit() {
     contentService.submitContent(c.TYPE_STORY, this.props.match.params.classLevel,
       this.props.match.params.num, this.state.answers)
-      .then(() => alert("submitted!"))
-      .catch(err => alert(err));
+      .then(() => swal("submitted!"))
+      .catch(err => swal(err));
   }
 
   generateQuestions() {

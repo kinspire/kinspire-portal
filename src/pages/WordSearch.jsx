@@ -1,28 +1,30 @@
 // @flow
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import classNames from "classnames";
+import PropTypes from "prop-types";
+import swal from "sweetalert";
 
-import ShadowButton from '../components/ShadowButton';
-import HashSet from '../utils/hashset';
-import { contentConstants as c } from '../constants';
-import { contentService } from '../services/contentService';
+import ShadowButton from "../components/ShadowButton";
+// import HashSet from "../utils/hashset";
+import { contentConstants as c } from "../constants";
+import { contentService } from "../services/contentService";
 
-import './WordSearch.css';
+import "./WordSearch.css";
 
 export default class WordSearch extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      wordStart: [-1, -1],
+      wordStart: {row: -1, col: -1},
       grid: [],
       words: [],
       chosenWords: {},
-      chosenCells: new HashSet(),
+      chosenCells: {},
     };
 
     this.handleLetterClicked          = this.handleLetterClicked.bind(this);
+    this.handleSave                   = this.handleSave.bind(this);
   }
 
   componentDidMount() {
@@ -30,18 +32,21 @@ export default class WordSearch extends Component {
     const { classLevel, num } = this.props.match.params;
     // TODO optimize when to load file
     // const wsJson = require(`../content/wordsearch/${classLevel}/${storyNumber}.json`);
-    contentService.getContent(c.TYPE_WORD_SEARCH, classLevel, num)
-      .then(content => {
-        // TODO get the saved progress
+    Promise.all([
+      contentService.getContent(c.TYPE_WORD_SEARCH, classLevel, num),
+      contentService.getContentProgress(c.TYPE_STORY, classLevel, num),
+    ])
+      .then(values => {
+        const [ content, progress ] = values;
 
         // Set up state
         this.setState({
           grid: content.grid,
           words: content.words,
+          ...progress,
         });
       });
   }
-
 
   /**
   * Returns a string representing the word chosen from wordStart to
@@ -70,17 +75,17 @@ export default class WordSearch extends Component {
       const wordEnd = [row, col];
       const selectedWord = this.getSelectedWord(wordEnd);
       if (!selectedWord) {
-        alert('Choose a word! Resetting choice.');
+        swal("Choose a word! Resetting choice.");
       } else if (selectedWord in this.state.chosenWords) {
-        alert('Word already chosen! Resetting choice.');
+        swal("Word already chosen! Resetting choice.");
       } else {
         if (this.state.words.includes(selectedWord)) {
-          alert(`Nice job! You chose: ${  selectedWord}`);
+          swal(`Nice job! You chose: ${  selectedWord}`);
           this.wordIsChosen(wordEnd, selectedWord);
         } else {
           // Check for completion
           if (Object.keys(this.state.chosenWords).length === this.state.words.length) {
-            alert("Nice job! Game over :)");
+            swal("Nice job! Game over :)");
           }
         }
       }
@@ -96,8 +101,12 @@ export default class WordSearch extends Component {
   }
 
   handleSave() {
-    // TODO implement
-    console.log("Save");
+    const { classLevel, num } = this.props.match.params;
+    const { chosenWords, chosenCells } = this.state;
+
+    contentService.submitContent(c.TYPE_WORD_SEARCH, classLevel, num, { chosenWords, chosenCells })
+      .then(() => swal("Saved!"))
+      .catch(err => swal(`Error: ${err}`));
   }
 
   wordIsChosen(wordEnd, selectedWord) {
@@ -151,7 +160,7 @@ export default class WordSearch extends Component {
     // TODO add strikethrough for selected words
 
     return this.state.words.map((word, i) => (
-      <div className={`wordsearch-word${  (word in this.state.chosenWords) ? ' strikethrough' : ''}`}
+      <div className={`wordsearch-word${  (word in this.state.chosenWords) ? " strikethrough" : ""}`}
         key={i}>
         {word}
       </div>

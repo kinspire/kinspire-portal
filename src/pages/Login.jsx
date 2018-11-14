@@ -1,10 +1,11 @@
 // @flow
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import swal from "sweetalert";
 
-import './Login.css';
-import ShadowButton from '../components/ShadowButton';
-import { authService } from '../services/authService';
+import "./Login.css";
+import ShadowButton from "../components/ShadowButton";
+import { authService } from "../services/authService";
 
 class Login extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class Login extends Component {
     // confirm logout
     authService.logout();
 
-    this.state = {username: ''};
+    this.state = {username: ""};
 
     this.handleChange       = this.handleChange.bind(this);
     this.handleKeyUp        = this.handleKeyUp.bind(this);
@@ -25,7 +26,7 @@ class Login extends Component {
   }
 
   handleKeyUp(event) {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       this.handleSubmit();
     }
   }
@@ -40,7 +41,7 @@ class Login extends Component {
           this.setState({loginError: error});
         });
     } else {
-      alert("Enter username");
+      swal("Enter username");
     }
   }
 
@@ -48,7 +49,7 @@ class Login extends Component {
     if (this.state.loggedIn) {
       return <Redirect to={{pathname: "/"}}/>;
     } else if (this.state.loginError) {
-      alert(this.state.loginError);
+      swal(this.state.loginError);
     }
 
     return (

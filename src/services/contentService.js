@@ -99,7 +99,8 @@ function getContentProgress(type, classLevel, num) {
     });
 }
 
-function submitContent(type, classLevel, num, answers) {
+// progress is an object
+function submitContent(type, classLevel, num, progress) {
   return db.collection("contentProgress")
     .where("type", "==", type)
     .where("classLevel", "==", parseInt(classLevel, 10))
@@ -111,10 +112,11 @@ function submitContent(type, classLevel, num, answers) {
       if (snapshot.empty) {
         return db.collection("contentProgress")
           .add({
-            type, classLevel: parseInt(classLevel, 10), num: parseInt(num, 10), answers, userId: localStorage.getItem("userId")
+            ...progress,
+            type, classLevel: parseInt(classLevel, 10), num: parseInt(num, 10), userId: localStorage.getItem("userId"),
           });
       } else {
-        return snapshot.docs[0].ref.set({ answers }, { merge: true });
+        return snapshot.docs[0].ref.set(progress, { merge: true });
       }
     });
 }

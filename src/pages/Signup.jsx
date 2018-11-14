@@ -1,10 +1,11 @@
 // @flow
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import swal from "sweetalert";
 
-import './Signup.css';
-import ShadowButton from '../components/ShadowButton';
-import { authService } from '../services/authService';
+import "./Signup.css";
+import ShadowButton from "../components/ShadowButton";
+import { authService } from "../services/authService";
 
 class Signup extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Signup extends Component {
     authService.logout();
 
     this.state = {
-      username: '',
+      username: "",
       loggedIn: false,
     };
 
@@ -28,7 +29,7 @@ class Signup extends Component {
 
   // TODO implement enter for signup
   handleKeyUp(event) {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       this.handleSubmit();
     }
   }
@@ -40,7 +41,7 @@ class Signup extends Component {
           this.setState({loggedIn: true});
         });
     } else {
-      alert("Enter all details");
+      swal("Enter all details");
     }
   }
 
@@ -70,7 +71,7 @@ class Signup extends Component {
         <div className="flexbox">
           <span className="form-label">First Name:</span>
           <input
-            onChange={this.handleChange.bind(this, 'firstName')}
+            onChange={this.handleChange.bind(this, "firstName")}
             placeholder="First Name"
             type="text"
             value={this.state.firstName} />
@@ -78,7 +79,7 @@ class Signup extends Component {
         <div className="flexbox">
           <span className="form-label">Last Name:</span>
           <input
-            onChange={this.handleChange.bind(this, 'lastName')}
+            onChange={this.handleChange.bind(this, "lastName")}
             placeholder="Last Name"
             type="text"
             value={this.state.lastName} />
@@ -86,14 +87,14 @@ class Signup extends Component {
         <div className="flexbox">
           <span className="form-label">Birthday:</span>
           <input
-            onChange={this.handleChange.bind(this, 'birthday')}
+            onChange={this.handleChange.bind(this, "birthday")}
             type="date"
             value={this.state.birthday} />
         </div>
         <div className="flexbox">
           <span className="form-label">Class Level:</span>
           <input
-            onChange={this.handleChange.bind(this, 'classLevel')}
+            onChange={this.handleChange.bind(this, "classLevel")}
             type="number"
             placeholder="Class Level"
             value={this.state.classLevel} />
