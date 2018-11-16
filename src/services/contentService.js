@@ -92,9 +92,6 @@ function getContentProgress(type, classLevel, num) {
       if (snapshot.empty) {
         return {};
       }
-
-      console.log(snapshot.docs[0].data());
-      console.log(localStorage.getItem("userId"));
       return snapshot.docs[0].data();
     });
 }

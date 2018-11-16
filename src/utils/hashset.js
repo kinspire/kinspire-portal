@@ -1,9 +1,5 @@
 const HASHSET_TABLESIZE = 100;
 
-function _hashCode(v) {
-  return v[0] * 31 + v[1] * 41;
-}
-
 function hashCode(v) {
   return v.row * 31 + v.col * 41;
 }
@@ -14,12 +10,14 @@ function hashCode(v) {
 export default class HashSet {
   constructor() {
     this.table = [...Array(HASHSET_TABLESIZE)].map(() => []);
+    this.items = [];
   }
 
   put(v) {
     if (!this.has(v)) {
       const index = hashCode(v) % HASHSET_TABLESIZE;
       this.table[index].push(v);
+      this.items.push(v);
     }
   }
 
@@ -27,7 +25,7 @@ export default class HashSet {
     const index = hashCode(v) % HASHSET_TABLESIZE;
     const bucket = this.table[index];
     for (let i = 0; i < bucket.length; i++) {
-      if (bucket[i][0] === v[0] && bucket[i][1] === v[1]) {
+      if (bucket[i].row === v.row && bucket[i].col === v.col) {
         return true;
       }
     }
@@ -44,10 +42,7 @@ export default class HashSet {
         // x.put(this.table[i][j]);
       }
     }
+    x.items = this.items.slice();
     return x;
-  }
-
-  items() {
-
   }
 }
