@@ -70,10 +70,8 @@ export default class WordSearch extends Component {
       });
   }
 
-  /**
-  * Returns a string representing the word chosen from this.state.wordStart to
-  * wordEnd.
-  */
+  // Returns a string representing the word chosen from this.state.wordStart to
+  // wordEnd.
   getSelectedWord(wordEnd) {
     const { wordStart, grid } = this.state;
 
@@ -134,9 +132,7 @@ export default class WordSearch extends Component {
       .catch(err => swal(`Error: ${err}`));
   }
 
-  /**
-   * Update state when a word is selected
-   */
+  // Update state when a word is selected
   wordIsChosen(wordEnd, selectedWord) {
     const { wordStart, chosenWords } = this.state;
 
@@ -159,8 +155,6 @@ export default class WordSearch extends Component {
   }
 
   generateGrid() {
-    console.log(this.state.chosenCells.items);
-
     return this.state.grid.map((row, rowN) => {
       // TODO add completed to corresponding letters
 
@@ -180,21 +174,8 @@ export default class WordSearch extends Component {
         );
       });
 
-      return (
-        <div className="wordsearch-row" key={rowN}>
-          {rowJsx}
-        </div>
-      );
+      return (<div className="wordsearch-row" key={rowN}>{rowJsx}</div>);
     });
-  }
-
-  generateWords() {
-    return this.state.words.map((word, i) => (
-      <div className={`wordsearch-word${(word in this.state.chosenWords) ? " strikethrough" : ""}`}
-        key={i}>
-        {word}
-      </div>
-    ));
   }
 
   render() {
@@ -205,7 +186,14 @@ export default class WordSearch extends Component {
             {this.generateGrid()}
           </div>
           <div className="wordsearch-words">
-            {this.generateWords()}
+            {
+              this.state.words.map((word, i) => (
+                <div className={`wordsearch-word${_.has(this.state.chosenWords, word) ? " strikethrough" : ""}`}
+                  key={i}>
+                  {word}
+                </div>
+              ))
+            }
           </div>
         </div>
         <ShadowButton text="Save" onClick={this.handleSave} />
