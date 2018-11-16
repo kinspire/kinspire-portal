@@ -5,7 +5,7 @@ export const contentService = {
   // getNextContentItems,
   getContent,
   getContentProgress,
-  submitContent,
+  submitContentProgress,
   getSelectionItems,
 };
 
@@ -18,7 +18,8 @@ const activities = [
   {name: "Word Search", link: "/activities/wordsearch"}
 ];
 
-// TODO: worry about whether user is logged in?
+// This is outdated functionality, where a student can automatically advance to
+// the next content item once one is completed.
 // TODO move online
 // function getNextContentItems() {
 //   return new Promise((resolve, reject) => {
@@ -63,7 +64,8 @@ const activities = [
 //   });
 // }
 
-// Retrieve content from the Firebase db
+// Returns a promise that resolves with the content with the specified
+// parameters, or throws an error.
 function getContent(type, classLevel, num) {
   return db.collection("content")
     .where("type", "==", type)
@@ -80,6 +82,8 @@ function getContent(type, classLevel, num) {
     });
 }
 
+// Returns a promise that resolves with the content progress with the specified
+// parameters, or returns an empty object if there is no progress.
 function getContentProgress(type, classLevel, num) {
   return db.collection("contentProgress")
     .where("type", "==", type)
@@ -96,8 +100,9 @@ function getContentProgress(type, classLevel, num) {
     });
 }
 
-// progress is an object
-function submitContent(type, classLevel, num, progress) {
+// Returns a promise that resolves when the given content progress is submitted
+// to the database.
+function submitContentProgress(type, classLevel, num, progress) {
   return db.collection("contentProgress")
     .where("type", "==", type)
     .where("classLevel", "==", parseInt(classLevel, 10))
@@ -118,47 +123,41 @@ function submitContent(type, classLevel, num, progress) {
     });
 }
 
-// Get items for the selection screen based on the view
+// Returns a promsie that resolves with a list of items for the given selection
+// screen view.
 function getSelectionItems(view) {
-  return new Promise(resolve => {
-    switch (view) {
-    case v.MATERIALS:
-      resolve(materials);
-      break;
-    case v.ACTIVITIES:
-      resolve(activities);
-      break;
+  switch (view) {
+  case v.MATERIALS:
+    return Promise.resolve(materials);
+  case v.ACTIVITIES:
+    return Promise.resolve(activities);
     // TODO combine this and wordsearch
-    case v.STORIES:
-      db.collection("content")
-        .where("type", "==", "story")
-        .get()
-        .then(snapshot => {
-          resolve(snapshot.docs.map(doc => (
-            {
-              name: doc.get("title"),
-              // TODO make a utility function to convert doc to link
-              link: `/materials/story/${doc.get("classLevel")}/${doc.get("num")}`
-            }
-          )));
-        });
-      break;
-    case v.WORDSEARCH:
-      db.collection("content")
-        .where("type", "==", "wordsearch")
-        .get()
-        .then(snapshot => {
-          resolve(snapshot.docs.map(doc => (
-            {
-              name: doc.get("title"),
-              // TODO make a utility function to convert doc to link
-              link: `/activities/wsplay/${doc.get("classLevel")}/${doc.get("num")}`
-            }
-          )));
-        });
-      break;
-    default:
-      break;
-    }
-  });
+  case v.STORIES:
+    return db.collection("content")
+      .where("type", "==", "story")
+      .get()
+      .then(snapshot => {
+        return snapshot.docs.map(doc => (
+          {
+            name: doc.get("title"),
+            // TODO make a utility function to convert doc to link
+            link: `/materials/story/${doc.get("classLevel")}/${doc.get("num")}`
+          }
+        ));
+      });
+  case v.WORDSEARCH:
+    return db.collection("content")
+      .where("type", "==", "wordsearch")
+      .get()
+      .then(snapshot => {
+        return snapshot.docs.map(doc => (
+          {
+            name: doc.get("title"),
+            // TODO make a utility function to convert doc to link
+            link: `/activities/wsplay/${doc.get("classLevel")}/${doc.get("num")}`
+          }
+        ));
+      });
+  }
+  return Promise.reject("Illegal view");
 }

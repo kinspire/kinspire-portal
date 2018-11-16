@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import swal from "sweetalert";
@@ -7,18 +6,21 @@ import "./Login.css";
 import ShadowButton from "../components/ShadowButton";
 import { authService } from "../services/authService";
 
+// The login page.
 class Login extends Component {
   constructor(props) {
     super(props);
-
-    // confirm logout
-    authService.logout();
 
     this.state = {username: ""};
 
     this.handleChange       = this.handleChange.bind(this);
     this.handleKeyUp        = this.handleKeyUp.bind(this);
     this.handleSubmit       = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    authService.logout()
+      .then(console.log("Logged out!"));
   }
 
   handleChange(event) {
@@ -55,7 +57,7 @@ class Login extends Component {
     return (
       <div className="portal-body row">
         <div className="col">
-          <ShadowButton height={200} text="First time?" to="/signup"/>
+          <ShadowButton height="200" text="First time?" to="/signup"/>
         </div>
         <div className="col">
           <div className="login-region">

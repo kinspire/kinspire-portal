@@ -1,14 +1,14 @@
-// @flow
 import { firebaseService } from './firebaseService';
 
+// Status of the task
 const STATUS_NOT_STARTED = 0;
-// const STATUS_DONE = 1;
+const STATUS_DONE = 1;
 
 export const tasksService = {
-  // markAsDone,
   getTasks,
 };
 
+// Returns a promise that resolves with a list of tasks
 function getTasks() {
   return new Promise(resolve => {
     firebaseService.db.collection("users").doc(localStorage.getItem('userId'))

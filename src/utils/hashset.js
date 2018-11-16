@@ -1,13 +1,18 @@
+/**
+ * A HashSet specifically made for {row, col} objects. This is just for fun,
+ * there's probably a hashset library.
+ */
+
+// Size of the hashset
 const HASHSET_TABLESIZE = 100;
 
 function hashCode(v) {
   return v.row * 31 + v.col * 41;
 }
 
-/**
- * A HashSet specifically made for two-element arrays.
- */
 export default class HashSet {
+  // `table` is the table of buckets for the hashset
+  // `items` is a convenience array for debugging
   constructor() {
     this.table = [...Array(HASHSET_TABLESIZE)].map(() => []);
     this.items = [];

@@ -104,7 +104,7 @@ class Story extends Component {
   }
 
   handleSubmit() {
-    contentService.submitContent(c.TYPE_STORY, this.props.match.params.classLevel,
+    contentService.submitContentProgress(c.TYPE_STORY, this.props.match.params.classLevel,
       this.props.match.params.num, this.state.answers)
       .then(() => swal("submitted!"))
       .catch(err => swal(err));

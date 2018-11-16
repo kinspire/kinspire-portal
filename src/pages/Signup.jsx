@@ -11,9 +11,6 @@ class Signup extends Component {
   constructor(props) {
     super(props);
 
-    // confirm logout
-    authService.logout();
-
     this.state = {
       username: "",
       loggedIn: false,
@@ -21,6 +18,11 @@ class Signup extends Component {
 
     this.handleChange       = this.handleChange.bind(this);
     this.handleSubmit       = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    authService.logout()
+      .then(console.log("logged out"));
   }
 
   handleChange(key, event) {

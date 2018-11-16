@@ -1,4 +1,3 @@
-// @flow
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
@@ -6,6 +5,7 @@ import 'firebase/firestore';
 const config = require('../keys/firebase-keys.json');
 firebase.initializeApp(config);
 
+// Access the firestore through this reference.
 const db = firebase.firestore();
 db.settings({
   timestampsInSnapshots: true,

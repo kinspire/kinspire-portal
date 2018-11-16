@@ -26,9 +26,6 @@
         "test": "react-scripts test --env=jsdom",
         "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
     },
-    "comments": {
-        "electron": "^2.0.0"
-    },
     "devDependencies": {
         "cross-env": "^5.2.0",
         "electron": "^3.0.5",

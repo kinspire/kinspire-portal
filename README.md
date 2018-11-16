@@ -6,9 +6,17 @@ Install the following on your computer before starting work on the Portal:
 
 - [npm/nodejs](http://nodejs.org)
 
+Note that if you want to use the Windows Subsystem for Linux (i.e. Linux on Windows), which is the preferred method for Windows, install npm with the following command:
+
+```
+$ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+$ sudo apt-get install -y nodejs
+```
+
 ## Setup
 
-1. Download the `firebase-keys.json`
+Open a terminal window (`Terminal` or `iTerm2` on Mac, `Git Bash` or `Linux on Windows` on Windows) at root of the project, and type:
+
 ```
 $ npm install
 ```
@@ -21,6 +29,8 @@ $ npm start
 
 This should automatically open up http://localhost:3001 in your default browser. If not, go ahead and open it manually.
 
-
 ## Release
-In progress.
+To package the Kinspire Portal as an Electron app, run:
+```
+$ npm run electron
+```

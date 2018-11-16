@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
@@ -19,6 +18,13 @@ export default class WordSearch extends Component {
   constructor(props) {
     super(props);
 
+    // State:
+    // - wordStart: stores the location of the start letter of the word currently
+    // being chosen
+    // - grid: stores the entire grid of letters
+    // - words: stores all of the words that need to be found
+    // - chosenWords: a map from word to [word start location, word end location]
+    // - chosenCells: a set of all chosen cells, used for UI coloring
     this.state = {
       wordStart: NO_LETTER,
       grid: [],
@@ -31,6 +37,8 @@ export default class WordSearch extends Component {
     this.handleSave                   = this.handleSave.bind(this);
   }
 
+  // On mount, load the content as well as the content progress for the word
+  // search.
   componentDidMount() {
     const { classLevel, num } = this.props.match.params;
 
@@ -43,10 +51,11 @@ export default class WordSearch extends Component {
 
         const state = { grid: content.grid, words: content.words };
 
+        // If there is some progress existing for this user, we construct the
+        // chosenCells hash set.
         if (!_.isEmpty(progress)) {
           const chosenCells = new HashSet();
 
-          // TODO convert chosenWords to chosenCells
           _.forOwn(progress.chosenWords, (startEnd) => {
             const [ wordStart, wordEnd ] = startEnd;
             const wordDel = { row: wordEnd.row - wordStart.row, col: wordEnd.col - wordStart.col };
@@ -54,6 +63,7 @@ export default class WordSearch extends Component {
             // Fancy functional programming to get the length of the word
             const wordLen = Math.max.apply(null, _.values(wordDel).map(Math.abs));
 
+            // Add all cells that the word contains to chosenCells
             for (let i = 0; i <= wordLen; i++) {
               const row = wordStart.row + i * (wordDel.row / wordLen);
               const col = wordStart.col + i * (wordDel.col / wordLen);
@@ -65,7 +75,7 @@ export default class WordSearch extends Component {
           state.chosenCells = chosenCells;
         }
 
-        // Set up state
+        // Set state loaded from the database
         this.setState(state);
       });
   }
@@ -123,11 +133,12 @@ export default class WordSearch extends Component {
     }
   }
 
+  // Saves the content progress to the database
   handleSave() {
     const { classLevel, num } = this.props.match.params;
     const { chosenWords } = this.state;
 
-    contentService.submitContent(c.TYPE_WORD_SEARCH, classLevel, num, { chosenWords })
+    contentService.submitContentProgress(c.TYPE_WORD_SEARCH, classLevel, num, { chosenWords })
       .then(() => swal("Saved!"))
       .catch(err => swal(`Error: ${err}`));
   }
