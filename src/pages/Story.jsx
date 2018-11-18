@@ -5,60 +5,7 @@ import swal from "sweetalert";
 import "./Story.css";
 
 import { contentConstants as c } from "../constants";
-import { contentService } from "../services/contentService";
-
-function generateStory(story) {
-  if (!story) return "";
-
-  const paragraphs = story.story;
-  const vocab = story.vocab || [];
-  const translations = story["translation-te"];
-  let i = 0;
-
-  return paragraphs.map((paragraph, paragraphNum) => {
-    const paragraphContent = [];
-
-    while (i < vocab.length) {
-      // Split the paragraph on the vocab word, so that we get just the
-      // paragraph up to but not including the vocab word
-      const parts = paragraph.split(vocab[i], 2);
-      paragraphContent.push(
-        <span key={`pre-vocab-${i}`} className="stories-story-text">{parts[0]}</span>
-      );
-
-      // Fencepost for if the vocab word is not in the paragraph
-      if (parts.length < 2) break;
-
-      // Write out the vocab word
-      const vocabWord = (
-        <span className="stories-vocab" key={vocab[i]}>
-          <span className="stories-vocab-word">{vocab[i]}</span>
-          <div className="stories-vocab-def">
-            {(i < translations.length) ? translations[i] : "[translation]"}
-          </div>
-        </span>
-      );
-
-      paragraphContent.push(vocabWord);
-
-      i++;
-      paragraph = parts[1];
-    }
-
-    if (i === vocab.length) { // sanity check
-      // Fencepost for last word
-      paragraphContent.push(
-        <span className="stories-story-text" key={`pre-vocab-${i}`}>{paragraph}</span>
-      );
-    }
-
-    return (
-      <div className="stories-story-paragraph" key={`para-${paragraphNum}`}>
-        {paragraphContent}
-      </div>
-    );
-  });
-}
+import contentService from "../services/contentService";
 
 class Story extends Component {
   constructor(props) {
@@ -74,6 +21,7 @@ class Story extends Component {
     this.handleSubmit           = this.handleSubmit.bind(this);
   }
 
+  // Load story and any progress the user might have had for this story
   componentDidMount() {
     const { classLevel, num } = this.props.match.params;
     Promise.all([
@@ -85,24 +33,28 @@ class Story extends Component {
         this.setState({
           content: values[0],
           answers: values[1].answers ||
+            // If there are no answers, then set up default answers
             values[0].questions.map((q) => q.type === "mcq" ? -1 : ""),
         });
       })
       .catch(err => swal(`Error: ${err}`));
   }
 
+  // [1 of 2] Handle answer changes
   handleOptionChange(i, event) {
     const answers = this.state.answers;
     answers[i] = parseInt(event.target.value, 10);
     this.setState({answers});
   }
 
+  // [2 of 2] Handle answer changes
   handleInputChange(i, event) {
     const answers = this.state.answers;
     answers[i] = event.target.value;
     this.setState({answers});
   }
 
+  // Submit the answers
   handleSubmit() {
     contentService.submitContentProgress(c.TYPE_STORY, this.props.match.params.classLevel,
       this.props.match.params.num, this.state.answers)
@@ -110,6 +62,64 @@ class Story extends Component {
       .catch(err => swal(err));
   }
 
+  // Generates the HTML for the story based on the given JSON blob
+  generateStory() {
+    if (!this.state.content) return "";
+    const { content } = this.state;
+
+    const paragraphs = content.story;
+    const vocab = content.vocab || [];
+    // TODO: Implement more generalized translations
+    const translations = content["translation-te"];
+    let i = 0;
+
+    // Convert the paragraphs array
+    return paragraphs.map((paragraph, paragraphNum) => {
+      const paragraphContent = [];
+
+      while (i < vocab.length) {
+        // Split the paragraph on the vocab word, so that we get just the
+        // paragraph up to but not including the vocab word
+        const parts = paragraph.split(vocab[i], 2);
+        paragraphContent.push(
+          <span key={`pre-vocab-${i}`} className="stories-story-text">{parts[0]}</span>
+        );
+
+        // Fencepost for if the vocab word is not in the paragraph
+        if (parts.length < 2) break;
+
+        // Write out the vocab word
+        const vocabWord = (
+          <span className="stories-vocab" key={vocab[i]}>
+            <span className="stories-vocab-word">{vocab[i]}</span>
+            <div className="stories-vocab-def">
+              {(i < translations.length) ? translations[i] : "[translation]"}
+            </div>
+          </span>
+        );
+
+        paragraphContent.push(vocabWord);
+
+        i++;
+        paragraph = parts[1];
+      }
+
+      if (i === vocab.length) { // sanity check
+        // Fencepost for last word
+        paragraphContent.push(
+          <span className="stories-story-text" key={`pre-vocab-${i}`}>{paragraph}</span>
+        );
+      }
+
+      return (
+        <div className="stories-story-paragraph" key={`para-${paragraphNum}`}>
+          {paragraphContent}
+        </div>
+      );
+    });
+  }
+
+  // Generate the questions HTML based on state
   generateQuestions() {
     if (!this.state.content) return "";
 
@@ -167,7 +177,7 @@ class Story extends Component {
     return (
       <div className="stories-story">
         <div className="stories-story-section stories-story-section-story">
-          {generateStory(this.state.content)}
+          {this.generateStory()}
         </div>
         <div className="stories-story-divider"></div>
         <div className="stories-story-section stories-story-section-questions">

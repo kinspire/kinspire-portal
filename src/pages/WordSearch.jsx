@@ -7,7 +7,7 @@ import _ from "lodash";
 import ShadowButton from "../components/ShadowButton";
 import HashSet from "../utils/hashset";
 import { contentConstants as c } from "../constants";
-import { contentService } from "../services/contentService";
+import contentService from "../services/contentService";
 
 import "./WordSearch.css";
 
@@ -165,28 +165,29 @@ export default class WordSearch extends Component {
     });
   }
 
+  // Convert the local grid state into the grid view
   generateGrid() {
-    return this.state.grid.map((row, rowN) => {
-      // TODO add completed to corresponding letters
+    return this.state.grid.map((rowLetters, row) => (
+      <div className="wordsearch-row" key={row}>{
+        rowLetters.split("").map((char, col) => {
+          // Per-letter styling
+          const letterClasses = classNames({
+            "wordsearch-letter": true,
+            "wordsearch-letter-start": row === this.state.wordStart.row && col === this.state.wordStart.col,
+            "wordsearch-letter-completed": this.state.chosenCells.has({row, col})
+          });
 
-      const rowJsx = row.split("").map((char, col) => {
-        const letterClasses = classNames({
-          "wordsearch-letter": true,
-          "wordsearch-letter-start": rowN === this.state.wordStart.row && col === this.state.wordStart.col,
-          "wordsearch-letter-completed": this.state.chosenCells.has({row: rowN, col})
-        });
-
-        return (
-          <div
-            className={letterClasses}
-            key={col} onClick={this.handleLetterClicked.bind(this, rowN, col)}>
-            {char}
-          </div>
-        );
-      });
-
-      return (<div className="wordsearch-row" key={rowN}>{rowJsx}</div>);
-    });
+          return (
+            <div
+              className={letterClasses}
+              key={col} onClick={this.handleLetterClicked.bind(this, row, col)}>
+              {char}
+            </div>
+          );
+        })
+      }
+      </div>
+    ));
   }
 
   render() {

@@ -1,8 +1,8 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 // Initialize Firebase
-const config = require('../keys/firebase-keys.json');
+const config = require("../keys/firebase-keys.json");
 firebase.initializeApp(config);
 
 // Access the firestore through this reference.
@@ -11,6 +11,6 @@ db.settings({
   timestampsInSnapshots: true,
 });
 
-export const firebaseService = {
+export default {
   db,
 };

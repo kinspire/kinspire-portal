@@ -1,16 +1,23 @@
-// @flow
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import './ShadowButton.css';
+import "./ShadowButton.css";
 
-// TODO component comment
+// This is a brown button with a shadow that can be reused for consistency
+// across the portal.
+//
+// The button content can be in two forms: either as children components, or as
+// simple text. This is determined by which of the props are provided: `children`
+// or `text`.
+// The button link can also be in two forms: either a Link to a route, or with
+// an `onClick` callback. This too is determined by which of the props are
+// provided: `to` or `onClick`.
 export default class ShadowButton extends Component {
   constructor(props) {
     super(props);
 
-    this.handleClick        = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(e) {
@@ -19,11 +26,10 @@ export default class ShadowButton extends Component {
   }
 
   render() {
-    // Determine children
     let children;
     if (this.props.children) {
       children = this.props.children;
-    } else { // if (this.props.text) {
+    } else {
       const textStyle = {
         fontSize: this.props.textSize || undefined
       };

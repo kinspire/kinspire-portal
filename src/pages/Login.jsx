@@ -4,7 +4,7 @@ import swal from "sweetalert";
 
 import "./Login.css";
 import ShadowButton from "../components/ShadowButton";
-import { authService } from "../services/authService";
+import authService from "../services/authService";
 
 // The login page.
 class Login extends Component {
@@ -18,6 +18,7 @@ class Login extends Component {
     this.handleSubmit       = this.handleSubmit.bind(this);
   }
 
+  // Log out the user before opening the page
   componentDidMount() {
     authService.logout()
       .then(console.log("Logged out!"));

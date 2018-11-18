@@ -1,6 +1,6 @@
-import { firebaseService } from "./firebaseService";
+import firebaseService from "./firebaseService";
 
-export const authService = {
+export default {
   login,
   logout,
   signup

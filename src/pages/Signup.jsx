@@ -1,13 +1,12 @@
-// @flow
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import swal from "sweetalert";
 
 import "./Signup.css";
 import ShadowButton from "../components/ShadowButton";
-import { authService } from "../services/authService";
+import authService from "../services/authService";
 
-class Signup extends Component {
+export default class Signup extends Component {
   constructor(props) {
     super(props);
 
@@ -20,6 +19,7 @@ class Signup extends Component {
     this.handleSubmit       = this.handleSubmit.bind(this);
   }
 
+  // Log out the user before opening the page
   componentDidMount() {
     authService.logout()
       .then(console.log("logged out"));
@@ -29,7 +29,6 @@ class Signup extends Component {
     this.setState({[key]: event.target.value});
   }
 
-  // TODO implement enter for signup
   handleKeyUp(event) {
     if (event.key === "Enter") {
       this.handleSubmit();
@@ -37,6 +36,7 @@ class Signup extends Component {
   }
 
   handleSubmit() {
+    // Only submit if all the fields are filled out
     if (this.state.firstName && this.state.lastName && this.state.birthday && this.state.classLevel) {
       authService.signup(this.state)
         .then(() => {
@@ -51,22 +51,6 @@ class Signup extends Component {
     if (this.state.loggedIn) {
       return <Redirect to={{pathname: "/"}}/>;
     }
-
-    const avatars = (
-      "Choose avatar"
-      // <?php
-      // $directory = ($_SERVER['DOCUMENT_ROOT']."/images/avatar");
-      // $files = array_diff(scandir($directory), array('..', '.'));
-      //
-      // foreach ($files as $file) {
-      //   $name = trim(substr($file, 0, strlen($file) - 4)); ?>
-      //   <div className="signup-avatar-container">
-      //     <img className="signup-avatar" id="avatar-img-<?php echo $name;?>" src="/images/avatar/<?php echo $file; ?>">
-      //       <input className="signup-avatar-radio" type="radio" name="avatar" id="avatar-<?php echo $name; ?>" value="avatar-<?php echo $name; ?>">
-      //       </div>
-      //       <?php }
-      //       ?>
-    );
 
     return (
       <div className="portal-body">
@@ -101,14 +85,9 @@ class Signup extends Component {
             placeholder="Class Level"
             value={this.state.classLevel} />
         </div>
-        <div className="signup-avatars">
-          {avatars}
-        </div>
         <ShadowButton className="signup-button"
           onClick={this.handleSubmit} text="Sign up!"/>
       </div>
     );
   }
 }
-
-export default Signup;

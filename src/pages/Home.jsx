@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import PropTypes from "prop-types";
 
 import "./Home.css";
-import ContentItemLink from "../components/ContentItemLink";
+import ShadowButton from "../components/ShadowButton";
 import envelopeWithMedal from "../images/home-page-envelope-with-medal.png";
-import { tasksService } from "../services/tasksService";
+import tasksService from "../services/tasksService";
+import { contentConstants as c, contentStrings as s } from "../constants";
 
-class Home extends Component {
+// The home page
+export default class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -25,7 +28,7 @@ class Home extends Component {
 
   getContentLinks() {
     return this.state.tasks.map((task, i) => (
-      <ContentItemLink key={i} title={task.title}/>
+      <ContentItemLink key={i} taskId={task.id} title={task.title}/>
     ));
   }
 
@@ -51,7 +54,7 @@ class Home extends Component {
           </div>
         </div>
         <div className="col-3">
-          <div className="home-section-title">Progress</div>
+          <div className="home-section-title">Profile</div>
           <div className="home-section-progress">
             <Link to="/tasks">
               <img alt="Tasks" className="home-section-progress-image" src={envelopeWithMedal}/>
@@ -63,4 +66,31 @@ class Home extends Component {
   }
 }
 
-export default Home;
+// Small wrapper around ShadowButton for home page content items.
+class ContentItemLink extends Component {
+  render() {
+    const { classLevel, num, taskId, title, type } = this.props;
+    const link = (type === c.TYPE_TASK ? `/task/${taskId}` : `/materials/${type}/${classLevel}/${num}`);
+    return (
+      <ShadowButton className="home-next-activity" to={link}>
+        <div className="shadow-button-text home-next-activity-category">{s[type]}</div>
+        <div className="home-next-activity-details">{title}</div>
+      </ShadowButton>
+    );
+  }
+}
+
+ContentItemLink.defaultProps = {
+  classLevel: 0,
+  num: 0,
+  taskId: "",
+  type: c.TYPE_TASK,
+};
+
+ContentItemLink.propTypes = {
+  classLevel: PropTypes.number,
+  num: PropTypes.number,
+  taskId: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+};

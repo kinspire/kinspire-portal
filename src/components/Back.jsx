@@ -1,16 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router";
 
-import './Back.css';
-import backButton from '../images/back-grey-arrow.png';
+import "./Back.css";
+import backButton from "../images/back-grey-arrow.png";
 
-export default class Back extends Component {
+class Back extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.props.history.goBack();
+  }
+
   render() {
-    // TODO actually use history and add a link to go back
     return (
       <div className="portal-back">
         <div><img className="portal-back-arrow" src={backButton} alt=""/></div>
-        <div className="portal-back-text">Back</div>
+        <button className="portal-back-text" onClick={this.handleClick}>Back</button>
       </div>
     );
   }
 }
+
+Back.propTypes = {
+  history: PropTypes.object
+};
+
+export default withRouter(Back);

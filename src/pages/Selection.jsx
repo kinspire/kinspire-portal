@@ -1,12 +1,15 @@
-// @flow
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-import { contentService } from '../services/contentService.js';
+import contentService from "../services/contentService.js";
 
-import './Selection.css';
+import "./Selection.css";
 
+// This component represents a generic "selection" screen that can show any list
+// of items in a consistent fashion
+// The `view` prop determines what items are shown, which is provided by the
+// `contentService` (see contentService#getSelectionItems)
 class Selection extends Component {
   constructor(props) {
     super(props);
@@ -17,17 +20,13 @@ class Selection extends Component {
   }
 
   componentDidMount() {
-    // TODO Instead of just emptying items, make a loading thing
-    this.setState({
-      items: []
-    }, () => {
-      contentService.getSelectionItems(this.props.view)
-        .then(items => {
-          this.setState({items});
-        });
-    });
+    contentService.getSelectionItems(this.props.view)
+      .then(items => {
+        this.setState({items});
+      });
   }
 
+  // Handle changes in the view prop - we need to reload the items
   componentDidUpdate(prevProps) {
     if (prevProps.view !== this.props.view) {
       this.componentDidMount();

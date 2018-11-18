@@ -1,7 +1,7 @@
-import { firebaseService } from "./firebaseService";
+import firebaseService from "./firebaseService";
 import { viewConstants as v } from "../constants";
 
-export const contentService = {
+export default {
   // getNextContentItems,
   getContent,
   getContentProgress,
