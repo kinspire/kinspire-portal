@@ -20,7 +20,6 @@ const activities = [
 
 // This is outdated functionality, where a student can automatically advance to
 // the next content item once one is completed.
-// TODO move online
 // function getNextContentItems() {
 //   return new Promise((resolve, reject) => {
 //     const user = JSON.parse(localStorage.getItem('user'));
@@ -34,8 +33,6 @@ const activities = [
 //         console.error("NO CONTENT PROGRESS");
 //       } else {
 //         const progress = docs[0];
-//
-//         // TODO only fetch certain fields instead of the whole thing for each content blob?
 //
 //         // 1. Always fetch the next story
 //         const storiesQuery = {
@@ -125,13 +122,13 @@ function submitContentProgress(type, classLevel, num, progress) {
 
 // Returns a promsie that resolves with a list of items for the given selection
 // screen view.
+// TODO This has room to be de-redundancy'd
 function getSelectionItems(view) {
   switch (view) {
   case v.MATERIALS:
     return Promise.resolve(materials);
   case v.ACTIVITIES:
     return Promise.resolve(activities);
-    // TODO combine this and wordsearch
   case v.STORIES:
     return db.collection("content")
       .where("type", "==", "story")
@@ -140,7 +137,6 @@ function getSelectionItems(view) {
         return snapshot.docs.map(doc => (
           {
             name: doc.get("title"),
-            // TODO make a utility function to convert doc to link
             link: `/materials/story/${doc.get("classLevel")}/${doc.get("num")}`
           }
         ));
@@ -153,7 +149,6 @@ function getSelectionItems(view) {
         return snapshot.docs.map(doc => (
           {
             name: doc.get("title"),
-            // TODO make a utility function to convert doc to link
             link: `/activities/wsplay/${doc.get("classLevel")}/${doc.get("num")}`
           }
         ));

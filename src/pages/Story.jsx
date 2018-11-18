@@ -125,7 +125,6 @@ class Story extends Component {
 
     const questions = this.state.content.questions;
 
-    // TODO use question number or index?
     // Iterate through the questions and create JSX in `output`
     const output = [];
     questions.forEach((question, i) => {
