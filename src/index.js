@@ -21,6 +21,8 @@ import Selection from "./pages/Selection";
 import Story from "./pages/Story";
 import WordSearch from "./pages/WordSearch";
 import Task from "./pages/Task";
+import Profile from "./pages/Profile";
+import VolunteerAccess from "./pages/VolunteerAccess";
 
 const customHistory = createBrowserHistory();
 
@@ -42,6 +44,8 @@ ReactDOM.render(
         <PrivateRoute path="/activities/wsplay/:classLevel/:num" component={WordSearch} />
         <PrivateRoute path="/activities/wordsearch" component={Selection} componentProps={{view: v.WORDSEARCH}} />
         <PrivateRoute path="/activities" component={Selection} componentProps={{view: v.ACTIVITIES}} />
+        <PrivateRoute path="/profile" component={Selection} componentProps = {{view: v.PROFILE}} />
+        <PrivateRoute path="/volunteer-access" component={Selection} componentProps={{view: v.VOLUNTEERACCESS}} />
         <PrivateRoute path="/" component={Home} />
       </Switch>
     </Container>

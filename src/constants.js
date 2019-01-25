@@ -3,6 +3,8 @@ export const viewConstants = {
   ACTIVITIES: "ACTIVITIES",
   STORIES: "STORIES",
   WORDSEARCH: "WORDSEARCH",
+  PROFILE: "STORIES",
+  VOLUNTEERACCESS: "MATERIALS"
 };
 
 // The different types of content

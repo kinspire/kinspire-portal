@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import swal from "sweetalert";
 
-import "./Profile.css";
+import "./VolunteerAccess.css";
 
 import { contentConstants as c } from "../constants";
 import contentService from "../services/contentService";
 
-class Profile extends Component {
+class VolunteerAccess extends Component {
   constructor(props) {
     super(props);
 
@@ -192,8 +192,8 @@ class Profile extends Component {
   }
 }
 
-Profile.propTypes = {
+VolunteerAccess.propTypes = {
   match: PropTypes.object.isRequired
 };
 
-export default Profile;
+export default VolunteerAccess;
