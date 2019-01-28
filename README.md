@@ -4,8 +4,8 @@ A desktop portal for the students in Kinspire's orphanages to use to access lear
 ## 0. Setup
 
 1. Download and install the following crucial tools for any software developer:
-    1. Plaintext editor. Millions of options, from Atom, VS Code, and Sublime to the more hardcore Vim.
-    2. Git. The version control backbone of Github.
+    1. Plaintext editor. Millions of options, from [Atom](https://atom.io), [VS Code](https://code.visualstudio.com/), and [Sublime](https://www.sublimetext.com/) to the more hardcore [Vim](https://www.vim.org/) or [Emacs](https://www.gnu.org/software/emacs/).
+    2. [Git](https://git-scm.com/). The version control backbone of Github.
 
 ---
 
