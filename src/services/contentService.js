@@ -120,6 +120,10 @@ function submitContentProgress(type, classLevel, num, progress) {
     });
 }
 
+function deleteContentProgress(type,classLevel,num){
+  
+}
+
 // Returns a promsie that resolves with a list of items for the given selection
 // screen view.
 // TODO This has room to be de-redundancy'd
