@@ -4,7 +4,8 @@ export const viewConstants = {
   STORIES: "STORIES",
   WORDSEARCH: "WORDSEARCH",
   PROFILE: "STORIES",
-  VOLUNTEERACCESS: "MATERIALS"
+  VOLUNTEERACCESS: "MATERIALS",
+  TEMPLATES: "STORIES"
 };
 
 // The different types of content

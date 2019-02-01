@@ -19,6 +19,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Selection from "./pages/Selection";
 import Story from "./pages/Story";
+import Templates from "./pages/Templates";
 import WordSearch from "./pages/WordSearch";
 import Task from "./pages/Task";
 import Profile from "./pages/Profile";
@@ -40,6 +41,7 @@ ReactDOM.render(
         <PrivateRoute path="/task/:taskId" component={Task} />
         <PrivateRoute path="/materials/story/:classLevel/:num" component={Story} />
         <PrivateRoute path="/materials/stories" component={Selection} componentProps={{view: v.STORIES}} />
+        <PrivateRoute path="/materials/templates" component={Selection} componentProps={{view: v.TEMPLATES}}/>
         <PrivateRoute path="/materials" component={Selection} componentProps={{view: v.MATERIALS}} />
         <PrivateRoute path="/activities/wsplay/:classLevel/:num" component={WordSearch} />
         <PrivateRoute path="/activities/wordsearch" component={Selection} componentProps={{view: v.WORDSEARCH}} />
