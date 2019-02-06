@@ -30,11 +30,11 @@ class App extends Component {
           <Route path="/signup" component={Signup} />
           <Route path="/task/:taskId" component={Task} />
           <Route path="/materials/story/:classLevel/:num" component={Story} />
-          <Route path="/materials/stories" component={Selection} componentProps={{view: v.STORIES}} />
-          <Route path="/materials" component={Selection} componentProps={{view: v.MATERIALS}} />
+          <Route path="/materials/stories" render={(props) => <Selection {...props} view={v.STORIES} />} />
+          <Route path="/materials" render={(props) => <Selection {...props} view={v.MATERIALS} />} />
           <Route path="/activities/wsplay/:classLevel/:num" component={WordSearch} />
-          <Route path="/activities/wordsearch" component={Selection} componentProps={{view: v.WORDSEARCH}} />
-          <Route path="/activities" component={Selection} componentProps={{view: v.ACTIVITIES}} />
+          <Route path="/activities/wordsearch" render={(props) => <Selection {...props} view={v.WORDSEARCH} />} />
+          <Route path="/activities" render={(props) => <Selection {...props} view={v.ACTIVITIES} />} />
           <Route path="/" component={Home} />
         </Switch>
       );
