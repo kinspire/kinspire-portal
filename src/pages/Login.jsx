@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import swal from "sweetalert";
 
 import "./Login.css";
+import ShadowButton from "../components/ShadowButton";
 import authService from "../services/authService";
 
 // The login page.
@@ -76,10 +77,8 @@ class Login extends Component {
               value={this.state.password}/> 
               <h3> <a href=""> Forgot Password </a> </h3>
               </div> <br/>
-              <div className="login-button">
-            <button onClick={this.handleSubmit}> LOGIN </button>
-              </div>
-              {/* <ShadowButton height="200" text="First time?" to="/signup"/> */}
+                <ShadowButton className="login-button"
+                  onClick={this.handleSubmit} text="Login"/>
           </div>
           <div className="sign-up">Don't have an account?
               <a href="/signup" className="create-account"> CREATE AN ACCOUNT</a></div>

@@ -33,6 +33,10 @@ h2 {
     text-align: center;
 }
 
+.signup-region {
+    padding: 8% 20% 5% 20%;
+}
+
 .signup-title {
     text-align: center;
     color: $primary-brown;
@@ -53,41 +57,6 @@ h2 {
     font-family: RajdhaniBold;
     width: 50%;
 }
-
-
-
-// .signup-avatar-container {
-//     // .flexbox;
-//     flex-direction: column;
-// }
-
-// .signup-avatars {
-//     // .flexbox;
-//     overflow-x: auto;
-//     min-height: 200px;
-//     padding: 20px;
-// }
-
-// .signup-avatar {
-//     height: 150px;
-//     margin: 10px;
-//     transition: all 0.4s ease-in-out;
-
-//     &:hover {
-//         transform: scale(1.20);
-//     }
-// }
-
-// .signup-avatar-selected {
-//     transform: scale(1.20);
-//     background-color: $secondary-gray;
-//     border: 1px solid $primary-brown;
-// }
-
-// .signup-avatar-radio {
-//   margin: 0 auto !important;
-//   display: none;
-// }
 
 .error {
     border: 3px solid red;
