@@ -10,7 +10,6 @@ import Story from "./pages/Story";
 import WordSearch from "./pages/WordSearch";
 import Task from "./pages/Task";
 import Container from "./Container";
-import PrivateRoute from "./components/PrivateRoute";
 import { viewConstants as v } from "./constants";
 
 class App extends Component {
@@ -29,14 +28,14 @@ class App extends Component {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <PrivateRoute path="/task/:taskId" component={Task} />
-          <PrivateRoute path="/materials/story/:classLevel/:num" component={Story} />
-          <PrivateRoute path="/materials/stories" component={Selection} componentProps={{view: v.STORIES}} />
-          <PrivateRoute path="/materials" component={Selection} componentProps={{view: v.MATERIALS}} />
-          <PrivateRoute path="/activities/wsplay/:classLevel/:num" component={WordSearch} />
-          <PrivateRoute path="/activities/wordsearch" component={Selection} componentProps={{view: v.WORDSEARCH}} />
-          <PrivateRoute path="/activities" component={Selection} componentProps={{view: v.ACTIVITIES}} />
-          <PrivateRoute path="/" component={Home} />
+          <Route path="/task/:taskId" component={Task} />
+          <Route path="/materials/story/:classLevel/:num" component={Story} />
+          <Route path="/materials/stories" render={(props) => <Selection {...props} view={v.STORIES} />} />
+          <Route path="/materials" render={(props) => <Selection {...props} view={v.MATERIALS} />} />
+          <Route path="/activities/wsplay/:classLevel/:num" component={WordSearch} />
+          <Route path="/activities/wordsearch" render={(props) => <Selection {...props} view={v.WORDSEARCH} />} />
+          <Route path="/activities" render={(props) => <Selection {...props} view={v.ACTIVITIES} />} />
+          <Route path="/" component={Home} />
         </Switch>
       );
     }
