@@ -27,7 +27,7 @@
         "start-js": "cross-env PORT=3001 react-scripts start",
         "start": "npm-run-all -p watch-css start-js",
         "test": "react-scripts test --env=jsdom",
-        "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
+        "watch-css": "yarn run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
     },
     "devDependencies": {
         "cross-env": "^5.2.0",
