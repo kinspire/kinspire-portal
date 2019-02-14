@@ -53,14 +53,14 @@ export default class Home extends Component {
             { this.getContentLinks() }
           </div>
         </div>
-        <div className="col-3">
+        {/* <div className="col-3">
           <div className="home-section-title">Profile</div>
           <div className="home-section-progress">
             <Link to="/tasks">
               <img alt="Tasks" className="home-section-progress-image" src={envelopeWithMedal}/>
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
