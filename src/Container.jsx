@@ -22,7 +22,7 @@ class Container extends Component {
         <div id="portal-header">
           {/* Both the menu and the back buttons should only be visible if logged in */}
           {localStorage.getItem("user") ? <Menu/> : ""}
-          <div className="portal-title">{ this.props.title }</div>
+          {/* <div className="portal-title">{ this.props.title }</div> */}
           {localStorage.getItem("user") ? <Back/> : ""}
         </div>
         {this.props.children}

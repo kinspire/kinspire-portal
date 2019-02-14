@@ -40,6 +40,16 @@
 
 .menu {
   width: 100%;
+  display: flex;
+  margin: auto;
+}
+
+.portal-menu-content {
+  display: flex;
+}
+
+.portal-menu-item {
+  margin: auto;
 }
 
 // .portal-menu-title {
