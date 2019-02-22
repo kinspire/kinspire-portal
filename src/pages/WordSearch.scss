@@ -27,10 +27,14 @@
   background-color: green;
 }
 
-.wordsearch-letter-completed {
-  background-color: orange;
-  color: white;
+.wordsearch-letter-incorrect{
+  background-color: red;
+  color:white;
 }
+
+.wordsearch-letter-completed {
+  background-color: green;
+  color: white; }
 
 .wordsearch-words {
   width: 30%;

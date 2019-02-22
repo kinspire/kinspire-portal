@@ -1,11 +1,13 @@
 import firebaseService from "./firebaseService";
 import { viewConstants as v } from "../constants";
+import swal from "sweetalert";
 
 export default {
   // getNextContentItems,
   getContent,
   getContentProgress,
   submitContentProgress,
+  deleteContent,
   getSelectionItems,
 };
 
@@ -111,10 +113,32 @@ function submitContentProgress(type, classLevel, num, progress) {
         return db.collection("contentProgress")
           .add({
             ...progress,
-            type, classLevel: parseInt(classLevel, 10), num: parseInt(num, 10), userId: localStorage.getItem("userId"),
+            type,
+            classLevel: parseInt(classLevel, 10),
+            num: parseInt(num, 10),
+            userId: localStorage.getItem("userId"),
           });
       } else {
         return snapshot.docs[0].ref.set(progress, { merge: true });
+      }
+    });
+}
+
+function deleteContent(type, classLevel, num){
+  db.collection("contentProgress")
+    .where("type", "==", type)
+    .where("classLevel", "==", parseInt(classLevel, 10))
+    .where("num", "==", parseInt(num,10))
+    .where("userId", "==", localStorage.getItem("userId"))
+    .limit(1)
+    .get()
+    .then(snapshot => {
+      if(snapshot.empty){
+        swal("Already Deleted");
+      } else {
+        snapshot.docs[0].ref.delete().catch((error) => {
+          swal(`Error${  error}`);
+        });
       }
     });
 }

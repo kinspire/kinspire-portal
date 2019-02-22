@@ -27,14 +27,17 @@ export default class WordSearch extends Component {
     // - chosenCells: a set of all chosen cells, used for UI coloring
     this.state = {
       wordStart: NO_LETTER,
+      correctWord : false,
       grid: [],
       words: [],
       chosenWords: {}, // map of word to [word Start, word End]
       chosenCells: new HashSet(),
+      currentCells: new HashSet()
     };
 
     this.handleLetterClicked          = this.handleLetterClicked.bind(this);
     this.handleSave                   = this.handleSave.bind(this);
+    this.handleReset                  = this.handleReset.bind(this);
   }
 
   // On mount, load the content as well as the content progress for the word
@@ -65,6 +68,8 @@ export default class WordSearch extends Component {
 
             // Add all cells that the word contains to chosenCells
             for (let i = 0; i <= wordLen; i++) {
+              //swal("Row" + col);
+              //swal("Col" + col);
               const row = wordStart.row + i * (wordDel.row / wordLen);
               const col = wordStart.col + i * (wordDel.col / wordLen);
               chosenCells.put({row, col});
@@ -73,6 +78,7 @@ export default class WordSearch extends Component {
 
           state.chosenWords = progress.chosenWords;
           state.chosenCells = chosenCells;
+          state.correctWord = false;
         }
 
         // Set state loaded from the database
@@ -83,26 +89,34 @@ export default class WordSearch extends Component {
   // Returns a string representing the word chosen from this.state.wordStart to
   // wordEnd.
   getSelectedWord(wordEnd) {
+    const currentCells = this.state.currentCells.copy();
     const { wordStart, grid } = this.state;
-
     const wordDelta = {row: wordEnd.row - wordStart.row, col: wordEnd.col - wordStart.col};
+    const wordEnding = {row: wordEnd.row, col: wordStart.row};
     // Has to be a valid diagonal/horizontal/vertical
     if ((wordDelta.row === 0 && wordDelta.col === 0) ||
         (Math.abs(wordDelta.row) !== Math.abs(wordDelta.col) && wordDelta.row !== 0 && wordDelta.col !== 0)) {
       return null;
     }
     // We have a word!
+
     const wordLen = Math.max.apply(null, _.values(wordDelta).map(Math.abs));
     let word = "";
     for (let i = 0; i <= wordLen; i++) {
       const row = wordStart.row + i * (wordDelta.row / wordLen);
       const col = wordStart.col + i * (wordDelta.col / wordLen);
+      currentCells.put({row,col});
       word += grid[row][col];
     }
+    //swal("Hello " + word);
+    this.setState({
+      currentCells : currentCells,
+    })
     return word;
   }
 
   handleLetterClicked(row, col) {
+    const currentCells = new HashSet();
     if (this.state.wordStart.row >= 0) {
       // This is the case that one letter has been clicked and we are selecting the word end
       const wordEnd = {row, col};
@@ -111,24 +125,25 @@ export default class WordSearch extends Component {
         swal("Choose a word! Resetting choice.");
       } else if (selectedWord in this.state.chosenWords) {
         swal("Word already chosen! Resetting choice.");
+      } else if (this.state.words.includes(selectedWord)) {
+        //if branch for valid word but not a word in the word bank
+        swal(`Nice job! You chose: ${selectedWord}`);
+        this.wordIsChosen(wordEnd, selectedWord);
+        this.correctWord = true;
+      } else if (Object.keys(this.state.chosenWords).length === this.state.words.length) {
+        // Check for completion
+        swal("Nice job! Game over :)");
       } else {
-        if (this.state.words.includes(selectedWord)) {
-          swal(`Nice job! You chose: ${selectedWord}`);
-          this.wordIsChosen(wordEnd, selectedWord);
-        } else {
-          // Check for completion
-          if (Object.keys(this.state.chosenWords).length === this.state.words.length) {
-            swal("Nice job! Game over :)");
-          }
-        }
+        swal(`${selectedWord  } isn't what we are looking for, try again!`);
       }
       this.setState({
-        wordStart: NO_LETTER
+        wordStart: NO_LETTER,
       });
     } else {
       // Start word selection
       this.setState({
-        wordStart: {row, col}
+        wordStart: {row, col},
+        currentCells : currentCells,
       });
     }
   }
@@ -143,10 +158,15 @@ export default class WordSearch extends Component {
       .catch(err => swal(`Error: ${err}`));
   }
 
+  handleReset() {
+    const{ classLevel, num} = this.props.match.params;
+    contentService.deleteContent(c.TYPE_WORD_SEARCH, classLevel, num);
+    swal("To start over, press back and click on the word search again!");
+  }
+
   // Update state when a word is selected
   wordIsChosen(wordEnd, selectedWord) {
     const { wordStart, chosenWords } = this.state;
-
     const chosenCells = this.state.chosenCells.copy();
     const wordDel = {row: wordEnd.row - wordStart.row, col: wordEnd.col - wordStart.col};
 
@@ -174,9 +194,16 @@ export default class WordSearch extends Component {
           const letterClasses = classNames({
             "wordsearch-letter": true,
             "wordsearch-letter-start": row === this.state.wordStart.row && col === this.state.wordStart.col,
-            "wordsearch-letter-completed": this.state.chosenCells.has({row, col})
-          });
+            //if(correctWord){
+            "wordsearch-letter-incorrect": this.state.currentCells.has({row,col}),
+            "wordsearch-letter-completed":  this.state.chosenCells.has({row, col}),
+            //}else{
 
+            //}
+
+            //"wordsearch-letter-completed": true
+          });
+          //swal("assignment");
           return (
             <div
               className={letterClasses}
@@ -209,6 +236,7 @@ export default class WordSearch extends Component {
           </div>
         </div>
         <ShadowButton text="Save" onClick={this.handleSave} />
+        <ShadowButton text="Start Over!" onClick={this.handleReset}/>
       </div>
     );
   }
