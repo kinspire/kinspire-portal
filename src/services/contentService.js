@@ -67,15 +67,14 @@ function getContent(type, classLevel, num) {
   return db.collection("content")
     .where("type", "==", type)
     .where("classLevel", "==", parseInt(classLevel, 10))
-    .where("num", "==", parseInt(num, 10))
+    .where("num", "==", parseInt(num, 10)) //only files that fit these 3 contraints are only retrieved
     .limit(1)
-    .get()
-    .then(snapshot => {
+    .get() //actually gets data
+    .then(snapshot => { //after data is retrieved, THEN do ...
       if (snapshot.empty) {
         throw new Error("No content available!");
       }
-
-      return snapshot.docs[0].data();
+      return snapshot.docs[0].data(); //docs is a field inside spanshot object
     });
 }
 
