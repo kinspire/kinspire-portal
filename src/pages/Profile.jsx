@@ -10,7 +10,8 @@ class Profile extends Component {
     const nameDisplay = `Name: ${user.firstName} ${user.lastName}`;
     const usernameDisplay = `Username: ${  user.username}`;
     const classLevel = `Class Level: ${  user.classLevel}`;
-    return `${nameDisplay  } ${  usernameDisplay  } ${  classLevel}`;
+    const birthday = `Birthday: ${ user.birthday}`;
+    return `${nameDisplay  } ${  usernameDisplay  } ${  classLevel} ${  birthday}`;
   }
 }
 
