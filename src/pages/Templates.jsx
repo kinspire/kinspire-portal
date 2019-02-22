@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import swal from "sweetalert";
 
-import "./Templates.css";
 
 import { contentConstants as c } from "../constants";
 import contentService from "../services/contentService";
