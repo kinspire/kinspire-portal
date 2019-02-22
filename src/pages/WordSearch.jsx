@@ -37,6 +37,7 @@ export default class WordSearch extends Component {
 
     this.handleLetterClicked          = this.handleLetterClicked.bind(this);
     this.handleSave                   = this.handleSave.bind(this);
+    this.handleReset                  = this.handleReset.bind(this);
   }
 
   // On mount, load the content as well as the content progress for the word
@@ -157,9 +158,12 @@ export default class WordSearch extends Component {
       .catch(err => swal(`Error: ${err}`));
   }
 
-  handleReset(){
-    
+  handleReset() {
+    const{ classLevel, num} = this.props.match.params;
+    contentService.deleteContent(c.TYPE_WORD_SEARCH, classLevel, num);
+    swal("To start over, press back and click on the word search again!");
   }
+
   // Update state when a word is selected
   wordIsChosen(wordEnd, selectedWord) {
     const { wordStart, chosenWords } = this.state;
@@ -232,7 +236,7 @@ export default class WordSearch extends Component {
           </div>
         </div>
         <ShadowButton text="Save" onClick={this.handleSave} />
-        <ShadowButton text="Start Over!" onClick={this.handleSave}/>
+        <ShadowButton text="Start Over!" onClick={this.handleReset}/>
       </div>
     );
   }
