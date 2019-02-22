@@ -1,10 +1,12 @@
+// library
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+// our files
 import contentService from "../services/contentService.js";
-
 import "./Selection.css";
+import { viewConstants } from "../constants";
 
 // This component represents a generic "selection" screen that can show any list
 // of items in a consistent fashion
@@ -42,8 +44,17 @@ class Selection extends Component {
       </Link>
     ));
 
+    let mainStyle = {};
+    // materials = #a9bb59
+    // activities = #79b4b3
+    if(this.props.view === viewConstants.MATERIALS) {
+      mainStyle.backgroundColor = '#a9bb59';
+    } else if(this.props.view === viewConstants.ACTIVITIES) {
+      mainStyle.backgroundColor = '#79b4b3';
+    }
+
     return (
-      <div className="selection-categories">
+      <div className="selection-categories" style={mainStyle}>
         {itemsRendered}
       </div>
     );

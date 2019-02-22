@@ -1,21 +1,99 @@
 @import '../styles/shared.scss';
 
 /* Login */
+@font-face {
+    font-family: MontserratRegular;
+    src: url(../fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: MontserratBold;
+    src: url(../fonts/Montserrat/Montserrat-Bold.ttf);
+}
+
+@font-face {
+    font-family: RajdhaniRegular;
+    src: url(../fonts/Rajdhani/Rajdhani-Regular.ttf);
+}
+
+@font-face {
+    font-family: RajdhaniBold;
+    src: url(../fonts/Rajdhani/Rajdhani-Bold.ttf);
+}
+
+body {
+    background-color: #a586c5;
+}
 
 .login-region {
-    margin: 5% 5%;
+    padding: 8% 25% 5% 25%;
 }
 
 .login-title {
     text-align: center;
     color: $primary-brown;
-    font-size: 28px;
+    font-size: 32px;
+    font-family: MontserratBold;
+    color: white;
 }
 
 .login-textbox {
+    background-color: white;
     width: 100%;
+    opacity: 0.5;
+    padding: 15px;
+    font-family: RajdhaniRegular;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 2px 2px 4px rgba(68, 68, 68, 0.6);
+}
+
+h2 {
+    font-size: 20px;
+    padding: 15px 0px 5px 0px;
 }
 
 .login-button {
-    width: 100%;
+    text-align: center;
+    // margin-right: auto;
+    // margin-left: auto;
+}
+
+.login-button {
+    background-color: #f5bf53;
+    color: white;
+    text-align: center;
+    padding: 12px 35px;
+    font-size: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(68, 68, 68, 0.6);
+    border: none;
+    font-family: RajdhaniBold;
+}
+
+.user-info {
+    // padding: 5% 25%;
+    font-family: MontserratBold;
+    color: white;
+}
+
+h3 {
+    font-size: 16px;
+    padding: 7px 0px;
+    color: white;
+    font-family: MontserratRegular;
+}
+
+a {
+    color: white;
+}
+
+.sign-up {
+    text-align: center;
+    color: white;
+    font-family: MontserratRegular;
+}
+
+.create-account {
+    font-family: MontserratBold;
 }

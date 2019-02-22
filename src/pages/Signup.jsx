@@ -54,39 +54,46 @@ export default class Signup extends Component {
 
     return (
       <div className="portal-body">
-        <div className="flexbox">
-          <span className="form-label">First Name:</span>
-          <input
-            onChange={this.handleChange.bind(this, "firstName")}
-            placeholder="First Name"
-            type="text"
-            value={this.state.firstName} />
+        <div className="col">
+          <div className="signup-region">
+            <div className='signup-title'>SIGN-UP</div>
+              <h2>First Name:</h2>
+              <input
+                className="login-textbox"
+                onChange={this.handleChange.bind(this, "firstName")}
+                placeholder="type..."
+                type="text"
+                value={this.state.firstName} />
+            <div className="flexbox">
+              <h2>Last Name:</h2>
+              <input
+                className="login-textbox"
+                onChange={this.handleChange.bind(this, "lastName")}
+                placeholder="Last Name"
+                type="text"
+                value={this.state.lastName} />
+            </div>
+            <div className="flexbox">
+              <h2>Birthday:</h2>
+              <input
+                className="login-textbox"
+                onChange={this.handleChange.bind(this, "birthday")}
+                type="date"
+                value={this.state.birthday} />
+            </div>
+            <div className="flexbox">
+              <h2>Class Level:</h2>
+              <input
+                className="login-textbox"
+                onChange={this.handleChange.bind(this, "classLevel")}
+                type="number"
+                placeholder="Class Level"
+                value={this.state.classLevel} />
+            </div>
+            <ShadowButton className="signup-button"
+              onClick={this.handleSubmit} text="Sign up!"/>
+          </div>
         </div>
-        <div className="flexbox">
-          <span className="form-label">Last Name:</span>
-          <input
-            onChange={this.handleChange.bind(this, "lastName")}
-            placeholder="Last Name"
-            type="text"
-            value={this.state.lastName} />
-        </div>
-        <div className="flexbox">
-          <span className="form-label">Birthday:</span>
-          <input
-            onChange={this.handleChange.bind(this, "birthday")}
-            type="date"
-            value={this.state.birthday} />
-        </div>
-        <div className="flexbox">
-          <span className="form-label">Class Level:</span>
-          <input
-            onChange={this.handleChange.bind(this, "classLevel")}
-            type="number"
-            placeholder="Class Level"
-            value={this.state.classLevel} />
-        </div>
-        <ShadowButton className="signup-button"
-          onClick={this.handleSubmit} text="Sign up!"/>
       </div>
     );
   }
