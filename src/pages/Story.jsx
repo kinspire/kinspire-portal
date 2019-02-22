@@ -14,6 +14,7 @@ class Story extends Component {
     this.state = {
       answers: [],
       content: null,
+      correct_answers: []
     };
 
     this.handleOptionChange     = this.handleOptionChange.bind(this);
@@ -35,9 +36,10 @@ class Story extends Component {
           answers: values[1].answers ||
             // If there are no answers, then set up default answers
             values[0].questions.map((q) => q.type === "mcq" ? -1 : ""),
+          correct_answers: values[0].questions.map((q) => q.type === "mcq" ? q.correctChoice : "")
         });
       })
-      .catch(err => swal(`Error: ${err}`));
+      .catch(err => swal(`${err}`));
   }
 
   // [1 of 2] Handle answer changes
@@ -57,9 +59,22 @@ class Story extends Component {
   // Submit the answers
   handleSubmit() {
     const { answers } = this.state;
+    const {correct_answers} = this.state;
     contentService.submitContentProgress(c.TYPE_STORY, this.props.match.params.classLevel,
       this.props.match.params.num, { answers })
-      .then(() => swal("Answers submitted!"))
+      .then(() => {
+        let res = "";
+        for (let i = 0; i < answers.length; i++) {
+          if (correct_answers[i] !== "") {
+            if (answers[i] === correct_answers[i]) {
+              res += (`Question ${i + 1} is correct!\n`);
+            } else {
+              res += (`Question ${i + 1} is incorrect.\n`);
+            }
+          }
+          swal (res);
+        }
+      })
       .catch(err => swal(err));
   }
 
