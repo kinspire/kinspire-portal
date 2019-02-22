@@ -1,0 +1,73 @@
+/* Stories */
+@font-face {
+  font-family: storyFont;
+  src: url(../fonts/Oregano.ttf); }
+
+#stories-home {
+  display: inline-flex;
+  width: 100%;
+  /*position: absolute;*/
+  /*top: 0;*/ }
+
+.stories-story {
+  display: flex;
+  border: 10px solid; }
+
+.stories-story-section {
+  width: 50%;
+  padding: 15px;
+  overflow: auto; }
+
+.stories-story-section-story div {
+  font-family: storyFont;
+  font-size: 24px; }
+
+.stories-story-paragraph {
+  text-indent: 60px; }
+
+.stories-story-divider {
+  margin: 0 5px;
+  width: 10px; }
+
+.stories-story-section-questions-title {
+  font-size: 140%;
+  font-weight: bold; }
+
+/* Scrollbar */
+.stories-story-section::-webkit-scrollbar {
+  height: 16px;
+  overflow: visible;
+  width: 16px; }
+
+.stories-story-section::-webkit-scrollbar-thumb {
+  background-color: green;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1), 0 -1px 0 rgba(0, 0, 0, 0.07); }
+
+.stories-story-section::-webkit-scrollbar-track {
+  background-color: white;
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0 4px; }
+
+/* Vocab words */
+.stories-vocab {
+  position: relative; }
+
+.stories-vocab-word {
+  font-family: storyFont;
+  font-weight: bolder;
+  font-size: 28px; }
+
+.stories-vocab-def {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  z-index: 9;
+  background-color: white;
+  border: 1px solid black;
+  padding: 4px;
+  text-indent: 0; }
+
+.stories-vocab:hover .stories-vocab-def {
+  display: block; }
