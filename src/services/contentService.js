@@ -146,7 +146,7 @@ function deleteContent(type, classLevel, num){
 // Returns a promsie that resolves with a list of items for the given selection
 // screen view.
 // TODO This has room to be de-redundancy'd
-function getSelectionItems(view) {
+function getSelectionItems(view, user) {
   switch (view) {
   case v.MATERIALS:
     return Promise.resolve(materials);
@@ -155,6 +155,7 @@ function getSelectionItems(view) {
   case v.STORIES:
     return db.collection("content")
       .where("type", "==", "story")
+      .where("classLevel", "==", parseInt(user.classLevel, 10))
       .get()
       .then(snapshot => {
         return snapshot.docs.map(doc => (
@@ -167,6 +168,7 @@ function getSelectionItems(view) {
   case v.WORDSEARCH:
     return db.collection("content")
       .where("type", "==", "wordsearch")
+      .where("classLevel", "==", parseInt(user.classLevel, 10))
       .get()
       .then(snapshot => {
         return snapshot.docs.map(doc => (
