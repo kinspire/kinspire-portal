@@ -8,7 +8,6 @@ firebase.initializeApp(config);
 // Access the firestore through this reference.
 const db = firebase.firestore();
 db.settings({
-  timestampsInSnapshots: true,
 });
 
 export default {
