@@ -21,20 +21,20 @@
     src: url(../fonts/Rajdhani/Rajdhani-Bold.ttf);
 }
 
-h2 {
+body {
+    background-color: #a586c5 !important;
+}
+
+h5 {
     color: white;
-    font-size: 20px;
-    padding: 15px 0px 5px 0px;
+    font-family: RajdhaniBold;
+
 }
 
 .form-label {
-    width: 45%;
-    margin: 0 2.5%;
+    width: 100%;
+    margin: .5rem 2.5rem;
     text-align: center;
-}
-
-.signup-region {
-    padding: 8% 20% 5% 20%;
 }
 
 .signup-title {
@@ -43,6 +43,25 @@ h2 {
     font-size: 32px;
     font-family: MontserratBold;
     color: white;
+    margin-top: 1.25rem;
+}
+
+.signup-region {
+    display: flex;
+    justify-content: center;
+    align-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.column {
+    margin: .5rem .5rem;
+    width: 100%;
+}
+
+.flexbox {
+    margin: .5rem 1rem;
 }
 
 .signup-button {
@@ -50,12 +69,15 @@ h2 {
     color: white;
     text-align: center;
     padding: 12px 35px;
-    font-size: 20px;
-    border-radius: 5px;
+    font-size: 8px;
+    border-radius: 10px;
     box-shadow: 2px 2px 4px rgba(68, 68, 68, 0.6);
     border: none;
     font-family: RajdhaniBold;
-    width: 50%;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.5rem;
 }
 
 .error {
