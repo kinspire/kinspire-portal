@@ -11,8 +11,10 @@ export default {
 
 const db = firebaseService.db;
 const materials = [
-  {name: "Stories", link: "/materials/stories"},
-  {name: "Templates", link: "/materials/templates"}
+  {name: "Resume/CV Templates", link: "/materials/templates"},
+  {name: "Writing Tips", link: "/materials/tips"},
+  {name: "Career Paths", link: "/materials/careerpaths"},
+  {name: "Health & Wellness", link: "/materials/health"}
 ];
 const activities = [
   {name: "Word Search", link: "/activities/wordsearch"}
