@@ -40,8 +40,9 @@ class Login extends Component {
         .then(() => {
           this.setState({loggedIn: true});
         })
-        .catch(error => {
-          this.setState({loginError: error});
+        .catch(() => {
+          swal("Username is incorrect");
+          //this.setState({loginError: error});
         });
     } else {
       swal("Enter username");
