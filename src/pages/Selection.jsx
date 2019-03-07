@@ -49,6 +49,8 @@ class Selection extends Component {
     // activities = #79b4b3
     if(this.props.view === viewConstants.MATERIALS) {
       mainStyle.backgroundColor = '#a9bb59';
+      mainStyle.margin = 0;
+      mainStyle.padding = 0;
     } else if(this.props.view === viewConstants.ACTIVITIES) {
       mainStyle.backgroundColor = '#79b4b3';
     }
