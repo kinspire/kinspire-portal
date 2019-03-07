@@ -20,6 +20,7 @@ class Selection extends Component {
       items: [],
     };
   }
+  
 
   componentDidMount() {
     contentService.getSelectionItems(this.props.view)
