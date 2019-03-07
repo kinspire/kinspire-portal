@@ -12,6 +12,8 @@ export default class Signup extends Component {
 
     this.state = {
       username: "",
+      firstName: "",
+      lastName: "",
       loggedIn: false,
     };
 
@@ -37,14 +39,28 @@ export default class Signup extends Component {
 
   handleSubmit() {
     // Only submit if all the fields are filled out
-    if (this.state.firstName && this.state.lastName && this.state.birthday && this.state.classLevel) {
+    if (this.state.firstName && this.state.lastName && this.state.birthday && this.verifyDate()) {
       authService.signup(this.state)
         .then(() => {
           this.setState({loggedIn: true});
         });
     } else {
-      swal("Enter all details");
+      swal("Verify all details");
     }
+  }
+
+  verifyDate() {
+    const date = this.state.birthday.split("-");
+    // Verify that the birth year is between 1980 and 2020.
+    const year = date[0] < 2020 && date[0] > 1980;
+
+    // Verify that the birth month is between 1 and 12.
+    const month = date[1] < 13 && date[1] > 0;
+
+    // Verify that the birth day is between 1 and 31.
+    // TODO: Modify the verification for each month (not all months have 31 days).
+    const day = date[2] < 32 && date[2] > 0;
+    return year && month && day;
   }
 
   render() {
@@ -71,6 +87,14 @@ export default class Signup extends Component {
             value={this.state.lastName} />
         </div>
         <div className="flexbox">
+          <span className="form-label">Username:</span>
+          <input
+            onChange={this.handleChange.bind(this, "username")}
+            placeholder={(this.state.firstName.toLowerCase() + this.state.lastName.toLowerCase())}
+            type="text"
+            value={this.state.username} />
+        </div>
+        <div className="flexbox">
           <span className="form-label">Birthday:</span>
           <input
             onChange={this.handleChange.bind(this, "birthday")}
@@ -79,14 +103,25 @@ export default class Signup extends Component {
         </div>
         <div className="flexbox">
           <span className="form-label">Class Level:</span>
-          <input
-            onChange={this.handleChange.bind(this, "classLevel")}
-            type="number"
-            placeholder="Class Level"
-            value={this.state.classLevel} />
+          <select
+            value={this.state.classLevel}
+            onChange={this.handleChange.bind(this, "classLevel")}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
         </div>
-        <ShadowButton className="signup-button"
-          onClick={this.handleSubmit} text="Sign up!"/>
+        <div className="flexbox">
+          <span className="form-label">Preferred Language:</span>
+          <select
+            value={this.state.preferredLanguage}
+            onChange={this.handleChange.bind(this, "preferredLanguage")}>
+            <option value="none">None</option>
+            <option value="marathi">Marathi</option>
+            <option value="telugu">Telugu</option>
+          </select>
+        </div>
+        <ShadowButton className="signup-button" onClick={this.handleSubmit} text="Sign up!"/>
       </div>
     );
   }
