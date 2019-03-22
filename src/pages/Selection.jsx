@@ -45,10 +45,6 @@ class Selection extends Component {
     } 
   }
 
-
-
-
-
   render() {
     const itemsRendered = this.state.items.map((item) => (
       <Link key={item.link} className="selection-category" to={item.link}>
