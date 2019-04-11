@@ -27,6 +27,7 @@ class Selection extends Component {
       .then(items => {
         this.setState({items});
       });
+
   }
 
   // Handle changes in the view prop - we need to reload the items
@@ -37,6 +38,8 @@ class Selection extends Component {
     if(this.props.view === viewConstants.MATERIALS) {
       document.body.style.backgroundColor = '#a9bb59';
     } else if(this.props.view === viewConstants.ACTIVITIES) {
+      document.body.style.backgroundColor = '#79b4b3';
+    } else if(this.props.view === viewConstants.WORDSEARCH) {
       document.body.style.backgroundColor = '#79b4b3';
     } else if(this.props.view === viewConstants.HELP) {
       document.body.style.backgroundColor = '#fc5e5a';
