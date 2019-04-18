@@ -86,7 +86,12 @@ class Story extends Component {
     const paragraphs = content.story;
     const vocab = content.vocab || [];
     // TODO: Implement more generalized translations
-    const translations = content["translation-te"];
+    const language = JSON.parse(localStorage.getItem('user')).preferredLanguage;
+    console.log(language);
+    let translations = content["translation-ma"];
+    if (language === "telugu") {
+      translations = content["translation-te"];
+    }
     let i = 0;
 
     // Convert the paragraphs array

@@ -38,7 +38,7 @@ export default class Home extends Component {
         <div className="col-3">
           <div className="home-section-date">
             <div className="home-section-title">Today&#39;s date</div>
-            <div className="home-section-content">{moment().format("ddd D/M/YYYY")}</div>
+            <div className="home-section-content">{moment().format("ddd DD/MM/YYYY")}</div>
           </div>
           <div className="home-section-quote">
             <div className="home-section-title">Quote of the Day</div>
