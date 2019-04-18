@@ -71,7 +71,7 @@ export default class Signup extends Component {
     return (
       <div className="portal-body">
         <div className="flexbox">
-          <span className="form-label">First Name:</span>
+          <label>First Name:</label>
           <input
             onChange={this.handleChange.bind(this, "firstName")}
             placeholder="First Name"
@@ -79,7 +79,7 @@ export default class Signup extends Component {
             value={this.state.firstName} />
         </div>
         <div className="flexbox">
-          <span className="form-label">Last Name:</span>
+          <label>Last Name:</label>
           <input
             onChange={this.handleChange.bind(this, "lastName")}
             placeholder="Last Name"
@@ -87,7 +87,7 @@ export default class Signup extends Component {
             value={this.state.lastName} />
         </div>
         <div className="flexbox">
-          <span className="form-label">Username:</span>
+          <label>Username:</label>
           <input
             onChange={this.handleChange.bind(this, "username")}
             placeholder={(this.state.firstName.toLowerCase() + this.state.lastName.toLowerCase())}
@@ -95,14 +95,14 @@ export default class Signup extends Component {
             value={this.state.username} />
         </div>
         <div className="flexbox">
-          <span className="form-label">Birthday:</span>
+          <label>Birthday:</label>
           <input
             onChange={this.handleChange.bind(this, "birthday")}
             type="date"
             value={this.state.birthday} />
         </div>
         <div className="flexbox">
-          <span className="form-label">Class Level:</span>
+          <label>Class Level:</label>
           <select
             value={this.state.classLevel}
             onChange={this.handleChange.bind(this, "classLevel")}>
@@ -112,7 +112,7 @@ export default class Signup extends Component {
           </select>
         </div>
         <div className="flexbox">
-          <span className="form-label">Preferred Language:</span>
+          <label>Preferred Language:</label>
           <select
             value={this.state.preferredLanguage}
             onChange={this.handleChange.bind(this, "preferredLanguage")}>

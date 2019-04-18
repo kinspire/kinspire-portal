@@ -11,7 +11,7 @@
 .signup-button {
     display: block;
     width: 100%;
-    margin: 10px 0;
+    margin: 20px 0;
     text-align: center;
 }
 
@@ -46,6 +46,13 @@
 .signup-avatar-radio {
   margin: 0 auto !important;
   display: none;
+}
+
+label {
+    width:250px;
+    clear:left;
+    text-align:left;
+    padding-left:50px;
 }
 
 .error {
