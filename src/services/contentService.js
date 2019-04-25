@@ -17,7 +17,8 @@ const materials = [
   {name: "Health & Wellness", link: "/materials/health"}
 ];
 const activities = [
-  {name: "Word Search", link: "/activities/wordsearch"}
+  {name: "Word Searches", link: "/activities/wordsearch"},
+  {name: "Stories", link: "/activities/stories"}
 ];
 
 // This is outdated functionality, where a student can automatically advance to

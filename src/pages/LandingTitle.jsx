@@ -1,21 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-class LandingTitle extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: " ",
-      caption: " "
-    };
-  }
-  render() {
-    return (
-      <div>
-        <div className="title">{this.state.title}</div>
-        <div className="caption">{this.state.caption}</div>
-      </div>
-    );
-  }
-}
+const LandingTitle = (props) => (
+  <div>
+    <div className='title'>{props.title}</div>
+    <div className='caption'>{props.caption}</div>
+  </div>
+);
+LandingTitle.prototypes = {
+  title: PropTypes.string.isRequired,
+  caption: PropTypes.string
+};
 
 export default LandingTitle;

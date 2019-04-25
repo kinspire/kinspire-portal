@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import contentService from "../services/contentService.js";
 import "./Selection.css";
 import { viewConstants } from "../constants";
-import LandingTitle from "./LandingTitle";
+// import LandingTitle from "./LandingTitle";
 
 // This component represents a generic "selection" screen that can show any list
 // of items in a consistent fashion
