@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import moment from "moment";
 import PropTypes from "prop-types";
 
 import "./Home.css";
 import ShadowButton from "../components/ShadowButton";
-import envelopeWithMedal from "../images/home-page-envelope-with-medal.png";
 import tasksService from "../services/tasksService";
 import { contentConstants as c, contentStrings as s } from "../constants";
 

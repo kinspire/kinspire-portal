@@ -44,7 +44,7 @@ class Selection extends Component {
       </Link>
     ));
 
-    let mainStyle = {};
+    const mainStyle = {};
     // materials = #a9bb59
     // activities = #79b4b3
     if(this.props.view === viewConstants.MATERIALS) {

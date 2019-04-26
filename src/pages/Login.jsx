@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import React, {Component} from "react";
+import {Redirect} from "react-router-dom";
 import swal from "sweetalert";
 
 import "./Login.css";
@@ -13,9 +13,9 @@ class Login extends Component {
 
     this.state = {username: ""};
 
-    this.handleChange       = this.handleChange.bind(this);
-    this.handleKeyUp        = this.handleKeyUp.bind(this);
-    this.handleSubmit       = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // Log out the user before opening the page
@@ -61,28 +61,29 @@ class Login extends Component {
         <div className="col">
           <div className="login-region">
             <div className="login-title">LOG-IN</div>
-            <div className="user-info"> 
-            <h2> Username </h2>
-            <input
-              className="login-textbox"
-              onChange={this.handleChange}
-              onKeyUp={this.handleKeyUp}
-              placeholder="type..."
-              value={this.state.username}/>
+            <div className="user-info">
+              <h2> Username </h2>
+              <input
+                className="login-textbox"
+                onChange={this.handleChange}
+                onKeyUp={this.handleKeyUp}
+                placeholder="type..."
+                value={this.state.username}/>
               <h2> Password </h2>
               <input
-              className="login-textbox"
-              onChange={this.handleChange}
-              onKeyUp={this.handleKeyUp}
-              placeholder="type..."
-              value={this.state.password}/> 
-              <h3> <a href=""> Forgot Password </a> </h3>
-              </div> <br/>
-                <ShadowButton className="login-button"
-                  onClick={this.handleSubmit} text="Login"/>
+                className="login-textbox"
+                onChange={this.handleChange}
+                onKeyUp={this.handleKeyUp}
+                placeholder="type..."
+                value={this.state.password}/>
+              <h3><a href=""> Forgot Password </a></h3>
+            </div>
+            <br/>
+            <ShadowButton className="login-button"
+              onClick={this.handleSubmit} text="Login"/>
           </div>
           <div className="sign-up">Don't have an account?
-              <a href="/signup" className="create-account"> CREATE AN ACCOUNT</a></div>
+            <a href="/signup" className="create-account"> CREATE AN ACCOUNT</a></div>
         </div>
       </div>
     );

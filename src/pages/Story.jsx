@@ -30,7 +30,6 @@ class Story extends Component {
       contentService.getContentProgress(c.TYPE_STORY, classLevel, num),
     ])
       .then(values => {
-        console.log(values);
         this.setState({
           content: values[0],
           answers: values[1].answers ||
@@ -87,7 +86,6 @@ class Story extends Component {
     const vocab = content.vocab || [];
     // TODO: Implement more generalized translations
     const language = JSON.parse(localStorage.getItem('user')).preferredLanguage;
-    console.log(language);
     let translations = content["translation-ma"];
     if (language === "telugu") {
       translations = content["translation-te"];
