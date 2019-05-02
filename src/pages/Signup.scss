@@ -21,7 +21,7 @@
     src: url(../fonts/Rajdhani/Rajdhani-Bold.ttf);
 }
 
-body {
+.portal-body.signup {
     background-color: #a586c5 ; //!important;
 }
 
@@ -69,12 +69,12 @@ h5 {
     color: white;
     text-align: center;
     padding: 12px 35px;
-    font-size: 8px;
+    font-size: 4px;
     border-radius: 10px;
     box-shadow: 2px 2px 4px rgba(68, 68, 68, 0.6);
     border: none;
     font-family: RajdhaniBold;
-    width: 30%;
+    width: 25%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1.5rem;

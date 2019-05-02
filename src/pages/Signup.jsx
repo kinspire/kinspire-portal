@@ -54,7 +54,7 @@ export default class Signup extends Component {
     }
 
     return (
-      <div className="portal-body">
+      <div className="portal-body signup">
           <div className='signup-title'>CREATE AN ACCOUNT</div>
           <div className="signup-region">
           

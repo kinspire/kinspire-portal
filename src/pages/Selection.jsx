@@ -35,6 +35,7 @@ class Selection extends Component {
     if (prevProps.view !== this.props.view) {
       this.componentDidMount();
     }
+    console.log(this.props.view);
     if(this.props.view === viewConstants.MATERIALS) {
       document.body.style.backgroundColor = '#a9bb59';
     } else if(this.props.view === viewConstants.ACTIVITIES) {

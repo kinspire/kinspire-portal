@@ -22,6 +22,7 @@ class Login extends Component {
   componentDidMount() {
     authService.logout()
       .then(console.log("Logged out!"));
+    
   }
 
   handleChange(event) {
@@ -56,7 +57,7 @@ class Login extends Component {
     }
 
     return (
-      <div className="portal-body row">
+      <div className="portal-body login row">
         <div className="col">
           <div className="login-region">
             <div className="login-title">LOG-IN</div>
@@ -77,8 +78,10 @@ class Login extends Component {
               value={this.state.password}/> 
               <h3> <a href=""> Forgot Password </a> </h3>
               </div> <br/>
-                <ShadowButton className="login-button"
-                  onClick={this.handleSubmit} text="Login"/>
+                <div className="button-area">
+                  <ShadowButton className="login-button"
+                  onClick={this.handleSubmit} text="LOGIN"/>
+                </div>
           </div>
           <div className="sign-up">Don't have an account?
               <a href="/signup" className="create-account"> CREATE AN ACCOUNT</a></div>
