@@ -12,6 +12,8 @@ export default class Signup extends Component {
 
     this.state = {
       username: "",
+      firstName: "",
+      lastName: "",
       loggedIn: false,
     };
 
@@ -46,6 +48,20 @@ export default class Signup extends Component {
     } else {
       swal("Please fill out all forms");
     }
+  }
+
+  verifyDate() {
+    const date = this.state.birthday.split("-");
+    // Verify that the birth year is between 1980 and 2020.
+    const year = date[0] < 2020 && date[0] > 1980;
+
+    // Verify that the birth month is between 1 and 12.
+    const month = date[1] < 13 && date[1] > 0;
+
+    // Verify that the birth day is between 1 and 31.
+    // TODO: Modify the verification for each month (not all months have 31 days).
+    const day = date[2] < 32 && date[2] > 0;
+    return year && month && day;
   }
 
   render() {
