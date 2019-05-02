@@ -70,7 +70,7 @@ export default class Signup extends Component {
     }
 
     return (
-      <div className="portal-body signup">
+      <div className="portal-body signup" style={{backgroundColor: "#a586c5"}}>
           <div className='signup-title'>CREATE AN ACCOUNT</div>
           <div className="signup-region">
           
