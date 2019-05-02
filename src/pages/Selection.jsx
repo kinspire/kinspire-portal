@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import contentService from "../services/contentService.js";
 import "./Selection.css";
 import { viewConstants } from "../constants";
+// import LandingTitle from "./LandingTitle";
 
 // This component represents a generic "selection" screen that can show any list
 // of items in a consistent fashion
@@ -17,10 +18,9 @@ class Selection extends Component {
     super(props);
 
     this.state = {
-      items: [],
+      items: []
     };
   }
-  
 
   componentDidMount() {
     contentService.getSelectionItems(this.props.view)
@@ -49,12 +49,8 @@ class Selection extends Component {
     } 
   }
 
-
-
-
-
   render() {
-    const itemsRendered = this.state.items.map((item) => (
+    const itemsRendered = this.state.items.map(item => (
       <Link key={item.link} className="selection-category" to={item.link}>
         <div className="selection-category-content">
           <div className="selection-category-text">{item.name}</div>
@@ -62,7 +58,7 @@ class Selection extends Component {
       </Link>
     ));
 
-    let mainStyle = {};
+    // let mainStyle = {};
     //materials = #a9bb59;
     // activities = #79b4b3
     // if(this.props.view === viewConstants.MATERIALS) {
@@ -74,7 +70,8 @@ class Selection extends Component {
     // }
 
     return (
-      <div className="selection-categories" style={mainStyle}>
+      <div className="selection-categories">
+        {/* <LandingTitle>{this.props.items[0]}</LandingTitle> */}
         {itemsRendered}
       </div>
     );
