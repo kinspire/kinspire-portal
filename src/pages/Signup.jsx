@@ -85,13 +85,22 @@ export default class Signup extends Component {
                     value={this.state.firstName} />
                 </div>
                 <div className="flexbox">
-                  <h5>Last Name</h5>
+                  <h5>Username</h5>
                   <input
                     className="login-textbox"
-                    onChange={this.handleChange.bind(this, "lastName")}
+                    onChange={this.handleChange.bind(this, "username")}
                     placeholder="type..."
                     type="text"
-                    value={this.state.lastName} />
+                    value={this.state.username} />
+                </div>
+                <div className="flexbox">
+                  <h5>Language</h5>
+                  <input
+                    className="login-textbox"
+                    onChange={this.handleChange.bind(this, "language")}
+                    type="text"
+                    placeholder="language"
+                    value={this.state.language} />
                 </div>
                 <div className="flexbox">
                   <h5>Birthday</h5>
@@ -105,13 +114,22 @@ export default class Signup extends Component {
 
               <div className="column">
                 <div className="flexbox">
-                  <h5>Language</h5>
+                  <h5>Last Name</h5>
                   <input
                     className="login-textbox"
-                    onChange={this.handleChange.bind(this, "language")}
+                    onChange={this.handleChange.bind(this, "lastName")}
+                    placeholder="type..."
                     type="text"
-                    placeholder="language"
-                    value={this.state.language} />
+                    value={this.state.lastName} />
+                </div>
+                <div className="flexbox">
+                  <h5>Password</h5>
+                  <input
+                    className="login-textbox"
+                    onChange={this.handleChange.bind(this, "password")}
+                    placeholder="type..."
+                    type="password"
+                    value={this.state.password} />
                 </div>
                 <div className="flexbox">
                   <h5>Class Level</h5>
