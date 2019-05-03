@@ -30,36 +30,19 @@ class Selection extends Component {
 
   }
 
-  // Handle changes in the view prop - we need to reload the items
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.view !== this.props.view) {
-  //     this.componentDidMount();
-  //   }
-  //   if (this.props.view === viewConstants.MATERIALS) {
-  //     document.body.style.backgroundColor = "#a9bb59";
-  //   } else if (this.props.view === viewConstants.ACTIVITIES) {
-  //     document.body.style.backgroundColor = "#79b4b3";
-  //   } else if (this.props.view === viewConstants.HELP) {
-  //     document.body.style.backgroundColor = "#fc5e5a";
-  //   } else if (this.props.view === viewConstants.ABOUT) {
-  //     document.body.style.backgroundColor = "#a586c5";
-  //   }
-  // }
-
   render() {
-    const mainStyle = {};
     if (this.props.view === viewConstants.MATERIALS) {
-      mainStyle.backgroundColor = "#a9bb59";
+      document.body.style.backgroundColor = "#a9bb59";
     } else if (this.props.view === viewConstants.ACTIVITIES) {
-      mainStyle.backgroundColor = "#79b4b3";
+      document.body.style.backgroundColor = "#79b4b3";
     } else if (this.props.view === viewConstants.STORIES) {
-      mainStyle.backgroundColor = "#79b4b3";
+      document.body.style.backgroundColor = "#79b4b3";
     } else if (this.props.view === viewConstants.WORDSEARCH) {
-      mainStyle.backgroundColor = "#79b4b3";
+      document.body.style.backgroundColor = "#79b4b3";
     } else if (this.props.view === viewConstants.HELP) {
-      mainStyle.backgroundColor = "#fc5e5a";
+      document.body.style.backgroundColor = "#fc5e5a";
     } else if (this.props.view === viewConstants.ABOUT) {
-      mainStyle.backgroundColor = "#a586c5";
+      document.body.style.backgroundColor = "#a586c5";
     }
     const itemsRendered = this.state.items.map(item => (
       <Link key={item.link} className="selection-category" to={item.link}>
@@ -70,7 +53,7 @@ class Selection extends Component {
     ));
 
     return (
-      <div className="selection-categories" style={mainStyle}>
+      <div className="selection-categories">
         {itemsRendered}
       </div>
     );
