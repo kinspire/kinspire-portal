@@ -208,7 +208,8 @@ export default class WordSearch extends Component {
             }
           </div>
         </div>
-        <ShadowButton text="Save" onClick={this.handleSave} />
+        <ShadowButton text="Save" className='save-button' 
+                      onClick={this.handleSave} />
       </div>
     );
   }

@@ -23,12 +23,15 @@ class Selection extends Component {
   }
 
   componentDidMount() {
-    contentService.getSelectionItems(this.props.view).then(items => {
-      this.setState({ items });
-    });
+    contentService.getSelectionItems(this.props.view)
+      .then(items => {
+        this.setState({items});
+      });
+
   }
 
   // Handle changes in the view prop - we need to reload the items
+<<<<<<< HEAD
   // componentDidUpdate(prevProps) {
   //   if (prevProps.view !== this.props.view) {
   //     this.componentDidMount();
@@ -59,6 +62,27 @@ class Selection extends Component {
     } else if (this.props.view === viewConstants.ABOUT) {
       mainStyle.backgroundColor = "#a586c5";
     }
+=======
+  componentDidUpdate(prevProps) {
+    if (prevProps.view !== this.props.view) {
+      this.componentDidMount();
+    }
+    console.log(this.props.view);
+    if(this.props.view === viewConstants.MATERIALS) {
+      document.body.style.backgroundColor = '#a9bb59';
+    } else if(this.props.view === viewConstants.ACTIVITIES) {
+      document.body.style.backgroundColor = '#79b4b3';
+    } else if(this.props.view === viewConstants.WORDSEARCH) {
+      document.body.style.backgroundColor = '#79b4b3';
+    } else if(this.props.view === viewConstants.HELP) {
+      document.body.style.backgroundColor = '#fc5e5a';
+    } else if(this.props.view === viewConstants.ABOUT) {
+      document.body.style.backgroundColor = '#a586c5';
+    } 
+  }
+
+  render() {
+>>>>>>> ui
     const itemsRendered = this.state.items.map(item => (
       <Link key={item.link} className="selection-category" to={item.link}>
         <div className="selection-category-content">

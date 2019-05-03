@@ -12,6 +12,8 @@ export default class Signup extends Component {
 
     this.state = {
       username: "",
+      firstName: "",
+      lastName: "",
       loggedIn: false,
     };
 
@@ -48,13 +50,27 @@ export default class Signup extends Component {
     }
   }
 
+  verifyDate() {
+    const date = this.state.birthday.split("-");
+    // Verify that the birth year is between 1980 and 2020.
+    const year = date[0] < 2020 && date[0] > 1980;
+
+    // Verify that the birth month is between 1 and 12.
+    const month = date[1] < 13 && date[1] > 0;
+
+    // Verify that the birth day is between 1 and 31.
+    // TODO: Modify the verification for each month (not all months have 31 days).
+    const day = date[2] < 32 && date[2] > 0;
+    return year && month && day;
+  }
+
   render() {
     if (this.state.loggedIn) {
       return <Redirect to={{pathname: "/"}}/>;
     }
 
     return (
-      <div className="portal-body">
+      <div className="portal-body signup" style={{backgroundColor: "#a586c5"}}>
           <div className='signup-title'>CREATE AN ACCOUNT</div>
           <div className="signup-region">
           
@@ -69,13 +85,22 @@ export default class Signup extends Component {
                     value={this.state.firstName} />
                 </div>
                 <div className="flexbox">
-                  <h5>Last Name</h5>
+                  <h5>Username</h5>
                   <input
                     className="login-textbox"
-                    onChange={this.handleChange.bind(this, "lastName")}
+                    onChange={this.handleChange.bind(this, "username")}
                     placeholder="type..."
                     type="text"
-                    value={this.state.lastName} />
+                    value={this.state.username} />
+                </div>
+                <div className="flexbox">
+                  <h5>Language</h5>
+                  <input
+                    className="login-textbox"
+                    onChange={this.handleChange.bind(this, "language")}
+                    type="text"
+                    placeholder="language"
+                    value={this.state.language} />
                 </div>
                 <div className="flexbox">
                   <h5>Birthday</h5>
@@ -89,13 +114,22 @@ export default class Signup extends Component {
 
               <div className="column">
                 <div className="flexbox">
-                  <h5>Language</h5>
+                  <h5>Last Name</h5>
                   <input
                     className="login-textbox"
-                    onChange={this.handleChange.bind(this, "language")}
+                    onChange={this.handleChange.bind(this, "lastName")}
+                    placeholder="type..."
                     type="text"
-                    placeholder="language"
-                    value={this.state.language} />
+                    value={this.state.lastName} />
+                </div>
+                <div className="flexbox">
+                  <h5>Password</h5>
+                  <input
+                    className="login-textbox"
+                    onChange={this.handleChange.bind(this, "password")}
+                    placeholder="type..."
+                    type="password"
+                    value={this.state.password} />
                 </div>
                 <div className="flexbox">
                   <h5>Class Level</h5>
