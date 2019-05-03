@@ -29,22 +29,36 @@ class Selection extends Component {
   }
 
   // Handle changes in the view prop - we need to reload the items
-  componentDidUpdate(prevProps) {
-    if (prevProps.view !== this.props.view) {
-      this.componentDidMount();
-    }
-    if (this.props.view === viewConstants.MATERIALS) {
-      document.body.style.backgroundColor = "#a9bb59";
-    } else if (this.props.view === viewConstants.ACTIVITIES) {
-      document.body.style.backgroundColor = "#79b4b3";
-    } else if (this.props.view === viewConstants.HELP) {
-      document.body.style.backgroundColor = "#fc5e5a";
-    } else if (this.props.view === viewConstants.ABOUT) {
-      document.body.style.backgroundColor = "#a586c5";
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.view !== this.props.view) {
+  //     this.componentDidMount();
+  //   }
+  //   if (this.props.view === viewConstants.MATERIALS) {
+  //     document.body.style.backgroundColor = "#a9bb59";
+  //   } else if (this.props.view === viewConstants.ACTIVITIES) {
+  //     document.body.style.backgroundColor = "#79b4b3";
+  //   } else if (this.props.view === viewConstants.HELP) {
+  //     document.body.style.backgroundColor = "#fc5e5a";
+  //   } else if (this.props.view === viewConstants.ABOUT) {
+  //     document.body.style.backgroundColor = "#a586c5";
+  //   }
+  // }
 
   render() {
+    const mainStyle = {};
+    if (this.props.view === viewConstants.MATERIALS) {
+      mainStyle.backgroundColor = "#a9bb59";
+    } else if (this.props.view === viewConstants.ACTIVITIES) {
+      mainStyle.backgroundColor = "#79b4b3";
+    } else if (this.props.view === viewConstants.STORIES) {
+      mainStyle.backgroundColor = "#79b4b3";
+    } else if (this.props.view === viewConstants.WORDSEARCH) {
+      mainStyle.backgroundColor = "#79b4b3";
+    } else if (this.props.view === viewConstants.HELP) {
+      mainStyle.backgroundColor = "#fc5e5a";
+    } else if (this.props.view === viewConstants.ABOUT) {
+      mainStyle.backgroundColor = "#a586c5";
+    }
     const itemsRendered = this.state.items.map(item => (
       <Link key={item.link} className="selection-category" to={item.link}>
         <div className="selection-category-content">
@@ -53,20 +67,8 @@ class Selection extends Component {
       </Link>
     ));
 
-    // let mainStyle = {};
-    //materials = #a9bb59;
-    // activities = #79b4b3
-    // if(this.props.view === viewConstants.MATERIALS) {
-    //   mainStyle.backgroundColor = '#a9bb59';
-    //   mainStyle.margin = 0;
-    //   mainStyle.padding = 0;
-    // } else if(this.props.view === viewConstants.ACTIVITIES) {
-    //   mainStyle.backgroundColor = '#79b4b3';
-    // }
-
     return (
-      <div className="selection-categories">
-        {/* <LandingTitle>{this.props.items[0]}</LandingTitle> */}
+      <div className="selection-categories" style={mainStyle}>
         {itemsRendered}
       </div>
     );

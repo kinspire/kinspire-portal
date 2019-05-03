@@ -67,6 +67,7 @@ const activities = [
 // Returns a promise that resolves with the content with the specified
 // parameters, or throws an error.
 function getContent(type, classLevel, num) {
+  console.log(type, classLevel, num);
   return db.collection("content")
     .where("type", "==", type)
     .where("classLevel", "==", parseInt(classLevel, 10))
@@ -140,7 +141,7 @@ function getSelectionItems(view) {
         return snapshot.docs.map(doc => (
           {
             name: doc.get("title"),
-            link: `/materials/story/${doc.get("classLevel")}/${doc.get("num")}`
+            link: `/activities/story/${doc.get("classLevel")}/${doc.get("num")}`
           }
         ));
       });
