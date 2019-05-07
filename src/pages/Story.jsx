@@ -25,6 +25,7 @@ class Story extends Component {
   // Load story and any progress the user might have had for this story
   componentDidMount() {
     const { classLevel, num } = this.props.match.params;
+    console.log(classLevel, num);
     Promise.all([
       contentService.getContent(c.TYPE_STORY, classLevel, num),
       contentService.getContentProgress(c.TYPE_STORY, classLevel, num),
@@ -40,6 +41,10 @@ class Story extends Component {
         });
       })
       .catch(err => swal(`${err}`));
+  }
+
+  componentDidUpdate() {
+    // document.body.style.backgroundColor = "#79b4b3";
   }
 
   // [1 of 2] Handle answer changes

@@ -13,11 +13,14 @@ export default {
 
 const db = firebaseService.db;
 const materials = [
-  {name: "Stories", link: "/materials/stories"},
-  {name: "Templates", link: "/materials/templates"}
+  {name: "Resume/CV Templates", link: "/materials/templates"},
+  {name: "Writing Tips", link: "/materials/tips"},
+  {name: "Career Paths", link: "/materials/careerpaths"},
+  {name: "Health & Wellness", link: "/materials/health"}
 ];
 const activities = [
-  {name: "Word Search", link: "/activities/wordsearch"}
+  {name: "Word Searches", link: "/activities/wordsearch"},
+  {name: "Stories", link: "/activities/stories"}
 ];
 
 // This is outdated functionality, where a student can automatically advance to
@@ -66,6 +69,7 @@ const activities = [
 // Returns a promise that resolves with the content with the specified
 // parameters, or throws an error.
 function getContent(type, classLevel, num) {
+  console.log(type, classLevel, num);
   return db.collection("content")
     .where("type", "==", type)
     .where("classLevel", "==", parseInt(classLevel, 10))
@@ -161,7 +165,7 @@ function getSelectionItems(view, user) {
         return snapshot.docs.map(doc => (
           {
             name: doc.get("title"),
-            link: `/materials/story/${doc.get("classLevel")}/${doc.get("num")}`
+            link: `/activities/story/${doc.get("classLevel")}/${doc.get("num")}`
           }
         ));
       });

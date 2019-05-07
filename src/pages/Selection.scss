@@ -7,22 +7,22 @@
 
 .selection-category {
     margin: 15px;
-    display: inline-block;
-
+    display: inline-flex;
     height: 200px;
-    width: 200px;
-
-    border: 10px solid $primary-brown;
+    width: 300px;
+    border-radius: 50px;
     text-align: center;
     padding: 20px;
 }
 
 .selection-category-content {
-    display: flex;
+    display: inline-block;
     height: 100%;
     width: 100%;
-    box-shadow: 1px 1px 2px;
-    background-color: $primary-brown;
+    box-shadow: 1px 1px 2px gray; 
+    background-color: whitesmoke;
+    border-radius: 30px;
+    padding: 35px; 
 }
 
 .selection-category-content-done {
@@ -38,6 +38,13 @@
 
 .selection-category-text {
     margin: auto;
-    font-size: 32px;
-    color: white;
+    font-size: 30px;
+    color:#a9bb59;
+    font-family: MontserratBold;
 }
+
+.body{
+    background-color: #a9bb59;
+
+}
+

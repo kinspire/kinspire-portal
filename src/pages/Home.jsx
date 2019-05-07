@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 import "./Home.css";
 import ShadowButton from "../components/ShadowButton";
-import envelopeWithMedal from "../images/home-page-envelope-with-medal.png";
 import tasksService from "../services/tasksService";
 import { contentConstants as c, contentStrings as s } from "../constants";
 
@@ -53,14 +52,14 @@ export default class Home extends Component {
             { this.getContentLinks() }
           </div>
         </div>
-        <div className="col-3">
+        {/* <div className="col-3">
           <div className="home-section-title">Profile</div>
           <div className="home-section-progress">
             <Link to="/tasks">
               <img alt="Tasks" className="home-section-progress-image" src={envelopeWithMedal}/>
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
