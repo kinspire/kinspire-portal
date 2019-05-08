@@ -46,7 +46,7 @@ class Login extends Component {
           this.setState({ loggedIn: true });
         })
         .catch(() => {
-          swal("Username is incorrect");
+          swal("Incorrect Credentials");
           //this.setState({loginError: error});
         });
     } else {

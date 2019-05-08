@@ -39,14 +39,14 @@ export default class Signup extends Component {
 
   handleSubmit() {
     // Only submit if all the fields are filled out
-    if (this.state.firstName && this.state.lastName && this.state.birthday &&
-      this.state.classLevel && this.state.career && this.state.language && this.verifyData()) {
+    if (this.state.firstName && this.state.lastName && this.state.username && this.state.password &&
+      this.state.language && this.state.birthday && this.state.classLevel && this.state.career) {
       authService.signup(this.state)
         .then(() => {
           this.setState({loggedIn: true});
         });
     } else {
-      swal("Verify all details");
+      swal("Complete all details");
     }
   }
 
@@ -78,7 +78,7 @@ export default class Signup extends Component {
             <div className="flexbox">
               <h5>First Name</h5>
               <input
-                className="login-textbox"
+                className="signup-input"
                 onChange={this.handleChange.bind(this, "firstName")}
                 placeholder="type..."
                 type="text"
@@ -87,7 +87,7 @@ export default class Signup extends Component {
             <div className="flexbox">
               <h5>Username</h5>
               <input
-                className="login-textbox"
+                className="signup-input"
                 onChange={this.handleChange.bind(this, "username")}
                 placeholder="type..."
                 type="text"
@@ -95,17 +95,21 @@ export default class Signup extends Component {
             </div>
             <div className="flexbox">
               <h5>Language</h5>
-              <input
-                className="login-textbox"
+              <select
+                className="signup-input"
                 onChange={this.handleChange.bind(this, "language")}
-                type="text"
-                placeholder="language"
-                value={this.state.language}/>
+                defaultValue={"language"}
+                value={this.state.language}>
+                <option value="language" disabled>Choose a Language</option>
+                <option value="marathi">Marathi</option>
+                <option value="telugu">Telugu</option>
+              </select>
             </div>
             <div className="flexbox">
               <h5>Birthday</h5>
               <input
-                className="login-textbox"
+                className="signup-input"
+                onKeyDown={event => event.preventDefault()}
                 onChange={this.handleChange.bind(this, "birthday")}
                 type="date"
                 value={this.state.birthday}/>
@@ -116,7 +120,7 @@ export default class Signup extends Component {
             <div className="flexbox">
               <h5>Last Name</h5>
               <input
-                className="login-textbox"
+                className="signup-input"
                 onChange={this.handleChange.bind(this, "lastName")}
                 placeholder="type..."
                 type="text"
@@ -125,7 +129,7 @@ export default class Signup extends Component {
             <div className="flexbox">
               <h5>Password</h5>
               <input
-                className="login-textbox"
+                className="signup-input"
                 onChange={this.handleChange.bind(this, "password")}
                 placeholder="type..."
                 type="password"
@@ -134,16 +138,19 @@ export default class Signup extends Component {
             <div className="flexbox">
               <h5>Class Level</h5>
               <input
-                className="login-textbox"
+                className="signup-input"
+                min={1}
+                max={3}
                 onChange={this.handleChange.bind(this, "classLevel")}
                 type="number"
+                onKeyDown={event => event.preventDefault()}
                 placeholder="Class Level"
                 value={this.state.classLevel}/>
             </div>
             <div className="flexbox">
               <h5>Career Goal</h5>
               <input
-                className="login-textbox"
+                className="signup-input"
                 onChange={this.handleChange.bind(this, "career")}
                 placeholder="type..."
                 type="text"
@@ -154,6 +161,9 @@ export default class Signup extends Component {
 
         <div className="signup-button-area">
           <ShadowButton className="signup-button" onClick={this.handleSubmit} text="CREATE YOUR ACCOUNT"/>
+        </div>
+        <div className="log-in">Already have an account?
+          <a href="/login" className="create-account"> Log-in here</a>
         </div>
       </div>
     );
