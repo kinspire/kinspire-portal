@@ -1,3 +1,5 @@
+SELECTION.SCSS
+
 @import '../styles/shared.scss';
 
 .selection-categories {
@@ -7,13 +9,25 @@
 
 .selection-category {
     margin: 15px;
-    display: inline-flex;
-    height: 200px;
+    display: inline-block;
+    height: 220px;
     width: 300px;
     border-radius: 50px;
     text-align: center;
     padding: 20px;
 }
+.selection-categories-container{
+    margin-right: 40px;
+}
+// .container{
+//     display: flex;
+//     height: 50px;
+//     width: 70px;
+//     border-radius: 50px;
+//     text-align: center;
+//     padding: 20px;
+//     // flex-wrap: wrap;
+// }
 
 .selection-category-content {
     display: inline-block;
@@ -47,4 +61,5 @@
     background-color: #a9bb59;
 
 }
+
 
