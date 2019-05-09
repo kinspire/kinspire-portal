@@ -9,8 +9,11 @@ import Selection from "./pages/Selection";
 import Story from "./pages/Story";
 import WordSearch from "./pages/WordSearch";
 import Task from "./pages/Task";
+import Profile from "./pages/Profile";
+//import VolunteerAccess from "./pages/VolunteerAccess";
 import Container from "./Container";
 import { viewConstants as v } from "./constants";
+// import StoryCollection from "./pages/StoryCollection";
 
 class App extends Component {
   render() {
@@ -29,12 +32,14 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/task/:taskId" component={Task} />
-          <Route path="/materials/story/:classLevel/:num" component={Story} />
-          <Route path="/materials/stories" render={(props) => <Selection {...props} view={v.STORIES} />} />
-          <Route path="/materials" render={(props) => <Selection {...props} view={v.MATERIALS} />} />
+          <Route path="/profile" component={Profile} />
+          {/* <Route path="/materials/story/:classLevel/:num" component={Story} /> */}
+          <Route path="/materials" render={(props) => <Selection {...props} key={v.MATERIALS} view={v.MATERIALS} />} />
           <Route path="/activities/wsplay/:classLevel/:num" component={WordSearch} />
-          <Route path="/activities/wordsearch" render={(props) => <Selection {...props} view={v.WORDSEARCH} />} />
-          <Route path="/activities" render={(props) => <Selection {...props} view={v.ACTIVITIES} />} />
+          <Route path="/activities/wordsearch" render={(props) => <Selection {...props} key={v.WORDSEARCH} view={v.WORDSEARCH} />} />
+          <Route path="/activities/story/:classLevel/:num" component={Story} />
+          <Route path="/activities/stories" render={(props) => <Selection {...props} key={v.STORIES} view={v.STORIES} />}/>
+          <Route path="/activities" render={(props) => <Selection {...props} key={v.ACTIVITIES} view={v.ACTIVITIES} />} />
           <Route path="/" component={Home} />
         </Switch>
       );

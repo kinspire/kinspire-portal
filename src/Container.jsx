@@ -11,7 +11,7 @@ class Container extends Component {
   render() {
     return (
       <div id="portal-content">
-          <Header/>
+        <Header />
         {this.props.children}
       </div>
     );
@@ -20,7 +20,7 @@ class Container extends Component {
 
 Container.propTypes = {
   children: PropTypes.element,
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 export default Container;

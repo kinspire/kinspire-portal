@@ -2,19 +2,17 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import swal from "sweetalert";
 
-import "./Story.css";
 
 import { contentConstants as c } from "../constants";
 import contentService from "../services/contentService";
 
-class Story extends Component {
+class Templates extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       answers: [],
       content: null,
-      correct_answers: []
     };
 
     this.handleOptionChange     = this.handleOptionChange.bind(this);
@@ -25,7 +23,6 @@ class Story extends Component {
   // Load story and any progress the user might have had for this story
   componentDidMount() {
     const { classLevel, num } = this.props.match.params;
-    console.log(classLevel, num);
     Promise.all([
       contentService.getContent(c.TYPE_STORY, classLevel, num),
       contentService.getContentProgress(c.TYPE_STORY, classLevel, num),
@@ -37,14 +34,9 @@ class Story extends Component {
           answers: values[1].answers ||
             // If there are no answers, then set up default answers
             values[0].questions.map((q) => q.type === "mcq" ? -1 : ""),
-          correct_answers: values[0].questions.map((q) => q.type === "mcq" ? q.correctChoice : "")
         });
       })
-      .catch(err => swal(`${err}`));
-  }
-
-  componentDidUpdate() {
-    // document.body.style.backgroundColor = "#79b4b3";
+      .catch(err => swal(`Error: ${err}`));
   }
 
   // [1 of 2] Handle answer changes
@@ -63,23 +55,9 @@ class Story extends Component {
 
   // Submit the answers
   handleSubmit() {
-    const { answers } = this.state;
-    const {correct_answers} = this.state;
     contentService.submitContentProgress(c.TYPE_STORY, this.props.match.params.classLevel,
-      this.props.match.params.num, { answers })
-      .then(() => {
-        let res = "";
-        for (let i = 0; i < answers.length; i++) {
-          if (correct_answers[i] !== "") {
-            if (answers[i] === correct_answers[i]) {
-              res += (`Question ${i + 1} is correct!\n`);
-            } else {
-              res += (`Question ${i + 1} is incorrect.\n`);
-            }
-          }
-          swal (res);
-        }
-      })
+      this.props.match.params.num, this.state.answers)
+      .then(() => swal("submitted!"))
       .catch(err => swal(err));
   }
 
@@ -91,12 +69,7 @@ class Story extends Component {
     const paragraphs = content.story;
     const vocab = content.vocab || [];
     // TODO: Implement more generalized translations
-    const language = JSON.parse(localStorage.getItem('user')).preferredLanguage;
-    console.log(language);
-    let translations = content["translation-ma"];
-    if (language === "telugu") {
-      translations = content["translation-te"];
-    }
+    const translations = content["translation-te"];
     let i = 0;
 
     // Convert the paragraphs array
@@ -218,8 +191,8 @@ class Story extends Component {
   }
 }
 
-Story.propTypes = {
+Templates.propTypes = {
   match: PropTypes.object.isRequired
 };
 
-export default Story;
+export default Templates;

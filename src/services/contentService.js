@@ -1,11 +1,13 @@
 import firebaseService from "./firebaseService";
 import { viewConstants as v } from "../constants";
+import swal from "sweetalert";
 
 export default {
   // getNextContentItems,
   getContent,
   getContentProgress,
   submitContentProgress,
+  deleteContent,
   getSelectionItems,
 };
 
@@ -17,7 +19,8 @@ const materials = [
   {name: "Health & Wellness", link: "/materials/health"}
 ];
 const activities = [
-  {name: "Word Search", link: "/activities/wordsearch"}
+  {name: "Word Searches", link: "/activities/wordsearch"},
+  {name: "Stories", link: "/activities/stories"}
 ];
 
 // This is outdated functionality, where a student can automatically advance to
@@ -66,18 +69,18 @@ const activities = [
 // Returns a promise that resolves with the content with the specified
 // parameters, or throws an error.
 function getContent(type, classLevel, num) {
+  console.log(type, classLevel, num);
   return db.collection("content")
     .where("type", "==", type)
     .where("classLevel", "==", parseInt(classLevel, 10))
-    .where("num", "==", parseInt(num, 10))
+    .where("num", "==", parseInt(num, 10)) //only files that fit these 3 contraints are only retrieved
     .limit(1)
-    .get()
-    .then(snapshot => {
+    .get() //actually gets data
+    .then(snapshot => { //after data is retrieved, THEN do ...
       if (snapshot.empty) {
         throw new Error("No content available!");
       }
-
-      return snapshot.docs[0].data();
+      return snapshot.docs[0].data(); //docs is a field inside spanshot object
     });
 }
 
@@ -114,7 +117,10 @@ function submitContentProgress(type, classLevel, num, progress) {
         return db.collection("contentProgress")
           .add({
             ...progress,
-            type, classLevel: parseInt(classLevel, 10), num: parseInt(num, 10), userId: localStorage.getItem("userId"),
+            type,
+            classLevel: parseInt(classLevel, 10),
+            num: parseInt(num, 10),
+            userId: localStorage.getItem("userId"),
           });
       } else {
         return snapshot.docs[0].ref.set(progress, { merge: true });
@@ -122,10 +128,29 @@ function submitContentProgress(type, classLevel, num, progress) {
     });
 }
 
+function deleteContent(type, classLevel, num){
+  db.collection("contentProgress")
+    .where("type", "==", type)
+    .where("classLevel", "==", parseInt(classLevel, 10))
+    .where("num", "==", parseInt(num,10))
+    .where("userId", "==", localStorage.getItem("userId"))
+    .limit(1)
+    .get()
+    .then(snapshot => {
+      if(snapshot.empty){
+        swal("Already Deleted");
+      } else {
+        snapshot.docs[0].ref.delete().catch((error) => {
+          swal(`Error${  error}`);
+        });
+      }
+    });
+}
+
 // Returns a promsie that resolves with a list of items for the given selection
 // screen view.
 // TODO This has room to be de-redundancy'd
-function getSelectionItems(view) {
+function getSelectionItems(view, user) {
   switch (view) {
   case v.MATERIALS:
     return Promise.resolve(materials);
@@ -134,18 +159,20 @@ function getSelectionItems(view) {
   case v.STORIES:
     return db.collection("content")
       .where("type", "==", "story")
+      .where("classLevel", "==", parseInt(user.classLevel, 10))
       .get()
       .then(snapshot => {
         return snapshot.docs.map(doc => (
           {
             name: doc.get("title"),
-            link: `/materials/story/${doc.get("classLevel")}/${doc.get("num")}`
+            link: `/activities/story/${doc.get("classLevel")}/${doc.get("num")}`
           }
         ));
       });
   case v.WORDSEARCH:
     return db.collection("content")
       .where("type", "==", "wordsearch")
+      .where("classLevel", "==", parseInt(user.classLevel, 10))
       .get()
       .then(snapshot => {
         return snapshot.docs.map(doc => (

@@ -1,7 +1,7 @@
 // library
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 
 // our files
 import contentService from "../services/contentService.js";
@@ -70,8 +70,14 @@ class Selection extends Component {
     // }
 
     return (
-      <div className="selection-categories" style={mainStyle}>
-        {itemsRendered}
+      <div className = "selection-categories-container">
+      <div className = "row-sm-8">
+        <div className = "col-sm-8">
+          <div className="selection-categories" style={mainStyle}>
+            {itemsRendered}
+        </div>
+      </div>
+      </div>
       </div>
     );
   }
@@ -82,3 +88,4 @@ Selection.propTypes = {
 };
 
 export default Selection;
+

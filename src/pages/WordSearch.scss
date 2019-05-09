@@ -27,10 +27,14 @@
   background-color: green;
 }
 
-.wordsearch-letter-completed {
-  background-color: orange;
-  color: white;
+.wordsearch-letter-incorrect{
+  background-color: red;
+  color:white;
 }
+
+.wordsearch-letter-completed {
+  background-color: green;
+  color: white; }
 
 .wordsearch-words {
   width: 30%;
@@ -42,4 +46,20 @@
 
 .wordsearch-submit {
   height: 100px;
+}
+
+.save-button {
+  background-color: #f5bf53;
+  color: white;
+  text-align: center;
+  padding: 12px 35px;
+  font-size: 8px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(68, 68, 68, 0.6);
+  border: none;
+  font-family: RajdhaniBold;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5rem;
 }
