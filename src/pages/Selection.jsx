@@ -23,7 +23,7 @@ class Selection extends Component {
   
 
   componentDidMount() {
-    contentService.getSelectionItems(this.props.view)
+    contentService.getSelectionItems(this.props.view, JSON.parse(localStorage.getItem('user')))
       .then(items => {
         this.setState({items});
       });
