@@ -235,8 +235,10 @@ export default class WordSearch extends Component {
             }
           </div>
         </div>
-        <ShadowButton text="Save" onClick={this.handleSave} />
-        <ShadowButton text="Start Over!" onClick={this.handleReset}/>
+        <div className="row buttons">
+          <ShadowButton className="button" text="Save" onClick={this.handleSave} />
+          <ShadowButton className="button" text="Start Over!" onClick={this.handleReset}/>
+        </div>
       </div>
     );
   }
