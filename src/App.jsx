@@ -6,11 +6,11 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Selection from "./pages/Selection";
-import Story from "./pages/Story";
 import WordSearch from "./pages/WordSearch";
 import Task from "./pages/Task";
 import Container from "./Container";
 import { viewConstants as v } from "./constants";
+import StoryCollection from "./pages/StoryCollection";
 // import StoryCollection from "./pages/StoryCollection";
 
 class App extends Component {
@@ -34,7 +34,7 @@ class App extends Component {
           <Route path="/materials" render={(props) => <Selection {...props} key={v.MATERIALS} view={v.MATERIALS} />} />
           <Route path="/activities/wsplay/:classLevel/:num" component={WordSearch} />
           <Route path="/activities/wordsearch" render={(props) => <Selection {...props} key={v.WORDSEARCH} view={v.WORDSEARCH} />} />
-          <Route path="/activities/stories" render={(props) => <Selection {...props} key={v.STORIES} view={v.STORIES} />}/>
+          <Route path="/activities/stories" render={(props) => <StoryCollection {...props} key={v.STORIES} view={v.STORIES} />}/>
           <Route path="/activities" render={(props) => <Selection {...props} key={v.ACTIVITIES} view={v.ACTIVITIES} />} />
           <Route path="/" component={Home} />
         </Switch>
