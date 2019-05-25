@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import "./StoryCollection.css";
 import contentService from "../services/contentService.js";
@@ -19,21 +20,16 @@ class StoryCollection extends Component {
     });
   }
 
-  // title of page
-  // cards
-  // image
-  // title
-  // progress bar
-
   render() {
+    document.body.style.backgroundColor = "#bcd9d9";
     const content = this.state.items.map(item => (
-      <div className="card" key={item.link}>
-        <div className="cardImg" />
-        <div className="cardBody">
+      <Link className="card" key={item.link} to={item.link}>
+        <div className="cardImg" onClick={item.link} />
+        <div className="cardBody" onClick={item.link}>
           {item.name}
           <div className="cardProgress" />
         </div>
-      </div>
+      </Link>
     ));
     return (
       <div>
