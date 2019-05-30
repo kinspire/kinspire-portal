@@ -34,7 +34,7 @@ class StoryCollection extends Component {
     return (
       <div>
         <div className="title">STORIES</div>
-        <div className="subTitle">Click on a story to begin!</div>
+        <div className="sub-title">Click on a story to begin!</div>
         <div className="story-collection">{content}</div>
       </div>
     );
