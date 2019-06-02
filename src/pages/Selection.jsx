@@ -39,10 +39,8 @@ class Selection extends Component {
       document.body.style.backgroundColor = "#79b4b3";
     } else if (this.props.view === viewConstants.WORDSEARCH) {
       document.body.style.backgroundColor = "#79b4b3";
-    } else if (this.props.view === viewConstants.HELP) {
-      document.body.style.backgroundColor = "#fc5e5a";
     } else if (this.props.view === viewConstants.ABOUT) {
-      document.body.style.backgroundColor = "#a586c5";
+      document.body.style.backgroundColor = "#fc5e5a";
     }
     const itemsRendered = this.state.items.map(item => (
       <Link key={item.link} className="selection-category" to={item.link}>

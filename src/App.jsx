@@ -12,6 +12,7 @@ import Container from "./Container";
 import { viewConstants as v } from "./constants";
 import Story from "./pages/Story";
 import StoryCollection from "./pages/StoryCollection";
+import About from "./pages/About";
 
 class App extends Component {
   render() {
@@ -37,6 +38,7 @@ class App extends Component {
           <Route path="/activities/wordsearch" render={(props) => <Selection {...props} key={v.WORDSEARCH} view={v.WORDSEARCH} />} />
           <Route path="/activities/stories" render={(props) => <StoryCollection {...props} key={v.STORIES} view={v.STORIES} />}/>
           <Route path="/activities" render={(props) => <Selection {...props} key={v.ACTIVITIES} view={v.ACTIVITIES} />} />
+          <Route path="/about" component={About} />
           <Route path="/" component={Home} />
         </Switch>
       );

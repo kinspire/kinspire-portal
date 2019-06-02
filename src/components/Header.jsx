@@ -10,7 +10,7 @@ class Header extends Component {
       // "home",
       { name: "activities", color: "#79b4b3" },
       { name: "materials", color: "#a9bb59" },
-      { name: "help", color: "#fa8e47" },
+      // { name: "help", color: "#fa8e47" },
       // "access",
       { name: "about", color: "#fc5e5a" },
       { name: "profile", color: "#a586c5" }
