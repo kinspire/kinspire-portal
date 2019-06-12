@@ -12,7 +12,7 @@ import contentService from "../services/contentService";
 import "./WordSearch.css";
 
 // Represents no letter being selected
-const NO_LETTER = {row: -1, col: -1};
+const NO_LETTER = { row: -1, col: -1 };
 
 export default class WordSearch extends Component {
   constructor(props) {
@@ -81,9 +81,9 @@ export default class WordSearch extends Component {
           state.correctWord = false;
         }
 
-        // Set state loaded from the database
-        this.setState(state);
-      });
+      // Set state loaded from the database
+      this.setState(state);
+    });
   }
 
   // Returns a string representing the word chosen from this.state.wordStart to
@@ -94,8 +94,12 @@ export default class WordSearch extends Component {
     const wordDelta = {row: wordEnd.row - wordStart.row, col: wordEnd.col - wordStart.col};
     const wordEnding = {row: wordEnd.row, col: wordStart.row};
     // Has to be a valid diagonal/horizontal/vertical
-    if ((wordDelta.row === 0 && wordDelta.col === 0) ||
-        (Math.abs(wordDelta.row) !== Math.abs(wordDelta.col) && wordDelta.row !== 0 && wordDelta.col !== 0)) {
+    if (
+      (wordDelta.row === 0 && wordDelta.col === 0) ||
+      (Math.abs(wordDelta.row) !== Math.abs(wordDelta.col) &&
+        wordDelta.row !== 0 &&
+        wordDelta.col !== 0)
+    ) {
       return null;
     }
     // We have a word!
@@ -119,7 +123,7 @@ export default class WordSearch extends Component {
     const currentCells = new HashSet();
     if (this.state.wordStart.row >= 0) {
       // This is the case that one letter has been clicked and we are selecting the word end
-      const wordEnd = {row, col};
+      const wordEnd = { row, col };
       const selectedWord = this.getSelectedWord(wordEnd);
       if (!selectedWord) {
         swal("Choose a word! Resetting choice.");
@@ -153,7 +157,10 @@ export default class WordSearch extends Component {
     const { classLevel, num } = this.props.match.params;
     const { chosenWords } = this.state;
 
-    contentService.submitContentProgress(c.TYPE_WORD_SEARCH, classLevel, num, { chosenWords })
+    contentService
+      .submitContentProgress(c.TYPE_WORD_SEARCH, classLevel, num, {
+        chosenWords
+      })
       .then(() => swal("Saved!"))
       .catch(err => swal(`Error: ${err}`));
   }
@@ -168,7 +175,10 @@ export default class WordSearch extends Component {
   wordIsChosen(wordEnd, selectedWord) {
     const { wordStart, chosenWords } = this.state;
     const chosenCells = this.state.chosenCells.copy();
-    const wordDel = {row: wordEnd.row - wordStart.row, col: wordEnd.col - wordStart.col};
+    const wordDel = {
+      row: wordEnd.row - wordStart.row,
+      col: wordEnd.col - wordStart.col
+    };
 
     // Fancy functional programming to get the length of the word
     const wordLen = Math.max.apply(null, _.values(wordDel).map(Math.abs));
@@ -176,11 +186,13 @@ export default class WordSearch extends Component {
     for (let i = 0; i <= wordLen; i++) {
       const row = wordStart.row + i * (wordDel.row / wordLen);
       const col = wordStart.col + i * (wordDel.col / wordLen);
-      chosenCells.put({row, col});
+      chosenCells.put({ row, col });
     }
 
     this.setState({
-      chosenWords: Object.assign(chosenWords, {[selectedWord]: [wordStart, wordEnd]}),
+      chosenWords: Object.assign(chosenWords, {
+        [selectedWord]: [wordStart, wordEnd]
+      }),
       chosenCells
     });
   }
@@ -188,8 +200,8 @@ export default class WordSearch extends Component {
   // Convert the local grid state into the grid view
   generateGrid() {
     return this.state.grid.map((rowLetters, row) => (
-      <div className="wordsearch-row" key={row}>{
-        rowLetters.split("").map((char, col) => {
+      <div className="wordsearch-row" key={row}>
+        {rowLetters.split("").map((char, col) => {
           // Per-letter styling
           const letterClasses = classNames({
             "wordsearch-letter": true,
@@ -207,12 +219,13 @@ export default class WordSearch extends Component {
           return (
             <div
               className={letterClasses}
-              key={col} onClick={this.handleLetterClicked.bind(this, row, col)}>
+              key={col}
+              onClick={this.handleLetterClicked.bind(this, row, col)}
+            >
               {char}
             </div>
           );
-        })
-      }
+        })}
       </div>
     ));
   }
@@ -221,18 +234,18 @@ export default class WordSearch extends Component {
     return (
       <div className="portal-body">
         <div className="row">
-          <div className="wordsearch-grid-area">
-            {this.generateGrid()}
-          </div>
+          <div className="wordsearch-grid-area">{this.generateGrid()}</div>
           <div className="wordsearch-words">
-            {
-              this.state.words.map((word, i) => (
-                <div className={`wordsearch-word${_.has(this.state.chosenWords, word) ? " strikethrough" : ""}`}
-                  key={i}>
-                  {word}
-                </div>
-              ))
-            }
+            {this.state.words.map((word, i) => (
+              <div
+                className={`wordsearch-word${
+                  _.has(this.state.chosenWords, word) ? " strikethrough" : ""
+                }`}
+                key={i}
+              >
+                {word}
+              </div>
+            ))}
           </div>
         </div>
         <div className="row buttons">

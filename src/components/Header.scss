@@ -4,17 +4,21 @@
 .portal-menu {
   text-align: center;
   z-index: 9; /* TODO constant for this? */
-  width: $menu-width;
-  display: flex;
-}
-.portal-menu-content {
-  display: flex;
+  // width: $menu-width;
 }
 
 .portal-menu-item {
-  margin: auto;
+  padding-left: 30px;
+  padding-top: 10px;
   font-family: RajdhaniBold;
   text-align: center;
+}
+
+.menu-items {
+  position: absolute;
+  right: 0px;
+  display: flex;
+  padding-right: 40px;
 }
 
 .portal-title {

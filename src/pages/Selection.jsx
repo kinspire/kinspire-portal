@@ -50,7 +50,18 @@ class Selection extends Component {
 
 
   render() {
-    const itemsRendered = this.state.items.map((item) => (
+    if (this.props.view === viewConstants.MATERIALS) {
+      document.body.style.backgroundColor = "#a9bb59";
+    } else if (this.props.view === viewConstants.ACTIVITIES) {
+      document.body.style.backgroundColor = "#79b4b3";
+    } else if (this.props.view === viewConstants.STORIES) {
+      document.body.style.backgroundColor = "#79b4b3";
+    } else if (this.props.view === viewConstants.WORDSEARCH) {
+      document.body.style.backgroundColor = "#79b4b3";
+    } else if (this.props.view === viewConstants.ABOUT) {
+      document.body.style.backgroundColor = "#fc5e5a";
+    }
+    const itemsRendered = this.state.items.map(item => (
       <Link key={item.link} className="selection-category" to={item.link}>
         <div className="selection-category-content">
           <div className="selection-category-text">{item.name}</div>

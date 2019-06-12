@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import Header from "./components/Header";
-import Back from "./components/Back";
+// import Back from "./components/Back";
 
 import "./Container.css";
 

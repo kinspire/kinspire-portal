@@ -17,9 +17,9 @@ class Story extends Component {
       correct_answers: []
     };
 
-    this.handleOptionChange     = this.handleOptionChange.bind(this);
-    this.handleInputChange      = this.handleInputChange.bind(this);
-    this.handleSubmit           = this.handleSubmit.bind(this);
+    this.handleOptionChange = this.handleOptionChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // Load story and any progress the user might have had for this story
@@ -28,13 +28,14 @@ class Story extends Component {
     console.log(classLevel, num);
     Promise.all([
       contentService.getContent(c.TYPE_STORY, classLevel, num),
-      contentService.getContentProgress(c.TYPE_STORY, classLevel, num),
+      contentService.getContentProgress(c.TYPE_STORY, classLevel, num)
     ])
       .then(values => {
         console.log(values);
         this.setState({
           content: values[0],
-          answers: values[1].answers ||
+          answers:
+            values[1].answers ||
             // If there are no answers, then set up default answers
             values[0].questions.map((q) => q.type === "mcq" ? -1 : ""),
           correct_answers: values[0].questions.map((q) => q.type === "mcq" ? q.correctChoice : "")
@@ -51,14 +52,14 @@ class Story extends Component {
   handleOptionChange(i, event) {
     const answers = this.state.answers;
     answers[i] = parseInt(event.target.value, 10);
-    this.setState({answers});
+    this.setState({ answers });
   }
 
   // [2 of 2] Handle answer changes
   handleInputChange(i, event) {
     const answers = this.state.answers;
     answers[i] = event.target.value;
-    this.setState({answers});
+    this.setState({ answers });
   }
 
   // Submit the answers
@@ -108,7 +109,9 @@ class Story extends Component {
         // paragraph up to but not including the vocab word
         const parts = paragraph.split(vocab[i], 2);
         paragraphContent.push(
-          <span key={`pre-vocab-${i}`} className="stories-story-text">{parts[0]}</span>
+          <span key={`pre-vocab-${i}`} className="stories-story-text">
+            {parts[0]}
+          </span>
         );
 
         // Fencepost for if the vocab word is not in the paragraph
@@ -119,7 +122,7 @@ class Story extends Component {
           <span className="stories-vocab" key={vocab[i]}>
             <span className="stories-vocab-word">{vocab[i]}</span>
             <div className="stories-vocab-def">
-              {(i < translations.length) ? translations[i] : "[translation]"}
+              {i < translations.length ? translations[i] : "[translation]"}
             </div>
           </span>
         );
@@ -130,10 +133,13 @@ class Story extends Component {
         paragraph = parts[1];
       }
 
-      if (i === vocab.length) { // sanity check
+      if (i === vocab.length) {
+        // sanity check
         // Fencepost for last word
         paragraphContent.push(
-          <span className="stories-story-text" key={`pre-vocab-${i}`}>{paragraph}</span>
+          <span className="stories-story-text" key={`pre-vocab-${i}`}>
+            {paragraph}
+          </span>
         );
       }
 
@@ -163,10 +169,13 @@ class Story extends Component {
             <div className="radio" key={`question-${i}-answer-${j}`}>
               <label>
                 <input
-                  type="radio" name={`question-${i}`} id={`question-${i}`}
+                  type="radio"
+                  name={`question-${i}`}
+                  id={`question-${i}`}
                   value={j}
                   checked={this.state.answers[i] === j}
-                  onChange={this.handleOptionChange.bind(this, i)}/>
+                  onChange={this.handleOptionChange.bind(this, i)}
+                />
                 {choice}
               </label>
             </div>
@@ -176,17 +185,24 @@ class Story extends Component {
       case "short":
         output.push(
           <input
-            type="text" key={`question-${i}-answer`} name={`question-${i}`}
-            id={`question-${i}`} value={this.state.answers[i]}
-            onChange={this.handleInputChange.bind(this, i)} />
+            type="text"
+            key={`question-${i}-answer`}
+            name={`question-${i}`}
+            id={`question-${i}`}
+            value={this.state.answers[i]}
+            onChange={this.handleInputChange.bind(this, i)}
+          />
         );
         break;
       case "long":
         output.push(
           <textarea
-            key={`question-${i}-answer`} name={`question-${i}`}
-            id={`question-${i}`} value={this.state.answers[i]}
-            onChange={this.handleInputChange.bind(this, i)} />
+            key={`question-${i}-answer`}
+            name={`question-${i}`}
+            id={`question-${i}`}
+            value={this.state.answers[i]}
+            onChange={this.handleInputChange.bind(this, i)}
+          />
         );
         break;
       default:
@@ -204,14 +220,19 @@ class Story extends Component {
         <div className="stories-story-section stories-story-section-story">
           {this.generateStory()}
         </div>
-        <div className="stories-story-divider"></div>
+        <div className="stories-story-divider" />
         <div className="stories-story-section stories-story-section-questions">
           <div className="stories-story-section-questions-title">Questions</div>
-          <ol type="1">
-            {this.generateQuestions()}
-          </ol>
-          <input type="button" value="Submit!" onClick={this.handleSubmit}/>
-          <div id="error"></div>
+          <ol type="1">{this.generateQuestions()}</ol>
+          <div className="submit-questions">
+            <input
+              className="login-button"
+              type="button"
+              value="Submit"
+              onClick={this.handleSubmit}
+            />
+          </div>
+          <div id="error" />
         </div>
       </div>
     );
