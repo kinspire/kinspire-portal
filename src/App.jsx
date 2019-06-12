@@ -15,6 +15,8 @@ import { viewConstants as v } from "./constants";
 import Story from "./pages/Story";
 import StoryCollection from "./pages/StoryCollection";
 import About from "./pages/About";
+import ResumeTemplate from "./pages/ResumeTemplate";
+// import StoryCollection from "./pages/StoryCollection";
 
 class App extends Component {
   render() {
@@ -35,6 +37,7 @@ class App extends Component {
           <Route path="/task/:taskId" component={Task} />
           <Route path="/profile" component={Profile} />
           {/* <Route path="/materials/story/:classLevel/:num" component={Story} /> */}
+          <Route path = "/materials/templates" component={ResumeTemplate}/>
           <Route path="/materials" render={(props) => <Selection {...props} key={v.MATERIALS} view={v.MATERIALS} />} />
           <Route path="/activities/story/:classLevel/:num" component={Story} />
           <Route path="/activities/wsplay/:classLevel/:num" component={WordSearch} />
@@ -46,7 +49,6 @@ class App extends Component {
         </Switch>
       );
     }
-
     // Show different things based on login status
     return (
       <Container title="Portal">
@@ -55,11 +57,9 @@ class App extends Component {
     );
   }
 }
-
 // The main container for the Portal.
 App.propTypes = {
   children: PropTypes.element,
   title: PropTypes.string,
 };
-
 export default App;

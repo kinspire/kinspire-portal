@@ -8,12 +8,11 @@ class Header extends Component {
   render() {
     const sections = [
       // "home",
-      { name: "activities", color: "#79b4b3" },
-      { name: "materials", color: "#a9bb59" },
-      // { name: "help", color: "#fa8e47" },
+      {name: "home", color: "#a586c5"},
+      {name: "activities", color: "#79b4b3"},
+      {name: "materials", color: "#a9bb59"},
       // "access",
-      { name: "about", color: "#fc5e5a" },
-      { name: "profile", color: "#a586c5" }
+      {name: "about", color: "#fc5e5a"}
       // "logout"
     ];
 
