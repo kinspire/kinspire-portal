@@ -2,7 +2,6 @@
     "name": "kinspire-portal",
     "version": "0.1.0",
     "dependencies": {
-        "@material-ui/core": "^3.9.2",
         "bootstrap": "^4.2.1",
         "classnames": "^2.2.6",
         "firebase": "^5.5.2",
