@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import React, {Component} from "react";
+import {Redirect} from "react-router-dom";
 import swal from "sweetalert";
 
 import "./Signup.css";
@@ -17,8 +17,8 @@ export default class Signup extends Component {
       loggedIn: false,
     };
 
-    this.handleChange       = this.handleChange.bind(this);
-    this.handleSubmit       = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // Log out the user before opening the page
@@ -39,13 +39,14 @@ export default class Signup extends Component {
 
   handleSubmit() {
     // Only submit if all the fields are filled out
-    if (this.state.firstName && this.state.lastName && this.state.birthday && this.verifyDate()) {
+    if (this.state.firstName && this.state.lastName && this.state.username && this.state.password &&
+      this.state.language && this.state.birthday && this.state.classLevel && this.state.career) {
       authService.signup(this.state)
         .then(() => {
           this.setState({loggedIn: true});
         });
     } else {
-      swal("Verify all details");
+      swal("Complete all details");
     }
   }
 
@@ -69,59 +70,101 @@ export default class Signup extends Component {
     }
 
     return (
-      <div className="portal-body">
-        <div className="flexbox">
-          <label>First Name:</label>
-          <input
-            onChange={this.handleChange.bind(this, "firstName")}
-            placeholder="First Name"
-            type="text"
-            value={this.state.firstName} />
+      <div className="portal-body signup" style={{backgroundColor: "#a586c5"}}>
+        <div className='signup-title'>CREATE AN ACCOUNT</div>
+        <div className="signup-region">
+
+          <div className="column">
+            <div className="flexbox">
+              <h5>First Name</h5>
+              <input
+                className="signup-input"
+                onChange={this.handleChange.bind(this, "firstName")}
+                placeholder="type..."
+                type="text"
+                value={this.state.firstName}/>
+            </div>
+            <div className="flexbox">
+              <h5>Username</h5>
+              <input
+                className="signup-input"
+                onChange={this.handleChange.bind(this, "username")}
+                placeholder="type..."
+                type="text"
+                value={this.state.username}/>
+            </div>
+            <div className="flexbox">
+              <h5>Language</h5>
+              <select
+                className="signup-input"
+                onChange={this.handleChange.bind(this, "language")}
+                defaultValue={"language"}
+                value={this.state.language}>
+                <option value="language" disabled>Choose a Language</option>
+                <option value="marathi">Marathi</option>
+                <option value="telugu">Telugu</option>
+              </select>
+            </div>
+            <div className="flexbox">
+              <h5>Birthday</h5>
+              <input
+                className="signup-input"
+                onKeyDown={event => event.preventDefault()}
+                onChange={this.handleChange.bind(this, "birthday")}
+                type="date"
+                value={this.state.birthday}/>
+            </div>
+          </div>
+
+          <div className="column">
+            <div className="flexbox">
+              <h5>Last Name</h5>
+              <input
+                className="signup-input"
+                onChange={this.handleChange.bind(this, "lastName")}
+                placeholder="type..."
+                type="text"
+                value={this.state.lastName}/>
+            </div>
+            <div className="flexbox">
+              <h5>Password</h5>
+              <input
+                className="signup-input"
+                onChange={this.handleChange.bind(this, "password")}
+                placeholder="type..."
+                type="password"
+                value={this.state.password}/>
+            </div>
+            <div className="flexbox">
+              <h5>Class Level</h5>
+              <input
+                className="signup-input"
+                min={1}
+                max={3}
+                onChange={this.handleChange.bind(this, "classLevel")}
+                type="number"
+                onKeyDown={event => event.preventDefault()}
+                placeholder="Class Level"
+                value={this.state.classLevel}/>
+            </div>
+            <div className="flexbox">
+              <h5>Career Goal</h5>
+              <input
+                className="signup-input"
+                onChange={this.handleChange.bind(this, "career")}
+                placeholder="type..."
+                type="text"
+                value={this.state.career}/>
+            </div>
+          </div>
         </div>
-        <div className="flexbox">
-          <label>Last Name:</label>
-          <input
-            onChange={this.handleChange.bind(this, "lastName")}
-            placeholder="Last Name"
-            type="text"
-            value={this.state.lastName} />
+
+        <div className="signup-button-area">
+          <ShadowButton className="signup-button" onClick={this.handleSubmit} text="CREATE YOUR ACCOUNT"/>
         </div>
-        <div className="flexbox">
-          <label>Username:</label>
-          <input
-            onChange={this.handleChange.bind(this, "username")}
-            placeholder={(this.state.firstName.toLowerCase() + this.state.lastName.toLowerCase())}
-            type="text"
-            value={this.state.username} />
+        <div className="log-in">Already have an account?
+          <a href="/login" className="create-account"> Log-in here</a>
         </div>
-        <div className="flexbox">
-          <label>Birthday:</label>
-          <input
-            onChange={this.handleChange.bind(this, "birthday")}
-            type="date"
-            value={this.state.birthday} />
-        </div>
-        <div className="flexbox">
-          <label>Class Level:</label>
-          <select
-            value={this.state.classLevel}
-            onChange={this.handleChange.bind(this, "classLevel")}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </div>
-        <div className="flexbox">
-          <label>Preferred Language:</label>
-          <select
-            value={this.state.preferredLanguage}
-            onChange={this.handleChange.bind(this, "preferredLanguage")}>
-            <option value="none">None</option>
-            <option value="marathi">Marathi</option>
-            <option value="telugu">Telugu</option>
-          </select>
-        </div>
-        <ShadowButton className="signup-button" onClick={this.handleSubmit} text="Sign up!"/>
       </div>
     );
   }

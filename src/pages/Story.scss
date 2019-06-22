@@ -1,109 +1,99 @@
-/* Stories */
-
-@font-face {
-  font-family: storyFont;
-  src: url(../fonts/Oregano.ttf);
-}
-
 #stories-home {
     display: inline-flex;
     width: 100%;
     /*position: absolute;*/
     /*top: 0;*/
-}
-
-.stories-story {
-    display: flex;
-    border: 10px solid;
-}
-
-.stories-story-section {
+  } 
+  
+  .stories-story {
+    background-color: #bcd9d9;
+    align-content: center;
+  }
+  
+  .stories-story-section {
     width: 50%;
     padding: 15px;
-    overflow: auto;
-}
-
-.stories-story-section-story {
-    // border-left: 10px solid;
-    div {
-        font-family: storyFont;
-        font-size: 24px;
-    }
-}
-
-.stories-story-paragraph {
+    width: 900px;
+  }
+  
+  .stories-story-section-story {
+    font-family: RajdhaniRegular;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    margin: auto;
+    margin-top: 40px;
+    box-shadow: 5px 5px 10px -2px #79b4b3;
+  }
+  
+  .stories-story-paragraph {
     text-indent: 60px;
-}
-
-.stories-story-divider {
+  }
+  
+  .stories-story-divider {
     margin: 0 5px;
     width: 10px;
-}
-
-.stories-story-section-questions-title {
+  }
+  
+  .stories-story-section-questions-title {
     font-size: 140%;
-    font-weight: bold;
-}
-
-/* Scrollbar */
-
-.stories-story-section::-webkit-scrollbar {
+    font-family: RajdhaniBold;
+    color: #79b4b3;
+  }
+  
+  .stories-story-section-questions {
+    font-family: RajdhaniRegular;
+    margin: auto;
+    margin-top: 40px;
+    column-count: 2;
+  }
+  
+  .submit-questions {
+    column-span: all;
+    align-content: center;
+  }
+  
+  /* Scrollbar
+  .stories-story-section::-webkit-scrollbar {
     height: 16px;
     overflow: visible;
-    width: 16px;
-}
-
-.stories-story-section::-webkit-scrollbar-button {
-    // height: 0;
-    // width: 0;
-}
-
-.stories-story-section::-webkit-scrollbar-corner {
-    // background: transparent;
-}
-
-.stories-story-section::-webkit-scrollbar-thumb {
+    width: 16px; }
+  
+  .stories-story-section::-webkit-scrollbar-thumb {
     background-color: green;
-    // background-color: rgba(0,0,0,.2);
-    // background-clip: padding-box;
-    // border: solid white 1px;
-    // border-width: 1px 1px 1px 6px;
-    // min-height: 28px;
-    // padding: 100px 0 0k;
-    box-shadow: 1px 1px 3px 1px rgba(0,0,0,.1), 0 -1px 0 rgba(0,0,0,.07);
-}
-
-.stories-story-section::-webkit-scrollbar-track {
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1), 0 -1px 0 rgba(0, 0, 0, 0.07); }
+  
+  .stories-story-section::-webkit-scrollbar-track {
     background-color: white;
     background-clip: padding-box;
     border: solid transparent;
-    border-width: 0 4px;
-}
-
-/* Vocab words */
-
-.stories-vocab {
+    border-width: 0 4px; } */
+  
+  /* Vocab words */
+  .stories-vocab {
     position: relative;
-}
-
-.stories-vocab-word {
-    font-family: storyFont;
+  }
+  
+  .stories-vocab-word {
+    font-family: RajdhaniBold;
     font-weight: bolder;
-    font-size: 28px;
-}
-
-.stories-vocab-def {
+    font-size: 20px;
+  }
+  
+  .stories-vocab-def {
     position: absolute;
     top: 100%;
     left: 0;
     display: none;
     z-index: 9;
-
     background-color: white;
     border: 1px solid black;
     padding: 4px;
     text-indent: 0;
-}
-.stories-vocab:hover .stories-vocab-def {
+  }
+  
+  .stories-vocab:hover .stories-vocab-def {
     display: block;
-}
+  }
+  

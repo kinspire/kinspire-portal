@@ -1,7 +1,7 @@
 // library
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 
 // our files
 import contentService from "../services/contentService.js";
@@ -20,6 +20,7 @@ class Selection extends Component {
       items: [],
     };
   }
+  
 
   componentDidMount() {
     contentService.getSelectionItems(this.props.view, JSON.parse(localStorage.getItem('user')))
@@ -33,10 +34,34 @@ class Selection extends Component {
     if (prevProps.view !== this.props.view) {
       this.componentDidMount();
     }
+    if(this.props.view === viewConstants.MATERIALS) {
+      document.body.style.backgroundColor = '#a9bb59';
+    } else if(this.props.view === viewConstants.ACTIVITIES) {
+      document.body.style.backgroundColor = '#79b4b3';
+    } else if(this.props.view === viewConstants.HELP) {
+      document.body.style.backgroundColor = '#fc5e5a';
+    } else if(this.props.view === viewConstants.ABOUT) {
+      document.body.style.backgroundColor = '#a586c5';
+    } 
   }
 
+
+
+
+
   render() {
-    const itemsRendered = this.state.items.map((item) => (
+    if (this.props.view === viewConstants.MATERIALS) {
+      document.body.style.backgroundColor = "#a9bb59";
+    } else if (this.props.view === viewConstants.ACTIVITIES) {
+      document.body.style.backgroundColor = "#79b4b3";
+    } else if (this.props.view === viewConstants.STORIES) {
+      document.body.style.backgroundColor = "#79b4b3";
+    } else if (this.props.view === viewConstants.WORDSEARCH) {
+      document.body.style.backgroundColor = "#79b4b3";
+    } else if (this.props.view === viewConstants.ABOUT) {
+      document.body.style.backgroundColor = "#fc5e5a";
+    }
+    const itemsRendered = this.state.items.map(item => (
       <Link key={item.link} className="selection-category" to={item.link}>
         <div className="selection-category-content">
           <div className="selection-category-text">{item.name}</div>
@@ -44,18 +69,26 @@ class Selection extends Component {
       </Link>
     ));
 
-    const mainStyle = {};
-    // materials = #a9bb59
+    let mainStyle = {};
+    //materials = #a9bb59;
     // activities = #79b4b3
-    if(this.props.view === viewConstants.MATERIALS) {
-      mainStyle.backgroundColor = '#a9bb59';
-    } else if(this.props.view === viewConstants.ACTIVITIES) {
-      mainStyle.backgroundColor = '#79b4b3';
-    }
+    // if(this.props.view === viewConstants.MATERIALS) {
+    //   mainStyle.backgroundColor = '#a9bb59';
+    //   mainStyle.margin = 0;
+    //   mainStyle.padding = 0;
+    // } else if(this.props.view === viewConstants.ACTIVITIES) {
+    //   mainStyle.backgroundColor = '#79b4b3';
+    // }
 
     return (
-      <div className="selection-categories" style={mainStyle}>
-        {itemsRendered}
+      <div className = "selection-categories-container">
+      <div className = "row-sm-8">
+        <div className = "col-sm-8">
+          <div className="selection-categories" style={mainStyle}>
+            {itemsRendered}
+        </div>
+      </div>
+      </div>
       </div>
     );
   }
@@ -66,3 +99,4 @@ Selection.propTypes = {
 };
 
 export default Selection;
+

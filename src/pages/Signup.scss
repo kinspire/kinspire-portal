@@ -1,51 +1,102 @@
 @import '../styles/shared.scss';
 
 /* Signup */
+@font-face {
+    font-family: MontserratRegular;
+    src: url(../fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: MontserratBold;
+    src: url(../fonts/Montserrat/Montserrat-Bold.ttf);
+}
+
+@font-face {
+    font-family: RajdhaniRegular;
+    src: url(../fonts/Rajdhani/Rajdhani-Regular.ttf);
+}
+
+@font-face {
+    font-family: RajdhaniBold;
+    src: url(../fonts/Rajdhani/Rajdhani-Bold.ttf);
+}
+
+html, body {
+    background-color: #a586c5 ; //!important;
+}
+
+h5 {
+    color: white;
+    font-family: RajdhaniBold;
+
+}
+
+.signup-input {
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    font-family: RajdhaniRegular;
+    opacity: 0.5;
+    padding: 15px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 2px 2px 4px rgba(68, 68, 68, 0.6);
+}
 
 .form-label {
-    width: 45%;
-    margin: 0 2.5%;
+    width: 100%;
+    margin: .5rem 2.5rem;
     text-align: center;
+}
+
+.signup-title {
+    text-align: center;
+    color: $primary-brown;
+    font-size: 32px;
+    font-family: MontserratBold;
+    color: white;
+    margin-top: 1.25rem;
+}
+
+.signup-region {
+    display: flex;
+    justify-content: center;
+    align-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.column {
+    margin: .5rem .5rem;
+    width: 100%;
+}
+
+.flexbox {
+    margin: .5rem 1rem;
 }
 
 .signup-button {
-    display: block;
-    width: 100%;
-    margin: 20px 0;
+    background-color: #f5bf53;
+    color: white;
     text-align: center;
+    padding: 12px 35px;
+    font-size: 4px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(68, 68, 68, 0.6);
+    border: none;
+    font-family: RajdhaniBold;
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.5rem;
 }
 
-.signup-avatar-container {
-    // .flexbox;
-    flex-direction: column;
-}
-
-.signup-avatars {
-    // .flexbox;
-    overflow-x: auto;
-    min-height: 200px;
-    padding: 20px;
-}
-
-.signup-avatar {
-    height: 150px;
-    margin: 10px;
-    transition: all 0.4s ease-in-out;
-
-    &:hover {
-        transform: scale(1.20);
-    }
-}
-
-.signup-avatar-selected {
-    transform: scale(1.20);
-    background-color: $secondary-gray;
-    border: 1px solid $primary-brown;
-}
-
-.signup-avatar-radio {
-    margin: 0 auto !important;
-    display: none;
+.log-in {
+    padding-top: 20px;
+    text-align: center;
+    color: white;
+    font-family: MontserratRegular;
 }
 
 label {

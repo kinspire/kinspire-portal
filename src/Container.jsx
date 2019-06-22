@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 
 import Header from "./components/Header";
+// import Back from "./components/Back";
 
 import "./Container.css";
 
@@ -19,7 +20,7 @@ class Container extends Component {
 
 Container.propTypes = {
   children: PropTypes.element,
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 export default Container;

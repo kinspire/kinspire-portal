@@ -11,7 +11,10 @@ class Login extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {username: ""};
+    this.state = {
+      username: "",
+      password: ""
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
@@ -22,10 +25,11 @@ class Login extends Component {
   componentDidMount() {
     authService.logout()
       .then(console.log("Logged out!"));
+
   }
 
-  handleChange(event) {
-    this.setState({username: event.target.value});
+  handleChange(key, event) {
+    this.setState({[key]: event.target.value});
   }
 
   handleKeyUp(event) {
@@ -35,13 +39,14 @@ class Login extends Component {
   }
 
   handleSubmit() {
-    if (this.state.username) {
-      authService.login(this.state.username)
+
+    if (this.state.username.length > 0) {
+      authService.login(this.state.username, this.state.password)
         .then(() => {
-          this.setState({loggedIn: true});
+          this.setState({ loggedIn: true });
         })
         .catch(() => {
-          swal("Username is incorrect");
+          swal("Incorrect Credentials");
           //this.setState({loginError: error});
         });
     } else {
@@ -51,13 +56,13 @@ class Login extends Component {
 
   render() {
     if (this.state.loggedIn) {
-      return <Redirect to={{pathname: "/"}}/>;
+      return <Redirect to={{ pathname: "/" }} />;
     } else if (this.state.loginError) {
       swal(this.state.loginError);
     }
 
     return (
-      <div className="portal-body row">
+      <div className="portal-body login row">
         <div className="col">
           <div className="login-region">
             <div className="login-title">LOG-IN</div>
@@ -65,22 +70,25 @@ class Login extends Component {
               <h2> Username </h2>
               <input
                 className="login-textbox"
-                onChange={this.handleChange}
+                onChange={this.handleChange.bind(this, "username")}
                 onKeyUp={this.handleKeyUp}
                 placeholder="type..."
                 value={this.state.username}/>
               <h2> Password </h2>
               <input
                 className="login-textbox"
-                onChange={this.handleChange}
+                onChange={this.handleChange.bind(this, "password")}
                 onKeyUp={this.handleKeyUp}
                 placeholder="type..."
+                type="password"
                 value={this.state.password}/>
               <h3><a href=""> Forgot Password </a></h3>
             </div>
             <br/>
-            <ShadowButton className="login-button"
-              onClick={this.handleSubmit} text="Login"/>
+            <div className="button-area">
+              <ShadowButton className="login-button"
+                onClick={this.handleSubmit} text="LOGIN"/>
+            </div>
           </div>
           <div className="sign-up">Don't have an account?
             <a href="/signup" className="create-account"> CREATE AN ACCOUNT</a></div>
