@@ -13,31 +13,31 @@
     text-align: center;
 }
 
-.home-next-activity {
-    height: 120px;
-}
+// .home-next-activity {
+//     height: 120px;
+// }
 
-.home-next-activity-category {
-    width: 40%;
-}
+// .home-next-activity-category {
+//     width: 40%;
+// }
 
-.home-next-activity-details {
-    margin: auto 0;
-    padding: 5px;
-    width: 60%;
-}
+// .home-next-activity-details {
+//     margin: auto 0;
+//     padding: 5px;
+//     width: 60%;
+// }
 
-.home-next-activity:hover .home-next-activity-details {
-    color: white;
-}
+// .home-next-activity:hover .home-next-activity-details {
+//     color: white;
+// }
 
-.home-section-progress {
-    margin: 0 50px;
-}
+// .home-section-progress {
+//     margin: 0 50px;
+// }
 
-.home-section-progress-image {
-    width: 100%;
-}
+// .home-section-progress-image {
+//     width: 100%;
+// }
 
 .home-avatars {
     position: absolute;
@@ -47,4 +47,8 @@
 
 .home-avatar {
     width: 250px;
+}
+
+.progress {
+    height: auto !important;
 }

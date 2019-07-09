@@ -20,52 +20,55 @@ class Selection extends Component {
       items: [],
     };
   }
-  
 
   componentDidMount() {
-    contentService.getSelectionItems(this.props.view, JSON.parse(localStorage.getItem('user')))
-      .then(items => {
-        this.setState({items});
-      });
+    contentService.getSelectionItems(this.props.view).then(items => {
+      this.setState({ items });
+    });
   }
-
-  // Handle changes in the view prop - we need to reload the items
-  componentDidUpdate(prevProps) {
-    if (prevProps.view !== this.props.view) {
-      this.componentDidMount();
-    }
-    if(this.props.view === viewConstants.MATERIALS) {
-      document.body.style.backgroundColor = '#a9bb59';
-    } else if(this.props.view === viewConstants.ACTIVITIES) {
-      document.body.style.backgroundColor = '#79b4b3';
-    } else if(this.props.view === viewConstants.HELP) {
-      document.body.style.backgroundColor = '#fc5e5a';
-    } else if(this.props.view === viewConstants.ABOUT) {
-      document.body.style.backgroundColor = '#a586c5';
-    } 
-  }
-
-
-
-
 
   render() {
     if (this.props.view === viewConstants.MATERIALS) {
       document.body.style.backgroundColor = "#a9bb59";
+      // document.body.style.setProperty("--portal-background-color", "#a9bb59");
+      document.body.style.setProperty(
+        "--selection-content-text-color",
+        "#a9bb59"
+      );
     } else if (this.props.view === viewConstants.ACTIVITIES) {
       document.body.style.backgroundColor = "#79b4b3";
+      // document.body.style.setProperty("--portal-background-color", "#79b4b3");
+      document.body.style.setProperty(
+        "--selection-content-text-color",
+        "#79b4b3"
+      );
     } else if (this.props.view === viewConstants.STORIES) {
       document.body.style.backgroundColor = "#79b4b3";
+      // document.body.style.setProperty("--portal-background-color", "#79b4b3");
+      document.body.style.setProperty(
+        "--selection-content-text-color",
+        "#79b4b3"
+      );
     } else if (this.props.view === viewConstants.WORDSEARCH) {
       document.body.style.backgroundColor = "#79b4b3";
+      // document.body.style.setProperty("--portal-background-color", "#79b4b3");
+      document.body.style.setProperty(
+        "--selection-content-text-color",
+        "#79b4b3"
+      );
     } else if (this.props.view === viewConstants.ABOUT) {
       document.body.style.backgroundColor = "#fc5e5a";
+      // document.body.style.setProperty("--portal-background-color", "#fc5e5a");
+      document.body.style.setProperty(
+        "--selection-content-text-color",
+        "#fc5e5a"
+      );
     }
     const itemsRendered = this.state.items.map(item => (
       <Link key={item.link} className="selection-category" to={item.link}>
-        <div className="selection-category-content">
-          <div className="selection-category-text">{item.name}</div>
-        </div>
+        {/* <div className="selection-category-content"> */}
+        <div className="selection-category-text">{item.name}</div>
+        {/* </div> */}
       </Link>
     ));
 
@@ -81,6 +84,7 @@ class Selection extends Component {
     // }
 
     return (
+<<<<<<< HEAD
       <div className = "selection-categories-container">
       <div className = "row-sm-8">
         <div className = "col-sm-8">
@@ -89,6 +93,10 @@ class Selection extends Component {
         </div>
       </div>
       </div>
+=======
+      <div className="selection-content">
+        <div className="selection-categories">{itemsRendered}</div>
+>>>>>>> esha
       </div>
     );
   }
