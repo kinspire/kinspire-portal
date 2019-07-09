@@ -72,7 +72,7 @@ class Selection extends Component {
       </Link>
     ));
 
-    let mainStyle = {};
+    const mainStyle = {};
     //materials = #a9bb59;
     // activities = #79b4b3
     // if(this.props.view === viewConstants.MATERIALS) {
@@ -84,19 +84,8 @@ class Selection extends Component {
     // }
 
     return (
-<<<<<<< HEAD
-      <div className = "selection-categories-container">
-      <div className = "row-sm-8">
-        <div className = "col-sm-8">
-          <div className="selection-categories" style={mainStyle}>
-            {itemsRendered}
-        </div>
-      </div>
-      </div>
-=======
       <div className="selection-content">
         <div className="selection-categories">{itemsRendered}</div>
->>>>>>> esha
       </div>
     );
   }
