@@ -7,7 +7,7 @@ export default class About extends Component {
   render() {
     document.body.style.setProperty("--page-backgound-color", "#fc5e5a");
     return (
-      <div className="about-body">
+      <div className="about-content">
         Hello kids! Welcome to the Portal. Get ready for an adventure.
         <br />
         This Portal is going ot have a lot in store for your educational
