@@ -33,26 +33,29 @@ export default class Home extends Component {
   }
 
   render() {
+    document.body.style.setProperty("--page-backgound-color", "#fa8e47");
     return (
-      <div className="portal-body row">
-        <div className="col-3">
+      // <div className="portal-body row">
+      <div className="home-content">
+        {/* <div className="col-3">
           <div className="home-section-date">
             <div className="home-section-title">Today&#39;s date</div>
             <div className="home-section-content">
               {moment().format("ddd D/M/YYYY")}
             </div>
           </div>
-          <div className="home-section-quote">
-            {/* <div className="home-section-title">Quote of the Day</div>
+          <div className="home-section-quote"> */}
+        {/* <div className="home-section-title">Quote of the Day</div>
             <div className="home-section-content">
               An apple a day keeps the doctor away!
             </div> */}
-          </div>
-        </div>
-        <div className="col-6">
+        {/* </div> */}
+        {/* </div> */}
+        {/* <div className="col-6"> */}
+        <div className="task-progress">
           {/* progress bar */}
           <div className="home-section-title">Progress Bar!</div>
-          <Progress percent={20} color="yellow"/>
+          <Progress percent={20} color="white"/>
           <div className="home-section-content">
             {/* { this.getContentLinks() } */}
             You're almost there!

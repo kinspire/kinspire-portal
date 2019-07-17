@@ -60,6 +60,7 @@ class Login extends Component {
     } else if (this.state.loginError) {
       swal(this.state.loginError);
     }
+    document.body.style.setProperty("--page-backgound-color", "#a586c5");
 
     return (
       <div className="portal-body login row">
