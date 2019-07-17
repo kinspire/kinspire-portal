@@ -1,16 +1,31 @@
 @import '../styles/shared.scss';
 
-/* Home */
+:root {
+    --page-backgound-color: white;
+    // --portal-background-color: white;
+}
+
+body {
+    background-color: var(--page-backgound-color) !important;
+}
+
+.home-content {
+    padding: 60px;
+}
 
 .home-section-title {
-    font-size: 18pt;
+    padding-top: 30px;
+    font-size: 20pt;
     text-align: center;
-    color: $primary-green;
+    color: white;
+    font-family: RajdhaniBold;
 }
 
 .home-section-content {
     font-size: 16pt;
     text-align: center;
+    color: white;
+    font-family: RajdhaniRegular;
 }
 
 // .home-next-activity {

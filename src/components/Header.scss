@@ -47,7 +47,7 @@
  }
 
  .title-R {
-  color: $help-color; 
+  color: $home-color; 
  }
 
  .title-T {
@@ -72,15 +72,15 @@
 }
 
 .portal-menu-item-help {
-  color: $help-color;
+  color: $home-color;
 }
 
 .portal-menu-item-about {
   color: $about-color;
 }
 
-.portal-menu-item-profile {
-  color: $profile-color;
+.portal-menu-item-home {
+  color: $home-color;
 }
 
 .portal-menu-icon {

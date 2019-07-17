@@ -56,6 +56,7 @@ class Login extends Component {
     } else if (this.state.loginError) {
       swal(this.state.loginError);
     }
+    document.body.style.setProperty("--page-backgound-color", "#a586c5");
 
     return (
       <div className="portal-body login row">
@@ -73,17 +74,17 @@ class Login extends Component {
               />
               <h2> Password </h2>
               <input
-              className="login-textbox"
-              onChange={this.handleChange}
-              onKeyUp={this.handleKeyUp}
-              placeholder="type..."
-              value={this.state.password}/> 
+                className="login-textbox"
+                onChange={this.handleChange}
+                onKeyUp={this.handleKeyUp}
+                placeholder="type..."
+                value={this.state.password}/> 
               <h3> <a href=""> Forgot Password </a> </h3>
-              </div> <br/>
-                <div className="button-area">
-                  <ShadowButton className="login-button"
-                  onClick={this.handleSubmit} text="LOGIN"/>
-                </div>
+            </div> <br/>
+            <div className="button-area">
+              <ShadowButton className="login-button"
+                onClick={this.handleSubmit} text="LOGIN"/>
+            </div>
           </div>
         </div>
       </div>

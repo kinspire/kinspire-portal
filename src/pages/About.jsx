@@ -5,6 +5,7 @@ import "./About.css";
 export default class About extends Component {
 
   render() {
+    document.body.style.setProperty("--page-backgound-color", "#fc5e5a");
     return (
       <div className="about-body">
         Hello kids! Welcome to the Portal. Get ready for an adventure.
