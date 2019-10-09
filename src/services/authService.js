@@ -1,5 +1,4 @@
-import firebaseService from "./firebaseService";
-import swal from "sweetalert";
+// import swal from "sweetalert";
 
 export default {
   login,
@@ -7,35 +6,17 @@ export default {
   signup
 };
 
-const db = firebaseService.db;
-
 // Returns a promise that resolves when the user is logged in, or throws an
 // error.
-function login(username, password) {
-  return db.collection("users").where("username", "==", username).limit(1).get()
-    .then(querySnapshot => {
-      if (querySnapshot.empty) {
-        throw new Error("No user with given username!");
-      }
-      const doc = querySnapshot.docs[0];
-      if (doc.data().password === password) {
-        localStorage.setItem("user", JSON.stringify(doc.data()));
-        localStorage.setItem("userId", doc.id);
-        return doc.data();
-      } else {
-        throw new Error("Incorrect password");
-      }
-    });
+function login() {
+  return {};
 }
 
 // Returns a promise that resolves when the user is logged out
 function logout() {
-  return new Promise(resolve => {
-    // remove user from local storage to log user out
-    localStorage.removeItem("user");
-    localStorage.removeItem("userId");
-    resolve();
-  });
+  // remove user from local storage to log user out
+  localStorage.removeItem("user");
+  localStorage.removeItem("userId");
 }
 
 // Returns a promise that resolves when the user has successfully signed up, or
@@ -45,20 +26,5 @@ function signup(details) {
   if (details.username === "") {
     details.username = (details.firstName + details.lastName).toLowerCase();
   }
-  return db.collection("users").where("username", "==", details.username).limit(1).get()
-    .then(querySnapshot => {
-      if (!querySnapshot.empty) {
-        swal("Username already exists");
-        throw "Duplicate username";
-      }
-
-      localStorage.setItem("user", JSON.stringify(details));
-      localStorage.setItem("userId", querySnapshot.docs[0]);
-
-      // Creation of all new records for this user
-      return db.collection("users").add(details);
-    })
-    .then(() => {
-      return details;
-    });
+  return details;
 }
