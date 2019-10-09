@@ -48,12 +48,15 @@ export default class Home extends Component {
           </div>
         </div>
         <div className="col-6">
+          <div className="home-section-title">More content coming soon!</div>
+          {/*
           <div className="home-section-title">Progress Bar!</div>
           <Progress percent={44} progress>Label</Progress>
           <div className="home-section-content">
-            {/* { this.getContentLinks() } */}
+            { this.getContentLinks() }
             You're almost there!
           </div>
+          */}
         </div>
         {/* <div className="col-3">
           <div className="home-section-title">Profile</div>

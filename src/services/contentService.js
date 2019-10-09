@@ -1,4 +1,5 @@
 import firebaseService from "./firebaseService";
+import _ from "lodash";
 import { viewConstants as v } from "../constants";
 import swal from "sweetalert";
 
@@ -159,7 +160,7 @@ function getSelectionItems(view, user) {
   case v.STORIES:
     return db.collection("content")
       .where("type", "==", "story")
-      .where("classLevel", "==", parseInt(user.classLevel, 10))
+      .where("classLevel", "==", parseInt(_.get(user, "classLevel", 1), 10))
       .get()
       .then(snapshot => {
         return snapshot.docs.map(doc => (
@@ -172,7 +173,7 @@ function getSelectionItems(view, user) {
   case v.WORDSEARCH:
     return db.collection("content")
       .where("type", "==", "wordsearch")
-      .where("classLevel", "==", parseInt(user.classLevel, 10))
+      .where("classLevel", "==", parseInt(_.get(user, "classLevel", 1), 10))
       .get()
       .then(snapshot => {
         return snapshot.docs.map(doc => (
