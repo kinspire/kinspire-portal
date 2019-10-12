@@ -15,3 +15,11 @@ code {
   font-family: menuFont;
   src: url(/fonts/Chewy.ttf);
 }
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}

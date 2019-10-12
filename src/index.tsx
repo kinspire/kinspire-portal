@@ -1,4 +1,4 @@
-import createBrowserHistory from "history/createBrowserHistory";
+import history from "history";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Router } from "react-router-dom";
@@ -7,7 +7,7 @@ import App from "./App";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-const customHistory = createBrowserHistory();
+const customHistory = history.createBrowserHistory();
 
 ReactDOM.render(
   <Router history={customHistory}>

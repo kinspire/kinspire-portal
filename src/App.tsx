@@ -2,7 +2,9 @@ import React from "react";
 
 import "./App.css";
 import Container from "./Container";
-// import logo from "./logo.svg";
+
+import "typeface-montserrat";
+import "typeface-rajdhani";
 
 const App: React.FC = () => {
   return <Container title="Portal">Hello, world!</Container>;

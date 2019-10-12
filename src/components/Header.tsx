@@ -12,11 +12,8 @@ const SECTIONS = [
   // "access",
   { name: "about", color: "#fc5e5a" },
   /*
-      {name: "activities", color: "#79b4b3"},
-      {name: "materials", color: "#a9bb59"},
       {name: "help", color: "#fa8e47"},
       // "access",
-      {name: "about", color: "#fc5e5a"},
       {name: "profile", color: "#a586c5"}
       */
   // "logout"
@@ -35,7 +32,7 @@ class Header extends Component {
   public render() {
     const menuItems = SECTIONS.map((section, i) => (
       <div key={i} className="portal-menu-item">
-        <Link className={`portal-menu-item-${section.name}`} to={`/${section.name}`}>
+        <Link style={{ color: section.color }} to={`/${section.name}`}>
           <div className="portal-menu-icon" style={{ backgroundColor: section.color }} />
           {section.name}
         </Link>

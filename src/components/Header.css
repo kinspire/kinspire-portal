@@ -8,7 +8,8 @@
 .portal-menu-item {
   padding-left: 30px;
   padding-top: 10px;
-  font-family: RajdhaniBold;
+  font-family: Rajdhani;
+  font-weight: bold;
   text-align: center;
 }
 
@@ -23,7 +24,8 @@
   line-height: 72px;
   font-size: 72px;
   text-align: center;
-  font-family: MontserratBold;
+  font-family: Montserrat;
+  font-weight: bold;
   color: white;
   padding: 20px;
 }
@@ -31,28 +33,7 @@
 .portal-header {
   width: 100%;
   display: flex;
-  background-color: $menu-bar;
-}
-
-//pages
-.portal-menu-item-activities {
-  color: $activities-color;
-}
-
-.portal-menu-item-materials {
-  color: $materials-color;
-}
-
-.portal-menu-item-help {
-  color: $help-color;
-}
-
-.portal-menu-item-about {
-  color: $about-color;
-}
-
-.portal-menu-item-profile {
-  color: $profile-color;
+  background-color: #201d1a;
 }
 
 .portal-menu-icon {
