@@ -1,13 +1,19 @@
-import history from "history";
+import { createBrowserHistory } from "history";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Router } from "react-router-dom";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "typeface-montserrat";
+import "typeface-rajdhani";
+
 import App from "./App";
-import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-const customHistory = history.createBrowserHistory();
+import "./constants.css";
+import "./index.css";
+
+const customHistory = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={customHistory}>

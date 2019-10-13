@@ -5,8 +5,7 @@ import { Colors } from "../constants";
 import "./Header.css";
 
 const SECTIONS = [
-  // "home",
-  { name: "home", color: "#a586c5" },
+  // { name: "home", color: "#a586c5" },
   { name: "activities", color: "#79b4b3" },
   { name: "materials", color: "#a9bb59" },
   // "access",
