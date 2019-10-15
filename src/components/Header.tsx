@@ -18,7 +18,7 @@ const SECTIONS = [
   // "logout"
 ];
 
-const TITLE_MAP: Record<string, Colors> = {
+const TITLE_MAP: Record<string, string> = {
   P: Colors.ACTIVITIES,
   O: Colors.MATERIALS,
   R: Colors.HELP,
