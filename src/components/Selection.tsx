@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { Colors, ViewConstants } from "../constants";
@@ -55,13 +56,11 @@ class Selection extends React.Component<Props, State> {
     // }
 
     return (
-      <div className="selection-categories-container" style={style}>
-        <div className="row-sm-8">
-          <div className="col-sm-8">
-            <div className="selection-categories">{itemsRendered}</div>
-          </div>
-        </div>
-      </div>
+      <Container className="selection-categories-container" style={style}>
+        <Row>
+          <div className="selection-categories">{itemsRendered}</div>
+        </Row>
+      </Container>
     );
   }
 }

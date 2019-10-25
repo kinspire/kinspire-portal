@@ -12,6 +12,7 @@ interface Props {
 // The main container for the Portal.
 class Container extends React.Component<Props> {
   public render() {
+      // TODO propagate color up here, so the full page is colored
     return (
       <div className="portal-content">
         <Header />
