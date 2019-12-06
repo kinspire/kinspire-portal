@@ -24,3 +24,5 @@ export const login = async (username: string, password: string) => {
 
   return response;
 };
+
+const ENGLISH_COURSE_ID = 3;
