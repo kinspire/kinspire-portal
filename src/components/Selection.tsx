@@ -1,13 +1,13 @@
-import * as React from "react";
+import React from "react";
 import { Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import { Colors, ViewConstants } from "../constants";
+import { LinkPair } from "../util";
+
 import "./Selection.css";
 
 interface Props {
-  view: ViewConstants;
-  items: Array<{ link: string; name: string }>;
+  items: LinkPair[];
 }
 
 // This component represents a generic "selection" screen that can show any list
@@ -15,11 +15,7 @@ interface Props {
 // The `view` prop determines what items are shown, which is provided by the
 // `contentService` (see contentService#getSelectionItems)
 export default function Selection(props: Props) {
-  const { view, items } = props;
-
-  const style: React.CSSProperties = {
-    backgroundColor: Colors[view],
-  };
+  const { items } = props;
 
   // materials = #a9bb59;
   // activities = #79b4b3
@@ -32,7 +28,7 @@ export default function Selection(props: Props) {
   // }
 
   return (
-    <Container className="selection-categories-container" style={style}>
+    <Container className="selection-categories-container">
       <Row>
         <div className="selection-categories">
           {items.map(item => (

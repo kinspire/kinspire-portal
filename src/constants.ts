@@ -3,35 +3,49 @@
 // the JS, so to avoid duplication I'm putting it here. Definitely worth
 // a second look.
 
-export enum ViewConstants {
+export enum View {
+  HOME = "HOME",
   MATERIALS = "MATERIALS",
   ACTIVITIES = "ACTIVITIES",
   STORIES = "STORIES",
   WORDSEARCH = "WORDSEARCH",
+  STORY = "STORY",
   PROFILE = "PROFILE",
   ABOUT = "ABOUT",
 }
 
-export const Colors: Record<ViewConstants | string, string> = {
-  [ViewConstants.ACTIVITIES]: "#79b4b3",
-  [ViewConstants.MATERIALS]: "#a9bb59",
-  [ViewConstants.ABOUT]: "#fc5e5a",
-  [ViewConstants.PROFILE]: "#a586c5",
-  BUTTON: "#f5bf53",
-  HELP: "#fa8e47",
-  MENU: "#201d1a",
+export const getColor = (v: View | string): string => {
+  switch (v) {
+    case View.ACTIVITIES:
+    case View.STORIES:
+    case View.STORY:
+      return "#79b4b3";
+    case View.MATERIALS:
+      return "#a9bb59";
+    case View.ABOUT:
+      return "#fc5e5a";
+    case View.PROFILE:
+      return "#a586c5";
+    case "BUTTON":
+      return "#f5bf53";
+    case "HELP":
+      return "#fa8e47";
+    case "MENU":
+      return "#201d1a";
+  }
+  return "white";
 };
 
 // The different types of content
-export enum ContentConstants {
-  TYPE_STORY = "story",
-  TYPE_WORD_SEARCH = "wordsearch",
-  TYPE_TASK = "task",
+export enum ContentType {
+  STORY = "story",
+  WORD_SEARCH = "wordsearch",
+  TASK = "task",
 }
 
 // The text used per type
 export const contentStrings = {
-  [ContentConstants.TYPE_STORY]: "Story",
-  [ContentConstants.TYPE_WORD_SEARCH]: "Word Search",
-  [ContentConstants.TYPE_TASK]: "Task",
+  [ContentType.STORY]: "Story",
+  [ContentType.WORD_SEARCH]: "Word Search",
+  [ContentType.TASK]: "Task",
 };

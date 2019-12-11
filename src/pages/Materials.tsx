@@ -1,7 +1,6 @@
-import * as React from "react";
+import React from "react";
 
 import Selection from "../components/Selection";
-import { ViewConstants as V } from "../constants";
 
 const materials = [
   { name: "Resume/CV Templates", link: "/materials/templates" },
@@ -10,5 +9,5 @@ const materials = [
   { name: "Health & Wellness", link: "/materials/health" },
 ];
 export default function Materials() {
-  return <Selection view={V.MATERIALS} items={materials} />;
+  return <Selection items={materials} />;
 }

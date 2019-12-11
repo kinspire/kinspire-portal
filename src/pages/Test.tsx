@@ -1,7 +1,7 @@
 import log from "loglevel";
-import * as React from "react";
+import React from "react";
 
-import { login } from "../services/moodle";
+import { login } from "../content/moodle";
 
 export default function Test() {
   const handleClick = async () => {

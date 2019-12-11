@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import { Colors } from "../constants";
+import { getColor, View } from "../constants";
 import "./Header.css";
 
 const SECTIONS = [
@@ -19,12 +19,12 @@ const SECTIONS = [
 ];
 
 const TITLE_MAP: Record<string, string> = {
-  P: Colors.ACTIVITIES,
-  O: Colors.MATERIALS,
-  R: Colors.HELP,
-  T: Colors.ABOUT,
-  A: Colors.PROFILE,
-  L: Colors.BUTTON,
+  P: getColor(View.ACTIVITIES),
+  O: getColor(View.MATERIALS),
+  R: getColor("HELP"),
+  T: getColor(View.ABOUT),
+  A: getColor(View.PROFILE),
+  L: getColor("BUTTON"),
 };
 
 class Header extends Component {

@@ -1,4 +1,5 @@
 import { createBrowserHistory } from "history";
+import log from "loglevel";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Router } from "react-router-dom";
@@ -14,6 +15,8 @@ import "./constants.css";
 import "./index.css";
 
 const customHistory = createBrowserHistory();
+
+log.setLevel("debug");
 
 ReactDOM.render(
   <Router history={customHistory}>

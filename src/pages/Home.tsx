@@ -1,6 +1,9 @@
 import moment from "moment";
-import React, { Component } from "react";
+import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
+
+import Scaffold from "../components/Scaffold";
+import { View } from "../constants";
 
 // import ShadowButton from "../components/ShadowButton";
 // import { contentConstants as c, contentStrings as s } from "../constants";
@@ -9,14 +12,9 @@ import { Col, Container, Row } from "react-bootstrap";
 import "./Home.css";
 
 // The home page
-export default class Home extends Component {
-  public getContentLinks() {
-    // TODO actually return links to content
-    return [];
-  }
-
-  public render() {
-    return (
+export default function Home() {
+  return (
+    <Scaffold view={View.HOME}>
       <Container>
         <Row className="portal-body">
           <Col xs={3}>
@@ -52,8 +50,8 @@ export default class Home extends Component {
         </div> */}
         </Row>
       </Container>
-    );
-  }
+    </Scaffold>
+  );
 }
 
 // Small wrapper around ShadowButton for home page content items.
