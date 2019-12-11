@@ -1,0 +1,44 @@
+/* Menu */
+.portal-menu {
+  text-align: center;
+  z-index: 9; /* TODO constant for this? */
+  /* width: $menu-width; */
+}
+
+.portal-menu-item {
+  padding-left: 30px;
+  padding-top: 10px;
+  font-family: Rajdhani;
+  font-weight: bold;
+  text-align: center;
+}
+
+.menu-items {
+  position: absolute;
+  right: 0px;
+  display: flex;
+  padding-right: 40px;
+}
+
+.portal-title {
+  line-height: 72px;
+  font-size: 72px;
+  text-align: center;
+  font-family: Montserrat;
+  font-weight: bold;
+  color: white;
+  padding: 20px;
+}
+
+.portal-header {
+  width: 100%;
+  display: flex;
+  background-color: #201d1a;
+}
+
+.portal-menu-icon {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin: 5px;
+}

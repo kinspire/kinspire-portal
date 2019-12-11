@@ -1,0 +1,48 @@
+/* Home */
+
+.home-section-title {
+  font-size: 18pt;
+  text-align: center;
+  color: var(--primary-green);
+}
+
+.home-section-content {
+  font-size: 16pt;
+  text-align: center;
+}
+
+.home-next-activity {
+  height: 120px;
+}
+
+.home-next-activity-category {
+  width: 40%;
+}
+
+.home-next-activity-details {
+  margin: auto 0;
+  padding: 5px;
+  width: 60%;
+}
+
+.home-next-activity:hover .home-next-activity-details {
+  color: white;
+}
+
+.home-section-progress {
+  margin: 0 50px;
+}
+
+.home-section-progress-image {
+  width: 100%;
+}
+
+.home-avatars {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.home-avatar {
+  width: 250px;
+}
