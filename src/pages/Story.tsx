@@ -9,7 +9,7 @@ import "./Story.css";
 
 import Scaffold from "../components/Scaffold";
 import { ContentType, View } from "../constants";
-import { McqQuestion, service, Story } from "../content";
+import { Answer, McqQuestion, service, Story } from "../content";
 
 interface Params {
   classLevel: string;
@@ -19,7 +19,7 @@ interface Params {
 interface Props extends RouteComponentProps<Params> {}
 
 interface State {
-  answers: Array<string | number>;
+  answers: Answer[];
   content?: Story; // TODO
   correct_answers: any[]; // TODO
 }
@@ -31,26 +31,29 @@ class StoryPage extends React.Component<Props, State> {
   } as State;
 
   // Load story and any progress the user might have had for this story
-  public componentDidMount() {
+  public async componentDidMount() {
     const { classLevel, num } = this.props.match.params;
-    Promise.all([
-      service.getContent(ContentType.STORY, +classLevel, +num),
-      service.getContentProgress(ContentType.STORY, +classLevel, +num),
-    ])
-      .then(values => {
-        const story = values[0] as Story;
-        this.setState({
-          content: story,
-          answers:
-            values[1].answers ||
-            // If there are no answers, then set up default answers
-            story.questions.map(q => (q.type === "mcq" ? -1 : "")),
-          correct_answers: story.questions.map(q =>
-            q.type === "mcq" ? (q as McqQuestion).correctChoice : ""
-          ),
-        });
-      })
-      .catch(err => swal(`${err}`));
+    try {
+      const values = await Promise.all([
+        service.getContent(ContentType.STORY, +classLevel, +num),
+        service.getContentProgress(ContentType.STORY, +classLevel, +num),
+      ]);
+      const story = values[0] as Story;
+      this.setState({
+        content: story,
+        // If there are no answers, then set up default answers
+        answers: _.get(
+          values[1],
+          "answers",
+          story.questions.map(q => (q.type === "mcq" ? -1 : ""))
+        ),
+        correct_answers: story.questions.map(q =>
+          q.type === "mcq" ? (q as McqQuestion).correctChoice : ""
+        ),
+      });
+    } catch (err) {
+      swal(`${err}`);
+    }
   }
 
   // [1 of 2] Handle answer changes
@@ -72,12 +75,12 @@ class StoryPage extends React.Component<Props, State> {
     const { answers } = this.state;
     const { correct_answers } = this.state;
     service
-      .submitContentProgress(
-        ContentType.STORY,
-        +this.props.match.params.classLevel,
-        +this.props.match.params.num,
-        { answers }
-      )
+      .submitContentProgress({
+        type: ContentType.STORY,
+        classLevel: +this.props.match.params.classLevel,
+        num: +this.props.match.params.num,
+        answers,
+      })
       .then(() => {
         let res = "";
         for (let i = 0; i < answers.length; i++) {
@@ -117,7 +120,7 @@ class StoryPage extends React.Component<Props, State> {
       while (i < vocab.length) {
         // Split the paragraph on the vocab word, so that we get just the
         // paragraph up to but not including the vocab word
-        const parts = paragraph.split(vocab[i], 2);
+        const parts = paragraph.split(vocab[i]);
         paragraphContent.push(
           <span key={`pre-vocab-${i}`} className="stories-story-text">
             {parts[0]}
@@ -141,8 +144,8 @@ class StoryPage extends React.Component<Props, State> {
 
         paragraphContent.push(vocabWord);
 
+        paragraph = _.join(parts.slice(1), vocab[i]);
         i++;
-        paragraph = parts[1];
       }
 
       if (i === vocab.length) {
@@ -231,17 +234,17 @@ class StoryPage extends React.Component<Props, State> {
   public render() {
     return (
       <Scaffold view={View.STORY}>
-        <Container>
+        <Container fluid className="stories-container">
           <Row>
             <Col>
               <h1 className="stories-story-title">{_.get(this.state.content, "title")}</h1>
             </Col>
           </Row>
           <Row className="stories-story">
-            <Col>
+            <Col xs={6}>
               <div className="stories-story-section-story">{this.generateStory()}</div>
             </Col>
-            <Col>
+            <Col xs={6}>
               <div className="stories-story-section stories-story-section-questions">
                 <div className="stories-story-section-questions-title">Questions</div>
                 <ol type="1">{this.generateQuestions()}</ol>

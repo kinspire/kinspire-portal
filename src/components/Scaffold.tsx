@@ -1,4 +1,3 @@
-import ReactFullpage from "@fullpage/react-fullpage";
 import React from "react";
 
 import { getColor, View } from "../constants";
@@ -15,19 +14,10 @@ export default function Scaffold({ children, view }: React.PropsWithChildren<Pro
   // TODO propagate color up here, so the full page is colored
   return (
     <div className="portal-content">
-      <Header />
-      <ReactFullpage
-        verticalCentered={false}
-        render={() => {
-          return (
-            <ReactFullpage.Wrapper>
-              <div className="section" style={{ backgroundColor: getColor(view) }}>
-                {children}
-              </div>
-            </ReactFullpage.Wrapper>
-          );
-        }}
-      />
+      <main className="portal-background" style={{ backgroundColor: getColor(view) }}>
+        <Header />
+        {children}
+      </main>
     </div>
   );
 }

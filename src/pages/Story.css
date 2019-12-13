@@ -5,9 +5,14 @@
   /*top: 0;*/
 }
 
+.stories-container {
+  max-width: 90%;
+}
+
 .stories-story {
   /* background-color: #bcd9d9; */
   align-content: center;
+  justify-content: center;
 }
 
 .stories-story-title {

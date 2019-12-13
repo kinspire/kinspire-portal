@@ -7,14 +7,11 @@ import "./Header.css";
 const SECTIONS = [
   // { name: "home", color: "#a586c5" },
   { name: "activities", color: "#79b4b3" },
-  { name: "materials", color: "#a9bb59" },
+  // { name: "materials", color: "#a9bb59" },
+  // { name: "about", color: "#fc5e5a" },
+  // {name: "help", color: "#fa8e47"},
   // "access",
-  { name: "about", color: "#fc5e5a" },
-  /*
-      {name: "help", color: "#fa8e47"},
-      // "access",
-      {name: "profile", color: "#a586c5"}
-      */
+  // {name: "profile", color: "#a586c5"}
   // "logout"
 ];
 

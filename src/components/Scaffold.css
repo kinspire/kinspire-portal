@@ -3,3 +3,9 @@
   display: flex;
   flex-direction: column;
 }
+
+.portal-background {
+  min-height: 100vh;
+  padding-bottom: 4px;
+  position: relative;
+}

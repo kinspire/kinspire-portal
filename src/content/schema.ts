@@ -20,13 +20,10 @@ export interface McqQuestion extends Question {
   correctChoice: number;
 }
 
-type Answer = string | number;
+export type Answer = string | number;
 
-export interface Content {
-  classLevel: number;
-  num: number;
+export interface Content extends BaseDoc {
   title: string;
-  type: ContentType;
 }
 
 export interface Story extends Content {
@@ -38,18 +35,24 @@ export interface Story extends Content {
   // translation: Record<string, string[]>;
 }
 
-export interface ContentProgress {
-  answers: string[];
+export interface ContentProgress extends BaseDoc {
+  answers: Answer[];
+  userId?: string;
+}
+
+export interface BaseDoc {
+  type: ContentType;
+  classLevel: number;
+  num: number;
 }
 
 export interface ContentService {
   getStories: () => Promise<LinkPair[]>;
   getContent: (c: ContentType, classLevel: number, num: number) => Promise<Content>;
-  getContentProgress: (c: ContentType, classLevel: number, num: number) => Promise<ContentProgress>;
-  submitContentProgress: (
+  getContentProgress: (
     c: ContentType,
     classLevel: number,
-    num: number,
-    answers: { answers: Answer[] }
-  ) => Promise<void>;
+    num: number
+  ) => Promise<ContentProgress | null>;
+  submitContentProgress: (cp: ContentProgress) => Promise<void>;
 }
