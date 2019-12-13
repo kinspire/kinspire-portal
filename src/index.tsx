@@ -1,8 +1,7 @@
-import { createBrowserHistory } from "history";
 import log from "loglevel";
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "typeface-montserrat";
@@ -14,14 +13,12 @@ import * as serviceWorker from "./serviceWorker";
 import "./constants.css";
 import "./index.css";
 
-const customHistory = createBrowserHistory();
-
 log.setLevel("debug");
 
 ReactDOM.render(
-  <Router history={customHistory}>
+  <BrowserRouter basename="/kinspire-portal">
     <App />
-  </Router>,
+  </BrowserRouter>,
   document.getElementById("root")
 );
 
