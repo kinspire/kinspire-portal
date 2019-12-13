@@ -4,22 +4,15 @@ body {
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16pt;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-/* fonts */
-@font-face {
-  font-family: menuFont;
-  src: url(/fonts/Chewy.ttf);
-}
-
-a {
-  text-decoration: none;
-}
-
-a:visited {
-  color: inherit;
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }

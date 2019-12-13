@@ -1,12 +1,6 @@
-#stories-home {
-  display: inline-flex;
-  width: 100%;
-  /*position: absolute;*/
-  /*top: 0;*/
-}
-
 .stories-container {
-  max-width: 90%;
+  width: 100%;
+  padding: 0 5%;
 }
 
 .stories-story {

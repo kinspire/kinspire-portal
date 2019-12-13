@@ -1,6 +1,8 @@
 import log from "loglevel";
 import React from "react";
 
+import Scaffold from "../components/Scaffold";
+import { View } from "../constants";
 import { login } from "../content/moodle";
 
 export default function Test() {
@@ -8,5 +10,11 @@ export default function Test() {
     log.debug(await login("teststudent", "Password1!"));
   };
 
-  return <button onClick={handleClick}>Click</button>;
+  return (
+    <Scaffold view={View.ACTIVITIES}>
+      <div style={{ height: "100%" }}>
+        <button onClick={handleClick}>Click</button>
+      </div>
+    </Scaffold>
+  );
 }

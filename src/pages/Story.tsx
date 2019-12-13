@@ -1,7 +1,7 @@
+import { Grid } from "@material-ui/core";
 import _ from "lodash";
 import log from "loglevel";
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
 import { RouteComponentProps } from "react-router";
 import swal from "sweetalert";
 
@@ -234,17 +234,17 @@ class StoryPage extends React.Component<Props, State> {
   public render() {
     return (
       <Scaffold view={View.STORY}>
-        <Container fluid className="stories-container">
-          <Row>
-            <Col>
+        <div className="stories-container">
+          <Grid container>
+            <Grid item xs={12}>
               <h1 className="stories-story-title">{_.get(this.state.content, "title")}</h1>
-            </Col>
-          </Row>
-          <Row className="stories-story">
-            <Col xs={6}>
+            </Grid>
+          </Grid>
+          <Grid container className="stories-story" spacing={1}>
+            <Grid item xs={6}>
               <div className="stories-story-section-story">{this.generateStory()}</div>
-            </Col>
-            <Col xs={6}>
+            </Grid>
+            <Grid item xs={6}>
               <div className="stories-story-section stories-story-section-questions">
                 <div className="stories-story-section-questions-title">Questions</div>
                 <ol type="1">{this.generateQuestions()}</ol>
@@ -258,9 +258,9 @@ class StoryPage extends React.Component<Props, State> {
                 </div>
                 <div id="error" />
               </div>
-            </Col>
-          </Row>
-        </Container>
+            </Grid>
+          </Grid>
+        </div>
       </Scaffold>
     );
   }

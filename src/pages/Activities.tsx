@@ -12,7 +12,7 @@ const activities = [
 export default function Activities() {
   return (
     <Scaffold view={View.ACTIVITIES}>
-      <Selection items={activities} />
+      <Selection view={View.ACTIVITIES} items={activities} />
     </Scaffold>
   );
 }

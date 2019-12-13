@@ -1,6 +1,6 @@
 .selection-categories {
   text-align: center;
-  width: 100%;
+  padding: 0 15%;
   /*height: 100vh;*/
 }
 
@@ -9,10 +9,6 @@
   display: inline-flex;
   height: 125px;
   width: 275px;
-}
-
-.selection-categories-container {
-  /* margin-right: 40px; */
 }
 
 /*.container{
@@ -26,12 +22,23 @@
 }*/
 
 .selection-category-content {
-  display: inline-block;
+  display: flex;
   height: 100%;
   width: 100%;
   box-shadow: 2px 2px 10px -2px darkslategray;
   background-color: whitesmoke;
   border-radius: 15px;
+  font-size: 150%;
+  font-family: Rajdhani;
+  font-weight: bold;
+}
+
+.selection-category-text {
+  margin: auto;
+}
+
+.selection-category-text-subtitle {
+  font-size: 80%;
 }
 
 .selection-category-content-done {
@@ -43,11 +50,4 @@
   width: 20px;
   border-radius: 50%;
   background-color: white;
-}
-
-.selection-category-text {
-  font-size: 28px;
-  padding: 40px;
-  font-family: Rajdhani;
-  font-weight: bold;
 }

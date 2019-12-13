@@ -1,6 +1,6 @@
-import moment from "moment";
+import { Paper } from "@material-ui/core";
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import Scaffold from "../components/Scaffold";
 import { View } from "../constants";
@@ -15,41 +15,11 @@ import "./Home.css";
 export default function Home() {
   return (
     <Scaffold view={View.HOME}>
-      <Container>
-        <Row className="portal-body">
-          <Col xs={3}>
-            <div className="home-section-date">
-              <div className="home-section-title">Today&#39;s date</div>
-              <div className="home-section-content">{moment().format("ddd DD/MM/YYYY")}</div>
-            </div>
-            <div className="home-section-quote">
-              {/* <div className="home-section-title">Quote of the Day</div>
-            <div className="home-section-content">
-              An apple a day keeps the doctor away!
-            </div> */}
-            </div>
-          </Col>
-          <Col xs={6}>
-            <div className="home-section-title">More content coming soon!</div>
-            {/*
-          <div className="home-section-title">Progress Bar!</div>
-          <Progress percent={44} progress>Label</Progress>
-          <div className="home-section-content">
-            { this.getContentLinks() }
-            You're almost there!
-          </div>
-          */}
-          </Col>
-          {/* <div className="col-3">
-          <div className="home-section-title">Profile</div>
-          <div className="home-section-progress">
-            <Link to="/tasks">
-              <img alt="Tasks" className="home-section-progress-image" src={envelopeWithMedal}/>
-            </Link>
-          </div>
-        </div> */}
-        </Row>
-      </Container>
+      <Paper className="home-activities-link">
+        <Link to="/activities" className="home-activities-container">
+          Activities
+        </Link>
+      </Paper>
     </Scaffold>
   );
 }

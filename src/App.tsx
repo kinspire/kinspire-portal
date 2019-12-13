@@ -13,12 +13,11 @@ const App: React.FC = () => {
   // TODO adjust title pl0x
   return (
     <Switch>
+      <Route path="/test" component={Test} />
       <Route path="/materials" component={Materials} />
       <Route path="/activities/story/:classLevel/:num" component={Story} />
       <Route path="/activities/stories" component={Stories} />
-      <Route path="/activities" exact component={Activities} />
-      <Route path="/test" component={Test} />
-      <Route path="/" exact component={Home} />
+      <Route path="/" component={Activities} />
     </Switch>
   );
 };

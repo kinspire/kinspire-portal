@@ -27,10 +27,7 @@ export class FirebaseContentService implements ContentService {
       // .where("classLevel", "==", parseInt(_.get(user, "classLevel", 1), 10))
       .get();
 
-    return snapshot.docs.map(doc => ({
-      name: doc.get("title"),
-      link: `/activities/story/${doc.get("classLevel")}/${doc.get("num")}`,
-    }));
+    return snapshot.docs.map(doc => doc.data() as Content);
   };
 
   public getContent = async (c: ContentType, classLevel: number, num: number) => {

@@ -1,5 +1,4 @@
 import { ContentType } from "../constants";
-import { LinkPair } from "../util";
 
 // Content schema
 
@@ -47,7 +46,7 @@ export interface BaseDoc {
 }
 
 export interface ContentService {
-  getStories: () => Promise<LinkPair[]>;
+  getStories: () => Promise<Content[]>;
   getContent: (c: ContentType, classLevel: number, num: number) => Promise<Content>;
   getContentProgress: (
     c: ContentType,

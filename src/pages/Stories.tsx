@@ -1,3 +1,5 @@
+import { CircularProgress } from "@material-ui/core";
+import _ from "lodash";
 import React from "react";
 // import React, { useEffect, useState } from "react";
 
@@ -30,24 +32,52 @@ export default function Stories() {
 
 // Using classes
 interface State {
-  stories: LinkPair[];
+  stories: Record<number, LinkPair[]>;
 }
 
 export default class Stories extends React.Component<{}, State> {
   public state = {
-    stories: [],
+    stories: {},
   } as State;
 
   public async componentDidMount() {
+    // Sort stories by class level and number
+    const storyList = (await service.getStories()).sort((a, b) =>
+      a.classLevel !== b.classLevel ? a.classLevel - b.classLevel : a.num - b.num
+    );
+
+    let curr = 0;
+    const stories = {} as Record<number, LinkPair[]>;
+    storyList.forEach(story => {
+      if (story.classLevel !== curr) {
+        stories[story.classLevel] = [];
+        curr = story.classLevel;
+      }
+      stories[curr].push({
+        name: _.get(story, "title"),
+        link: `/activities/story/${_.get(story, "classLevel")}/${_.get(story, "num")}`,
+        subtitle: `${_.get(story, "classLevel")}-${_.get(story, "num")}`,
+      });
+    });
+
     this.setState({
-      stories: await service.getStories(),
+      stories,
     });
   }
 
   public render() {
     return (
       <Scaffold view={View.STORIES}>
-        <Selection items={this.state.stories} />
+        {_.size(this.state.stories) ? (
+          _.map(this.state.stories, (list, classLevel) => (
+            <>
+              <div style={{ textAlign: "center" }}>Level {classLevel}</div>
+              <Selection view={View.STORIES} items={list} />
+            </>
+          ))
+        ) : (
+          <CircularProgress className="loading" />
+        )}
       </Scaffold>
     );
   }

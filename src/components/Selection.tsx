@@ -1,13 +1,15 @@
+import { Grid } from "@material-ui/core";
 import React from "react";
-import { Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import { getColor, View } from "../constants";
 import { LinkPair } from "../util";
 
 import "./Selection.css";
 
 interface Props {
   items: LinkPair[];
+  view?: View;
 }
 
 // This component represents a generic "selection" screen that can show any list
@@ -15,7 +17,7 @@ interface Props {
 // The `view` prop determines what items are shown, which is provided by the
 // `contentService` (see contentService#getSelectionItems)
 export default function Selection(props: Props) {
-  const { items } = props;
+  const { items, view } = props;
 
   // materials = #a9bb59;
   // activities = #79b4b3
@@ -27,19 +29,28 @@ export default function Selection(props: Props) {
   //   mainStyle.backgroundColor = '#79b4b3';
   // }
 
+  const textStyle = view ? { color: getColor(view) } : undefined;
+
   return (
-    <Container className="selection-categories-container">
-      <Row>
-        <div className="selection-categories">
-          {items.map(item => (
-            <Link key={item.link} className="selection-category" to={item.link}>
-              <div className="selection-category-content">
-                <div className="selection-category-text">{item.name}</div>
+    <Grid container className="selection-categories" alignItems="center" justify="center">
+      {items.map(item => (
+        <Grid item xs={3}>
+          <Link key={item.link} className="selection-category" to={item.link}>
+            <div className="selection-category-content">
+              <div className="selection-category-text">
+                <div style={textStyle}>{item.name}</div>
+                {item.subtitle ? (
+                  <div className="selection-category-text-subtitle">
+                    <i style={textStyle}>{item.subtitle}</i>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
-            </Link>
-          ))}
-        </div>
-      </Row>
-    </Container>
+            </div>
+          </Link>
+        </Grid>
+      ))}
+    </Grid>
   );
 }

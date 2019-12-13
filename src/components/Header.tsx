@@ -28,8 +28,12 @@ class Header extends Component {
   public render() {
     const menuItems = SECTIONS.map((section, i) => (
       <div key={i} className="portal-menu-item">
-        <Link style={{ color: section.color }} to={`/${section.name}`}>
-          <div className="portal-menu-icon" style={{ backgroundColor: section.color }} />
+        <Link
+          style={{ color: section.color }}
+          to={`/${section.name}`}
+          className="portal-menu-item-link"
+        >
+          <div className="portal-menu-item-icon" style={{ backgroundColor: section.color }} />
           {section.name}
         </Link>
       </div>
