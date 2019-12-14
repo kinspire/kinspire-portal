@@ -8,6 +8,7 @@ import "typeface-montserrat";
 import "typeface-rajdhani";
 
 import App from "./App";
+import AppTheme from "./AppTheme";
 import * as serviceWorker from "./serviceWorker";
 
 import "./constants.css";
@@ -17,7 +18,9 @@ log.setLevel("debug");
 
 ReactDOM.render(
   <BrowserRouter basename="/kinspire-portal">
-    <App />
+    <AppTheme>
+      <App />
+    </AppTheme>
   </BrowserRouter>,
   document.getElementById("root")
 );

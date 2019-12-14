@@ -1,4 +1,4 @@
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Typography } from "@material-ui/core";
 import _ from "lodash";
 import React from "react";
 // import React, { useEffect, useState } from "react";
@@ -71,7 +71,7 @@ export default class Stories extends React.Component<{}, State> {
         {_.size(this.state.stories) ? (
           _.map(this.state.stories, (list, classLevel) => (
             <>
-              <div style={{ textAlign: "center" }}>Level {classLevel}</div>
+              <Typography style={{ textAlign: "center" }}>Level {classLevel}</Typography>
               <Selection view={View.STORIES} items={list} />
             </>
           ))

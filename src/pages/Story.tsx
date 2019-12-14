@@ -1,4 +1,12 @@
-import { Grid } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  FormControlLabel,
+  Grid,
+  Radio,
+  RadioGroup,
+  Typography,
+} from "@material-ui/core";
 import _ from "lodash";
 import log from "loglevel";
 import React from "react";
@@ -121,11 +129,7 @@ class StoryPage extends React.Component<Props, State> {
         // Split the paragraph on the vocab word, so that we get just the
         // paragraph up to but not including the vocab word
         const parts = paragraph.split(vocab[i]);
-        paragraphContent.push(
-          <span key={`pre-vocab-${i}`} className="stories-story-text">
-            {parts[0]}
-          </span>
-        );
+        paragraphContent.push(<span key={`pre-vocab-${i}`}>{parts[0]}</span>);
 
         // Fencepost for if the vocab word is not in the paragraph
         if (parts.length < 2) {
@@ -135,10 +139,12 @@ class StoryPage extends React.Component<Props, State> {
         // Write out the vocab word
         const vocabWord = (
           <span className="stories-vocab" key={vocab[i]}>
-            <span className="stories-vocab-word">{vocab[i]}</span>
-            <div className="stories-vocab-def">
-              {i < translations.length ? translations[i] : "[translation]"}
-            </div>
+            <span className="stories-vocab-word">{vocab[i]} </span>
+            {i < translations.length ? (
+              <div className="stories-vocab-def">{translations[i]}</div>
+            ) : (
+              ""
+            )}
           </span>
         );
 
@@ -152,16 +158,16 @@ class StoryPage extends React.Component<Props, State> {
         // sanity check
         // Fencepost for last word
         paragraphContent.push(
-          <span className="stories-story-text" key={`pre-vocab-${i}`}>
+          <Typography key={`pre-vocab-${i}`} component="span">
             {paragraph}
-          </span>
+          </Typography>
         );
       }
 
       return (
-        <div className="stories-story-paragraph" key={`para-${paragraphNum}`}>
+        <Typography className="stories-story-paragraph" key={`para-${paragraphNum}`}>
           {paragraphContent}
-        </div>
+        </Typography>
       );
     });
   };
@@ -177,27 +183,26 @@ class StoryPage extends React.Component<Props, State> {
     // Iterate through the questions and create JSX in `output`
     const output: any[] = [];
     questions.forEach((question, i) => {
-      output.push(<li key={`question-${i}`}>{question.question}</li>);
+      output.push(
+        <li key={`question-${i}`}>
+          <Typography>{question.question}</Typography>
+        </li>
+      );
 
       switch (question.type) {
         case "mcq":
-          (question as McqQuestion).choices.forEach((choice, j) => {
-            output.push(
-              <div className="radio" key={`question-${i}-answer-${j}`}>
-                <label>
-                  <input
-                    type="radio"
-                    name={`question-${i}`}
-                    id={`question-${i}`}
-                    value={j}
-                    checked={this.state.answers[i] === j}
-                    onChange={this.handleOptionChange.bind(this, i)}
-                  />
-                  {choice}
-                </label>
-              </div>
-            );
-          });
+          const choices = (question as McqQuestion).choices.map((choice, j) => (
+            <FormControlLabel value={j} control={<Radio />} label={choice} />
+          ));
+          output.push(
+            <RadioGroup
+              name={`question-${i}`}
+              value={this.state.answers[i]}
+              onChange={this.handleOptionChange.bind(null, i)}
+            >
+              {choices}
+            </RadioGroup>
+          );
           break;
         case "short":
           output.push(
@@ -235,9 +240,18 @@ class StoryPage extends React.Component<Props, State> {
     return (
       <Scaffold view={View.STORY}>
         <div className="stories-container">
-          <Grid container>
-            <Grid item xs={12}>
-              <h1 className="stories-story-title">{_.get(this.state.content, "title")}</h1>
+          <Grid container justify="center" alignItems="center" spacing={1}>
+            <Grid item>
+              <Typography className="stories-story-title" variant="h4">
+                {_.get(this.state.content, "title")}
+              </Typography>
+            </Grid>
+            <Grid>
+              <Typography>
+                <i>
+                  ({_.get(this.state.content, "classLevel")}-{_.get(this.state.content, "num")})
+                </i>
+              </Typography>
             </Grid>
           </Grid>
           <Grid container className="stories-story" spacing={1}>
@@ -246,16 +260,15 @@ class StoryPage extends React.Component<Props, State> {
             </Grid>
             <Grid item xs={6}>
               <div className="stories-story-section stories-story-section-questions">
-                <div className="stories-story-section-questions-title">Questions</div>
-                <ol type="1">{this.generateQuestions()}</ol>
-                <div className="submit-questions">
-                  <input
-                    className="login-button"
-                    type="button"
-                    value="Submit"
-                    onClick={this.handleSubmit}
-                  />
-                </div>
+                <Typography variant="h5" className="stories-story-section-questions-title">
+                  <Box fontWeight="fontWeightBold">Questions</Box>
+                </Typography>
+                <Typography>
+                  <ol type="1">{this.generateQuestions()}</ol>
+                </Typography>
+                <Button variant="contained" onClick={this.handleSubmit}>
+                  Submit
+                </Button>
                 <div id="error" />
               </div>
             </Grid>

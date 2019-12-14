@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Box, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -38,7 +38,9 @@ export default function Selection(props: Props) {
           <Link key={item.link} className="selection-category" to={item.link}>
             <div className="selection-category-content">
               <div className="selection-category-text">
-                <div style={textStyle}>{item.name}</div>
+                <Typography style={textStyle}>
+                  <Box fontWeight="fontWeightBold">{item.name}</Box>
+                </Typography>
                 {item.subtitle ? (
                   <div className="selection-category-text-subtitle">
                     <i style={textStyle}>{item.subtitle}</i>

@@ -1,3 +1,4 @@
+import { Typography } from "@material-ui/core";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
@@ -6,7 +7,7 @@ import "./Header.css";
 
 const SECTIONS = [
   // { name: "home", color: "#a586c5" },
-  { name: "activities", color: "#79b4b3" },
+  { name: "stories", color: "#79b4b3" },
   // { name: "materials", color: "#a9bb59" },
   // { name: "about", color: "#fc5e5a" },
   // {name: "help", color: "#fa8e47"},
@@ -34,7 +35,7 @@ class Header extends Component {
           className="portal-menu-item-link"
         >
           <div className="portal-menu-item-icon" style={{ backgroundColor: section.color }} />
-          {section.name}
+          <Typography>{section.name}</Typography>
         </Link>
       </div>
     ));

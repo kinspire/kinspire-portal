@@ -26,12 +26,6 @@
   text-indent: 60px;
 }
 
-.stories-story-section-questions-title {
-  font-size: 140%;
-  font-family: Rajdhani;
-  font-weight: bold;
-}
-
 .stories-story-section-questions {
   font-family: Rajdhani;
   margin: auto;
@@ -59,9 +53,7 @@
 }
 
 .stories-vocab-word {
-  font-family: RajdhaniBold;
   font-weight: bolder;
-  font-size: 20px;
 }
 
 .stories-vocab-def {
