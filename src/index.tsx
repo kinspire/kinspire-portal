@@ -2,6 +2,7 @@ import log from "loglevel";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import { AllElectron } from "electron";
 
 import "typeface-montserrat";
 import "typeface-rajdhani";
@@ -15,8 +16,11 @@ import "./index.css";
 
 log.setLevel("debug");
 
+log.debug("hi");
+
+// TODO set basename from env var
 ReactDOM.render(
-  <BrowserRouter basename="/kinspire-portal">
+  <BrowserRouter basename="/build">
     <AppTheme>
       <App />
     </AppTheme>
@@ -28,3 +32,10 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.register();
+
+const electron: AllElectron = window.require("electron");
+
+electron.ipcRenderer.on("async-reply", (event, arg) => {
+  console.log(arg);
+});
+electron.ipcRenderer.send("async-message", "ping");

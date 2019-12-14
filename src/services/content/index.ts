@@ -1,6 +1,6 @@
 import { ContentService } from "./schema";
-import { WebsiteContentService } from "./website";
+import { FirebaseContentService } from "./firebase";
 
-export const service: ContentService = new WebsiteContentService();
+export const service: ContentService = new FirebaseContentService();
 
 export * from "./schema";

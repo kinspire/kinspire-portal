@@ -23,3 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 backup-src/**/*.css
+
+# electron
+/dist
+*.tgz
