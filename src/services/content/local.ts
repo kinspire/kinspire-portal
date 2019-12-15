@@ -1,4 +1,4 @@
-import { ContentType } from "../constants";
+import { ContentType } from "../../constants";
 import { BaseDoc, ContentService, QuestionType, Story } from "./schema";
 
 // Local

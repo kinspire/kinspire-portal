@@ -17,7 +17,7 @@ import "./Story.css";
 
 import Scaffold from "../components/Scaffold";
 import { ContentType, View } from "../constants";
-import { Answer, McqQuestion, service, Story } from "../content";
+import { Answer, McqQuestion, service, Story } from "../services/content";
 
 interface Params {
   classLevel: string;
@@ -139,7 +139,7 @@ class StoryPage extends React.Component<Props, State> {
         // Write out the vocab word
         const vocabWord = (
           <span className="stories-vocab" key={vocab[i]}>
-            <span className="stories-vocab-word">{vocab[i]} </span>
+            <span className="stories-vocab-word">{vocab[i]}</span>
             {i < translations.length ? (
               <div className="stories-vocab-def">{translations[i]}</div>
             ) : (

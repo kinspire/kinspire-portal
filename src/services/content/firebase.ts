@@ -3,11 +3,11 @@ import "firebase/firestore";
 import _ from "lodash";
 import log from "loglevel";
 
-import { ContentType } from "../constants";
+import { ContentType } from "../../constants";
 import { Content, ContentProgress, ContentService } from "./schema";
 
 // Initialize Firebase
-import config from "../keys/firebase-keys.json";
+import config from "../../keys/firebase-keys.json";
 
 firebase.initializeApp(config);
 

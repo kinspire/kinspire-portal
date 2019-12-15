@@ -4,9 +4,12 @@
   /*height: 100vh;*/
 }
 
+.selection-grid-item {
+  display: flex;
+}
+
 .selection-category {
-  margin: 20px;
-  display: inline-flex;
+  margin: 20px auto;
   height: 125px;
   width: 275px;
 }

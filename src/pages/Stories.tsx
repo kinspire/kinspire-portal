@@ -6,7 +6,7 @@ import React from "react";
 import Scaffold from "../components/Scaffold";
 import Selection from "../components/Selection";
 import { View } from "../constants";
-import { service } from "../content";
+import { service } from "../services/content";
 import { LinkPair } from "../util";
 
 /*

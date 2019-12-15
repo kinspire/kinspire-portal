@@ -34,7 +34,7 @@ export default function Selection(props: Props) {
   return (
     <Grid container className="selection-categories" alignItems="center" justify="center">
       {items.map(item => (
-        <Grid item xs={3}>
+        <Grid item xs={4} className="selection-grid-item">
           <Link key={item.link} className="selection-category" to={item.link}>
             <div className="selection-category-content">
               <div className="selection-category-text">

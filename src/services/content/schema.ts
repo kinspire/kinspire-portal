@@ -1,4 +1,4 @@
-import { ContentType } from "../constants";
+import { ContentType } from "../../constants";
 
 // Content schema
 

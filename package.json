@@ -1,6 +1,11 @@
 {
   "name": "kinspire-portal",
+  "description": "A desktop portal for the students in Kinspire's orphanages to use to access learning materials.",
   "version": "0.1.0",
+  "author": {
+    "name": "Sarang Joshi",
+    "email": "sarangjoshi@kinspire.org"
+  },
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.7.2",
