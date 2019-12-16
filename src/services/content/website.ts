@@ -16,6 +16,7 @@ export async function apiRequest(uri: string, method = "GET", body?: any) {
             type: "application/json",
           })
         : body,
+      mode: "cors",
       method,
     });
     log.debug(await res.clone().text());
