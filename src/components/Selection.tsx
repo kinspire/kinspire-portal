@@ -33,12 +33,12 @@ export default function Selection(props: Props) {
 
   return (
     <Grid container className="selection-categories" alignItems="center" justify="center">
-      {items.map(item => (
-        <Grid item xs={4} className="selection-grid-item">
+      {items.map((item, i) => (
+        <Grid item xs={4} className="selection-grid-item" key={i}>
           <Link key={item.link} className="selection-category" to={item.link}>
             <div className="selection-category-content">
               <div className="selection-category-text">
-                <Typography style={textStyle}>
+                <Typography style={textStyle} component="div">
                   <Box fontWeight="fontWeightBold">{item.name}</Box>
                 </Typography>
                 {item.subtitle ? (

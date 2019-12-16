@@ -70,10 +70,10 @@ export default class Stories extends React.Component<{}, State> {
       <Scaffold view={View.STORIES}>
         {_.size(this.state.stories) ? (
           _.map(this.state.stories, (list, classLevel) => (
-            <>
+            <React.Fragment key={classLevel}>
               <Typography style={{ textAlign: "center" }}>Level {classLevel}</Typography>
               <Selection view={View.STORIES} items={list} />
-            </>
+            </React.Fragment>
           ))
         ) : (
           <CircularProgress className="loading" />

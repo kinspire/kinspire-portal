@@ -1,7 +1,7 @@
 // import { LocalContentService } from "./local";
-import { FirebaseContentService } from "./firebase";
 import { ContentService } from "./schema";
+import { WebsiteContentService } from "./website";
 
-export const service: ContentService = new FirebaseContentService();
+export const service: ContentService = new WebsiteContentService();
 
 export * from "./schema";
