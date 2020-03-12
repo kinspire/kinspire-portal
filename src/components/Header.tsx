@@ -7,7 +7,8 @@ import "./Header.css";
 
 const SECTIONS = [
   // { name: "home", color: "#a586c5" },
-  { name: "stories", color: "#79b4b3" },
+  { name: "stories", link: "stories", color: getColor(View.STORIES) },
+  { name: "word searches", link: "wordsearches", color: getColor(View.ACTIVITIES) },
   // { name: "materials", color: "#a9bb59" },
   // { name: "about", color: "#fc5e5a" },
   // {name: "help", color: "#fa8e47"},
@@ -17,7 +18,7 @@ const SECTIONS = [
 ];
 
 const TITLE_MAP: Record<string, string> = {
-  P: getColor(View.ACTIVITIES),
+  P: getColor(View.STORIES),
   O: getColor(View.MATERIALS),
   R: getColor("HELP"),
   T: getColor(View.ABOUT),
@@ -31,7 +32,7 @@ class Header extends Component {
       <div key={i} className="portal-menu-item">
         <Link
           style={{ color: section.color }}
-          to={`/${section.name}`}
+          to={`/${section.link}`}
           className="portal-menu-item-link"
         >
           <div className="portal-menu-item-icon" style={{ backgroundColor: section.color }} />

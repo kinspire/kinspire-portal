@@ -1,3 +1,25 @@
+import React from "react";
+
+import Scaffold from "../components/Scaffold";
+import Selection from "../components/Selection";
+import { View } from "../constants";
+
+const activities = [
+  { name: "Word Searches", link: "/wordsearches" },
+  { name: "Stories", link: "/stories" },
+];
+
+export default function Activities() {
+  const view = View.HOME;
+
+  return (
+    <Scaffold view={view}>
+      <Selection view={view} items={activities} />
+    </Scaffold>
+  );
+}
+
+/*
 import { Paper } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -16,7 +38,7 @@ export default function Home() {
   return (
     <Scaffold view={View.HOME}>
       <Paper className="home-activities-link">
-        <Link to="/activities" className="home-activities-container">
+        <Link to="" className="home-activities-container">
           Activities
         </Link>
       </Paper>

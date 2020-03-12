@@ -19,8 +19,11 @@ export async function apiRequest(uri: string, method = "GET", body?: any) {
       mode: "cors",
       method,
     });
-    log.debug(await res.clone().text());
+    const text = await res.clone().text();
+    log.debug(text);
+    log.debug(JSON.parse(text));
     const response = await res.json();
+    log.debug(response);
     if (!res.ok) {
       throw response;
     }
@@ -32,7 +35,9 @@ export async function apiRequest(uri: string, method = "GET", body?: any) {
 }
 
 export class WebsiteContentService implements ContentService {
-  public getStories = async () => await apiRequest(`content/?type=${ContentType.STORY}`);
+  public getStories = async () => await this.getAllContent(ContentType.STORY);
+
+  public getAllContent = async (c: ContentType) => await apiRequest(`content/?type=${c}`);
 
   public getContent = async (c: ContentType, classLevel: number, num: number) => {
     const docs = await apiRequest(`content/?type=${c}&classLevel=${classLevel}&num=${num}`);

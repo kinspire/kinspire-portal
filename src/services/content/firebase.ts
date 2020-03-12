@@ -20,11 +20,12 @@ const CONTENT_PROGRESS = "contentProgress";
 const USER_ID = "user";
 
 export class FirebaseContentService implements ContentService {
-  public getStories = async () => {
+  public getStories = () => this.getAllContent(ContentType.STORY);
+
+  public getAllContent = async (c: ContentType) => {
     const snapshot = await db
       .collection(CONTENT)
-      .where("type", "==", "story")
-      // .where("classLevel", "==", parseInt(_.get(user, "classLevel", 1), 10))
+      .where("type", "==", c)
       .get();
 
     return snapshot.docs.map(doc => doc.data() as Content);
@@ -91,7 +92,7 @@ export class FirebaseContentService implements ContentService {
       .then(snapshot => {
         return snapshot.docs.map(doc => ({
           name: doc.get("title"),
-          link: `/activities/story/${doc.get("classLevel")}/${doc.get("num")}`,
+          link: `/story/${doc.get("classLevel")}/${doc.get("num")}`,
         }));
       });
       */
@@ -104,7 +105,7 @@ export class FirebaseContentService implements ContentService {
       .then(snapshot => {
         return snapshot.docs.map(doc => ({
           name: doc.get("title"),
-          link: `/activities/wsplay/${doc.get("classLevel")}/${doc.get("num")}`,
+          link: `/wsplay/${doc.get("classLevel")}/${doc.get("num")}`,
         }));
       });
       */

@@ -5,14 +5,15 @@ import Selection from "../components/Selection";
 import { View } from "../constants";
 
 const activities = [
-  // { name: "Word Searches", link: "/activities/wordsearch" },
-  { name: "Stories", link: "/activities/stories" },
+  // { name: "Word Searches", link: "/wordsearch" },
+  { name: "Stories", link: "/stories" },
 ];
 
 export default function Activities() {
+  const view = View.ACTIVITIES;
   return (
-    <Scaffold view={View.ACTIVITIES}>
-      <Selection view={View.ACTIVITIES} items={activities} />
+    <Scaffold view={view}>
+      <Selection view={view} items={activities} />
     </Scaffold>
   );
 }

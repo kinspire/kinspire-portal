@@ -7,7 +7,7 @@ import {
   RadioGroup,
   Typography,
 } from "@material-ui/core";
-import _ from "lodash";
+import _, { size, get } from "lodash";
 import log from "loglevel";
 import React from "react";
 import { RouteComponentProps } from "react-router";
@@ -47,15 +47,16 @@ class StoryPage extends React.Component<Props, State> {
         service.getContentProgress(ContentType.STORY, +classLevel, +num),
       ]);
       const story = values[0] as Story;
+      log.debug(story);
       this.setState({
         content: story,
         // If there are no answers, then set up default answers
         answers: _.get(
           values[1],
           "answers",
-          story.questions.map(q => (q.type === "mcq" ? -1 : ""))
+          _.map(_.get(story, "questions"), q => (q.type === "mcq" ? -1 : ""))
         ),
-        correct_answers: story.questions.map(q =>
+        correct_answers: _.map(_.get(story, "questions"), q =>
           q.type === "mcq" ? (q as McqQuestion).correctChoice : ""
         ),
       });
@@ -117,12 +118,12 @@ class StoryPage extends React.Component<Props, State> {
     // TODO: Implement more generalized translations
     // const language = JSON.parse(localStorage.getItem("user") || "").preferredLanguage;
     // if (language === "telugu") {
-    const translations = content["translation-te"]; // content["translation-ma"];
+    const translations = content["translation-te"];
 
     let i = 0;
 
     // Convert the paragraphs array
-    return paragraphs.map((paragraph, paragraphNum) => {
+    return _.map(paragraphs, (paragraph, paragraphNum) => {
       const paragraphContent = [];
 
       while (i < vocab.length) {
@@ -140,8 +141,8 @@ class StoryPage extends React.Component<Props, State> {
         const vocabWord = (
           <span className="stories-vocab" key={vocab[i]}>
             <span className="stories-vocab-word">{vocab[i]}</span>
-            {i < translations.length ? (
-              <div className="stories-vocab-def">{translations[i]}</div>
+            {i < size(translations) ? (
+              <span className="stories-vocab-def">{get(translations, `[${i}]`)}</span>
             ) : (
               ""
             )}
@@ -182,7 +183,7 @@ class StoryPage extends React.Component<Props, State> {
 
     // Iterate through the questions and create JSX in `output`
     const output: any[] = [];
-    questions.forEach((question, i) => {
+    _.forEach(questions, (question, i) => {
       output.push(
         <li key={`question-${i}`}>
           <Typography>{question.question}</Typography>
@@ -192,11 +193,12 @@ class StoryPage extends React.Component<Props, State> {
       switch (question.type) {
         case "mcq":
           const choices = (question as McqQuestion).choices.map((choice, j) => (
-            <FormControlLabel value={j} control={<Radio />} label={choice} />
+            <FormControlLabel key={j} value={j} control={<Radio />} label={choice} />
           ));
           output.push(
             <RadioGroup
               name={`question-${i}`}
+              key={i}
               value={this.state.answers[i]}
               onChange={this.handleOptionChange.bind(null, i)}
             >
@@ -263,9 +265,7 @@ class StoryPage extends React.Component<Props, State> {
                 <Typography variant="h5" className="stories-story-section-questions-title">
                   <Box fontWeight="fontWeightBold">Questions</Box>
                 </Typography>
-                <Typography>
-                  <ol type="1">{this.generateQuestions()}</ol>
-                </Typography>
+                <ol type="1">{this.generateQuestions()}</ol>
                 <Button variant="contained" onClick={this.handleSubmit}>
                   Submit
                 </Button>

@@ -30,8 +30,9 @@ export interface Story extends Content {
   questions: Question[];
   story: string[];
   vocab: string[];
-  "translation-te": string[];
-  // translation: Record<string, string[]>;
+  "translation-te"?: string[];
+  "translation-ma"?: string[];
+  // TODO translation: Record<string, string[]>;
 }
 
 export interface ContentProgress extends BaseDoc {
@@ -47,6 +48,7 @@ export interface BaseDoc {
 
 export interface ContentService {
   getStories: () => Promise<Content[]>;
+  getAllContent: (c: ContentType) => Promise<Content[]>;
   getContent: (c: ContentType, classLevel: number, num: number) => Promise<Content>;
   getContentProgress: (
     c: ContentType,

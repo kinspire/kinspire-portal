@@ -1,11 +1,6 @@
-.portal-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.portal-background {
-  min-height: 100vh;
+.portal-container {
+  /* TODO make this computed */
+  min-height: calc(100vh - 112px);
   padding-bottom: 4px;
   position: relative;
 }

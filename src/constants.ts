@@ -8,7 +8,7 @@ export enum View {
   MATERIALS = "MATERIALS",
   ACTIVITIES = "ACTIVITIES",
   STORIES = "STORIES",
-  WORDSEARCH = "WORDSEARCH",
+  WORD_SEARCH = "WORDSEARCH",
   STORY = "STORY",
   PROFILE = "PROFILE",
   ABOUT = "ABOUT",
@@ -16,11 +16,12 @@ export enum View {
 
 export const getColor = (v: View | string): string => {
   switch (v) {
-    case View.ACTIVITIES:
     case View.STORIES:
     case View.STORY:
       return "#79b4b3";
     case View.MATERIALS:
+    case View.ACTIVITIES:
+    case View.WORD_SEARCH:
       return "#a9bb59";
     case View.ABOUT:
       return "#fc5e5a";
@@ -33,7 +34,7 @@ export const getColor = (v: View | string): string => {
     case "MENU":
       return "#201d1a";
   }
-  return "white";
+  return "lightgray";
 };
 
 // The different types of content
