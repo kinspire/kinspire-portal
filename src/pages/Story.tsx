@@ -7,7 +7,7 @@ import {
   RadioGroup,
   Typography,
 } from "@material-ui/core";
-import _, { size, get } from "lodash";
+import { forEach, get, join, map, size } from "lodash";
 import log from "loglevel";
 import React from "react";
 import { RouteComponentProps } from "react-router";
@@ -51,12 +51,12 @@ class StoryPage extends React.Component<Props, State> {
       this.setState({
         content: story,
         // If there are no answers, then set up default answers
-        answers: _.get(
+        answers: get(
           values[1],
           "answers",
-          _.map(_.get(story, "questions"), q => (q.type === "mcq" ? -1 : ""))
+          map(get(story, "questions"), (q) => (q.type === "mcq" ? -1 : ""))
         ),
-        correct_answers: _.map(_.get(story, "questions"), q =>
+        correct_answers: map(get(story, "questions"), (q) =>
           q.type === "mcq" ? (q as McqQuestion).correctChoice : ""
         ),
       });
@@ -103,7 +103,7 @@ class StoryPage extends React.Component<Props, State> {
           swal(res);
         }
       })
-      .catch(err => swal("Error: " + err));
+      .catch((err) => swal("Error: " + err));
   };
 
   // Generates the HTML for the story based on the given JSON blob
@@ -118,12 +118,12 @@ class StoryPage extends React.Component<Props, State> {
     // TODO: Implement more generalized translations
     // const language = JSON.parse(localStorage.getItem("user") || "").preferredLanguage;
     // if (language === "telugu") {
-    const translations = content["translation-te"];
+    const translations = content["translation-ma"];
 
     let i = 0;
 
     // Convert the paragraphs array
-    return _.map(paragraphs, (paragraph, paragraphNum) => {
+    return map(paragraphs, (paragraph, paragraphNum) => {
       const paragraphContent = [];
 
       while (i < vocab.length) {
@@ -151,7 +151,7 @@ class StoryPage extends React.Component<Props, State> {
 
         paragraphContent.push(vocabWord);
 
-        paragraph = _.join(parts.slice(1), vocab[i]);
+        paragraph = join(parts.slice(1), vocab[i]);
         i++;
       }
 
@@ -183,7 +183,7 @@ class StoryPage extends React.Component<Props, State> {
 
     // Iterate through the questions and create JSX in `output`
     const output: any[] = [];
-    _.forEach(questions, (question, i) => {
+    forEach(questions, (question, i) => {
       output.push(
         <li key={`question-${i}`}>
           <Typography>{question.question}</Typography>
@@ -245,13 +245,13 @@ class StoryPage extends React.Component<Props, State> {
           <Grid container justify="center" alignItems="center" spacing={1}>
             <Grid item>
               <Typography className="stories-story-title" variant="h4">
-                {_.get(this.state.content, "title")}
+                {get(this.state.content, "title")}
               </Typography>
             </Grid>
             <Grid>
               <Typography>
                 <i>
-                  ({_.get(this.state.content, "classLevel")}-{_.get(this.state.content, "num")})
+                  ({get(this.state.content, "classLevel")}-{get(this.state.content, "num")})
                 </i>
               </Typography>
             </Grid>

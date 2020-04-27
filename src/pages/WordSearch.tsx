@@ -1,9 +1,13 @@
 import { Button, Grid } from "@material-ui/core";
 import classNames from "classnames";
-import { get, map, range, set } from "lodash";
+import { get, map, set } from "lodash";
+import log from "loglevel";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Scaffold from "../components/Scaffold";
-import { View } from "../constants";
+import { ContentType, View } from "../constants";
+import { service } from "../services/content";
+import { WordSearch } from "../services/content/schema";
 import "./WordSearch.css";
 
 /*
@@ -89,14 +93,15 @@ var chosenWords = <?php echo json_encode($chosenWords);?>;
 // It's always [row, col]
 type RowCol = [number, number];
 
-export default function WordSearch() {
-  const grid = map(range(5), x => "abcde");
-
+export default function WordSearchPage() {
   const [wordStart, setWordStart] = useState([-1, -1] as RowCol);
   const [chosenWords, setChosenWords] = useState({} as Record<string, [RowCol, RowCol]>);
   const [chosenLetters, setChosenLetters] = useState({} as Record<number, Record<number, boolean>>);
   // All words
   const [words, setWords] = useState([] as string[]);
+  const [grid, setGrid] = useState([] as string[]);
+
+  const { classLevel, num } = useParams();
 
   // Initial setup with chosenWords
   /*
@@ -109,26 +114,39 @@ export default function WordSearch() {
   */
 
   // TODO When chosenWords is set, update chosenLetters
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const fetchItems = async () => {
+      const values = await Promise.all([
+        service.getContent(ContentType.WORD_SEARCH, +(classLevel || 0), +(num || 0)),
+        service.getContentProgress(ContentType.WORD_SEARCH, +(classLevel || 0), +(num || 0)),
+      ]);
+      const ws = values[0] as WordSearch;
+      log.debug(ws);
+
+      setWords(ws.words.map((w) => w.toUpperCase()));
+      setGrid(ws.grid.map((w) => w.toUpperCase()));
+    };
+
+    fetchItems();
+  }, []);
 
   const handleLetterClick = (row: number, col: number) => {
     if (wordStart[0] >= 0) {
       // Register word selection
       const selectedWord = getSelectedWord(row, col);
       if (!selectedWord) {
-        alert("Choose a word! Resetting choice.");
+        alert("Please choose a word! Resetting choice.");
       } else if (selectedWord in chosenWords) {
         alert("Word already chosen! Resetting choice.");
-      } else {
-        if (words.includes(selectedWord)) {
-          alert("Nice job! You chose: " + selectedWord);
-          wordIsChosen([row, col], selectedWord);
-        } else {
-          // Check for completion
-          if (Object.keys(chosenWords).length === words.length) {
-            alert("Nice job! Game over :)");
-          }
+      } else if (words.includes(selectedWord)) {
+        alert("Nice job! You chose: " + selectedWord);
+        wordIsChosen([row, col], selectedWord);
+        // Check for completion
+        if (Object.keys(chosenWords).length === words.length) {
+          alert("Nice job! Game over :)");
         }
+      } else {
+        alert("Not a word! Try again!");
       }
       setWordStart([-1, -1]);
     } else {
@@ -206,7 +224,19 @@ export default function WordSearch() {
           </div>
         </Grid>
         <Grid item xs={6}>
-          <div className="wordsearch-words"></div>
+          <div className="wordsearch-words">
+            <ul>
+              {map(words, (w) => (
+                <li
+                  className={classNames({
+                    strikethrough: w in chosenWords,
+                  })}
+                >
+                  {w}
+                </li>
+              ))}
+            </ul>
+          </div>
         </Grid>
         <Grid item>
           <Button>Submit</Button>

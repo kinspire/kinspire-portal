@@ -21,6 +21,7 @@ const stories = [story];
 const storyProgress = { answers: ["Sample answer"], ...base };
 
 export class LocalContentService implements ContentService {
+  public getAllContent = async (c: ContentType) => stories;
   public getStories = async () => stories;
   public getContent = async () => story;
   public getContentProgress = async () => storyProgress;

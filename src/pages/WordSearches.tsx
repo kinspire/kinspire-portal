@@ -1,12 +1,12 @@
 import { CircularProgress, Typography } from "@material-ui/core";
 import _ from "lodash";
 import log from "loglevel";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import React, { useEffect, useState } from "react";
 
 import Scaffold from "../components/Scaffold";
 import Selection from "../components/Selection";
-import { View, ContentType } from "../constants";
+import { ContentType, View } from "../constants";
 import { service } from "../services/content";
 import { LinkPair } from "../util";
 
@@ -43,7 +43,7 @@ export default function WordSearches() {
 
       let curr = 0;
       const newWSList = {} as Record<number, LinkPair[]>;
-      wordSearchList.forEach(wordSearch => {
+      wordSearchList.forEach((wordSearch) => {
         if (wordSearch.classLevel !== curr) {
           newWSList[wordSearch.classLevel] = [];
           curr = wordSearch.classLevel;

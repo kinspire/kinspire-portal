@@ -2,6 +2,8 @@ import { ContentType } from "../../constants";
 
 // Content schema
 
+////// PIECES //////
+
 export enum QuestionType {
   MCQ = "mcq",
   SHORT = "short",
@@ -21,6 +23,14 @@ export interface McqQuestion extends Question {
 
 export type Answer = string | number;
 
+export interface BaseDoc {
+  type: ContentType;
+  classLevel: number;
+  num: number;
+}
+
+////// CONTENT //////
+
 export interface Content extends BaseDoc {
   title: string;
 }
@@ -35,15 +45,17 @@ export interface Story extends Content {
   // TODO translation: Record<string, string[]>;
 }
 
-export interface ContentProgress extends BaseDoc {
-  answers: Answer[];
-  userId?: string;
+export interface WordSearch extends Content {
+  type: ContentType.WORD_SEARCH;
+  words: string[];
+  grid: string[];
 }
 
-export interface BaseDoc {
-  type: ContentType;
-  classLevel: number;
-  num: number;
+////// PROGRESS //////
+
+export interface ContentProgress extends BaseDoc {
+  answers: any;
+  userId?: string;
 }
 
 export interface ContentService {
