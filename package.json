@@ -10,6 +10,7 @@
   "dependencies": {
     "@material-ui/core": "^4.7.2",
     "classnames": "^2.2.6",
+    "electron-is-dev": "^1.1.0",
     "firebase": "^7.5.2",
     "loglevel": "^1.6.8",
     "react": "^16.10.2",
@@ -19,14 +20,6 @@
     "sweetalert": "^2.1.2",
     "typeface-montserrat": "^0.0.75",
     "typeface-rajdhani": "^0.0.72"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
@@ -48,11 +41,45 @@
     "@types/react": "16.9.5",
     "@types/react-dom": "16.9.1",
     "@types/react-router-dom": "^5.1.0",
+    "craco": "^0.0.3",
+    "cross-env": "^6.0.3",
+    "electron": "^7.1.5",
+    "electron-builder": "^22.5.1",
+    "electron-reload": "^1.5.0",
     "gh-pages": "^2.1.1",
+    "grpc": "1.24.2",
+    "npm-run-all": "^4.1.5",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "3.6.4"
+    "typescript": "3.6.4",
+    "wait-on": "^3.3.0"
   },
-  "homepage": "https://kinspire.github.io/kinspire-portal",
-  "proxy": "http://localhost:4001"
+  "scripts": {
+    "test": "craco test",
+    "eject": "craco eject",
+    "electron": "wait-on ./dist/main.js && electron .",
+    "watch": "tsc -w --project tsconfig.server.json",
+    "build:client": "craco build",
+    "build:desktop": "tsc --project tsconfig.server.json",
+    "build": "run-p build:client build:desktop",
+    "start:client": "cross-env BROWSER=none craco start",
+    "start:desktop": "run-p watch electron",
+    "start": "run-p start:client start:desktop",
+    "prepack": "run-s build",
+    "pack": "electron-builder --dir",
+    "predist": "run-s build",
+    "dist": "electron-builder"
+  },
+  "homepage": "./",
+  "main": "./dist/main.js",
+  "build": {
+    "appId": "org.kinspire.kinspire-portal",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  }
 }

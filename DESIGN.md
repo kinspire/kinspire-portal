@@ -1,9 +1,3 @@
-# Database design
+# Design
 
-All fields should be camelCase.
-
-Database | Details
---- | ---
-Users | User information
-Content Progress | User content progress information (materials/activities)
-Content | Stores the actual content data for activities
+The frontend is designed with React. This communicates with the Electron main process with `ipcRenderer`/`ipcMain`. Check out this guide to understand this communication API: [`ipcMain`](https://www.electronjs.org/docs/api/ipc-main)
