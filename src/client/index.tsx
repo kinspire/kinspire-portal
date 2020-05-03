@@ -13,6 +13,7 @@ import * as serviceWorker from "./serviceWorker";
 
 import "./constants.css";
 import "./index.css";
+import { Message as Messages } from "@common/messages";
 
 log.setLevel("debug");
 
@@ -35,7 +36,7 @@ serviceWorker.register();
 
 const electron: AllElectron = window.require("electron");
 
-electron.ipcRenderer.on("async-reply", (event, arg) => {
+electron.ipcRenderer.on(Messages.Ping.REPLY, (_event, arg) => {
   console.log(arg);
 });
-electron.ipcRenderer.send("async-message", "ping");
+electron.ipcRenderer.send(Messages.Ping.REQUEST, "ping");
