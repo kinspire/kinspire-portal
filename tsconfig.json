@@ -1,19 +1,21 @@
 {
+  "include": ["src"],
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "es2016",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
-  },
-  "include": ["src"]
+    "sourceMap": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "target": "es2016",
+    "jsx": "react",
+    "lib": ["dom"],
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": ["client/*"],
+      "@common/*": ["common/*"]
+    }
+  }
 }

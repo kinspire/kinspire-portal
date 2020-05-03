@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "extends": ["tslint:recommended", "tslint-config-prettier", "tslint-etc"],
   "rules": {
     "one-variable-per-declaration": false,
     "variable-name": [
@@ -13,7 +13,7 @@
     "no-namespace": false,
     "max-classes-per-file": false,
     "no-empty": [true, "allow-empty-functions"],
-    "interface-name": [true, "never-prefix"]
+    "no-unused-declaration": true
   },
   "linterOptions": {
     "exclude": ["node_modules/**/*.ts"]

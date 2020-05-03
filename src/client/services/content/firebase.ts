@@ -23,12 +23,9 @@ export class FirebaseContentService implements ContentService {
   public getStories = () => this.getAllContent(ContentType.STORY);
 
   public getAllContent = async (c: ContentType) => {
-    const snapshot = await db
-      .collection(CONTENT)
-      .where("type", "==", c)
-      .get();
+    const snapshot = await db.collection(CONTENT).where("type", "==", c).get();
 
-    return snapshot.docs.map(doc => doc.data() as Content);
+    return snapshot.docs.map((doc) => doc.data() as Content);
   };
 
   public getContent = async (c: ContentType, classLevel: number, num: number) => {
@@ -71,12 +68,9 @@ export class FirebaseContentService implements ContentService {
       .get();
 
     if (snapshot.size > 0) {
-      await db
-        .collection(CONTENT_PROGRESS)
-        .doc(snapshot.docs[0].id)
-        .update({
-          answers: cp.answers,
-        });
+      await db.collection(CONTENT_PROGRESS).doc(snapshot.docs[0].id).update({
+        answers: cp.answers,
+      });
     } else {
       await db.collection(CONTENT_PROGRESS).add(_.assign({ userId: USER_ID }, cp));
     }
