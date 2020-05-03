@@ -1,6 +1,6 @@
-export const Message = {
+export const Messages = {
   Ping: {
-    REQUEST: "ping-request",
-    REPLY: "pong-reply",
+    REQUEST: "pingRequest",
+    REPLY: "pingReply",
   },
 };

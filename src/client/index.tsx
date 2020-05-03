@@ -3,17 +3,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { AllElectron } from "electron";
-
 import "typeface-montserrat";
 import "typeface-rajdhani";
-
 import App from "./App";
 import AppTheme from "./AppTheme";
 import * as serviceWorker from "./serviceWorker";
-
 import "./constants.css";
 import "./index.css";
-import { Message as Messages } from "@common/messages";
+import { Messages } from "@common/messages";
 
 log.setLevel("debug");
 

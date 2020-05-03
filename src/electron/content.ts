@@ -1,9 +1,9 @@
 import { ipcMain } from "electron";
-import { Message } from "../common/messages";
+import { Messages } from "../common/messages";
 
 export default function register() {
-  ipcMain.on(Message.Ping.REQUEST, (event, arg) => {
+  ipcMain.on(Messages.Ping.REQUEST, (event, arg) => {
     console.log(arg);
-    event.reply(Message.Ping.REPLY, "pong");
+    event.reply(Messages.Ping.REPLY, "pong");
   });
 }
