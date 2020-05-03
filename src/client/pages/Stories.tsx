@@ -49,7 +49,7 @@ export default class Stories extends React.Component<{}, State> {
 
     let curr = 0;
     const stories = {} as Record<number, LinkPair[]>;
-    storyList.forEach(story => {
+    storyList.forEach((story) => {
       if (story.classLevel !== curr) {
         stories[story.classLevel] = [];
         curr = story.classLevel;

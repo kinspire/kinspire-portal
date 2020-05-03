@@ -1,9 +1,11 @@
 // Modules to control application life and create native browser window
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow } from "electron";
 import path from "path";
 import isDev from "electron-is-dev";
 
 import er from "electron-reload";
+
+import contentRegister from "./content";
 
 er(__dirname, {
   electron: path.join(__dirname, "..", "node_modules", ".bin", "electron.cmd"),
@@ -26,7 +28,9 @@ function createWindow() {
 
   // and load the index.html of the app.
   mainWindow.loadURL(
-    isDev ? "http://localhost:3000" : `file://${path.join(__dirname, "..", "build", "index.html")}`
+    isDev
+      ? "http://localhost:3000/build"
+      : `file://${path.join(__dirname, "..", "build", "index.html")}`
   );
 
   // Open the DevTools.
@@ -61,7 +65,5 @@ app.on("activate", function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-ipcMain.on("async-message", (event, arg) => {
-  console.log(arg);
-  event.reply("async-reply", "pong");
-});
+
+contentRegister();
