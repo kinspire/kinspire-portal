@@ -3,6 +3,8 @@
 // the JS, so to avoid duplication I'm putting it here. Definitely worth
 // a second look.
 
+import { ContentType } from "@common/schema";
+
 export enum View {
   HOME = "HOME",
   MATERIALS = "MATERIALS",
@@ -36,13 +38,6 @@ export const getColor = (v: View | string): string => {
   }
   return "lightgray";
 };
-
-// The different types of content
-export enum ContentType {
-  STORY = "story",
-  WORD_SEARCH = "wordsearch",
-  TASK = "task",
-}
 
 // The text used per type
 export const contentStrings = {

@@ -6,9 +6,10 @@ import React, { useEffect, useState } from "react";
 
 import Scaffold from "../components/Scaffold";
 import Selection from "../components/Selection";
-import { ContentType, View } from "../constants";
+import { View } from "../constants";
 import { service } from "../services/content";
 import { LinkPair } from "../util";
+import { ContentType } from "@common/schema";
 
 /*
 export default function Stories() {

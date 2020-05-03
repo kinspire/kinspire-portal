@@ -1,5 +1,4 @@
-import { ContentType } from "../../constants";
-import { BaseDoc, ContentService, QuestionType, Story } from "./schema";
+import { BaseDoc, ContentService, QuestionType, Story, ContentType } from "@common/schema";
 
 // Local
 const base: BaseDoc = {

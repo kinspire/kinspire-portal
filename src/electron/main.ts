@@ -4,11 +4,11 @@ import path from "path";
 import isDev from "electron-is-dev";
 
 import er from "electron-reload";
+import register from "./messageManager";
 
-import contentRegister from "./content";
-
+// This is sad but we have to go relative to dist
 er(__dirname, {
-  electron: path.join(__dirname, "..", "node_modules", ".bin", "electron.cmd"),
+  electron: path.join(__dirname, "..", "..", "node_modules", ".bin", "electron.cmd"),
 });
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -65,5 +65,4 @@ app.on("activate", function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
-contentRegister();
+register();

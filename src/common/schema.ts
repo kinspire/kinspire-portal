@@ -1,5 +1,3 @@
-import { ContentType } from "../../constants";
-
 // Content schema
 
 ////// PIECES //////
@@ -30,6 +28,13 @@ export interface BaseDoc {
 }
 
 ////// CONTENT //////
+
+// The different types of content
+export enum ContentType {
+  STORY = "story",
+  WORD_SEARCH = "wordsearch",
+  TASK = "task",
+}
 
 export interface Content extends BaseDoc {
   title: string;
