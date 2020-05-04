@@ -5,9 +5,9 @@ import log from "loglevel";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Scaffold from "../components/Scaffold";
-import { ContentType, View } from "../constants";
+import { View } from "../constants";
 import { service } from "../services/content";
-import { WordSearch } from "../services/content/schema";
+import { ContentType, WordSearch } from "@common/schema";
 import "./WordSearch.css";
 
 /*

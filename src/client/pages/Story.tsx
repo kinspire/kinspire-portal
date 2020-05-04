@@ -16,8 +16,9 @@ import swal from "sweetalert";
 import "./Story.css";
 
 import Scaffold from "../components/Scaffold";
-import { ContentType, View } from "../constants";
-import { Answer, McqQuestion, service, Story } from "../services/content";
+import { View } from "../constants";
+import { service } from "../services/content";
+import { Answer, Story, ContentType, McqQuestion } from "@common/schema";
 
 interface Params {
   classLevel: string;

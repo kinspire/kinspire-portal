@@ -1,22 +1,20 @@
 import log from "loglevel";
-
-import { ContentType } from "../../constants";
-import { Content, ContentProgress, ContentService } from "./schema";
+import { ContentService, ContentType, Content, ContentProgress } from "../common/schema";
+import fetch from "node-fetch";
 
 const USER_ID = "user";
 
-const base = `http://localhost:4001/portal-api`;
+const BASE = `http://kinspire.org/portal-api`;
 
 export async function apiRequest(uri: string, method = "GET", body?: any) {
   // TODO attach token
   try {
-    const res = await fetch(`${base}/${uri}`, {
+    const res = await fetch(`${BASE}/${uri}`, {
       body: body
         ? new Blob([JSON.stringify(body, null, 2)], {
             type: "application/json",
           })
         : body,
-      mode: "cors",
       method,
     });
     const text = await res.clone().text();
@@ -29,7 +27,7 @@ export async function apiRequest(uri: string, method = "GET", body?: any) {
     }
     return response;
   } catch (err) {
-    log.error("API error. Endpoint:", uri, "Error:", JSON.stringify(err));
+    log.error("API error. Endpoint:", uri, "Error lmao:", err);
     return Promise.reject(err);
   }
 }
