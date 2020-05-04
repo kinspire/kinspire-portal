@@ -1,6 +1,4 @@
-import { ContentService } from "./schema";
-import { FirebaseContentService } from "./firebase";
+import { ContentService } from "@common/schema";
+import { ElectronContentService } from "./electron";
 
-export const service: ContentService = new FirebaseContentService();
-
-export * from "./schema";
+export const service: ContentService = new ElectronContentService();
