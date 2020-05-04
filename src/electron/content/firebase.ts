@@ -1,12 +1,11 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import _ from "lodash";
-import log from "loglevel";
 
-import { ContentType, Content, ContentProgress, ContentService } from "../common/schema";
+import { Content, ContentProgress, ContentService, ContentType } from "../../common/schema";
 
 // Initialize Firebase
-import config from "../common/keys/firebase-keys.json";
+import config from "../../common/keys/firebase-keys.json";
 
 firebase.initializeApp(config);
 
@@ -18,7 +17,9 @@ const CONTENT_PROGRESS = "contentProgress";
 
 const USER_ID = "user";
 
-export class FirebaseContentService implements ContentService {
+export class FirebaseContentService implements Partial<ContentService> {
+  public getCourses = async () => [];
+
   public getStories = () => this.getAllContent(ContentType.STORY);
 
   public getAllContent = async (c: ContentType) => {
@@ -38,7 +39,7 @@ export class FirebaseContentService implements ContentService {
     if (snapshot.size === 0) {
       throw new Error("Invalid class/num");
     }
-    log.info("Got story with id", snapshot.docs[0].id);
+    console.log("Got story with id", snapshot.docs[0].id);
 
     return snapshot.docs[0].data() as Content;
   };

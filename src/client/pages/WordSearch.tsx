@@ -1,14 +1,15 @@
+import { ContentType, WordSearch } from "@common/schema";
 import { Button, Grid } from "@material-ui/core";
 import classNames from "classnames";
 import { get, map, set } from "lodash";
-import log from "loglevel";
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Scaffold from "../components/Scaffold";
 import { View } from "../constants";
-import { service } from "../services/content";
-import { ContentType, WordSearch } from "@common/schema";
+import { callElectron } from "../services/content";
 import "./WordSearch.css";
+import { ContentArg } from "@common/messages";
 
 /*
 // Get information for title and color
@@ -116,12 +117,17 @@ export default function WordSearchPage() {
   // TODO When chosenWords is set, update chosenLetters
   useEffect(() => {
     const fetchItems = async () => {
+      const data = {
+        type: ContentType.WORD_SEARCH,
+        classLevel: +(classLevel || 0),
+        num: +(num || 0),
+      };
       const values = await Promise.all([
-        service.getContent(ContentType.WORD_SEARCH, +(classLevel || 0), +(num || 0)),
-        service.getContentProgress(ContentType.WORD_SEARCH, +(classLevel || 0), +(num || 0)),
+        callElectron(ContentArg.GET_CONTENT, data),
+        callElectron(ContentArg.GET_CONTENT_PROGRESS, data),
       ]);
       const ws = values[0] as WordSearch;
-      log.debug(ws);
+      console.log(ws);
 
       setWords(ws.words.map((w) => w.toUpperCase()));
       setGrid(ws.grid.map((w) => w.toUpperCase()));

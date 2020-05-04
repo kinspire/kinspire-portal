@@ -40,8 +40,18 @@ export interface Content extends BaseDoc {
   title: string;
 }
 
+// TODO delete
 export interface Story extends Content {
   type: ContentType.STORY;
+  questions: Question[];
+  story: string[];
+  vocab: string[];
+  "translation-te"?: string[];
+  "translation-ma"?: string[];
+  // TODO translation: Record<string, string[]>;
+}
+
+export interface GoodStory {
   questions: Question[];
   story: string[];
   vocab: string[];
@@ -63,9 +73,12 @@ export interface ContentProgress extends BaseDoc {
   userId?: string;
 }
 
+//////// NEW ARCHITECTURE //////
+// custom interfaces
+
 export interface ContentService {
-  getStories: () => Promise<Content[]>;
   getAllContent: (c: ContentType) => Promise<Content[]>;
+  getLesson: (course: string, tier: string, module: string, lesson: string) => Promise<Lesson>;
   getContent: (c: ContentType, classLevel: number, num: number) => Promise<Content>;
   getContentProgress: (
     c: ContentType,
@@ -73,4 +86,33 @@ export interface ContentService {
     num: number
   ) => Promise<ContentProgress | null>;
   submitContentProgress: (cp: ContentProgress) => Promise<void>;
+  getCourses: () => Promise<Course[]>;
+  getCourse: (id: string) => Promise<Course>;
+}
+
+export interface Lesson {
+  title: string;
+  id: string;
+  content: any;
+}
+
+export interface Module {
+  title: string;
+  subtitle?: string;
+  id: string;
+  lessons: Lesson[];
+}
+
+export interface Tier {
+  title: string;
+  subtitle?: string;
+  id: string;
+  modules: Module[];
+}
+
+export interface Course {
+  title: string;
+  id: string;
+  tiers: Tier[];
+  shortname: string;
 }

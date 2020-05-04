@@ -14,7 +14,8 @@
     "max-classes-per-file": false,
     "no-empty": [true, "allow-empty-functions"],
     "no-unused-declaration": true,
-    "interface-name": false
+    "interface-name": false,
+    "no-console": false
   },
   "linterOptions": {
     "exclude": ["node_modules/**/*.ts"]

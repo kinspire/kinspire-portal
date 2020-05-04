@@ -1,20 +1,15 @@
-import log from "loglevel";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { AllElectron } from "electron";
 import "typeface-montserrat";
 import "typeface-rajdhani";
 import App from "./App";
 import AppTheme from "./AppTheme";
-import * as serviceWorker from "./serviceWorker";
 import "./constants.css";
 import "./index.css";
-import { Messages } from "@common/messages";
+import * as serviceWorker from "./serviceWorker";
 
-log.setLevel("debug");
-
-log.debug("hi");
+console.log("hi");
 
 // TODO set basename from env var
 ReactDOM.render(
@@ -30,10 +25,3 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.register();
-
-const electron: AllElectron = window.require("electron");
-
-electron.ipcRenderer.on(Messages.Ping.REPLY, (_event, arg) => {
-  console.log(arg);
-});
-electron.ipcRenderer.send(Messages.Ping.REQUEST, "ping");

@@ -1,13 +1,13 @@
 import { Box, Typography } from "@material-ui/core";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import React from "react";
 import { Link } from "react-router-dom";
 
 import { getColor, View } from "../constants";
-import { Tier } from "../util";
+import { Tier } from "@common/schema";
 
 interface Props {
   tiers: Tier[];
@@ -37,24 +37,16 @@ export default function ListSelection(props: Props) {
   return (
     <div style={{ width: "35%", margin: "auto" }}>
       {tiers.map((tier, i) => (
-        <ExpansionPanel style={{ padding: "15px" }}>
-          <ExpansionPanelSummary
+        <Accordion style={{ padding: "15px" }} key={i}>
+          <AccordionSummary
             expandIcon={<ExpandMoreIcon style={{ color: getColor(view) }} />}
             aria-controls="expandable"
           >
-            <Typography style={textStyle}>
-              <Box fontWeight="fontWeightBold">{tier.title}</Box>
-            </Typography>
-            {tier.subtitle ? (
-              <div>
-                <i style={textStyle}>{tier.subtitle}</i>
-              </div>
-            ) : (
-              ""
-            )}
-          </ExpansionPanelSummary>
-          {tier.modules.map((module) => (
-            <ExpansionPanelDetails>
+            <Typography style={{ fontWeight: "bold", ...textStyle }}>{tier.title}</Typography>
+            {tier.subtitle ? <i style={textStyle}>{tier.subtitle}</i> : ""}
+          </AccordionSummary>
+          {tier.modules.map((module, j) => (
+            <AccordionDetails key={j}>
               <Link style={linkStyle} to={`/module/${courseId}/${tier.id}/${module.id}`}>
                 {module.title}
               </Link>
@@ -67,9 +59,9 @@ export default function ListSelection(props: Props) {
               ) : (
                 ""
               )}
-            </ExpansionPanelDetails>
+            </AccordionDetails>
           ))}
-        </ExpansionPanel>
+        </Accordion>
       ))}
     </div>
   );

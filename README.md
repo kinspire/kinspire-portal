@@ -39,7 +39,7 @@ $ yarn
 
 ## 3. Development
 
-To run the Kinspire Portal in your local browser for development, in the same terminal window, run:
+To run the Kinspire Portal in your local browser for development, in a terminal window, run:
 
 ```
 $ yarn start
