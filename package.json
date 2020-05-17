@@ -9,6 +9,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.7.2",
+    "@material-ui/icons": "^4.9.1",
     "classnames": "^2.2.6",
     "electron-better-ipc": "^1.0.1",
     "electron-is-dev": "^1.1.0",
@@ -58,6 +59,7 @@
     "ts-loader": "^7.0.2",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
+    "tslint-etc": "^1.13.0",
     "typescript": "^3.8.3",
     "wait-on": "^3.3.0",
     "webpack": "^4.43.0",

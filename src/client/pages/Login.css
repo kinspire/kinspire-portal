@@ -1,0 +1,47 @@
+.page-title {
+    padding-top: 3%;
+}
+.authentication {
+    margin: auto;
+    width: 300px;
+}
+
+.login-input-block {
+    margin-bottom: 20px;
+}
+
+.login-descr {
+    color: #908E8D;
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.register-link {
+    color: #908E8D !important;
+    font-family: "Rajdhani";
+    font-weight: 600;
+}
+
+.input-title {
+    margin-bottom: 30px;
+    font-size: 25px;
+    color: #F5BF53;
+    font-weight: 600;
+    font-family: "Rajdhani";
+}
+
+.login-button {
+    padding: 15px 30px;
+    color: #262626;
+    background-color: #F5BF53;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: "Rajdhani";
+    margin-bottom: 100px;
+}
+
+.button {
+    height: 100px;
+}

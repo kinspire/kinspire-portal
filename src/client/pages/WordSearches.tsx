@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 // import React, { useEffect, useState } from "react";
 
 import Scaffold from "../components/Scaffold";
-import Selection from "../components/Selection";
+import Selection from "../components/GridSelection";
 import { View } from "../constants";
 import { service } from "../services/content";
 import { LinkPair } from "../util";
@@ -50,7 +50,7 @@ export default function WordSearches() {
           curr = wordSearch.classLevel;
         }
         newWSList[curr].push({
-          name: _.get(wordSearch, "title"),
+          title: _.get(wordSearch, "title"),
           link: `/wordsearch/${_.get(wordSearch, "classLevel")}/${_.get(wordSearch, "num")}`,
           subtitle: `${_.get(wordSearch, "classLevel")}-${_.get(wordSearch, "num")}`,
         });
@@ -70,7 +70,7 @@ export default function WordSearches() {
         _.map(wordSearches, (list, classLevel) => (
           <React.Fragment key={classLevel}>
             <Typography style={{ textAlign: "center" }}>Level {classLevel}</Typography>
-            <Selection view={view} items={list} />
+            <Selection view={view} items={list} colNum={4} />
           </React.Fragment>
         ))
       ) : (

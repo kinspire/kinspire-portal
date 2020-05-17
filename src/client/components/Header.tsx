@@ -6,20 +6,15 @@ import { getColor, View } from "../constants";
 import "./Header.css";
 
 const SECTIONS = [
-  // { name: "home", color: "#a586c5" },
-  { name: "stories", link: "stories", color: getColor(View.STORIES) },
-  { name: "word searches", link: "wordsearches", color: getColor(View.ACTIVITIES) },
-  // { name: "materials", color: "#a9bb59" },
-  // { name: "about", color: "#fc5e5a" },
-  // {name: "help", color: "#fa8e47"},
-  // "access",
-  // {name: "profile", color: "#a586c5"}
-  // "logout"
+  { name: "COURSES", link: "courses", color: getColor(View.COURSES) },
+  { name: "ACTIVITIES", link: "activities", color: getColor(View.ACTIVITIES) },
+  { name: "HOME", link: "home", color: getColor(View.HOME) },
+  { name: "LOGOUT", link: "login", color: getColor(View.LOGOUT) },
 ];
 
 const TITLE_MAP: Record<string, string> = {
-  P: getColor(View.STORIES),
-  O: getColor(View.MATERIALS),
+  P: getColor(View.COURSES),
+  O: getColor(View.ACTIVITIES),
   R: getColor("HELP"),
   T: getColor(View.ABOUT),
   A: getColor(View.PROFILE),
@@ -28,6 +23,7 @@ const TITLE_MAP: Record<string, string> = {
 
 class Header extends Component {
   public render() {
+    // creates the page icon in the menu
     const menuItems = SECTIONS.map((section, i) => (
       <div key={i} className="portal-menu-item">
         <Link
@@ -41,6 +37,7 @@ class Header extends Component {
       </div>
     ));
 
+    //creates the page title in the menu
     const title = (
       <div className="portal-title">
         <Link to="/">

@@ -5,41 +5,35 @@ import { Link } from "react-router-dom";
 import { getColor, View } from "../constants";
 import { LinkPair } from "../util";
 
-import "./Selection.css";
+import "./GridSelection.css";
 
 interface Props {
   items: LinkPair[];
   view?: View;
+  colNum?: number;
 }
 
 // This component represents a generic "selection" screen that can show any list
 // of items in a consistent fashion
-// The `view` prop determines what items are shown, which is provided by the
+// The `view` prop determines how items are shown, which is provided by the
 // `contentService` (see contentService#getSelectionItems)
 export default function Selection(props: Props) {
-  const { items, view } = props;
+  const { items, view, colNum } = props;
+  // const num = 12 / colNum;
 
-  // materials = #a9bb59;
-  // activities = #79b4b3
-  // if(view === ViewConstantsiewConstants.MATERIALS) {
-  //   mainStyle.backgroundColor = '#a9bb59';
-  //   mainStyle.margin = 0;
-  //   mainStyle.padding = 0;
-  // } else if(view === ViewConstantsiewConstants.ACTIViewConstantsITIES) {
-  //   mainStyle.backgroundColor = '#79b4b3';
-  // }
-
-  const textStyle = view ? { color: getColor(view) } : undefined;
-
+  // sets the content style within the boxes
+  const textStyle = view
+    ? { color: getColor(view), fontSize: "30px", letterSpacing: "1px" }
+    : undefined;
   return (
     <Grid container className="selection-categories" alignItems="center" justify="center">
       {items.map((item, i) => (
-        <Grid item xs={4} className="selection-grid-item" key={i}>
+        <Grid item xs={6} className="selection-grid-item" key={i}>
           <Link key={item.link} className="selection-category" to={item.link}>
             <div className="selection-category-content">
               <div className="selection-category-text">
-                <Typography style={textStyle} component="div">
-                  <Box fontWeight="fontWeightBold">{item.name}</Box>
+                <Typography style={textStyle}>
+                  <Box fontWeight="fontWeightBold">{item.title}</Box>
                 </Typography>
                 {item.subtitle ? (
                   <div className="selection-category-text-subtitle">

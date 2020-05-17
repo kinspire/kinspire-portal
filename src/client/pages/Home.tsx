@@ -1,20 +1,17 @@
 import React from "react";
 
 import Scaffold from "../components/Scaffold";
-import Selection from "../components/Selection";
+import Selection from "../components/GridSelection";
 import { View } from "../constants";
 
-const activities = [
-  { name: "Word Searches", link: "/wordsearches" },
-  { name: "Stories", link: "/stories" },
-];
+import "./Home.css";
 
-export default function Activities() {
+export default function Home() {
   const view = View.HOME;
 
   return (
-    <Scaffold view={view}>
-      <Selection view={view} items={activities} />
+    <Scaffold view={View.HOME}>
+      <div className="home-container">Select something from the menu to get started!</div>
     </Scaffold>
   );
 }
