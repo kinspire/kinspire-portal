@@ -1,0 +1,31 @@
+.authentication {
+    margin:auto;
+    width: 300px;
+}
+
+.login-input-block {
+    margin-bottom: 20px;
+}
+
+.login-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 500;
+    padding: 20px;
+}
+
+.username, .password {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.login-button {
+    width: 120px;
+    height: 50px;
+    color: white;
+    background-color: #79b4b3;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+}

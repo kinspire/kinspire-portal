@@ -11,6 +11,7 @@ import Story from "./pages/Story";
 import Test from "./pages/Test";
 import WordSearch from "./pages/WordSearch";
 import WordSearches from "./pages/WordSearches";
+import Login from "./pages/Login";
 
 const App: React.FC = () => {
   // TODO adjust title pl0x
@@ -20,6 +21,7 @@ const App: React.FC = () => {
       <main>
         <Header />
         <Switch>
+          <Route path="/login" component={Login} />
           <Route path="/test" component={Test} />
           <Route path="/materials" component={Materials} />
           <Route path="/wordsearch/:classLevel/:num" component={WordSearch} />
