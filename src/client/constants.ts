@@ -14,6 +14,7 @@ export enum View {
   STORY = "STORY",
   PROFILE = "PROFILE",
   ABOUT = "ABOUT",
+  LOGIN = "LOGIN",
 }
 
 export const getColor = (v: View | string): string => {
@@ -35,6 +36,8 @@ export const getColor = (v: View | string): string => {
       return "#fa8e47";
     case "MENU":
       return "#201d1a";
+    case View.LOGIN:
+      return "#262626";
   }
   return "lightgray";
 };

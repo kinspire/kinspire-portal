@@ -13,13 +13,20 @@ const defaultTheme = createMuiTheme({
   },
   typography: {
     fontFamily: "Rajdhani",
-    fontSize: 24,
+    fontSize: 20,
   },
   overrides: {
     MuiTypography: {
       root: {
         textOverflow: "ellipsis",
         // overflow: "hidden",
+      },
+      h1: {
+        textAlign: "center",
+        fontSize: "60px",
+        padding: " 20px",
+        color: "#F5BF53",
+        fontFamily: "Rajdhani",
       },
     },
   },

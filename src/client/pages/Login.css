@@ -1,31 +1,41 @@
 .authentication {
     margin:auto;
     width: 300px;
+    position: relative;
 }
 
 .login-input-block {
     margin-bottom: 20px;
 }
 
-.login-title {
+.login-descr {
+    color: #908E8D;
     text-align: center;
-    font-size: 40px;
-    font-weight: 500;
-    padding: 20px;
+    padding-bottom: 25px;
 }
 
-.username, .password {
-    margin-bottom: 20px;
-    font-size: 20px;
+.register-link {
+    color: #908E8D !important;
+    font-family: "Rajdhani";
+    font-weight: 600;
+}
+
+.input-title {
+    margin-bottom: 30px;
+    font-size: 25px;
+    color: #F5BF53;
+    font-weight: 600;
+    font-family: "Rajdhani";
 }
 
 .login-button {
     width: 120px;
     height: 50px;
-    color: white;
-    background-color: #79b4b3;
+    color: #262626;
+    background-color: #F5BF53;
     border: none;
     border-radius: 5px;
     font-size: 18px;
     font-weight: 500;
+    font-family: "Rajdhani";
 }
