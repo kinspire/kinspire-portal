@@ -13,7 +13,7 @@ const defaultTheme = createMuiTheme({
   },
   typography: {
     fontFamily: "Rajdhani",
-    fontSize: 20,
+    fontSize: 18,
   },
   overrides: {
     MuiTypography: {
