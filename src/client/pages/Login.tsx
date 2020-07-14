@@ -1,7 +1,6 @@
 import React from "react";
 
 import App from "../App";
-
 import TextField from "@material-ui/core/TextField";
 import "./Login.css";
 import { Link, Typography } from "@material-ui/core";
@@ -16,10 +15,10 @@ class Login extends React.Component<Props, State> {
     authenticatePassword: false,
   };
   // get the username entered by the user
-  // check if username exists in the database
+  // check if username exists in the database >> set state to true
   // if not throw error
   // get the password entered by the user
-  // then check if password exists in the database
+  // then check if password exists in the database >> set state to false
   // if not throw error
   // if both true then route app to the home page
 
@@ -41,7 +40,7 @@ class Login extends React.Component<Props, State> {
 
   handleLogin = () => {
     if (this.state.authenticateUsername && this.state.authenticatePassword) {
-      console.log("Success!")
+      console.log("Success!");
     }
   };
 
@@ -86,9 +85,11 @@ class Login extends React.Component<Props, State> {
               />
             </div>
           </form>
-          <button className="login-button" onClick={this.handleLogin}>
-            LOGIN >>
-          </button>
+          <div className="button">
+            <Link className="login-button" href="/stories">
+              LOGIN >>
+            </Link>
+          </div>
         </div>
         {/* Forgot password option needed */}
       </div>
