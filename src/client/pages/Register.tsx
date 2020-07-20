@@ -57,7 +57,7 @@ class Register extends React.Component<Props, State> {
             </div>
             <div className="input-title">
               {" "}
-              EMAIL
+              EMAIL ADDRESS
               <TextField
                 id="input-email"
                 label=""
@@ -86,7 +86,9 @@ class Register extends React.Component<Props, State> {
               />
             </div>
           </form>
-          <button className="login-button">SIGN-UP >></button>
+          <Link className="login-button" href="/stories">
+              SIGN UP >>
+            </Link>
         </div>
         {/* Forgot password option needes */}
       </div>

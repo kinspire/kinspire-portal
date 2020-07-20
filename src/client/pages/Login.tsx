@@ -1,6 +1,6 @@
 import React from "react";
 
-import App from "../App";
+// import App from "../App";
 import TextField from "@material-ui/core/TextField";
 import "./Login.css";
 import { Link, Typography } from "@material-ui/core";
@@ -41,6 +41,7 @@ class Login extends React.Component<Props, State> {
   handleLogin = () => {
     if (this.state.authenticateUsername && this.state.authenticatePassword) {
       console.log("Success!");
+      // not sure how route here
     }
   };
 
