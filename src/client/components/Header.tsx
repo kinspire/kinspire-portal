@@ -7,9 +7,10 @@ import "./Header.css";
 
 const SECTIONS = [
   // { name: "home", color: "#a586c5" },
-  { name: "stories", link: "stories", color: getColor(View.STORIES) },
-  { name: "word searches", link: "wordsearches", color: getColor(View.ACTIVITIES) },
-  { name: "login", link: "login", color: getColor("BUTTON") },
+  { name: "curricula", link: "curricula", color: getColor(View.MATERIALS)},
+  { name: "activities", link: "activities", color: getColor(View.ACTIVITIES) },
+  { name: "home", link: "home", color: getColor(View.HOME)},
+  { name: "login", link: "login", color: getColor(View.LOGIN) },
   // { name: "materials", color: "#a9bb59" },
   // { name: "about", color: "#fc5e5a" },
   // {name: "help", color: "#fa8e47"},
@@ -19,8 +20,8 @@ const SECTIONS = [
 ];
 
 const TITLE_MAP: Record<string, string> = {
-  P: getColor(View.STORIES),
-  O: getColor(View.MATERIALS),
+  P: getColor(View.MATERIALS),
+  O: getColor(View.ACTIVITIES),
   R: getColor("HELP"),
   T: getColor(View.ABOUT),
   A: getColor(View.PROFILE),

@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { getColor, View } from "../constants";
+import { getColor, View, FontType } from "../constants";
 import { LinkPair } from "../util";
 
 import "./Selection.css";
@@ -10,14 +10,16 @@ import "./Selection.css";
 interface Props {
   items: LinkPair[];
   view?: View;
+  title: String;
+  titleType: FontType; 
 }
 
 // This component represents a generic "selection" screen that can show any list
 // of items in a consistent fashion
-// The `view` prop determines what items are shown, which is provided by the
+// The `view` prop determines how items are shown, which is provided by the
 // `contentService` (see contentService#getSelectionItems)
 export default function Selection(props: Props) {
-  const { items, view } = props;
+  const { items, view, title } = props;
 
   // materials = #a9bb59;
   // activities = #79b4b3
@@ -30,29 +32,33 @@ export default function Selection(props: Props) {
   // }
 
   const textStyle = view ? { color: getColor(view) } : undefined;
+  // const textStyle = view ? { fontSize: getSize() } : undefined;
 
   return (
-    <Grid container className="selection-categories" alignItems="center" justify="center">
-      {items.map((item, i) => (
-        <Grid item xs={4} className="selection-grid-item" key={i}>
-          <Link key={item.link} className="selection-category" to={item.link}>
-            <div className="selection-category-content">
-              <div className="selection-category-text">
-                <Typography style={textStyle} component="div">
-                  <Box fontWeight="fontWeightBold">{item.name}</Box>
-                </Typography>
-                {item.subtitle ? (
-                  <div className="selection-category-text-subtitle">
-                    <i style={textStyle}>{item.subtitle}</i>
-                  </div>
-                ) : (
-                  ""
-                )}
+    <div>
+      <div className="selection-title">{title}</div>
+      <Grid container className="selection-categories" alignItems="center" justify="center">
+        {items.map((item, i) => (
+          <Grid item xs={6} className="selection-grid-item" key={i}>
+            <Link key={item.link} className="selection-category" to={item.link}>
+              <div className="selection-category-content">
+                <div className="selection-category-text">
+                  <Typography style={textStyle} component="div">
+                    <Box fontWeight="fontWeightBold">{item.name}</Box>
+                  </Typography>
+                  {item.subtitle ? (
+                    <div className="selection-category-text-subtitle">
+                      <i style={textStyle}>{item.subtitle}</i>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
-            </div>
-          </Link>
-        </Grid>
-      ))}
-    </Grid>
+            </Link>
+          </Grid>
+        ))}
+      </Grid>
+    </div>
   );
 }

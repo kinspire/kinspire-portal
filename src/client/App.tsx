@@ -13,6 +13,8 @@ import WordSearch from "./pages/WordSearch";
 import WordSearches from "./pages/WordSearches";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Curricula from "./pages/Curricula";
+import Activities from "./pages/Activities";
 
 const App: React.FC = () => {
   // TODO adjust title pl0x
@@ -22,6 +24,9 @@ const App: React.FC = () => {
       <main>
         <Header />
         <Switch>
+          <Route path="/home" component={Home} />
+          <Route path="/activities" component={Activities} />
+          <Route path="/curricula" component={Curricula} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/test" component={Test} />

@@ -4,6 +4,13 @@
 // a second look.
 
 import { ContentType } from "@common/schema";
+import { FormControl } from "@material-ui/core";
+
+export enum FontType {
+  PAGETITLE = "page-title",
+  HEADING1 = "heading-1",
+  HEADING2 = "heading-2",
+}
 
 export enum View {
   HOME = "HOME",
@@ -19,27 +26,51 @@ export enum View {
 
 export const getColor = (v: View | string): string => {
   switch (v) {
+    case View.MATERIALS:
     case View.STORIES:
     case View.STORY:
-      return "#79b4b3";
-    case View.MATERIALS:
+      return "#a9bb59";
     case View.ACTIVITIES:
     case View.WORD_SEARCH:
-      return "#a9bb59";
+      return "#79b4b3";
     case View.ABOUT:
       return "#fc5e5a";
     case View.PROFILE:
       return "#a586c5";
+    case View.LOGIN:
+      return "lightgray";
+    case View.HOME:
+      return "#f5bf53";
     case "BUTTON":
       return "#f5bf53";
     case "HELP":
       return "#fa8e47";
-    case "MENU":
-      return "#201d1a";
-    case View.LOGIN:
-      return "#262626";
   }
   return "lightgray";
+};
+
+export const getSize = (v: View | string): string => {
+  switch (v) {
+    case FontType.PAGETITLE:
+      return "75px";
+    case FontType.HEADING1:
+      return "60px";
+    case FontType.HEADING2:
+      return "45px";
+  }
+  return "24";
+};
+
+export const getWeight = (v: View | string): string => {
+  switch (v) {
+    case FontType.PAGETITLE:
+      return "bolder";
+    case FontType.HEADING1:
+      return "bold";
+    case FontType.HEADING2:
+      return "normal";
+  }
+  return "normal";
 };
 
 // The text used per type

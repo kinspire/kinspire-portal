@@ -68,12 +68,12 @@ export default class Stories extends React.Component<{}, State> {
 
   public render() {
     return (
-      <Scaffold view={View.STORIES}>
+      <Scaffold view={View.MATERIALS}>
         {_.size(this.state.stories) ? (
           _.map(this.state.stories, (list, classLevel) => (
             <React.Fragment key={classLevel}>
               <Typography style={{ textAlign: "center" }}>Level {classLevel}</Typography>
-              <Selection view={View.STORIES} items={list} />
+              <Selection view={View.MATERIALS} items={list} />
             </React.Fragment>
           ))
         ) : (
