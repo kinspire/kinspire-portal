@@ -3,6 +3,7 @@ import React from "react";
 import Scaffold from "../components/Scaffold";
 import Selection from "../components/Selection";
 import { View } from "../constants";
+import { Typography } from "@material-ui/core";
 
 const curricula = [
   { name: "English Curriculum", link: "/stories" },
@@ -13,7 +14,8 @@ const curricula = [
 export default function Curricula() {
   return (
     <Scaffold view={View.MATERIALS}>
-      <Selection items={curricula} view={View.MATERIALS} title={"STORIES"} />
+      <Typography variant="h1">CURRICULA</Typography>
+      <Selection items={curricula} view={View.MATERIALS} />
     </Scaffold>
   );
 }

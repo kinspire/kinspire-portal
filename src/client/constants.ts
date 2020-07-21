@@ -14,7 +14,7 @@ export enum FontType {
 
 export enum View {
   HOME = "HOME",
-  MATERIALS = "MATERIALS",
+  MATERIALS = "MATERIALS", //aka Curricula
   ACTIVITIES = "ACTIVITIES",
   STORIES = "STORIES",
   WORD_SEARCH = "WORDSEARCH",
@@ -27,12 +27,15 @@ export enum View {
 export const getColor = (v: View | string): string => {
   switch (v) {
     case View.MATERIALS:
-    case View.STORIES:
-    case View.STORY:
       return "#a9bb59";
+    case View.STORIES:
+      return "#D4DDAC";
+    case View.STORY:
+      return "white";
     case View.ACTIVITIES:
-    case View.WORD_SEARCH:
       return "#79b4b3";
+    case View.WORD_SEARCH:
+      return "white";
     case View.ABOUT:
       return "#fc5e5a";
     case View.PROFILE:
@@ -47,30 +50,6 @@ export const getColor = (v: View | string): string => {
       return "#fa8e47";
   }
   return "lightgray";
-};
-
-export const getSize = (v: View | string): string => {
-  switch (v) {
-    case FontType.PAGETITLE:
-      return "75px";
-    case FontType.HEADING1:
-      return "60px";
-    case FontType.HEADING2:
-      return "45px";
-  }
-  return "24";
-};
-
-export const getWeight = (v: View | string): string => {
-  switch (v) {
-    case FontType.PAGETITLE:
-      return "bolder";
-    case FontType.HEADING1:
-      return "bold";
-    case FontType.HEADING2:
-      return "normal";
-  }
-  return "normal";
 };
 
 // The text used per type

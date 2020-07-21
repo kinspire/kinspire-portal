@@ -1,0 +1,10 @@
+.sub-page-container {
+    margin: auto;
+    padding-top: 5%;
+    width: 80%;
+}
+
+.stories-level {
+    border-bottom: 1px solid #FFFFFF;
+    color: white;
+}

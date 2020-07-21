@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { getColor, View, FontType } from "../constants";
+import { getColor, View } from "../constants";
 import { LinkPair } from "../util";
 
 import "./Selection.css";
@@ -10,8 +10,6 @@ import "./Selection.css";
 interface Props {
   items: LinkPair[];
   view?: View;
-  title: String;
-  titleType: FontType; 
 }
 
 // This component represents a generic "selection" screen that can show any list
@@ -19,7 +17,7 @@ interface Props {
 // The `view` prop determines how items are shown, which is provided by the
 // `contentService` (see contentService#getSelectionItems)
 export default function Selection(props: Props) {
-  const { items, view, title } = props;
+  const { items, view } = props;
 
   // materials = #a9bb59;
   // activities = #79b4b3
@@ -32,11 +30,8 @@ export default function Selection(props: Props) {
   // }
 
   const textStyle = view ? { color: getColor(view) } : undefined;
-  // const textStyle = view ? { fontSize: getSize() } : undefined;
 
   return (
-    <div>
-      <div className="selection-title">{title}</div>
       <Grid container className="selection-categories" alignItems="center" justify="center">
         {items.map((item, i) => (
           <Grid item xs={6} className="selection-grid-item" key={i}>
@@ -59,6 +54,5 @@ export default function Selection(props: Props) {
           </Grid>
         ))}
       </Grid>
-    </div>
   );
 }

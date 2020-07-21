@@ -1,34 +1,20 @@
-.stories-container {
-  width: 100%;
-  padding: 0 5%;
-}
-
-.stories-story {
-  /* background-color: #bcd9d9; */
-  align-content: center;
-  justify-content: center;
+.story-container {
+  width: 80%;
+  margin: auto;
+  padding: 5% 5%;
 }
 
 .stories-story-title {
   text-align: center;
+  padding-bottom: 5%;
 }
 
 .stories-story-section-story {
   font-family: Rajdhani;
-  font-size: 20px;
-  background-color: white;
-  border-radius: 10px;
-  padding: 40px;
-  box-shadow: 5px 5px 10px -2px #79b4b3;
-}
-
-.stories-story-paragraph {
-  text-indent: 60px;
 }
 
 .stories-story-section-questions {
   font-family: Rajdhani;
-  margin: auto;
 }
 
 /* Scrollbar
