@@ -10,6 +10,7 @@ import "./Selection.css";
 interface Props {
   items: LinkPair[];
   view?: View;
+  colNum: Number;
 }
 
 // This component represents a generic "selection" screen that can show any list
@@ -18,18 +19,8 @@ interface Props {
 // `contentService` (see contentService#getSelectionItems)
 export default function Selection(props: Props) {
   const { items, view } = props;
-
-  // materials = #a9bb59;
-  // activities = #79b4b3
-  // if(view === ViewConstantsiewConstants.MATERIALS) {
-  //   mainStyle.backgroundColor = '#a9bb59';
-  //   mainStyle.margin = 0;
-  //   mainStyle.padding = 0;
-  // } else if(view === ViewConstantsiewConstants.ACTIViewConstantsITIES) {
-  //   mainStyle.backgroundColor = '#79b4b3';
-  // }
-
-  const textStyle = view ? { color: getColor(view) } : undefined;
+  // var num = (12/this.props.colNum);
+  const textStyle = view ? { color: getColor(view), fontSize: "100%", letterSpacing: "1px" } : undefined;
 
   return (
       <Grid container className="selection-categories" alignItems="center" justify="center">
@@ -38,7 +29,7 @@ export default function Selection(props: Props) {
             <Link key={item.link} className="selection-category" to={item.link}>
               <div className="selection-category-content">
                 <div className="selection-category-text">
-                  <Typography style={textStyle} component="div">
+                  <Typography style={textStyle}>
                     <Box fontWeight="fontWeightBold">{item.name}</Box>
                   </Typography>
                   {item.subtitle ? (

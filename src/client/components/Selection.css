@@ -16,8 +16,8 @@
 
 .selection-category {
   margin: 20px auto;
-  height: 125px;
-  width: 275px;
+  height: 100px;
+  width: 300px;
 }
 
 /*.container{
@@ -34,7 +34,7 @@
   display: flex;
   height: 100%;
   width: 100%;
-  box-shadow: 2px 2px 5px -5px darkslategray;
+  box-shadow: 2px 2px 5px -5px #262626;
   background-color: whitesmoke;
   border-radius: 7px;
   font-size: 150%;
@@ -44,10 +44,6 @@
 
 .selection-category-text {
   margin: auto;
-}
-
-.selection-category-text-subtitle {
-  font-size: 80%;
 }
 
 .selection-category-content-done {

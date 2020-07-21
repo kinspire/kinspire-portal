@@ -70,7 +70,7 @@ export default function WordSearches() {
         _.map(wordSearches, (list, classLevel) => (
           <React.Fragment key={classLevel}>
             <Typography style={{ textAlign: "center" }}>Level {classLevel}</Typography>
-            <Selection view={view} items={list} />
+            <Selection view={view} items={list} colNum={4} />
           </React.Fragment>
         ))
       ) : (

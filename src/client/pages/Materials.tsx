@@ -9,5 +9,5 @@ const materials = [
   { name: "Health & Wellness", link: "/materials/health" },
 ];
 export default function Materials() {
-  return <Selection items={materials} />;
+  // return <Selection items={materials} />;
 }

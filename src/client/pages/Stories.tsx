@@ -71,7 +71,7 @@ export default class Stories extends React.Component<{}, State> {
   public render() {
     return (
       <Scaffold view={View.STORIES}>
-        <div className="sub-page-container">
+        <div className="stories-container">
           <Typography style={{ textAlign: "center", color: "#A9BB59", fontWeight: "bold", fontSize: "60px" }}>
             STORIES
           </Typography>
@@ -79,7 +79,7 @@ export default class Stories extends React.Component<{}, State> {
             _.map(this.state.stories, (list, classLevel) => (
               <React.Fragment key={classLevel}>
                 <Typography className="stories-level">Level {classLevel}</Typography>
-                <Selection view={View.MATERIALS} items={list} />
+                <Selection view={View.MATERIALS} items={list} colNum={4} />
               </React.Fragment>
             ))
           ) : (
