@@ -7,10 +7,10 @@ import "./Header.css";
 
 const SECTIONS = [
   // { name: "home", color: "#a586c5" },
-  { name: "curricula", link: "curricula", color: getColor(View.MATERIALS)},
-  { name: "activities", link: "activities", color: getColor(View.ACTIVITIES) },
-  { name: "home", link: "home", color: getColor(View.HOME)},
-  { name: "login", link: "login", color: getColor(View.LOGIN) },
+  { name: "CURRICULA", link: "curricula", color: getColor(View.MATERIALS)},
+  { name: "ACTIVITIES", link: "activities", color: getColor(View.ACTIVITIES) },
+  { name: "HOME", link: "home", color: getColor(View.HOME)},
+  { name: "LOGOUT", link: "login", color: getColor(View.LOGIN) },
   // { name: "materials", color: "#a9bb59" },
   // { name: "about", color: "#fc5e5a" },
   // {name: "help", color: "#fa8e47"},

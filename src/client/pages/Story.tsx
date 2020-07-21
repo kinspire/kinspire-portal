@@ -245,7 +245,7 @@ class StoryPage extends React.Component<Props, State> {
       <Scaffold view={View.STORY}>
         <div className="story-container">
           <Grid container justify="center" alignItems="center" spacing={1}>
-            <Grid item>
+            <Grid item xs={12}>
               <Typography
                 className="stories-story-title"
                 style={{ color: "#A9BB59", fontSize: "45px", fontWeight: "bold" }}
@@ -253,8 +253,8 @@ class StoryPage extends React.Component<Props, State> {
                 {get(this.state.content, "title")}
               </Typography>
             </Grid>
-            <Grid>
-              <Typography>
+            <Grid item xs={12}>
+              <Typography className="stories-story-title">
                 <i>
                   ({get(this.state.content, "classLevel")}-{get(this.state.content, "num")})
                 </i>
@@ -264,7 +264,10 @@ class StoryPage extends React.Component<Props, State> {
           <Grid container className="stories-story" spacing={1}>
             <Grid item xs={6}>
               <div className="stories-story-section-story">
-                <Typography variant="h5" style={{ color: "#A9BB59", fontSize: "30px", paddingBottom: "1%" }}>
+                <Typography
+                  variant="h5"
+                  style={{ color: "#A9BB59", fontSize: "30px", paddingBottom: "1%" }}
+                >
                   STORY
                 </Typography>
                 <div>{this.generateStory()}</div>
@@ -272,10 +275,18 @@ class StoryPage extends React.Component<Props, State> {
             </Grid>
             <Grid item xs={6}>
               <div className="stories-story-section stories-story-section-questions">
-                <Typography variant="h5" style={{ color: "#A9BB59", fontSize: "30px", paddingBottom: "1%", paddingLeft: "4%" }}>
+                <Typography
+                  variant="h5"
+                  style={{
+                    color: "#A9BB59",
+                    fontSize: "30px",
+                    paddingBottom: "1%",
+                    paddingLeft: "4%",
+                  }}
+                >
                   QUESTIONS
                 </Typography>
-                <ol style={{display: "block"}} type="1">
+                <ol style={{ display: "block" }} type="1">
                   {this.generateQuestions()}
                 </ol>
 
