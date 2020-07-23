@@ -10,7 +10,7 @@ const SECTIONS = [
   { name: "CURRICULA", link: "curricula", color: getColor(View.MATERIALS)},
   { name: "ACTIVITIES", link: "activities", color: getColor(View.ACTIVITIES) },
   { name: "HOME", link: "home", color: getColor(View.HOME)},
-  { name: "LOGOUT", link: "login", color: getColor(View.LOGIN) },
+  { name: "LOGOUT", link: "login", color: getColor(View.LOGOUT) },
   // { name: "materials", color: "#a9bb59" },
   // { name: "about", color: "#fc5e5a" },
   // {name: "help", color: "#fa8e47"},
