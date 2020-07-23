@@ -1,7 +1,9 @@
 import React from "react";
 
 // import App from "../App";
+import Scaffold from "../components/Scaffold";
 import TextField from "@material-ui/core/TextField";
+import { View } from "../constants";
 import "./Login.css";
 import { Link, Typography } from "@material-ui/core";
 
@@ -48,7 +50,7 @@ class Login extends React.Component<Props, State> {
   render() {
     console.log("Testing console message in login");
     return (
-      <div style={{ backgroundColor: "#262626" }}>
+      <Scaffold view={View.LOGIN}>
         <div className="page-title">
           <Typography variant="h1">LOGIN</Typography>
           <Typography className="login-descr">
@@ -65,7 +67,7 @@ class Login extends React.Component<Props, State> {
           <form className="login-input-block" noValidate autoComplete="off">
             <div className="input-title">
               {" "}
-              USERNAME
+              USERNAME <br />
               <TextField
                 id="input-username"
                 label=""
@@ -76,7 +78,7 @@ class Login extends React.Component<Props, State> {
             </div>
             <div className="input-title">
               {" "}
-              PASSWORD
+              PASSWORD <br />
               <TextField
                 id="input-password"
                 label=""
@@ -93,7 +95,7 @@ class Login extends React.Component<Props, State> {
           </div>
         </div>
         {/* Forgot password option needed */}
-      </div>
+      </Scaffold>
     );
   }
 }

@@ -11,6 +11,12 @@
     font-weight: 600;
 }
 
+.pre-auth {
+    margin:auto;
+    width: 80%;
+    position: relative;
+}
+
 .input-title {
     margin-bottom: 30px;
     font-size: 20px;

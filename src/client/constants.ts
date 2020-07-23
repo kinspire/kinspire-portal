@@ -22,6 +22,7 @@ export enum View {
   PROFILE = "PROFILE",
   ABOUT = "ABOUT",
   LOGIN = "LOGIN",
+  LOGOUT = "LOGOUT",
 }
 
 export const getColor = (v: View | string): string => {
@@ -41,7 +42,9 @@ export const getColor = (v: View | string): string => {
     case View.PROFILE:
       return "#a586c5";
     case View.LOGIN:
-      return "lightgray";
+      return "#262626";
+    case View.LOGOUT:
+      return "#908E8D";
     case View.HOME:
       return "#f5bf53";
     case "BUTTON":
@@ -49,7 +52,7 @@ export const getColor = (v: View | string): string => {
     case "HELP":
       return "#fa8e47";
   }
-  return "lightgray";
+  return "#262626";
 };
 
 // The text used per type

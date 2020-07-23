@@ -21,7 +21,7 @@ export default function Curricula() {
         <Typography
           style={{ textAlign: "center", color: "white", fontWeight: "normal", fontSize: "65px", paddingBottom: "3%" }}
         >
-          CURRICULA
+          Curricula
         </Typography>
         <Selection items={curricula} view={View.MATERIALS} colNum={2} />
       </div>

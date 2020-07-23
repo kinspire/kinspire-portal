@@ -1,8 +1,10 @@
 import React from "react";
 
+import Scaffold from "../components/Scaffold";
+import { View } from "../constants";
 import TextField from "@material-ui/core/TextField";
 import "./Register.css";
-import { Link, Typography } from "@material-ui/core";
+import { Link, Typography, Grid } from "@material-ui/core";
 
 interface Props {}
 
@@ -11,7 +13,7 @@ interface State {}
 class Register extends React.Component<Props, State> {
   render() {
     return (
-      <div style={{ backgroundColor: "#262626" }}>
+      <Scaffold view={View.LOGIN}>
         <div className="page-title">
           <Typography variant="h1"> REGISTER </Typography>
           <Typography className="register-decr">
@@ -23,75 +25,90 @@ class Register extends React.Component<Props, State> {
             </Link>
           </Typography>
         </div>
-        <div className="authentication">
-          <form className="register-input-block" noValidate autoComplete="off">
-            <div className="input-title">
-              {" "}
-              FRIST NAME
-              <TextField
-                id="input-fName"
-                label=""
-                variant="outlined"
-                style={{ backgroundColor: "white" }}
-              />
-            </div>
-            <div className="input-title">
-              {" "}
-              LAST NAME
-              <TextField
-                id="input-lName"
-                label=""
-                variant="outlined"
-                style={{ backgroundColor: "white" }}
-              />
-            </div>
-            <div className="input-title">
-              {" "}
-              BIRTHDAY
-              <TextField
-                id="input-birthday"
-                label=""
-                variant="outlined"
-                style={{ backgroundColor: "white" }}
-              />
-            </div>
-            <div className="input-title">
-              {" "}
-              EMAIL ADDRESS
-              <TextField
-                id="input-email"
-                label=""
-                variant="outlined"
-                style={{ backgroundColor: "white" }}
-              />
-            </div>
-            <div className="input-title">
-              {" "}
-              USERNAME
-              <TextField
-                id="input-username"
-                label=""
-                variant="outlined"
-                style={{ backgroundColor: "white" }}
-              />
-            </div>
-            <div className="input-title">
-              {" "}
-              PASSWORD
-              <TextField
-                id="input-password"
-                label=""
-                variant="outlined"
-                style={{ backgroundColor: "white" }}
-              />
-            </div>
-          </form>
+        <div style={{ width: "80%", margin: "auto" }}>
+          <Grid container>
+            {/* <div className="pre-auth"> */}
+            {/* <form className="register-input-block" noValidate autoComplete="off"> */}
+            <Grid item xs={4}>
+              <div className="input-title">
+                {" "}
+                FRIST NAME <br />
+                <TextField
+                  id="input-fName"
+                  label=""
+                  variant="outlined"
+                  style={{ backgroundColor: "white" }}
+                />
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <div className="input-title">
+                {" "}
+                LAST NAME <br />
+                <TextField
+                  id="input-lName"
+                  label=""
+                  variant="outlined"
+                  style={{ backgroundColor: "white" }}
+                />
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <div className="input-title">
+                {" "}
+                BIRTHDAY <br />
+                <TextField
+                  id="input-birthday"
+                  label=""
+                  variant="outlined"
+                  style={{ backgroundColor: "white" }}
+                />
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <div className="input-title">
+                {" "}
+                EMAIL ADDRESS <br />
+                <TextField
+                  id="input-email"
+                  label=""
+                  variant="outlined"
+                  style={{ backgroundColor: "white" }}
+                />
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <div className="input-title">
+                {" "}
+                USERNAME <br />
+                <TextField
+                  id="input-username"
+                  label=""
+                  variant="outlined"
+                  style={{ backgroundColor: "white" }}
+                />
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <div className="input-title">
+                {" "}
+                PASSWORD <br />
+                <TextField
+                  id="input-password"
+                  label=""
+                  variant="outlined"
+                  style={{ backgroundColor: "white" }}
+                />
+              </div>
+            </Grid>
+          </Grid>
+          {/* </form> */}
           <Link className="login-button" href="/stories">
-              SIGN UP >>
-            </Link>
+            SIGN UP >>
+          </Link>
         </div>
         {/* Forgot password option needes */}
-      </div>
+      </Scaffold>
     );
   }
 }

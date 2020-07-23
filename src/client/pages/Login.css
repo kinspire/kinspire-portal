@@ -1,10 +1,9 @@
 .page-title {
-    padding-top: 100px;
+    padding-top: 3%;
 }
 .authentication {
-    margin:auto;
+    margin: auto;
     width: 300px;
-    position: relative;
 }
 
 .login-input-block {
