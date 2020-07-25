@@ -10,7 +10,7 @@ import "./Selection.css";
 interface Props {
   items: LinkPair[];
   view?: View;
-  colNum: Number;
+  colNum?: Number;
 }
 
 // This component represents a generic "selection" screen that can show any list

@@ -23,7 +23,7 @@ export default function Curricula() {
         >
           Curricula
         </Typography>
-        <Selection items={curricula} view={View.MATERIALS} colNum={2} />
+        <Selection items={curricula} view={View.MATERIALS} />
       </div>
     </Scaffold>
   );
