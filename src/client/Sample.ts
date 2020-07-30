@@ -25,11 +25,28 @@ const english: Course = {
 }
 
 // sample health course
+const lesson1: Lesson = {
+    title: "Nutrition",
+    id: "lesson1-1",
+    content: "blah",
+};
+const fuelingYourBody: Module = {
+    title: "Module 1: Nutrition",
+    id: "level1",
+    lessons: [lesson1],
+};
+const healthTier: Tier = {
+    title: "Fueling your Body", 
+    id: "tiers", 
+    modules: [fuelingYourBody],
+}
 const health: Course = {
     title: "Health",
     id: "health",
-    tiers: [],
+    tiers: [healthTier],
 }
+
+
 
 export const courses = [
     english, health
