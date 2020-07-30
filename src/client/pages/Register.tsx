@@ -104,7 +104,7 @@ class Register extends React.Component<Props, State> {
           </Grid>
           {/* </form> */}
           <Link className="login-button" href="/stories">
-            SIGN UP >>
+            SIGN UP
           </Link>
         </div>
         {/* Forgot password option needes */}
