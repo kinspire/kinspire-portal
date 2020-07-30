@@ -57,7 +57,7 @@ export default class Stories extends React.Component<{}, State> {
         curr = story.classLevel;
       }
       stories[curr].push({
-        name: _.get(story, "title"),
+        title: _.get(story, "title"),
         link: `/story/${_.get(story, "classLevel")}/${_.get(story, "num")}`,
         subtitle: `${_.get(story, "classLevel")}-${_.get(story, "num")}`,
       });

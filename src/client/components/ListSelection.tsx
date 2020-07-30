@@ -6,13 +6,14 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import { Grid, Typography } from "@material-ui/core";
 
 import { getColor, View } from "../constants";
-import { ListItem } from "../util";
+import { Tier } from "../util";
 
 import "./Selection.css";
 
 interface Props {
-  items: ListItem[];
+  tiers: Tier[];
   view?: View;
+  courseId: string;
 }
 
 // This component represents a generic "list selection" screen that can show any list
@@ -20,7 +21,7 @@ interface Props {
 // The `view` prop determines how items are shown, which is provided by the
 // `contentService` (see contentService#getSelectionItems)
 export default function ListSelection(props: Props) {
-  const { items, view } = props;
+  const { tiers, view, courseId } = props;
   // var num = (12/this.props.colNum);
   // how is the items prop structured: two tiers (general and then modules)
   const textStyle = view
@@ -29,25 +30,25 @@ export default function ListSelection(props: Props) {
 
   return (
     <div style={{ width: "30%", margin: "auto" }}>
-      {items.map((item, i) => (
+      {tiers.map((tier, i) => (
         <ExpansionPanel>
           <ExpansionPanelSummary aria-controls="panel1a-content" id="panel1a-header">
-            <Typography style={textStyle}>{item.title}</Typography>
-            {item.subtitle ? (
+            <Typography style={textStyle}>{tier.title}</Typography>
+            {tier.subtitle ? (
               <div className="selection-category-text-subtitle">
-                <i style={textStyle}>{item.subtitle}</i>
+                <i style={textStyle}>{tier.subtitle}</i>
               </div>
             ) : (
               ""
             )}
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            {item.links.map((level, i) => (
+            {tier.modules.map((module, i) => (
               <div>
-                <Link to={level.link}>{level.name}</Link>
-                {level.subtitle ? (
+                <Link to={`/module/${courseId}/${tier.id}/${module.id}`}>{module.title}</Link>
+                {module.subtitle ? (
                   <div className="selection-category-text-subtitle">
-                    <i style={textStyle}>{level.subtitle}</i>
+                    <i style={textStyle}>{module.subtitle}</i>
                   </div>
                 ) : (
                   ""

@@ -5,7 +5,7 @@ import Selection from "../components/Selection";
 import { View } from "../constants";
 
 const activities = [
-  { name: "Word Searches", link: "/wordsearches" },
+  { title: "Word Searches", link: "/wordsearches" },
 ];
 export default function Activities() {
   return (

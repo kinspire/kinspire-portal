@@ -50,7 +50,7 @@ export default function WordSearches() {
           curr = wordSearch.classLevel;
         }
         newWSList[curr].push({
-          name: _.get(wordSearch, "title"),
+          title: _.get(wordSearch, "title"),
           link: `/wordsearch/${_.get(wordSearch, "classLevel")}/${_.get(wordSearch, "num")}`,
           subtitle: `${_.get(wordSearch, "classLevel")}-${_.get(wordSearch, "num")}`,
         });

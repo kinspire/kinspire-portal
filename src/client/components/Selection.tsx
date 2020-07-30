@@ -10,7 +10,7 @@ import "./Selection.css";
 interface Props {
   items: LinkPair[];
   view?: View;
-  colNum?: Number;
+  colNum?: number;
 }
 
 // This component represents a generic "selection" screen that can show any list
@@ -30,7 +30,7 @@ export default function Selection(props: Props) {
               <div className="selection-category-content">
                 <div className="selection-category-text">
                   <Typography style={textStyle}>
-                    <Box fontWeight="fontWeightBold">{item.name}</Box>
+                    <Box fontWeight="fontWeightBold">{item.title}</Box>
                   </Typography>
                   {item.subtitle ? (
                     <div className="selection-category-text-subtitle">

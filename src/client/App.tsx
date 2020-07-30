@@ -5,7 +5,7 @@ import "./App.css";
 import Header from "./components/Header";
 // import Activities from "./pages/Activities";
 import Home from "./pages/Home";
-import Materials from "./pages/Materials";
+// import Materials from "./pages/Materials";
 import Stories from "./pages/Stories";
 import Story from "./pages/Story";
 import Test from "./pages/Test";
@@ -13,8 +13,10 @@ import WordSearch from "./pages/WordSearch";
 import WordSearches from "./pages/WordSearches";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Curricula from "./pages/Curricula";
+import Curricula from "./pages/Courses";
 import Activities from "./pages/Activities";
+import Course from "./pages/Course";
+import Module from "./pages/Module";
 
 const App: React.FC = () => {
   // TODO adjust title pl0x
@@ -26,6 +28,8 @@ const App: React.FC = () => {
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/activities" component={Activities} />
+          <Route path="/module/:course/:tier/:module" component={Module} />
+          <Route path="/course/:id" component={Course} />
           <Route path="/curricula" component={Curricula} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
