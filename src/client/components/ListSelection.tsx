@@ -6,12 +6,12 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import { Grid, Typography } from "@material-ui/core";
 
 import { getColor, View } from "../constants";
-import { LinkPair } from "../util";
+import { ListItem } from "../util";
 
 import "./Selection.css";
 
 interface Props {
-  items: LinkPair[];
+  items: ListItem[];
   view?: View;
 }
 
@@ -22,6 +22,7 @@ interface Props {
 export default function ListSelection(props: Props) {
   const { items, view } = props;
   // var num = (12/this.props.colNum);
+  // how is the items prop structured: two tiers (general and then modules)
   const textStyle = view
     ? { color: getColor(view), fontSize: "100%", letterSpacing: "1px" }
     : undefined;
@@ -31,10 +32,7 @@ export default function ListSelection(props: Props) {
       {items.map((item, i) => (
         <ExpansionPanel>
           <ExpansionPanelSummary aria-controls="panel1a-content" id="panel1a-header">
-            <Typography style={textStyle}>{item.name}</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Link to={item.link}>{item.name}</Link>
+            <Typography style={textStyle}>{item.title}</Typography>
             {item.subtitle ? (
               <div className="selection-category-text-subtitle">
                 <i style={textStyle}>{item.subtitle}</i>
@@ -42,6 +40,20 @@ export default function ListSelection(props: Props) {
             ) : (
               ""
             )}
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            {item.links.map((level, i) => (
+              <div>
+                <Link to={level.link}>{level.name}</Link>
+                {level.subtitle ? (
+                  <div className="selection-category-text-subtitle">
+                    <i style={textStyle}>{level.subtitle}</i>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+            ))}
           </ExpansionPanelDetails>
         </ExpansionPanel>
       ))}
