@@ -6,17 +6,10 @@ import { getColor, View } from "../constants";
 import "./Header.css";
 
 const SECTIONS = [
-  // { name: "home", color: "#a586c5" },
-  { name: "CURRICULA", link: "curricula", color: getColor(View.COURSES)},
+  { name: "COURSES", link: "courses", color: getColor(View.COURSES) },
   { name: "ACTIVITIES", link: "activities", color: getColor(View.ACTIVITIES) },
-  { name: "HOME", link: "home", color: getColor(View.HOME)},
+  { name: "HOME", link: "home", color: getColor(View.HOME) },
   { name: "LOGOUT", link: "login", color: getColor(View.LOGOUT) },
-  // { name: "materials", color: "#a9bb59" },
-  // { name: "about", color: "#fc5e5a" },
-  // {name: "help", color: "#fa8e47"},
-  // "access",
-  // {name: "profile", color: "#a586c5"}
-  // "logout"
 ];
 
 const TITLE_MAP: Record<string, string> = {
@@ -30,6 +23,7 @@ const TITLE_MAP: Record<string, string> = {
 
 class Header extends Component {
   public render() {
+    // creates the page icon in the menu
     const menuItems = SECTIONS.map((section, i) => (
       <div key={i} className="portal-menu-item">
         <Link
@@ -43,6 +37,7 @@ class Header extends Component {
       </div>
     ));
 
+    //creates the page title in the menu
     const title = (
       <div className="portal-title">
         <Link to="/">

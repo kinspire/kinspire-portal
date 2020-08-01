@@ -18,9 +18,11 @@ interface Props {
 // The `view` prop determines how items are shown, which is provided by the
 // `contentService` (see contentService#getSelectionItems)
 export default function Selection(props: Props) {
-  const { items, view } = props;
-  // var num = (12/this.props.colNum);
-  const textStyle = view ? { color: getColor(view), fontSize: "100%", letterSpacing: "1px" } : undefined;
+  const { items, view, colNum } = props;
+  var num = (12/colNum);
+
+  // sets the content style within the boxes
+  const textStyle = view ? { color: getColor(view), fontSize: "30px", letterSpacing: "1px" } : undefined;
 
   return (
       <Grid container className="selection-categories" alignItems="center" justify="center">

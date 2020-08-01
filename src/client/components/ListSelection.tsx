@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import { Grid, Typography } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 
 import { getColor, View } from "../constants";
 import { Tier } from "../util";
@@ -22,18 +22,20 @@ interface Props {
 // `contentService` (see contentService#getSelectionItems)
 export default function ListSelection(props: Props) {
   const { tiers, view, courseId } = props;
-  // var num = (12/this.props.colNum);
-  // how is the items prop structured: two tiers (general and then modules)
+
+  // sets the content style within the panels
   const textStyle = view
-    ? { color: getColor(view), fontSize: "100%", letterSpacing: "1px" }
+    ? { color: getColor(view), fontSize: "30px", letterSpacing: "1px", padding:"8px 15px" }
     : undefined;
 
   return (
-    <div style={{ width: "30%", margin: "auto" }}>
+    <div style={{ width: "40%", margin: "auto" }}>
       {tiers.map((tier, i) => (
         <ExpansionPanel>
           <ExpansionPanelSummary aria-controls="panel1a-content" id="panel1a-header">
-            <Typography style={textStyle}>{tier.title}</Typography>
+            <Typography style={textStyle}>
+              <Box fontWeight="fontWeightBold">{tier.title}</Box>
+            </Typography>
             {tier.subtitle ? (
               <div className="selection-category-text-subtitle">
                 <i style={textStyle}>{tier.subtitle}</i>
@@ -46,6 +48,8 @@ export default function ListSelection(props: Props) {
             {tier.modules.map((module, i) => (
               <div>
                 <Link to={`/module/${courseId}/${tier.id}/${module.id}`}>{module.title}</Link>
+
+                {/* Provides a subtitle underneath the title if there is one */}
                 {module.subtitle ? (
                   <div className="selection-category-text-subtitle">
                     <i style={textStyle}>{module.subtitle}</i>

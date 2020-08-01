@@ -35,6 +35,7 @@ export default function Courses() {
             } as LinkPair
           })}
           view={View.COURSES}
+          colNum={2}
         />
       </div>
     </Scaffold>

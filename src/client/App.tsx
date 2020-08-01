@@ -28,9 +28,10 @@ const App: React.FC = () => {
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/activities" component={Activities} />
+          {/* Path for lesson */}
           <Route path="/module/:course/:tier/:module" component={Module} />
           <Route path="/course/:id" component={Course} />
-          <Route path="/curricula" component={Courses} />
+          <Route path="/courses" component={Courses} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/test" component={Test} />
