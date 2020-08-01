@@ -7,7 +7,7 @@ import "./Header.css";
 
 const SECTIONS = [
   // { name: "home", color: "#a586c5" },
-  { name: "CURRICULA", link: "curricula", color: getColor(View.MATERIALS)},
+  { name: "CURRICULA", link: "curricula", color: getColor(View.COURSES)},
   { name: "ACTIVITIES", link: "activities", color: getColor(View.ACTIVITIES) },
   { name: "HOME", link: "home", color: getColor(View.HOME)},
   { name: "LOGOUT", link: "login", color: getColor(View.LOGOUT) },
@@ -20,7 +20,7 @@ const SECTIONS = [
 ];
 
 const TITLE_MAP: Record<string, string> = {
-  P: getColor(View.MATERIALS),
+  P: getColor(View.COURSES),
   O: getColor(View.ACTIVITIES),
   R: getColor("HELP"),
   T: getColor(View.ABOUT),

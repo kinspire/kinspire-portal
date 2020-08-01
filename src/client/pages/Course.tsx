@@ -13,14 +13,17 @@ interface Params {
     id: string;
 }
 
+// Creates a list of all the topics within a course
 export default function Course() {
+
+  // extracts the course id from the url
   const params = useParams<Params>();
   const course = courses.find((c) => {
       return c.id === params.id;
   })
   console.log(course);
   return (
-    <Scaffold view={View.MATERIALS}>
+    <Scaffold view={View.COURSE}>
       <div className="curricula-container">
         <Typography
           style={{
@@ -33,7 +36,9 @@ export default function Course() {
         >
           {course.title}
         </Typography>
-        <ListSelection tiers={course.tiers} view={View.MATERIALS} courseId={course.id} />
+
+        {/* Provides links to all the topics offered */}
+        <ListSelection tiers={course.tiers} view={View.COURSES} courseId={course.id} />
       </div>
     </Scaffold>
   );

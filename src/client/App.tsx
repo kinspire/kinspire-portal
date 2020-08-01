@@ -13,7 +13,7 @@ import WordSearch from "./pages/WordSearch";
 import WordSearches from "./pages/WordSearches";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Curricula from "./pages/Courses";
+import Courses from "./pages/Courses";
 import Activities from "./pages/Activities";
 import Course from "./pages/Course";
 import Module from "./pages/Module";
@@ -30,7 +30,7 @@ const App: React.FC = () => {
           <Route path="/activities" component={Activities} />
           <Route path="/module/:course/:tier/:module" component={Module} />
           <Route path="/course/:id" component={Course} />
-          <Route path="/curricula" component={Curricula} />
+          <Route path="/curricula" component={Courses} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/test" component={Test} />

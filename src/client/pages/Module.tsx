@@ -16,7 +16,10 @@ interface Params {
   module: string;
 }
 
+// Creates a grid of all the sub-topics within a topic
 export default function Module() {
+
+  // extracts the topic id from the url
   const params = useParams<Params>();
   const course = courses.find((c) => {
     return c.id === params.course;
@@ -28,7 +31,7 @@ export default function Module() {
     return m.id === params.module;
   });
   return (
-    <Scaffold view={View.MATERIALS}>
+    <Scaffold view={View.COURSE}>
       <div className="curricula-container">
         <Typography
           style={{
@@ -41,6 +44,8 @@ export default function Module() {
         >
           {module.title}
         </Typography>
+
+        {/* Provides links to all the sub-topics offered */}
         <Selection
           items={module.lessons.map((l) => {
             return {
@@ -48,7 +53,7 @@ export default function Module() {
               link: `/lesson/${course.id}/${tier.id}/${module.id}/${l.id}`,
             } as LinkPair;
           })}
-          view={View.MATERIALS}
+          view={View.COURSES}
         />
       </div>
     </Scaffold>
