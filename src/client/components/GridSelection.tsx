@@ -19,33 +19,34 @@ interface Props {
 // `contentService` (see contentService#getSelectionItems)
 export default function Selection(props: Props) {
   const { items, view, colNum } = props;
-  var num = (12/colNum);
+  // const num = 12 / colNum;
 
   // sets the content style within the boxes
-  const textStyle = view ? { color: getColor(view), fontSize: "30px", letterSpacing: "1px" } : undefined;
-
+  const textStyle = view
+    ? { color: getColor(view), fontSize: "30px", letterSpacing: "1px" }
+    : undefined;
   return (
-      <Grid container className="selection-categories" alignItems="center" justify="center">
-        {items.map((item, i) => (
-          <Grid item xs={6} className="selection-grid-item" key={i}>
-            <Link key={item.link} className="selection-category" to={item.link}>
-              <div className="selection-category-content">
-                <div className="selection-category-text">
-                  <Typography style={textStyle}>
-                    <Box fontWeight="fontWeightBold">{item.title}</Box>
-                  </Typography>
-                  {item.subtitle ? (
-                    <div className="selection-category-text-subtitle">
-                      <i style={textStyle}>{item.subtitle}</i>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
+    <Grid container className="selection-categories" alignItems="center" justify="center">
+      {items.map((item, i) => (
+        <Grid item xs={6} className="selection-grid-item" key={i}>
+          <Link key={item.link} className="selection-category" to={item.link}>
+            <div className="selection-category-content">
+              <div className="selection-category-text">
+                <Typography style={textStyle}>
+                  <Box fontWeight="fontWeightBold">{item.title}</Box>
+                </Typography>
+                {item.subtitle ? (
+                  <div className="selection-category-text-subtitle">
+                    <i style={textStyle}>{item.subtitle}</i>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
-            </Link>
-          </Grid>
-        ))}
-      </Grid>
+            </div>
+          </Link>
+        </Grid>
+      ))}
+    </Grid>
   );
 }

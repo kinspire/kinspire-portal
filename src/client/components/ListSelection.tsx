@@ -1,10 +1,10 @@
+import { Box, Typography } from "@material-ui/core";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import React from "react";
 import { Link } from "react-router-dom";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import { Box, Typography } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import { getColor, View } from "../constants";
 import { Tier } from "../util";
@@ -53,7 +53,7 @@ export default function ListSelection(props: Props) {
               ""
             )}
           </ExpansionPanelSummary>
-          {tier.modules.map((module, i) => (
+          {tier.modules.map((module) => (
             <ExpansionPanelDetails>
               <Link style={linkStyle} to={`/module/${courseId}/${tier.id}/${module.id}`}>
                 {module.title}
