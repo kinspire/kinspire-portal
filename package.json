@@ -1,7 +1,7 @@
 {
   "name": "kinspire-portal",
   "description": "A desktop portal for the students in Kinspire's orphanages to use to access learning materials.",
-  "version": "0.1.0",
+  "version": "1.0.2",
   "author": {
     "name": "Sarang Joshi",
     "email": "sarangjoshi@kinspire.org"
@@ -95,6 +95,6 @@
     }
   },
   "engines": {
-    "node": "^12.x.x"
+    "node": ">=12.x.x"
   }
 }
