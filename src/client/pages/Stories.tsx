@@ -5,10 +5,12 @@ import React from "react";
 // import React, { useEffect, useState } from "react";
 
 import Scaffold from "../components/Scaffold";
-import Selection from "../components/Selection";
+import Selection from "../components/GridSelection";
 import { View } from "../constants";
 import { service } from "../services/content";
 import { LinkPair } from "../util";
+
+import "./Stories.css";
 
 /*
 export default function Stories() {
@@ -55,7 +57,7 @@ export default class Stories extends React.Component<{}, State> {
         curr = story.classLevel;
       }
       stories[curr].push({
-        name: _.get(story, "title"),
+        title: _.get(story, "title"),
         link: `/story/${_.get(story, "classLevel")}/${_.get(story, "num")}`,
         subtitle: `${_.get(story, "classLevel")}-${_.get(story, "num")}`,
       });
@@ -68,17 +70,22 @@ export default class Stories extends React.Component<{}, State> {
 
   public render() {
     return (
-      <Scaffold view={View.STORIES}>
-        {_.size(this.state.stories) ? (
-          _.map(this.state.stories, (list, classLevel) => (
-            <React.Fragment key={classLevel}>
-              <Typography style={{ textAlign: "center" }}>Level {classLevel}</Typography>
-              <Selection view={View.STORIES} items={list} />
-            </React.Fragment>
-          ))
-        ) : (
-          <CircularProgress className="loading" />
-        )}
+      <Scaffold view={View.COURSE}>
+        <div className="stories-container">
+          <Typography style={{ textAlign: "center", color: "#A9BB59", fontWeight: "bold", fontSize: "60px" }}>
+            STORIES
+          </Typography>
+          {_.size(this.state.stories) ? (
+            _.map(this.state.stories, (list, classLevel) => (
+              <React.Fragment key={classLevel}>
+                <Typography className="stories-level">Level {classLevel}</Typography>
+                <Selection view={View.COURSES} items={list} colNum={4} />
+              </React.Fragment>
+            ))
+          ) : (
+            <CircularProgress className="loading" />
+          )}
+        </div>
       </Scaffold>
     );
   }

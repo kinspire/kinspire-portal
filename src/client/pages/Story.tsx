@@ -19,6 +19,7 @@ import Scaffold from "../components/Scaffold";
 import { View } from "../constants";
 import { service } from "../services/content";
 import { Answer, Story, ContentType, McqQuestion } from "@common/schema";
+import { Link } from "react-router-dom";
 
 interface Params {
   classLevel: string;
@@ -241,16 +242,19 @@ class StoryPage extends React.Component<Props, State> {
 
   public render() {
     return (
-      <Scaffold view={View.STORY}>
-        <div className="stories-container">
+      <Scaffold view={View.LESSON}>
+        <div className="story-container">
           <Grid container justify="center" alignItems="center" spacing={1}>
-            <Grid item>
-              <Typography className="stories-story-title" variant="h4">
+            <Grid item xs={12}>
+              <Typography
+                className="stories-story-title"
+                style={{ color: "#A9BB59", fontSize: "45px", fontWeight: "bold" }}
+              >
                 {get(this.state.content, "title")}
               </Typography>
             </Grid>
-            <Grid>
-              <Typography>
+            <Grid item xs={12}>
+              <Typography className="stories-story-title">
                 <i>
                   ({get(this.state.content, "classLevel")}-{get(this.state.content, "num")})
                 </i>
@@ -259,21 +263,45 @@ class StoryPage extends React.Component<Props, State> {
           </Grid>
           <Grid container className="stories-story" spacing={1}>
             <Grid item xs={6}>
-              <div className="stories-story-section-story">{this.generateStory()}</div>
+              <div className="stories-story-section-story">
+                <Typography
+                  variant="h5"
+                  style={{ color: "#A9BB59", fontSize: "30px", paddingBottom: "1%" }}
+                >
+                  STORY
+                </Typography>
+                <div>{this.generateStory()}</div>
+              </div>
             </Grid>
             <Grid item xs={6}>
               <div className="stories-story-section stories-story-section-questions">
-                <Typography variant="h5" className="stories-story-section-questions-title">
-                  <Box fontWeight="fontWeightBold">Questions</Box>
+                <Typography
+                  variant="h5"
+                  style={{
+                    color: "#A9BB59",
+                    fontSize: "30px",
+                    paddingBottom: "1%",
+                    paddingLeft: "4%",
+                  }}
+                >
+                  QUESTIONS
                 </Typography>
-                <ol type="1">{this.generateQuestions()}</ol>
-                <Button variant="contained" onClick={this.handleSubmit}>
-                  Submit
-                </Button>
+                <ol style={{ display: "block" }} type="1">
+                  {this.generateQuestions()}
+                </ol>
+
                 <div id="error" />
               </div>
             </Grid>
           </Grid>
+          <div className="stories-button">
+            <Button variant="contained">
+              <Link to="/stories">BACK</Link>
+            </Button>
+            <Button variant="contained" style={{ float: "right" }} onClick={this.handleSubmit}>
+              SUBMIT
+            </Button>
+          </div>
         </div>
       </Scaffold>
     );

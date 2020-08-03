@@ -1,6 +1,6 @@
 import React from "react";
 
-import Selection from "../components/Selection";
+import Selection from "../components/GridSelection";
 
 const materials = [
   { name: "Resume/CV Templates", link: "/materials/templates" },
@@ -9,5 +9,5 @@ const materials = [
   { name: "Health & Wellness", link: "/materials/health" },
 ];
 export default function Materials() {
-  return <Selection items={materials} />;
+  // return <Selection items={materials} />;
 }

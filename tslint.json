@@ -13,7 +13,8 @@
     "no-namespace": false,
     "max-classes-per-file": false,
     "no-empty": [true, "allow-empty-functions"],
-    "no-unused-declaration": true
+    "no-unused-declaration": true,
+    "interface-name": false
   },
   "linterOptions": {
     "exclude": ["node_modules/**/*.ts"]

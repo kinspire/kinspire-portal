@@ -1,6 +1,6 @@
 /* Home */
 
-.home-activities-container {
+/* .home-activities-container {
   padding: 5%;
   width: 100%;
   height: 100%;
@@ -9,4 +9,8 @@
 .home-activities-link {
   width: 600px;
   height: 600px;
+} */
+
+.home-container {
+  padding: 5%;
 }

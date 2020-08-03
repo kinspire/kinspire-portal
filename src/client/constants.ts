@@ -4,39 +4,55 @@
 // a second look.
 
 import { ContentType } from "@common/schema";
+import { FormControl } from "@material-ui/core";
+
+export enum FontType {
+  PAGETITLE = "page-title",
+  HEADING1 = "heading-1",
+  HEADING2 = "heading-2",
+}
 
 export enum View {
   HOME = "HOME",
-  MATERIALS = "MATERIALS",
+  COURSES = "COURSES", //aka Curricula
   ACTIVITIES = "ACTIVITIES",
-  STORIES = "STORIES",
+  COURSE = "COURSE",
   WORD_SEARCH = "WORDSEARCH",
-  STORY = "STORY",
+  LESSON = "LESSON",
   PROFILE = "PROFILE",
   ABOUT = "ABOUT",
+  LOGIN = "LOGIN",
+  LOGOUT = "LOGOUT",
 }
 
 export const getColor = (v: View | string): string => {
   switch (v) {
-    case View.STORIES:
-    case View.STORY:
-      return "#79b4b3";
-    case View.MATERIALS:
-    case View.ACTIVITIES:
-    case View.WORD_SEARCH:
+    case View.COURSES:
       return "#a9bb59";
+    case View.COURSE:
+      return "#D4DDAC";
+    case View.LESSON:
+      return "white";
+    case View.ACTIVITIES:
+      return "#79b4b3";
+    case View.WORD_SEARCH:
+      return "white";
     case View.ABOUT:
       return "#fc5e5a";
     case View.PROFILE:
       return "#a586c5";
+    case View.LOGIN:
+      return "#262626";
+    case View.LOGOUT:
+      return "#908E8D";
+    case View.HOME:
+      return "#f5bf53";
     case "BUTTON":
       return "#f5bf53";
     case "HELP":
       return "#fa8e47";
-    case "MENU":
-      return "#201d1a";
   }
-  return "lightgray";
+  return "#262626";
 };
 
 // The text used per type
