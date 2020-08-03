@@ -7,28 +7,18 @@
 .selection-categories {
   text-align: center;
   padding: 0 15%;
-  /*height: 100vh;*/
 }
 
 .selection-grid-item {
   display: flex;
+  padding: 0px 50px;
 }
 
 .selection-category {
   margin: 20px auto;
-  height: 100px;
-  width: 300px;
+  height: 150px;
+  width: 100%;
 }
-
-/*.container{
-    display: flex;
-    height: 50px;
-    width: 70px;
-    border-radius: 50px;
-    text-align: center;
-    padding: 20px;
-    /*flex-wrap: wrap;
-}*/
 
 .selection-category-content {
   display: flex;
@@ -37,7 +27,7 @@
   box-shadow: 2px 2px 5px -5px #262626;
   background-color: whitesmoke;
   border-radius: 7px;
-  font-size: 150%;
+  font-size: 28px;
   font-family: Rajdhani;
   font-weight: bold;
 }

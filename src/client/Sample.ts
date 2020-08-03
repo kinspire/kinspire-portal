@@ -13,10 +13,15 @@ const level1Module: Module = {
     id: "level1",
     lessons: [breakfastLesson],
 };
+const level2Module: Module = {
+    title: "Level 2",
+    id: "level2",
+    lessons: [breakfastLesson],
+};
 const storiesTier: Tier = {
     title: "Stories",
     id: "stories",
-    modules: [level1Module],
+    modules: [level1Module, level2Module],
 }
 const english: Course = {
     title: "English",

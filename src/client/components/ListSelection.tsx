@@ -4,6 +4,7 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import { Box, Typography } from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import { getColor, View } from "../constants";
 import { Tier } from "../util";
@@ -25,14 +26,24 @@ export default function ListSelection(props: Props) {
 
   // sets the content style within the panels
   const textStyle = view
-    ? { color: getColor(view), fontSize: "30px", letterSpacing: "1px", padding:"8px 15px" }
+    ? {
+        color: getColor(view),
+        fontSize: "28px",
+        letterSpacing: "1px",
+      }
+    : undefined;
+  const linkStyle = view
+    ? { color: getColor(view), fontSize: "24px", paddingLeft: "25px" }
     : undefined;
 
   return (
-    <div style={{ width: "40%", margin: "auto" }}>
+    <div style={{ width: "35%", margin: "auto" }}>
       {tiers.map((tier, i) => (
-        <ExpansionPanel>
-          <ExpansionPanelSummary aria-controls="panel1a-content" id="panel1a-header">
+        <ExpansionPanel style={{ padding: "15px" }}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon style={{ color: getColor(view) }} />}
+            aria-controls="expandable"
+          >
             <Typography style={textStyle}>
               <Box fontWeight="fontWeightBold">{tier.title}</Box>
             </Typography>
@@ -44,22 +55,22 @@ export default function ListSelection(props: Props) {
               ""
             )}
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            {tier.modules.map((module, i) => (
-              <div>
-                <Link to={`/module/${courseId}/${tier.id}/${module.id}`}>{module.title}</Link>
+          {tier.modules.map((module, i) => (
+            <ExpansionPanelDetails>
+              <Link style={linkStyle} to={`/module/${courseId}/${tier.id}/${module.id}`}>
+                {module.title}
+              </Link>
 
-                {/* Provides a subtitle underneath the title if there is one */}
-                {module.subtitle ? (
-                  <div className="selection-category-text-subtitle">
-                    <i style={textStyle}>{module.subtitle}</i>
-                  </div>
-                ) : (
-                  ""
-                )}
-              </div>
-            ))}
-          </ExpansionPanelDetails>
+              {/* Provides a subtitle underneath the title if there is one */}
+              {module.subtitle ? (
+                <div className="selection-category-text-subtitle">
+                  <i style={textStyle}>{module.subtitle}</i>
+                </div>
+              ) : (
+                ""
+              )}
+            </ExpansionPanelDetails>
+          ))}
         </ExpansionPanel>
       ))}
     </div>
