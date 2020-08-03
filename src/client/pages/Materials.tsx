@@ -1,6 +1,6 @@
 import React from "react";
 
-import Selection from "../components/Selection";
+import Selection from "../components/GridSelection";
 
 const materials = [
   { name: "Resume/CV Templates", link: "/materials/templates" },

@@ -9,8 +9,6 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { getColor, View } from "../constants";
 import { Tier } from "../util";
 
-import "./Selection.css";
-
 interface Props {
   tiers: Tier[];
   view?: View;
@@ -48,7 +46,7 @@ export default function ListSelection(props: Props) {
               <Box fontWeight="fontWeightBold">{tier.title}</Box>
             </Typography>
             {tier.subtitle ? (
-              <div className="selection-category-text-subtitle">
+              <div>
                 <i style={textStyle}>{tier.subtitle}</i>
               </div>
             ) : (
@@ -63,7 +61,7 @@ export default function ListSelection(props: Props) {
 
               {/* Provides a subtitle underneath the title if there is one */}
               {module.subtitle ? (
-                <div className="selection-category-text-subtitle">
+                <div>
                   <i style={textStyle}>{module.subtitle}</i>
                 </div>
               ) : (

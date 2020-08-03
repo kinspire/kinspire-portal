@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { getColor, View } from "../constants";
 import { LinkPair } from "../util";
 
-import "./Selection.css";
+import "./GridSelection.css";
 
 interface Props {
   items: LinkPair[];

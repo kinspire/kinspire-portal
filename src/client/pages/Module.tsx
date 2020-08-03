@@ -1,7 +1,7 @@
 import React from "react";
 
 import Scaffold from "../components/Scaffold";
-import Selection from "../components/Selection";
+import Selection from "../components/GridSelection";
 import { View } from "../constants";
 import { Typography } from "@material-ui/core";
 import { courses } from "../Sample";
