@@ -90,7 +90,7 @@ class Login extends React.Component<Props, State> {
           </form>
           <div className="button">
             <Link className="login-button" href="/stories">
-              LOGIN >>
+              LOGIN
             </Link>
           </div>
         </div>
