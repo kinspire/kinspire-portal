@@ -1,18 +1,14 @@
 import React from "react";
 
 // import App from "../App";
-import Scaffold from "../components/Scaffold";
+import { Link, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
+import Scaffold from "../components/Scaffold";
 import { View } from "../constants";
 import "./Login.css";
-import { Link, Typography } from "@material-ui/core";
 
-interface Props {}
-
-interface State {}
-
-class Login extends React.Component<Props, State> {
-  state = {
+class Login extends React.Component {
+  public state = {
     authenticateUsername: false,
     authenticatePassword: false,
   };
@@ -28,26 +24,26 @@ class Login extends React.Component<Props, State> {
   // then select view according to credentials
   // then route app to that view
 
-  handleUsername = (event) => {
+  public handleUsername = (event) => {
     if (event.target.value === "Esha") {
       this.setState({ authenticateUsername: true });
     }
   };
 
-  handlePassword = (event) => {
+  public handlePassword = (event) => {
     if (event.target.value === "enter") {
       this.setState({ authenticatePassword: true });
     }
   };
 
-  handleLogin = () => {
+  public handleLogin = () => {
     if (this.state.authenticateUsername && this.state.authenticatePassword) {
       console.log("Success!");
       // not sure how route here
     }
   };
 
-  render() {
+  public render() {
     console.log("Testing console message in login");
     return (
       <Scaffold view={View.LOGIN}>
@@ -90,7 +86,7 @@ class Login extends React.Component<Props, State> {
           </form>
           <div className="button">
             <Link className="login-button" href="/stories">
-              LOGIN
+              LOGIN &gt;&gt;
             </Link>
           </div>
         </div>

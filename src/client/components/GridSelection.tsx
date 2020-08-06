@@ -32,9 +32,7 @@ export default function Selection(props: Props) {
           <Link key={item.link} className="selection-category" to={item.link}>
             <div className="selection-category-content">
               <div className="selection-category-text">
-                <Typography style={textStyle}>
-                  <Box fontWeight="fontWeightBold">{item.title}</Box>
-                </Typography>
+                <Typography style={{ fontWeight: "bold", ...textStyle }}>{item.title}</Typography>
                 {item.subtitle ? (
                   <div className="selection-category-text-subtitle">
                     <i style={textStyle}>{item.subtitle}</i>

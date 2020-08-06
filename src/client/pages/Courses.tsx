@@ -1,16 +1,27 @@
-import React from "react";
-
-import Scaffold from "../components/Scaffold";
-import Selection from "../components/GridSelection";
-import { View } from "../constants";
-import { Typography } from "@material-ui/core";
-import { courses } from "../Sample";
-
-import "./Curricula.css";
+import { callElectron } from "@app/services/content";
 import { LinkPair } from "@app/util";
+import { ContentArg } from "@common/messages";
+import { Course } from "@common/schema";
+import { Typography } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import Selection from "../components/GridSelection";
+import Scaffold from "../components/Scaffold";
+import { View } from "../constants";
+// import { courses } from "../../common/Sample";
+import "./Curricula.css";
 
 // Creates a grid of all the courses available to the account holder
 export default function Courses() {
+  const [courses, setCourses] = useState<Course[]>([]);
+
+  useEffect(() => {
+    const getCourses = async () => {
+      setCourses((await callElectron(ContentArg.GET_COURSES)) as Course[]);
+    };
+
+    getCourses();
+  }, []);
+
   return (
     <Scaffold view={View.COURSES}>
       <div className="curricula-container">
@@ -32,7 +43,7 @@ export default function Courses() {
             return {
               title: c.title,
               link: "/course/" + c.id,
-            } as LinkPair
+            } as LinkPair;
           })}
           view={View.COURSES}
           colNum={2}
