@@ -1,14 +1,20 @@
 import { Handler, Parser } from "htmlparser2/lib/Parser";
-import { filter, find, get, map, size, slice, sortBy } from "lodash";
+import { filter, find, get, map, size, sortBy } from "lodash";
 import querystring from "querystring";
-import { MAttempt, MCourse, MQuestion, MQuestionType, MSection } from "../../common/moodleSchema";
 import {
-  ContentProgress,
+  MAttempt,
+  MCourse,
+  MQuestion,
+  MQuestionType,
+  MQuiz,
+  MSection,
+} from "../../common/moodleSchema";
+import {
   ContentService,
   ContentType,
   Course,
-  GoodStory,
   Lesson,
+  LessonType,
   McqQuestion,
   Question,
   QuestionType,
@@ -62,6 +68,7 @@ const courseMap = (c: MCourse, sections: MSection[]): Course => ({
                   id: "" + module.id,
                   title: module.name,
                   content: {},
+                  lessonType: module.modname === "quiz" ? LessonType.STORY : "",
                 } as Lesson)
             ),
           },
@@ -89,10 +96,7 @@ export const moodleContentService: ContentService = {
       callFunction(COURSE_GET_CONTENTS, { courseid: id }),
     ]);
     const course = find(courses, (c) => "" + c.id === id);
-
-    const mapped = courseMap(course, sections);
-
-    return mapped;
+    return courseMap(course, sections);
   },
 
   getLesson: async (courseid: string, tierid: string, moduleid: string, lessonid: string) => {
@@ -104,7 +108,7 @@ export const moodleContentService: ContentService = {
     );
     if (size(modules) === 0) {
       // TODO error out
-      throw "No modules found";
+      throw new Error("No modules found");
     }
     const module = modules[0];
 
@@ -112,63 +116,42 @@ export const moodleContentService: ContentService = {
 
     console.log("lesson", lesson);
 
-    // Convert lessonid to quizid
-    const quizzesInCourse = await callFunction(QUIZ_GET_QUIZZES_IN_COURSE, {
-      "courseids[]": courseid,
-    });
+    // Based on lesson type return lesson
+    switch (lesson.lessonType) {
+      case LessonType.STORY:
+        // Convert lessonid to quizid
+        const quizzesInCourse = await callFunction(QUIZ_GET_QUIZZES_IN_COURSE, {
+          "courseids[]": courseid,
+        });
 
-    console.log("quizzes in course", quizzesInCourse);
+        console.log("quizzes in course", quizzesInCourse);
 
-    // remember, "module" in moodle corresponds to lesson
-    const quiz = find(quizzesInCourse.quizzes, (q) => q.coursemodule === +lessonid);
+        // remember, "module" in moodle corresponds to lesson
+        const quiz = find(quizzesInCourse.quizzes as MQuiz[], (q) => q.coursemodule === +lessonid);
 
-    if (!quiz) {
-      throw "Can't find quiz";
+        if (!quiz) {
+          throw new Error("Can't find quiz");
+        }
+
+        const [story, questions] = await getStoryFromQuiz(quiz);
+        lesson.content = {
+          story,
+          questions,
+          vocab: [],
+        };
+        break;
+      default:
+        console.warn("unknown lesson!");
+        break;
     }
-
-    const [story, questions] = await getQuizAsStory(quiz.id);
-    lesson.content = {
-      story,
-      questions,
-      vocab: [],
-    } as GoodStory;
 
     return lesson;
   },
 
-  getAllContent: async (c: ContentType) => [],
+  // TODO delete
+  getAllContent: async () => [],
   getContent: async (c: ContentType, classLevel: number, num: number) => {
-    // First identify the attempt id for this quiz
-    // TODO map classLevel, num -> quizid
-    const attempts = await callFunction(QUIZ_GET_ATTEMPTS, {
-      quizid: 1,
-      includepreviews: 1,
-      status: "all",
-    });
-
-    let attempt: MAttempt;
-    if (size(attempts.attempts) === 0) {
-      // Need to start a new attempt
-      const attemptStart = await callFunction(QUIZ_START_ATTEMPT, { quizid: 1 });
-
-      attempt = attemptStart.attempt;
-    } else {
-      attempt = get(sortBy(attempts.attempts, "attempt"), "[0]");
-    }
-
-    // Use the layout to understand the fields in here
-    const attemptData = await callFunction(QUIZ_GET_ATTEMPT_DATA, {
-      attemptid: attempt.id,
-      page: 0,
-    });
-
-    const questions = attemptData.questions as MQuestion[];
-    const story = parseStory(questions[0]);
-
-    // Pages 1-N are the questions
-    const processedQuestions = map(slice(questions, 1), (q) => parseQuestionTextFromHtml(q));
-
-    return { classLevel: 1, num: 0, questions: processedQuestions, story } as Story;
+    return { classLevel, num, questions: [], story: [] } as Story;
   },
   getContentProgress: async (c: ContentType, classLevel: number, num: number) => ({
     answers: [],
@@ -176,8 +159,38 @@ export const moodleContentService: ContentService = {
     num,
     type: c,
   }),
-  submitContentProgress: async (cp: ContentProgress) => {},
+  submitContentProgress: async () => {},
 };
+
+class StoryHandler implements Partial<Handler> {
+  public lines: string[];
+  public level: number;
+  public inP: boolean;
+
+  constructor() {
+    this.lines = [];
+    this.level = -1;
+    this.inP = false;
+  }
+
+  public onopentag(name: string, attribs: Record<string, any>) {
+    if (name === "p") {
+      this.inP = true;
+    }
+  }
+
+  public ontext(text: string) {
+    if (this.inP) {
+      this.lines.push(text);
+    }
+  }
+
+  public onclosetag(name: string) {
+    if (this.inP && name === "p") {
+      this.inP = false;
+    }
+  }
+}
 
 // Handles any qtext-only html
 class BasicHandler implements Partial<Handler> {
@@ -315,16 +328,16 @@ class FullHandler implements Partial<Handler> {
 }
 */
 
+// Helper to parse general HTML with a handler
 const parse = (html: string, handler: Partial<Handler>) => {
   const parser = new Parser(handler);
   parser.write(html);
   parser.end();
 };
 
-const parseStory = (q: MQuestion) => {
-  const handler = new BasicHandler();
-  parse(q.html, handler);
-
+const parseStory = (story: string) => {
+  const handler = new StoryHandler();
+  parse(story, handler);
   return handler.lines;
 };
 
@@ -347,11 +360,11 @@ const parseQuestionTextFromHtml = (q: MQuestion): Question => {
   }
 };
 
-const getQuizAsStory = async (quizid: number): Promise<[string[], Question[]]> => {
+// Convert an MQuiz into an array of strings (the story) and an array of questions
+const getStoryFromQuiz = async (quiz: MQuiz): Promise<[string[], Question[]]> => {
   // First identify the attempt id for this quiz
-  // TODO map classLevel, num -> quizid
   const attempts = await callFunction(QUIZ_GET_ATTEMPTS, {
-    quizid,
+    quizid: quiz.id,
     includepreviews: 1,
     status: "all",
   });
@@ -359,7 +372,7 @@ const getQuizAsStory = async (quizid: number): Promise<[string[], Question[]]> =
   let attempt: MAttempt;
   if (size(attempts.attempts) === 0) {
     // Need to start a new attempt
-    const attemptStart = await callFunction(QUIZ_START_ATTEMPT, { quizid });
+    const attemptStart = await callFunction(QUIZ_START_ATTEMPT, { quizid: quiz.id });
 
     attempt = attemptStart.attempt;
   } else {
@@ -373,12 +386,8 @@ const getQuizAsStory = async (quizid: number): Promise<[string[], Question[]]> =
   });
 
   const questions = attemptData.questions as MQuestion[];
-
-  // "Question" 0 is the story
-  const story = parseStory(questions[0]);
-
-  // "Questions" 1-N are the questions
-  const processedQuestions = map(slice(questions, 1), (q) => parseQuestionTextFromHtml(q));
+  const story = parseStory(quiz.intro);
+  const processedQuestions = map(questions, (q) => parseQuestionTextFromHtml(q));
 
   return [story, processedQuestions];
 };

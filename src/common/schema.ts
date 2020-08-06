@@ -30,10 +30,15 @@ export interface BaseDoc {
 ////// CONTENT //////
 
 // The different types of content
+// TODO delete
 export enum ContentType {
   STORY = "story",
   WORD_SEARCH = "wordsearch",
   TASK = "task",
+}
+
+export enum LessonType {
+  STORY = "story",
 }
 
 export interface Content extends BaseDoc {
@@ -93,6 +98,7 @@ export interface ContentService {
 export interface Lesson {
   title: string;
   id: string;
+  lessonType?: LessonType;
   content: any;
 }
 

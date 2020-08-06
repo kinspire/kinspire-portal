@@ -51,5 +51,14 @@ export interface MSection {
 export interface MModule {
   id: number;
   name: string;
+  description?: string;
   modname: string; // TODO module enum
+}
+
+export interface MQuiz {
+  id: number;
+  course: number;
+  coursemodule: number;
+  name: string;
+  intro: string;
 }
