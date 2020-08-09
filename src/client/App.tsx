@@ -9,13 +9,11 @@ import { portalTheme } from "./components/Theme";
 import Activities from "./pages/Activities";
 import Course from "./pages/Course";
 import Courses from "./pages/Courses";
-// import Activities from "./pages/Activities";
 import Home from "./pages/Home";
 import Lesson from "./pages/Lesson";
 import Login from "./pages/Login";
 import Module from "./pages/Module";
 import Register from "./pages/Register";
-// import Materials from "./pages/Materials";
 import Test from "./pages/Test";
 import WordSearch from "./pages/WordSearch";
 import WordSearches from "./pages/WordSearches";
@@ -29,9 +27,9 @@ const App: React.FC = () => {
         <main>
           <Header />
           <Switch>
+            <Route path="/lesson/:course/:tier/:module/:lesson" component={Lesson} />
             <Route path="/home" component={Home} />
             <Route path="/activities" component={Activities} />
-            {/* Path for lesson */}
             <Route path="/module/:course/:tier/:module" component={Module} />
             <Route path="/course/:id" component={Course} />
             <Route path="/courses" component={Courses} />

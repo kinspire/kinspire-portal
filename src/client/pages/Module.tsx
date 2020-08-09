@@ -2,13 +2,13 @@ import { callElectron } from "@app/services/content";
 import { LinkPair } from "@app/util";
 import { ContentArg } from "@common/messages";
 import { Course } from "@common/schema";
-import { Typography } from "@material-ui/core";
+import { Typography, Button, Link } from "@material-ui/core";
 import { find, get } from "lodash";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Selection from "../components/GridSelection";
 import Scaffold from "../components/Scaffold";
-import { View } from "../constants";
+import { View, getColor } from "../constants";
 import "./Curricula.css";
 
 interface Params {
@@ -58,6 +58,9 @@ export default function Module() {
             />
           </>
         )}
+        <Button style={{ backgroundColor: getColor(View.COURSES) }}>
+          <Link href="/home">BACK</Link>
+        </Button>
       </div>
     </Scaffold>
   );
