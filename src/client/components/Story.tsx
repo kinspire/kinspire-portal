@@ -1,36 +1,25 @@
-import {
-  Box,
-  Button,
-  FormControlLabel,
-  Grid,
-  Radio,
-  RadioGroup,
-  Typography,
-} from "@material-ui/core";
+import { ContentArg } from "@common/messages";
+import { Answer, Lesson, McqQuestion, Story } from "@common/schema";
+import { Button, FormControlLabel, Grid, Radio, RadioGroup, Typography } from "@material-ui/core";
 import { forEach, get, join, map, size } from "lodash";
-import log from "loglevel";
 import React from "react";
-import { RouteComponentProps } from "react-router";
+import { Link } from "react-router-dom";
 import swal from "sweetalert";
-
+import { View } from "../constants";
+import { callElectron } from "../services/content";
+import Scaffold from "./Scaffold";
 import "./Story.css";
 
-import Scaffold from "../components/Scaffold";
-import { View } from "../constants";
-import { service } from "../services/content";
-import { Answer, Story, ContentType, McqQuestion } from "@common/schema";
-import { Link } from "react-router-dom";
-
-interface Params {
-  classLevel: string;
-  num: string;
+interface Props {
+  course: string;
+  tier: string;
+  module: string;
+  lesson: string;
 }
-
-interface Props extends RouteComponentProps<Params> {}
 
 interface State {
   answers: Answer[];
-  content?: Story; // TODO
+  lesson?: Lesson;
   correct_answers: any[]; // TODO
 }
 
@@ -42,23 +31,14 @@ class StoryPage extends React.Component<Props, State> {
 
   // Load story and any progress the user might have had for this story
   public async componentDidMount() {
-    const { classLevel, num } = this.props.match.params;
     try {
-      const values = await Promise.all([
-        service.getContent(ContentType.STORY, +classLevel, +num),
-        service.getContentProgress(ContentType.STORY, +classLevel, +num),
-      ]);
-      const story = values[0] as Story;
-      log.debug(story);
+      const lesson = (await callElectron(ContentArg.GET_LESSON, this.props)) as Lesson;
+
       this.setState({
-        content: story,
+        lesson,
         // If there are no answers, then set up default answers
-        answers: get(
-          values[1],
-          "answers",
-          map(get(story, "questions"), (q) => (q.type === "mcq" ? -1 : ""))
-        ),
-        correct_answers: map(get(story, "questions"), (q) =>
+        answers: map(get(lesson.content, "questions"), (q) => (q.type === "mcq" ? -1 : "")),
+        correct_answers: map(get(lesson.content, "questions"), (q) =>
           q.type === "mcq" ? (q as McqQuestion).correctChoice : ""
         ),
       });
@@ -82,38 +62,41 @@ class StoryPage extends React.Component<Props, State> {
   };
 
   // Submit the answers
-  public handleSubmit = () => {
-    const { answers } = this.state;
-    const { correct_answers } = this.state;
-    service
-      .submitContentProgress({
+  public handleSubmit = async () => {
+    try {
+      /*
+      await getContent(ContentArg.SUBMIT_CONTENT_PROGRESS, {
         type: ContentType.STORY,
         classLevel: +this.props.match.params.classLevel,
         num: +this.props.match.params.num,
         answers,
-      })
-      .then(() => {
-        let res = "";
-        for (let i = 0; i < answers.length; i++) {
-          if (correct_answers[i] !== "") {
-            if (answers[i] === correct_answers[i]) {
-              res += `Question ${i + 1} is correct!\n`;
-            } else {
-              res += `Question ${i + 1} is incorrect.\n`;
-            }
+      } as ContentProgress);
+
+      let res = "";
+      for (let i = 0; i < answers.length; i++) {
+        if (correct_answers[i] !== "") {
+          if (answers[i] === correct_answers[i]) {
+            res += `Question ${i + 1} is correct!\n`;
+          } else {
+            res += `Question ${i + 1} is incorrect.\n`;
           }
-          swal(res);
         }
-      })
-      .catch((err) => swal("Error: " + err));
+        swal(res);
+      }
+      */
+    } catch (err) {
+      swal("Error: " + err);
+    }
   };
 
   // Generates the HTML for the story based on the given JSON blob
   public generateStory = () => {
-    if (!this.state.content) {
+    if (!this.state.lesson || !this.state.lesson.content) {
       return "";
     }
-    const { content } = this.state;
+    const {
+      lesson: { content },
+    } = this.state;
 
     const paragraphs = content.story;
     const vocab = content.vocab || [];
@@ -177,11 +160,11 @@ class StoryPage extends React.Component<Props, State> {
 
   // Generate the questions HTML based on state
   public generateQuestions = () => {
-    if (!this.state.content) {
+    if (!this.state.lesson || !this.state.lesson.content) {
       return "";
     }
 
-    const questions = this.state.content.questions;
+    const questions = this.state.lesson.content.questions;
 
     // Iterate through the questions and create JSX in `output`
     const output: any[] = [];
@@ -232,7 +215,7 @@ class StoryPage extends React.Component<Props, State> {
           );
           break;
         default:
-          log.warn(`Unknown question type: ${question.type}`);
+          console.warn(`Unknown question type: ${question.type}`);
           break;
       }
     });
@@ -250,14 +233,7 @@ class StoryPage extends React.Component<Props, State> {
                 className="stories-story-title"
                 style={{ color: "#A9BB59", fontSize: "45px", fontWeight: "bold" }}
               >
-                {get(this.state.content, "title")}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography className="stories-story-title">
-                <i>
-                  ({get(this.state.content, "classLevel")}-{get(this.state.content, "num")})
-                </i>
+                {get(this.state.lesson, "title")}
               </Typography>
             </Grid>
           </Grid>

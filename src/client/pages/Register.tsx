@@ -10,7 +10,7 @@ import "./Authentication.css";
 
 // interface State {}
 
-class Register extends React.Component {
+export default class Register extends React.Component {
   public render() {
     return (
       <Scaffold view={View.LOGIN}>
@@ -82,5 +82,3 @@ class Register extends React.Component {
     );
   }
 }
-
-export default Register;

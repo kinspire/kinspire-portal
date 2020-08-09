@@ -5,13 +5,9 @@ import { Button, Link, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Scaffold from "../components/Scaffold";
 import { getColor, View } from "../constants";
-import "./Authentication.css";
+import "./Login.css";
 
-interface Props {}
-
-interface State {}
-
-class Login extends React.Component<Props, State> {
+class Login extends React.Component {
   public state = {
     authenticateUsername: false,
     authenticatePassword: false,

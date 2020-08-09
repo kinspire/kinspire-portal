@@ -1,15 +1,15 @@
 import { CircularProgress, Typography } from "@material-ui/core";
 import _ from "lodash";
-import log from "loglevel";
 import React, { useEffect, useState } from "react";
 // import React, { useEffect, useState } from "react";
 
+import { ContentType, Content } from "@common/schema";
 import Scaffold from "../components/Scaffold";
 import Selection from "../components/GridSelection";
 import { View } from "../constants";
-import { service } from "../services/content";
+import { callElectron } from "../services/content";
 import { LinkPair } from "../util";
-import { ContentType } from "@common/schema";
+import { ContentArg } from "@common/messages";
 
 /*
 export default function Stories() {
@@ -38,7 +38,9 @@ export default function WordSearches() {
   useEffect(() => {
     const fetchItems = async () => {
       // Sort stories by class level and number
-      const wordSearchList = (await service.getAllContent(ContentType.WORD_SEARCH)).sort((a, b) =>
+      const wordSearchList = ((await callElectron(ContentArg.GET_ALL_CONTENT, {
+        type: ContentType.WORD_SEARCH,
+      })) as Content[]).sort((a, b) =>
         a.classLevel !== b.classLevel ? a.classLevel - b.classLevel : a.num - b.num
       );
 

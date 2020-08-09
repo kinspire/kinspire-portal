@@ -1,6 +1,7 @@
 import { ipcMain } from "electron";
+
 import { Messages } from "../common/messages";
-import { registerContent } from "./content";
+import { registerContentListener } from "./content";
 
 export default function register() {
   ipcMain.on(Messages.Ping.REQUEST, (event, arg) => {
@@ -9,5 +10,5 @@ export default function register() {
   });
 
   // Register all sublisteners
-  registerContent();
+  registerContentListener();
 }
