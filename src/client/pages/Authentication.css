@@ -1,0 +1,31 @@
+.authentication {
+  margin: auto;
+  width: 300px;
+}
+
+.auth-input-block {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.auth-descr {
+  color: #908e8d;
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.auth-link {
+  color: #908e8d !important;
+  font-family: "Rajdhani";
+  font-weight: 600;
+}
+
+.register-block {
+  margin: auto;
+  width: 75%;
+  position: relative;
+}
+
+.individual-register-input {
+  padding-right: 25px !important;
+}

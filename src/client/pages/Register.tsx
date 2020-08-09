@@ -1,111 +1,81 @@
 import React from "react";
 
-import Scaffold from "../components/Scaffold";
-import { View } from "../constants";
+import { Button, Grid, Link, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import "./Register.css";
-import { Link, Typography, Grid } from "@material-ui/core";
+import Scaffold from "../components/Scaffold";
+import { getColor, View } from "../constants";
+import "./Authentication.css";
 
-interface Props {}
+// interface Props {}
 
-interface State {}
+// interface State {}
 
-class Register extends React.Component<Props, State> {
-  render() {
+class Register extends React.Component {
+  public render() {
     return (
       <Scaffold view={View.LOGIN}>
         <div className="page-title">
-          <Typography variant="h1"> REGISTER </Typography>
-          <Typography className="register-decr">
-            Fill out all the information below to sign-up!
-            <Link href="/login" className="login-link" underline="hover">
-              {" "}
-              <br />
-              {"<< Go back to the Login page."}
+          <Typography variant="h1" style={{ color: getColor(View.HOME) }}>
+            {" "}
+            REGISTER{" "}
+          </Typography>
+          <Typography className="auth-descr">
+            Fill out all the information below to sign-up! <br />
+            <Link href="/login" className="auth-link" underline="hover">
+              Go back to the Login page.
             </Link>
           </Typography>
         </div>
-        <div style={{ width: "80%", margin: "auto" }}>
-          <Grid container>
-            {/* <div className="pre-auth"> */}
-            {/* <form className="register-input-block" noValidate autoComplete="off"> */}
-            <Grid item xs={4}>
-              <div className="input-title">
-                {" "}
-                FRIST NAME <br />
-                <TextField
-                  id="input-fName"
-                  label=""
-                  variant="outlined"
-                  style={{ backgroundColor: "white" }}
-                />
-              </div>
+        <div className="register-block">
+          <form className="auth-input-block" noValidate autoComplete="off">
+            <Grid container>
+              <Grid item xs={4} className="individual-register-input">
+                <Typography variant="h4" style={{ color: getColor(View.HOME) }}>
+                  {" "}
+                  FRIST NAME
+                </Typography>
+                <TextField id="input-fName" label="" variant="outlined" />
+              </Grid>
+              <Grid item xs={4} className="individual-register-input">
+                <Typography variant="h4" style={{ color: getColor(View.HOME) }}>
+                  {" "}
+                  LAST NAME
+                </Typography>
+                <TextField id="input-lName" label="" variant="outlined" />
+              </Grid>
+              <Grid item xs={4} className="individual-register-input">
+                <Typography variant="h4" style={{ color: getColor(View.HOME) }}>
+                  {" "}
+                  BIRTHDAY{" "}
+                </Typography>
+                <TextField id="input-birthday" label="" variant="outlined" />
+              </Grid>
+              <Grid item xs={4} className="individual-register-input">
+                <Typography variant="h4" style={{ color: getColor(View.HOME) }}>
+                  {" "}
+                  EMAIL ADDRESS{" "}
+                </Typography>
+                <TextField id="input-email" label="" variant="outlined" />
+              </Grid>
+              <Grid item xs={4} className="individual-register-input">
+                <Typography variant="h4" style={{ color: getColor(View.HOME) }}>
+                  {" "}
+                  USERNAME{" "}
+                </Typography>
+                <TextField id="input-username" label="" variant="outlined" />
+              </Grid>
+              <Grid item xs={4} className="individual-register-input">
+                <Typography variant="h4" style={{ color: getColor(View.HOME) }}>
+                  {" "}
+                  PASSWORD{" "}
+                </Typography>
+                <TextField id="input-password" label="" variant="outlined" />
+              </Grid>
             </Grid>
-            <Grid item xs={4}>
-              <div className="input-title">
-                {" "}
-                LAST NAME <br />
-                <TextField
-                  id="input-lName"
-                  label=""
-                  variant="outlined"
-                  style={{ backgroundColor: "white" }}
-                />
-              </div>
-            </Grid>
-            <Grid item xs={4}>
-              <div className="input-title">
-                {" "}
-                BIRTHDAY <br />
-                <TextField
-                  id="input-birthday"
-                  label=""
-                  variant="outlined"
-                  style={{ backgroundColor: "white" }}
-                />
-              </div>
-            </Grid>
-            <Grid item xs={4}>
-              <div className="input-title">
-                {" "}
-                EMAIL ADDRESS <br />
-                <TextField
-                  id="input-email"
-                  label=""
-                  variant="outlined"
-                  style={{ backgroundColor: "white" }}
-                />
-              </div>
-            </Grid>
-            <Grid item xs={4}>
-              <div className="input-title">
-                {" "}
-                USERNAME <br />
-                <TextField
-                  id="input-username"
-                  label=""
-                  variant="outlined"
-                  style={{ backgroundColor: "white" }}
-                />
-              </div>
-            </Grid>
-            <Grid item xs={4}>
-              <div className="input-title">
-                {" "}
-                PASSWORD <br />
-                <TextField
-                  id="input-password"
-                  label=""
-                  variant="outlined"
-                  style={{ backgroundColor: "white" }}
-                />
-              </div>
-            </Grid>
-          </Grid>
-          {/* </form> */}
-          <Link className="login-button" href="/stories">
-            SIGN UP
-          </Link>
+          </form>
+          <Button style={{ backgroundColor: getColor(View.HOME) }}>
+            <Link href="/home">SIGN UP</Link>
+          </Button>
         </div>
         {/* Forgot password option needes */}
       </Scaffold>

@@ -1,18 +1,18 @@
 import React from "react";
 
 // import App from "../App";
-import Scaffold from "../components/Scaffold";
+import { Button, Link, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import { View } from "../constants";
-import "./Login.css";
-import { Link, Typography } from "@material-ui/core";
+import Scaffold from "../components/Scaffold";
+import { getColor, View } from "../constants";
+import "./Authentication.css";
 
 interface Props {}
 
 interface State {}
 
 class Login extends React.Component<Props, State> {
-  state = {
+  public state = {
     authenticateUsername: false,
     authenticatePassword: false,
   };
@@ -28,73 +28,69 @@ class Login extends React.Component<Props, State> {
   // then select view according to credentials
   // then route app to that view
 
-  handleUsername = (event) => {
+  public handleUsername = (event) => {
     if (event.target.value === "Esha") {
       this.setState({ authenticateUsername: true });
     }
   };
 
-  handlePassword = (event) => {
+  public handlePassword = (event) => {
     if (event.target.value === "enter") {
       this.setState({ authenticatePassword: true });
     }
   };
 
-  handleLogin = () => {
+  public handleLogin = () => {
     if (this.state.authenticateUsername && this.state.authenticatePassword) {
       console.log("Success!");
       // not sure how route here
     }
   };
 
-  render() {
+  public render() {
     console.log("Testing console message in login");
     return (
       <Scaffold view={View.LOGIN}>
         <div className="page-title">
-          <Typography variant="h1">LOGIN</Typography>
-          <Typography className="login-descr">
+          <Typography variant="h1" style={{ color: getColor(View.HOME) }}>
+            LOGIN
+          </Typography>
+          <Typography className="auth-descr">
             Sign in with your username and password.
-            <div className="register-link-descr">
-              New to Portal?{" "}
-              <Link href="/register" className="register-link" underline="hover">
+            <Typography className="register-link-descr">
+              New to Portal?
+              <Link href="/register" className="auth-link" underline="hover">
+                {" "}
                 Register Here.
               </Link>
-            </div>
+            </Typography>
           </Typography>
         </div>
         <div className="authentication">
-          <form className="login-input-block" noValidate autoComplete="off">
-            <div className="input-title">
-              {" "}
-              USERNAME <br />
-              <TextField
-                id="input-username"
-                label=""
-                variant="outlined"
-                onChange={this.handleUsername}
-                style={{ backgroundColor: "white" }}
-              />
-            </div>
-            <div className="input-title">
-              {" "}
-              PASSWORD <br />
-              <TextField
-                id="input-password"
-                label=""
-                variant="outlined"
-                onChange={this.handlePassword}
-                style={{ backgroundColor: "white" }}
-              />
-            </div>
+          <form className="auth-input-block" noValidate autoComplete="off">
+            <Typography variant="h4" style={{ color: getColor(View.HOME) }}>
+              USERNAME
+            </Typography>
+            <TextField
+              id="input-username"
+              label=""
+              variant="outlined"
+              onChange={this.handleUsername}
+            />
+            <Typography variant="h4" style={{ color: getColor(View.HOME) }}>
+              PASSWORD
+            </Typography>
+            <TextField
+              id="input-password"
+              label=""
+              variant="outlined"
+              onChange={this.handlePassword}
+            />
           </form>
-          <div className="button">
-            <Link className="login-button" href="/stories">
-              LOGIN
-            </Link>
-          </div>
+          <Button style={{ backgroundColor: getColor(View.HOME) }}>
+            <Link href="/home">LOGIN</Link>
+          </Button>
         </div>
-        {/* Forgot password option needed */}
       </Scaffold>
     );
   }

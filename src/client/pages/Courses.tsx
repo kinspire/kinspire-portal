@@ -1,30 +1,21 @@
 import React from "react";
 
-import Scaffold from "../components/Scaffold";
-import Selection from "../components/GridSelection";
-import { View } from "../constants";
 import { Typography } from "@material-ui/core";
+import Selection from "../components/GridSelection";
+import Scaffold from "../components/Scaffold";
+import { View } from "../constants";
 import { courses } from "../Sample";
 
-import "./Curricula.css";
 import { LinkPair } from "@app/util";
+import "./Curricula.css";
 
 // Creates a grid of all the courses available to the account holder
 export default function Courses() {
+  const title = "COURSES";
   return (
     <Scaffold view={View.COURSES}>
       <div className="curricula-container">
-        <Typography
-          style={{
-            textAlign: "center",
-            color: "white",
-            fontWeight: "normal",
-            fontSize: "65px",
-            paddingBottom: "3%",
-          }}
-        >
-          Curricula
-        </Typography>
+        <Typography variant="h1">{title.toUpperCase()}</Typography>
 
         {/* Links to all the various courses offered */}
         <Selection
@@ -32,7 +23,7 @@ export default function Courses() {
             return {
               title: c.title,
               link: "/course/" + c.id,
-            } as LinkPair
+            } as LinkPair;
           })}
           view={View.COURSES}
           colNum={2}

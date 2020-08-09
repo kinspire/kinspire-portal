@@ -1,14 +1,14 @@
 import React from "react";
 
-import Scaffold from "../components/Scaffold";
+import { Button, Link, Typography } from "@material-ui/core";
 import Selection from "../components/GridSelection";
-import { View } from "../constants";
-import { Typography } from "@material-ui/core";
+import Scaffold from "../components/Scaffold";
+import { getColor, View } from "../constants";
 import { courses } from "../Sample";
 
-import "./Curricula.css";
 import { LinkPair } from "@app/util";
 import { useParams } from "react-router-dom";
+import "./Curricula.css";
 
 interface Params {
   course: string;
@@ -18,7 +18,6 @@ interface Params {
 
 // Creates a grid of all the sub-topics within a topic
 export default function Module() {
-
   // extracts the topic id from the url
   const params = useParams<Params>();
   const course = courses.find((c) => {
@@ -33,17 +32,7 @@ export default function Module() {
   return (
     <Scaffold view={View.COURSE}>
       <div className="curricula-container">
-        <Typography
-          style={{
-            textAlign: "center",
-            color: "white",
-            fontWeight: "normal",
-            fontSize: "65px",
-            paddingBottom: "3%",
-          }}
-        >
-          {module.title}
-        </Typography>
+        <Typography variant="h3">{module.title.toUpperCase()}</Typography>
 
         {/* Provides links to all the sub-topics offered */}
         <Selection
@@ -55,6 +44,9 @@ export default function Module() {
           })}
           view={View.COURSES}
         />
+        <Button style={{ backgroundColor: getColor(View.COURSES) }}>
+          <Link href="/home">BACK</Link>
+        </Button>
       </div>
     </Scaffold>
   );

@@ -2,4 +2,5 @@
   /* TODO make this computed */
   min-height: calc(100vh - 112px);
   position: relative;
+  padding-bottom: 8%;
 }
