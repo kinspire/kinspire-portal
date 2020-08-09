@@ -42,16 +42,8 @@ export default function Module() {
       <div className="curricula-container">
         {module && (
           <>
-            <Typography
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontWeight: "normal",
-                fontSize: "65px",
-                paddingBottom: "3%",
-              }}
-            >
-              {module.title}
+            <Typography variant="h3" style={{ color: "white" }}>
+              {module.title.toUpperCase()}
             </Typography>
 
             {/* Provides links to all the sub-topics offered */}

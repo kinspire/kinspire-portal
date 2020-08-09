@@ -5,7 +5,7 @@ import { Button, Link, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Scaffold from "../components/Scaffold";
 import { getColor, View } from "../constants";
-import "./Login.css";
+import "./Authentication.css";
 
 class Login extends React.Component {
   public state = {

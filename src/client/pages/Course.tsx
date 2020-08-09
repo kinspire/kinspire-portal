@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import ListSelection from "../components/ListSelection";
 import Scaffold from "../components/Scaffold";
 import { getColor, View } from "../constants";
-import { courses } from "../Sample";
 
 import { callElectron } from "@app/services/content";
 import { ContentArg } from "@common/messages";
@@ -40,16 +39,8 @@ export default function Course() {
       <div className="curricula-container">
         {course && (
           <>
-            <Typography
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontWeight: "normal",
-                fontSize: "65px",
-                paddingBottom: "3%",
-              }}
-            >
-              {course.title}
+            <Typography variant="h2" style={{ color: getColor(View.COURSES) }}>
+              {course.title.toUpperCase()}
             </Typography>
 
             {/* Provides links to all the topics offered */}
