@@ -17,10 +17,13 @@
     "node-fetch": "^2.6.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-redux": "^7.2.1",
     "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5",
     "sweetalert": "^2.1.2",
     "typeface-montserrat": "^0.0.75",
-    "typeface-rajdhani": "^0.0.72"
+    "typeface-rajdhani": "^0.0.72",
+    "typesafe-actions": "^5.1.0"
   },
   "browserslist": {
     "production": [
@@ -41,6 +44,8 @@
     "@types/loglevel": "^1.6.3",
     "@types/node": "12",
     "@types/node-fetch": "^2.5.7",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^6.0.3",
@@ -67,20 +72,24 @@
     "webpack-dev-server": "^3.10.3"
   },
   "scripts": {
-    "clean-desktop": "rimraf ./dist",
-    "desktop": "run-p watch electron",
-    "electron": "wait-on ./dist/electron/main.js && electron . --inspect",
-    "watch": "tsc -w --project tsconfig.desktop.json",
+    "comment1": "--------BUILD SCRIPTS--------",
     "build:client": "webpack --mode=production",
     "build:desktop": "tsc --project tsconfig.desktop.json",
     "build": "run-p build:client build:desktop",
+    "comment2": "--------DEV SCRIPTS---------",
+    "electron": "wait-on ./dist/electron/main.js && electron . --inspect",
+    "clean:watch": "rimraf ./dist",
+    "do:watch": "tsc -w --project tsconfig.desktop.json",
+    "watch": "run-s clean:watch do:watch",
     "start:client": "cross-env BROWSER=none webpack-dev-server -d",
-    "start:desktop": "run-s clean-desktop desktop",
+    "start:desktop": "run-p watch electron",
     "start": "run-p start:client start:desktop",
+    "comment3": "---------PROD SCRIPTS----------",
     "prepack": "run-s build",
     "pack": "electron-builder --dir",
     "predist": "run-s build",
     "dist": "electron-builder",
+    "comment4": "---------LINT SCRIPTS----------",
     "prettify": "prettier --config .prettierrc --write 'src/**/*.{ts,tsx,css}'",
     "lint": "tslint --fix --project ."
   },
