@@ -5,7 +5,6 @@ import { ThemeProvider } from "@material-ui/core";
 import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import { portalTheme } from "./components/Theme";
 import Activities from "./pages/Activities";
 import Course from "./pages/Course";
 import Courses from "./pages/Courses";
@@ -17,6 +16,7 @@ import Register from "./pages/Register";
 import Test from "./pages/Test";
 import WordSearch from "./pages/WordSearch";
 import WordSearches from "./pages/WordSearches";
+import { portalTheme } from "./Theme";
 
 const App: React.FC = () => {
   // TODO adjust title pl0x

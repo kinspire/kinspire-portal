@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { Button, Link, Typography } from "@material-ui/core";
-import { useParams } from "react-router-dom";
+import { Button, Typography } from "@material-ui/core";
+import { Link, useParams } from "react-router-dom";
 import ListSelection from "../components/ListSelection";
 import Scaffold from "../components/Scaffold";
 import { getColor, View } from "../constants";
@@ -10,7 +10,7 @@ import { courses } from "../../common/Sample";
 import { callElectron } from "@app/services/content";
 import { ContentArg } from "@common/messages";
 import { Course } from "@common/schema";
-import "./Curricula.css";
+import "./Courses.css";
 
 interface Params {
   id: string;
@@ -37,7 +37,7 @@ export default function Course() {
   // console.log(course);
   return (
     <Scaffold view={View.COURSE}>
-      <div className="curricula-container">
+      <div className="courses-container">
         {course && (
           <>
             <Typography variant="h2" style={{ color: getColor(View.COURSES) }}>
@@ -49,7 +49,7 @@ export default function Course() {
           </>
         )}
         <Button style={{ backgroundColor: getColor(View.COURSES) }}>
-          <Link href="/courses">BACK</Link>
+          <Link to="/courses">BACK</Link>
         </Button>
       </div>
     </Scaffold>

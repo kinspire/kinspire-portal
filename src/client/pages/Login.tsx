@@ -1,7 +1,8 @@
 import React from "react";
 
 // import App from "../App";
-import { Button, Link, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { Button, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Scaffold from "../components/Scaffold";
 import { getColor, View } from "../constants";
@@ -55,8 +56,7 @@ class Login extends React.Component {
             Sign in with your username and password.
             <Typography className="register-link-descr">
               New to Portal?
-              <Link href="/register" className="auth-link" underline="hover">
-                {" "}
+              <Link to="/register" className="auth-link">
                 Register Here.
               </Link>
             </Typography>
@@ -64,7 +64,7 @@ class Login extends React.Component {
         </div>
         <div className="authentication">
           <form className="auth-input-block" noValidate autoComplete="off">
-            <Typography variant="h4" style={{ color: getColor(View.HOME) }}>
+            <Typography variant="h5" style={{ color: getColor(View.HOME) }}>
               USERNAME
             </Typography>
             <TextField
@@ -73,7 +73,7 @@ class Login extends React.Component {
               variant="outlined"
               onChange={this.handleUsername}
             />
-            <Typography variant="h4" style={{ color: getColor(View.HOME) }}>
+            <Typography variant="h5" style={{ color: getColor(View.HOME) }}>
               PASSWORD
             </Typography>
             <TextField
@@ -84,7 +84,7 @@ class Login extends React.Component {
             />
           </form>
           <Button style={{ backgroundColor: getColor(View.HOME) }}>
-            <Link href="/home">LOGIN</Link>
+            <Link to="/home">LOGIN</Link>
           </Button>
         </div>
       </Scaffold>

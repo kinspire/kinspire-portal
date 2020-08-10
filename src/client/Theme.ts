@@ -1,4 +1,4 @@
-import { createMuiTheme, withTheme } from "@material-ui/core";
+import { createMuiTheme } from "@material-ui/core";
 
 export const portalTheme = createMuiTheme({
   palette: {
@@ -9,7 +9,7 @@ export const portalTheme = createMuiTheme({
   },
   typography: {
     fontFamily: "Rajdhani",
-    fontSize: 15,
+    fontSize: 20,
   },
   overrides: {
     MuiTypography: {
@@ -24,40 +24,47 @@ export const portalTheme = createMuiTheme({
         paddingBottom: "3%",
       },
       h2: {
-        fontSize: 60,
+        fontSize: 65,
         textAlign: "center",
         paddingBottom: "3%",
         color: "#FFFFFF",
         fontWeight: 600,
       },
       h3: {
-        fontSize: 40,
+        fontSize: 50,
         color: "#FFFFFF",
         borderBottom: "1px solid #FFFFFF",
         marginBottom: "3%",
       },
       h4: {
-        fontSize: 25,
-        fontWeight: 600,
+        fontSize: 38,
+        fontWeight: 800,
+        letterSpacing: "1px",
+        padding: "3% 0%",
+        textAlign: "center",
+      },
+      h5: {
+        fontSize: 30,
+        fontWeight: 500,
         letterSpacing: "1px",
         padding: "3% 0%",
       },
-    },
-    MuiLink: {
-      root: {
-        fontFamily: "Rajdhani",
-        color: "#FFFFFF",
+      h6: {
+        fontSize: 14,
+        color: "#908e8d",
       },
     },
     MuiButton: {
       root: {
         boxShadow: "2px 2px 8px -5px #888888",
         borderRadius: "4px",
+        margin: "3% 0%",
       },
       text: {
         padding: "4px 30px",
-        fontSize: 25,
+        fontSize: 22,
         letterSpacing: "1px",
+        color: "white",
       },
     },
     MuiTextField: {

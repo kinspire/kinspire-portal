@@ -50,22 +50,20 @@
 
 .copyright {
   width: 40%;
-  margin: none;
   float: left;
-  padding: 20px;
+  padding: 1%;
 }
 
 .contact {
   float: right;
   width: 40%;
   text-align: right;
-  padding: 20px;
+  padding: 1%;
 }
 
 .portal-footer {
   width: 100%;
   background-color: #262626;
-  color: #908e8d;
   display: inline-block;
   margin-bottom: -50px;
 }

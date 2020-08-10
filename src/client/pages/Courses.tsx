@@ -8,7 +8,7 @@ import Selection from "../components/GridSelection";
 import Scaffold from "../components/Scaffold";
 import { View } from "../constants";
 // import { courses } from "../../common/Sample";
-import "./Curricula.css";
+import "./Courses.css";
 
 // Creates a grid of all the courses available to the account holder
 export default function Courses() {
@@ -22,12 +22,10 @@ export default function Courses() {
     getCourses();
   }, []);
 
-  const title = "COURSES";
-
   return (
     <Scaffold view={View.COURSES}>
-      <div className="curricula-container">
-        <Typography variant="h1">{title.toUpperCase()}</Typography>
+      <div className="courses-container">
+        <Typography variant="h1">CLASSES</Typography>
 
         {/* Links to all the various courses offered */}
         <Selection

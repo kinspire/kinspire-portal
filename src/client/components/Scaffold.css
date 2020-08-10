@@ -1,6 +1,6 @@
 .portal-container {
   /* TODO make this computed */
-  min-height: calc(100vh - 112px);
+  min-height: calc(100vh - 250px);
   position: relative;
-  padding-bottom: 8%;
+  padding: 3% 0%;
 }

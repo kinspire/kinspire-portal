@@ -5,7 +5,7 @@ import { forEach, get, join, map, size } from "lodash";
 import React from "react";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
-import { View } from "../constants";
+import { View, getColor } from "../constants";
 import { callElectron } from "../services/content";
 import Scaffold from "./Scaffold";
 import "./Story.css";
@@ -225,61 +225,36 @@ class StoryPage extends React.Component<Props, State> {
 
   public render() {
     return (
-      <Scaffold view={View.LESSON}>
-        <div className="story-container">
-          <Grid container justify="center" alignItems="center" spacing={1}>
-            <Grid item xs={12}>
-              <Typography
-                className="stories-story-title"
-                style={{ color: "#A9BB59", fontSize: "45px", fontWeight: "bold" }}
-              >
-                {get(this.state.lesson, "title")}
+      <div className="story-container">
+        <Grid container justify="center" alignItems="center" spacing={1}>
+          <Grid item xs={12}>
+            <Typography variant="h4" style={{ color: getColor(View.COURSES) }}>
+              {get(this.state.lesson, "title")}
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid container className="stories-story" spacing={1}>
+          <Grid item xs={6}>
+            <div className="stories-story-section-story">
+              <Typography variant="h5" style={{ color: getColor(View.COURSES) }}>
+                STORY
               </Typography>
-            </Grid>
+              <div>{this.generateStory()}</div>
+            </div>
           </Grid>
-          <Grid container className="stories-story" spacing={1}>
-            <Grid item xs={6}>
-              <div className="stories-story-section-story">
-                <Typography
-                  variant="h5"
-                  style={{ color: "#A9BB59", fontSize: "30px", paddingBottom: "1%" }}
-                >
-                  STORY
-                </Typography>
-                <div>{this.generateStory()}</div>
-              </div>
-            </Grid>
-            <Grid item xs={6}>
-              <div className="stories-story-section stories-story-section-questions">
-                <Typography
-                  variant="h5"
-                  style={{
-                    color: "#A9BB59",
-                    fontSize: "30px",
-                    paddingBottom: "1%",
-                    paddingLeft: "4%",
-                  }}
-                >
-                  QUESTIONS
-                </Typography>
-                <ol style={{ display: "block" }} type="1">
-                  {this.generateQuestions()}
-                </ol>
-
-                <div id="error" />
-              </div>
-            </Grid>
+          <Grid item xs={6}>
+            <div className="stories-story-section stories-story-section-questions">
+              <Typography variant="h5" style={{ color: getColor(View.COURSES) }}>
+                QUESTIONS
+              </Typography>
+              <ol style={{ display: "block" }} type="1">
+                {this.generateQuestions()}
+              </ol>
+              <div id="error" />
+            </div>
           </Grid>
-          <div className="stories-button">
-            <Button variant="contained">
-              <Link to="/stories">BACK</Link>
-            </Button>
-            <Button variant="contained" style={{ float: "right" }} onClick={this.handleSubmit}>
-              SUBMIT
-            </Button>
-          </div>
-        </div>
-      </Scaffold>
+        </Grid>
+      </div>
     );
   }
 }

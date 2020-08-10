@@ -6,10 +6,12 @@ class Footer extends Component {
   public render() {
     const footer = (
       <div>
-        <Typography className="copyright">@Copyright Kinspire 2020</Typography>
-        <Typography className="contact">
+        <Typography variant="h6" className="copyright">
+          @Copyright Kinspire 2020
+        </Typography>
+        <Typography variant="h6" className="contact">
           Contact us with Questions: <br />
-          board@kinspire.org
+          portal@kinspire.org
         </Typography>
       </div>
     );
