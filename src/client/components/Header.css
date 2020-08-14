@@ -15,7 +15,6 @@
 .portal-menu-item-link {
   display: flex;
   flex-direction: column;
-  
 }
 
 .portal-menu-item-icon {
@@ -47,4 +46,24 @@
   width: 100%;
   display: flex;
   background-color: #262626;
+}
+
+.copyright {
+  width: 40%;
+  float: left;
+  padding: 1%;
+}
+
+.contact {
+  float: right;
+  width: 40%;
+  text-align: right;
+  padding: 1%;
+}
+
+.portal-footer {
+  width: 100%;
+  background-color: #262626;
+  display: inline-block;
+  margin-bottom: -50px;
 }

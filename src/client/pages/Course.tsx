@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-import Scaffold from "../components/Scaffold";
+import { Button, Typography } from "@material-ui/core";
+import { Link, useParams } from "react-router-dom";
 import ListSelection from "../components/ListSelection";
-import { View } from "../constants";
-import { Typography } from "@material-ui/core";
-import { useParams } from "react-router-dom";
+import Scaffold from "../components/Scaffold";
+import { getColor, View } from "../constants";
 import { courses } from "../../common/Sample";
 
-import "./Curricula.css";
-import { Course } from "@common/schema";
 import { callElectron } from "@app/services/content";
 import { ContentArg } from "@common/messages";
+import { Course } from "@common/schema";
+import "./Courses.css";
 
 interface Params {
   id: string;
@@ -37,25 +37,20 @@ export default function Course() {
   // console.log(course);
   return (
     <Scaffold view={View.COURSE}>
-      <div className="curricula-container">
+      <div className="courses-container">
         {course && (
           <>
-            <Typography
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontWeight: "normal",
-                fontSize: "65px",
-                paddingBottom: "3%",
-              }}
-            >
-              {course.title}
+            <Typography variant="h2" style={{ color: getColor(View.COURSES) }}>
+              {course.title.toUpperCase()}
             </Typography>
 
             {/* Provides links to all the topics offered */}
             <ListSelection tiers={course.tiers} view={View.COURSES} courseId={course.id} />
           </>
         )}
+        <Button style={{ backgroundColor: getColor(View.COURSES) }}>
+          <Link to="/courses">BACK</Link>
+        </Button>
       </div>
     </Scaffold>
   );

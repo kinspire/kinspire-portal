@@ -1,11 +1,12 @@
 import React from "react";
 
 // import App from "../App";
-import { Link, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { Button, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Scaffold from "../components/Scaffold";
-import { View } from "../constants";
-import "./Login.css";
+import { getColor, View } from "../constants";
+import "./Authentication.css";
 
 class Login extends React.Component {
   public state = {
@@ -48,49 +49,44 @@ class Login extends React.Component {
     return (
       <Scaffold view={View.LOGIN}>
         <div className="page-title">
-          <Typography variant="h1">LOGIN</Typography>
-          <Typography className="login-descr">
+          <Typography variant="h1" style={{ color: getColor(View.HOME) }}>
+            LOGIN
+          </Typography>
+          <Typography className="auth-descr">
             Sign in with your username and password.
-            <div className="register-link-descr">
-              New to Portal?{" "}
-              <Link href="/register" className="register-link" underline="hover">
+            <Typography className="register-link-descr">
+              New to Portal?
+              <Link to="/register" className="auth-link">
                 Register Here.
               </Link>
-            </div>
+            </Typography>
           </Typography>
         </div>
         <div className="authentication">
-          <form className="login-input-block" noValidate autoComplete="off">
-            <div className="input-title">
-              {" "}
-              USERNAME <br />
-              <TextField
-                id="input-username"
-                label=""
-                variant="outlined"
-                onChange={this.handleUsername}
-                style={{ backgroundColor: "white" }}
-              />
-            </div>
-            <div className="input-title">
-              {" "}
-              PASSWORD <br />
-              <TextField
-                id="input-password"
-                label=""
-                variant="outlined"
-                onChange={this.handlePassword}
-                style={{ backgroundColor: "white" }}
-              />
-            </div>
+          <form className="auth-input-block" noValidate autoComplete="off">
+            <Typography variant="h5" style={{ color: getColor(View.HOME) }}>
+              USERNAME
+            </Typography>
+            <TextField
+              id="input-username"
+              label=""
+              variant="outlined"
+              onChange={this.handleUsername}
+            />
+            <Typography variant="h5" style={{ color: getColor(View.HOME) }}>
+              PASSWORD
+            </Typography>
+            <TextField
+              id="input-password"
+              label=""
+              variant="outlined"
+              onChange={this.handlePassword}
+            />
           </form>
-          <div className="button">
-            <Link className="login-button" href="/stories">
-              LOGIN &gt;&gt;
-            </Link>
-          </div>
+          <Button style={{ backgroundColor: getColor(View.HOME) }}>
+            <Link to="/home">LOGIN</Link>
+          </Button>
         </div>
-        {/* Forgot password option needed */}
       </Scaffold>
     );
   }
