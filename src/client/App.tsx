@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import { ThemeProvider } from "@material-ui/core";
+import { Snackbar, ThemeProvider } from "@material-ui/core";
 import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -16,9 +16,12 @@ import Register from "./pages/Register";
 import Test from "./pages/Test";
 import WordSearch from "./pages/WordSearch";
 import WordSearches from "./pages/WordSearches";
+import { useSelector } from "./store";
 import { portalTheme } from "./Theme";
 
 const App: React.FC = () => {
+  const loading = useSelector((state) => state.loading);
+
   // TODO adjust title pl0x
   // TODO move scaffold here
   return (
@@ -46,6 +49,11 @@ const App: React.FC = () => {
           <Footer />
         </main>
       </div>
+      <Snackbar
+        open={loading}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        message="Loading..."
+      />
     </ThemeProvider>
   );
 };
