@@ -5,7 +5,7 @@ import isDev from "electron-is-dev";
 import path from "path";
 import register from "./messageManager";
 
-// This is sad but we have to go relative to dist/src
+// This is sad but we have to go relative to build/src
 // let electronBinary = path.join(__dirname, "..", "..", "node_modules", ".bin", "electron");
 // if (!fs.existsSync(electronBinary)) {
 //   electronBinary = path.join(__dirname, "..", "..", "node_modules", ".bin", "electron.cmd");
@@ -33,10 +33,11 @@ function createWindow() {
   });
 
   // and load the index.html of the app.
+  console.log("Is dev?", isDev);
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000/build"
-      : `file://${path.join(__dirname, "..", "build", "index.html")}`
+      : `file://${path.join(__dirname, "..", "client", "index.html")}`
   );
 
   // Open the DevTools.

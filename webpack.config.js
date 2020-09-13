@@ -9,9 +9,8 @@ module.exports = {
     new HtmlWebpackPlugin({ template: path.join("public", "index.html") }),
   ],
   output: {
-    path: path.join(__dirname, "dist", "client"),
+    path: path.join(__dirname, "build", "client"),
     filename: "[name].[contenthash].js",
-    publicPath: "/",
   },
   resolve: {
     alias: {
