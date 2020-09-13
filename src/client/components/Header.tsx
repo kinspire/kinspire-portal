@@ -6,6 +6,7 @@ import { getColor, View } from "../constants";
 import "./Header.css";
 
 const SECTIONS = [
+<<<<<<< HEAD
   // { name: "home", color: "#a586c5" },
   { name: "CURRICULA", link: "curricula", color: getColor(View.MATERIALS)},
   { name: "ACTIVITIES", link: "activities", color: getColor(View.ACTIVITIES) },
@@ -21,6 +22,16 @@ const SECTIONS = [
 
 const TITLE_MAP: Record<string, string> = {
   P: getColor(View.MATERIALS),
+=======
+  { name: "COURSES", link: "courses", color: getColor(View.COURSES) },
+  { name: "ACTIVITIES", link: "activities", color: getColor(View.ACTIVITIES) },
+  { name: "HOME", link: "home", color: getColor(View.HOME) },
+  { name: "LOGOUT", link: "login", color: getColor(View.LOGOUT) },
+];
+
+const TITLE_MAP: Record<string, string> = {
+  P: getColor(View.COURSES),
+>>>>>>> b500f4becba51d109ae695338b09cd4a4c764fc6
   O: getColor(View.ACTIVITIES),
   R: getColor("HELP"),
   T: getColor(View.ABOUT),
@@ -30,6 +41,7 @@ const TITLE_MAP: Record<string, string> = {
 
 class Header extends Component {
   public render() {
+    // creates the page icon in the menu
     const menuItems = SECTIONS.map((section, i) => (
       <div key={i} className="portal-menu-item">
         <Link
@@ -43,6 +55,7 @@ class Header extends Component {
       </div>
     ));
 
+    //creates the page title in the menu
     const title = (
       <div className="portal-title">
         <Link to="/">

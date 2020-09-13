@@ -1,14 +1,23 @@
 // Modules to control application life and create native browser window
 import { app, BrowserWindow } from "electron";
+import fs from "fs";
 import path from "path";
 import isDev from "electron-is-dev";
 
 import er from "electron-reload";
 import register from "./messageManager";
+import { exit } from "process";
 
-// This is sad but we have to go relative to dist
+// This is sad but we have to go relative to dist/src
+let electronBinary = path.join(__dirname, "..", "..", "node_modules", ".bin", "electron");
+if (!fs.existsSync(electronBinary)) {
+  electronBinary = path.join(__dirname, "..", "..", "node_modules", ".bin", "electron.cmd");
+  if (!fs.existsSync(electronBinary)) {
+    exit(1);
+  }
+}
 er(__dirname, {
-  electron: path.join(__dirname, "..", "..", "node_modules", ".bin", "electron.cmd"),
+  electron: electronBinary,
 });
 
 // Keep a global reference of the window object, if you don't, the window will

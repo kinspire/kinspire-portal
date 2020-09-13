@@ -5,7 +5,7 @@ import React from "react";
 // import React, { useEffect, useState } from "react";
 
 import Scaffold from "../components/Scaffold";
-import Selection from "../components/Selection";
+import Selection from "../components/GridSelection";
 import { View } from "../constants";
 import { service } from "../services/content";
 import { LinkPair } from "../util";
@@ -70,7 +70,7 @@ export default class Stories extends React.Component<{}, State> {
 
   public render() {
     return (
-      <Scaffold view={View.STORIES}>
+      <Scaffold view={View.COURSE}>
         <div className="stories-container">
           <Typography style={{ textAlign: "center", color: "#A9BB59", fontWeight: "bold", fontSize: "60px" }}>
             STORIES
@@ -79,7 +79,7 @@ export default class Stories extends React.Component<{}, State> {
             _.map(this.state.stories, (list, classLevel) => (
               <React.Fragment key={classLevel}>
                 <Typography className="stories-level">Level {classLevel}</Typography>
-                <Selection view={View.MATERIALS} items={list} colNum={4} />
+                <Selection view={View.COURSES} items={list} colNum={4} />
               </React.Fragment>
             ))
           ) : (

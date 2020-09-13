@@ -14,11 +14,11 @@ export enum FontType {
 
 export enum View {
   HOME = "HOME",
-  MATERIALS = "MATERIALS", //aka Curricula
+  COURSES = "COURSES", //aka Curricula
   ACTIVITIES = "ACTIVITIES",
-  STORIES = "STORIES",
+  COURSE = "COURSE",
   WORD_SEARCH = "WORDSEARCH",
-  STORY = "STORY",
+  LESSON = "LESSON",
   PROFILE = "PROFILE",
   ABOUT = "ABOUT",
   LOGIN = "LOGIN",
@@ -27,11 +27,11 @@ export enum View {
 
 export const getColor = (v: View | string): string => {
   switch (v) {
-    case View.MATERIALS:
+    case View.COURSES:
       return "#a9bb59";
-    case View.STORIES:
+    case View.COURSE:
       return "#D4DDAC";
-    case View.STORY:
+    case View.LESSON:
       return "white";
     case View.ACTIVITIES:
       return "#79b4b3";

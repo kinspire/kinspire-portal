@@ -242,7 +242,7 @@ class StoryPage extends React.Component<Props, State> {
 
   public render() {
     return (
-      <Scaffold view={View.STORY}>
+      <Scaffold view={View.LESSON}>
         <div className="story-container">
           <Grid container justify="center" alignItems="center" spacing={1}>
             <Grid item xs={12}>

@@ -1,7 +1,7 @@
 import React from "react";
 
 import Scaffold from "../components/Scaffold";
-import Selection from "../components/Selection";
+import Selection from "../components/GridSelection";
 import { View } from "../constants";
 import { Typography } from "@material-ui/core";
 import { courses } from "../Sample";
@@ -9,17 +9,10 @@ import { courses } from "../Sample";
 import "./Curricula.css";
 import { LinkPair } from "@app/util";
 
-// should be passed in programmatically and display the content dynamically
-// const curricula = [
-//   { name: "English", link: "/stories" },
-//   { name: "Leadership", link: "/curricula" },
-//   { name: "Health", link: "/curricula" },
-//   { name: "Financial", link: "/curricula" },
-// ];
-
-export default function Curricula() {
+// Creates a grid of all the courses available to the account holder
+export default function Courses() {
   return (
-    <Scaffold view={View.MATERIALS}>
+    <Scaffold view={View.COURSES}>
       <div className="curricula-container">
         <Typography
           style={{
@@ -32,6 +25,8 @@ export default function Curricula() {
         >
           Curricula
         </Typography>
+
+        {/* Links to all the various courses offered */}
         <Selection
           items={courses.map((c) => {
             return {
@@ -39,7 +34,8 @@ export default function Curricula() {
               link: "/course/" + c.id,
             } as LinkPair
           })}
-          view={View.MATERIALS}
+          view={View.COURSES}
+          colNum={2}
         />
       </div>
     </Scaffold>
