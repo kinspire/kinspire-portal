@@ -1,7 +1,7 @@
 {
   "name": "kinspire-portal",
   "description": "A desktop portal for the students in Kinspire's orphanages to use to access learning materials.",
-  "version": "1.0.2",
+  "version": "0.0.2",
   "author": {
     "name": "Sarang Joshi",
     "email": "sarangjoshi@kinspire.org"
@@ -14,6 +14,7 @@
     "electron-is-dev": "^1.1.0",
     "firebase": "^7.5.2",
     "htmlparser2": "^4.1.0",
+    "lodash": "^4.17.20",
     "node-fetch": "^2.6.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
@@ -40,7 +41,7 @@
   "devDependencies": {
     "@types/classnames": "^2.2.10",
     "@types/history": "^4.7.3",
-    "@types/lodash": "^4.14.149",
+    "@types/lodash": "^4.14.161",
     "@types/loglevel": "^1.6.3",
     "@types/node": "12",
     "@types/node-fetch": "^2.5.7",
@@ -72,15 +73,17 @@
     "webpack-dev-server": "^3.10.3"
   },
   "scripts": {
+    "comment0": "--------HELPER SCRIPTS--------",
+    "clean:desktop": "rimraf ./build",
     "comment1": "--------BUILD SCRIPTS--------",
     "build:client": "webpack --mode=production",
-    "build:desktop": "tsc --project tsconfig.desktop.json",
+    "do:build:desktop": "tsc --project tsconfig.desktop.json",
+    "build:desktop": "run-s clean:desktop do:build:desktop",
     "build": "run-p build:client build:desktop",
     "comment2": "--------DEV SCRIPTS---------",
-    "electron": "wait-on ./dist/electron/main.js && electron . --inspect",
-    "clean:watch": "rimraf ./dist",
+    "electron": "wait-on ./build/electron/main.js && electron . --inspect",
     "do:watch": "tsc -w --project tsconfig.desktop.json",
-    "watch": "run-s clean:watch do:watch",
+    "watch": "run-s clean:desktop do:watch",
     "start:client": "cross-env BROWSER=none webpack-dev-server -d",
     "start:desktop": "run-p watch electron",
     "start": "run-p start:client start:desktop",
@@ -94,16 +97,17 @@
     "lint": "tslint --fix --project ."
   },
   "homepage": "./",
-  "main": "./dist/electron/main.js",
+  "main": "./build/electron/main.js",
   "build": {
     "appId": "org.kinspire.kinspire-portal",
     "files": [
       "build/**/*",
-      "node_modules/**/*"
-    ],
-    "directories": {
-      "buildResources": "assets"
-    }
+      "node_modules/**/*",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin"
+    ]
   },
   "engines": {
     "node": ">=12.x.x"

@@ -3,6 +3,6 @@
   "exclude": ["src/client"],
   "compilerOptions": {
     "noEmit": false,
-    "outDir": "./dist"
+    "outDir": "./build"
   }
 }
