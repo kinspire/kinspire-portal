@@ -13,13 +13,13 @@ import {
   ContentService,
   ContentType,
   Course,
-  Lesson,
-  LessonType,
   McqQuestion,
+  Module,
+  ModuleType,
   Question,
   QuestionType,
+  Section,
   Story,
-  Tier,
 } from "../../common/schema";
 import { apiRequest } from "../util";
 
@@ -27,7 +27,7 @@ import { apiRequest } from "../util";
 
 // always exclude course #1, "KPortal"
 const EXCLUDE_COURSE_ID = 1;
-// always exclude section 0 (section ~= tier)
+// always exclude section 0
 const EXCLUDE_SECTION = 0;
 
 const WS_TOKEN = "99a1a5345fd1bf1ba90324fb9662f59a";
@@ -51,30 +51,23 @@ const callFunction = async (func: string, params?: Record<string, any>) =>
 // Convert moodle course to Kportal course
 const courseMap = (c: MCourse, sections: MSection[]): Course => ({
   id: "" + c.id,
-  tiers: map(
+  sections: map(
     filter(sections, (s) => s.section !== EXCLUDE_SECTION),
     (section) =>
       ({
         id: section.id + "",
-        modules: [
-          // TODO fixed module
-          {
-            id: "1",
-            title: "Level 1",
-            lessons: map(
-              section.modules,
-              (module) =>
-                ({
-                  id: "" + module.id,
-                  title: module.name,
-                  content: {},
-                  lessonType: module.modname === "quiz" ? LessonType.STORY : "",
-                } as Lesson)
-            ),
-          },
-        ],
+        modules: map(
+          section.modules,
+          (module) =>
+            ({
+              id: "" + module.id,
+              title: module.name,
+              content: {},
+              moduleType: module.modname === "quiz" ? ModuleType.STORY : "",
+            } as Module)
+        ),
         title: section.name,
-      } as Tier)
+      } as Section)
   ),
   title: c.fullname,
   shortname: c.shortname,
@@ -99,53 +92,50 @@ export const moodleContentService: ContentService = {
     return courseMap(course, sections);
   },
 
-  getLesson: async (courseid: string, tierid: string, moduleid: string, lessonid: string) => {
+  getModule: async (courseid: string, sectionid: string, moduleid: string) => {
     const course = await moodleContentService.getCourse(courseid);
 
     const modules = get(
-      find(course.tiers, (t) => t.id === tierid),
+      find(course.sections, (t) => t.id === sectionid),
       "modules"
     );
     if (size(modules) === 0) {
       // TODO error out
       throw new Error("No modules found");
     }
-    const module = modules[0];
+    const module = find(modules, (m) => m.id === moduleid);
 
-    const lesson = find(module.lessons, (l) => l.id === lessonid);
+    console.log("module", module);
 
-    console.log("lesson", lesson);
-
-    // Based on lesson type return lesson
-    switch (lesson.lessonType) {
-      case LessonType.STORY:
-        // Convert lessonid to quizid
+    // Based on module type return module
+    switch (module.moduleType) {
+      case ModuleType.STORY:
+        // Convert moduleid to quizid
         const quizzesInCourse = await callFunction(QUIZ_GET_QUIZZES_IN_COURSE, {
           "courseids[]": courseid,
         });
 
         console.log("quizzes in course", quizzesInCourse);
 
-        // remember, "module" in moodle corresponds to lesson
-        const quiz = find(quizzesInCourse.quizzes as MQuiz[], (q) => q.coursemodule === +lessonid);
+        const quiz = find(quizzesInCourse.quizzes as MQuiz[], (q) => q.coursemodule === +moduleid);
 
         if (!quiz) {
           throw new Error("Can't find quiz");
         }
 
         const [story, questions] = await getStoryFromQuiz(quiz);
-        lesson.content = {
+        module.content = {
           story,
           questions,
           vocab: [],
         };
         break;
       default:
-        console.warn("unknown lesson!");
+        console.warn("unknown module!");
         break;
     }
 
-    return lesson;
+    return module;
   },
 
   // TODO delete

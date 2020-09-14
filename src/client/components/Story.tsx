@@ -1,25 +1,22 @@
 import { ContentArg } from "@common/messages";
-import { Answer, Lesson, McqQuestion, Story } from "@common/schema";
-import { Button, FormControlLabel, Grid, Radio, RadioGroup, Typography } from "@material-ui/core";
+import { Answer, McqQuestion, Module } from "@common/schema";
+import { FormControlLabel, Grid, Radio, RadioGroup, Typography } from "@material-ui/core";
 import { forEach, get, join, map, size } from "lodash";
 import React from "react";
-import { Link } from "react-router-dom";
 import swal from "sweetalert";
-import { View, getColor } from "../constants";
+import { getColor, View } from "../constants";
 import { callElectron } from "../services/content";
-import Scaffold from "./Scaffold";
 import "./Story.css";
 
 interface Props {
   course: string;
-  tier: string;
+  section: string;
   module: string;
-  lesson: string;
 }
 
 interface State {
   answers: Answer[];
-  lesson?: Lesson;
+  module?: Module;
   correct_answers: any[]; // TODO
 }
 
@@ -32,13 +29,13 @@ class StoryPage extends React.Component<Props, State> {
   // Load story and any progress the user might have had for this story
   public async componentDidMount() {
     try {
-      const lesson = (await callElectron(ContentArg.GET_LESSON, this.props)) as Lesson;
+      const module = (await callElectron(ContentArg.GET_MODULE, this.props)) as Module;
 
       this.setState({
-        lesson,
+        module,
         // If there are no answers, then set up default answers
-        answers: map(get(lesson.content, "questions"), (q) => (q.type === "mcq" ? -1 : "")),
-        correct_answers: map(get(lesson.content, "questions"), (q) =>
+        answers: map(get(module.content, "questions"), (q) => (q.type === "mcq" ? -1 : "")),
+        correct_answers: map(get(module.content, "questions"), (q) =>
           q.type === "mcq" ? (q as McqQuestion).correctChoice : ""
         ),
       });
@@ -91,11 +88,11 @@ class StoryPage extends React.Component<Props, State> {
 
   // Generates the HTML for the story based on the given JSON blob
   public generateStory = () => {
-    if (!this.state.lesson || !this.state.lesson.content) {
+    if (!this.state.module || !this.state.module.content) {
       return "";
     }
     const {
-      lesson: { content },
+      module: { content },
     } = this.state;
 
     const paragraphs = content.story;
@@ -160,11 +157,11 @@ class StoryPage extends React.Component<Props, State> {
 
   // Generate the questions HTML based on state
   public generateQuestions = () => {
-    if (!this.state.lesson || !this.state.lesson.content) {
+    if (!this.state.module || !this.state.module.content) {
       return "";
     }
 
-    const questions = this.state.lesson.content.questions;
+    const questions = this.state.module.content.questions;
 
     // Iterate through the questions and create JSX in `output`
     const output: any[] = [];
@@ -229,7 +226,7 @@ class StoryPage extends React.Component<Props, State> {
         <Grid container justify="center" alignItems="center" spacing={1}>
           <Grid item xs={12}>
             <Typography variant="h4" style={{ color: getColor(View.COURSES) }}>
-              {get(this.state.lesson, "title")}
+              {get(this.state.module, "title")}
             </Typography>
           </Grid>
         </Grid>

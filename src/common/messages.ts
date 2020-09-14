@@ -17,7 +17,7 @@ export interface ContentRequest {
 export const enum ContentArg {
   GET_COURSE,
   GET_COURSES,
-  GET_LESSON,
+  GET_MODULE,
   // divider
   // TODO delete the following after WordSearch is transferred to Moodle
   GET_ALL_CONTENT,

@@ -1,5 +1,5 @@
 import { ContentArg } from "@common/messages";
-import { Answer, Lesson, McqQuestion, Story } from "@common/schema";
+import { Answer, Module, McqQuestion, Story } from "@common/schema";
 import { Button, FormControlLabel, Grid, Radio, RadioGroup, Typography } from "@material-ui/core";
 import { forEach, get, join, map, size } from "lodash";
 import React from "react";
@@ -19,7 +19,7 @@ interface Props {
 
 interface State {
   answers: Answer[];
-  lesson?: Lesson;
+  lesson?: Module;
   correct_answers: any[]; // TODO
 }
 
@@ -32,7 +32,7 @@ class QuizPage extends React.Component<Props, State> {
   // Load story and any progress the user might have had for this story
   public async componentDidMount() {
     try {
-      const lesson = (await callElectron(ContentArg.GET_LESSON, this.props)) as Lesson;
+      const lesson = (await callElectron(ContentArg.GET_MODULE, this.props)) as Module;
 
       this.setState({
         lesson,

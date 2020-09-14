@@ -1,67 +1,45 @@
-import { callElectron } from "@app/services/content";
-import { LinkPair } from "@app/util";
-import { ContentArg } from "@common/messages";
-import { Course } from "@common/schema";
-import { Button, Typography } from "@material-ui/core";
-import { find, get } from "lodash";
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import Selection from "../components/GridSelection";
-import Scaffold from "../components/Scaffold";
+import Scaffold from "@app/components/Scaffold";
+import StoryPage from "@app/components/Story";
+import { Button } from "@material-ui/core";
+import React from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { getColor, View } from "../constants";
-import "./Courses.css";
 
 interface Params {
   course: string;
-  tier: string;
+  section: string;
   module: string;
 }
 
-// Creates a grid of all the sub-topics within a topic
 export default function Module() {
   // extracts the topic id from the url
-  const params = useParams<Params>();
+  const { course, section, module } = useParams<Params>();
 
-  const [course, setCourse] = useState<Course>(null);
-  useEffect(() => {
-    const getCourse = async () => {
-      setCourse(await callElectron(ContentArg.GET_COURSE, { courseId: params.course }));
-    };
+  // const [course, setCourse] = useState<Course>(null);
+  // useEffect(() => {
+  //   const getCourse = async () => {
+  //     setCourse((await callElectron(ContentArg.GET_COURSE, { courseId })) as Course);
+  //   };
 
-    getCourse();
-  }, []);
+  //   // getCourse();
+  // }, []);
 
-  const tier = find(get(course, "tiers"), (t) => {
-    return t.id === params.tier;
-  });
-  const module = find(get(tier, "modules"), (m) => {
-    return m.id === params.module;
-  });
+  // Based on the course/section, use the corresponding lesson view
+  // if (get(course, "shortname") === "english") {
   return (
-    <Scaffold view={View.COURSE}>
-      <div className="courses-container">
-        {module && (
-          <>
-            <Typography variant="h3" style={{ color: "white" }}>
-              {module.title.toUpperCase()}
-            </Typography>
-
-            {/* Provides links to all the sub-topics offered */}
-            <Selection
-              items={module.lessons.map((l) => {
-                return {
-                  title: l.title,
-                  link: `/lesson/${course.id}/${tier.id}/${module.id}/${l.id}`,
-                } as LinkPair;
-              })}
-              view={View.COURSES}
-            />
-          </>
-        )}
+    <div className="courses-container">
+      <Scaffold view={View.LESSON}>
+        <StoryPage course={course} section={section} module={module} />
         <Button style={{ backgroundColor: getColor(View.COURSES) }}>
-          <Link to="/home">BACK</Link>
+          <Link to={`/section/${course}/${section}`}>BACK</Link>
         </Button>
-      </div>
-    </Scaffold>
+        <Button style={{ backgroundColor: getColor(View.COURSES), float: "right" }}>
+          SUBMIT ANSWERS
+        </Button>
+      </Scaffold>
+    </div>
   );
+  // }
+
+  // return <div>Not here yet!</div>;
 }
