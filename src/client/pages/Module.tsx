@@ -35,6 +35,7 @@ export default function Module() {
         </Button>
         <Button style={{ backgroundColor: getColor(View.COURSES), float: "right" }}>
           SUBMIT ANSWERS
+          <Link to={"/course/" + course}>BACK</Link>
         </Button>
       </Scaffold>
     </div>

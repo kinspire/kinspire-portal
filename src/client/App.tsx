@@ -11,6 +11,7 @@ import Courses from "./pages/Courses";
 import Home from "./pages/Home";
 import Module from "./pages/Module";
 import Login from "./pages/Login";
+import Submit from "./pages/Submit";
 import Register from "./pages/Register";
 import Section from "./pages/Section";
 import Test from "./pages/Test";
@@ -30,6 +31,8 @@ const App: React.FC = () => {
         <main>
           <Header />
           <Switch>
+            <Route path="urse/:tier/:module/:lesson/" component={Submit} />
+            <Route path="/lesson/:course/:tier/:module/:lesson" component={Lesson} />
             <Route path="/home" component={Home} />
             <Route path="/activities" component={Activities} />
             <Route path="/module/:course/:section/:module" component={Module} />
