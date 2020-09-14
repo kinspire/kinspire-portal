@@ -21,13 +21,13 @@ export interface McqQuestion extends Question {
 
 export type Answer = string | number;
 
+////// OLD STYLE CONTENT: TODO DELETE //////
+
 export interface BaseDoc {
   type: ContentType;
   classLevel: number;
   num: number;
 }
-
-////// CONTENT //////
 
 // The different types of content
 // TODO delete
@@ -37,7 +37,7 @@ export enum ContentType {
   TASK = "task",
 }
 
-export enum LessonType {
+export enum ModuleType {
   STORY = "story",
 }
 
@@ -83,7 +83,7 @@ export interface ContentProgress extends BaseDoc {
 
 export interface ContentService {
   getAllContent: (c: ContentType) => Promise<Content[]>;
-  getLesson: (course: string, tier: string, module: string, lesson: string) => Promise<Lesson>;
+  getModule: (course: string, section: string, module: string) => Promise<Module>;
   getContent: (c: ContentType, classLevel: number, num: number) => Promise<Content>;
   getContentProgress: (
     c: ContentType,
@@ -95,21 +95,14 @@ export interface ContentService {
   getCourse: (id: string) => Promise<Course>;
 }
 
-export interface Lesson {
+export interface Module {
   title: string;
   id: string;
-  lessonType?: LessonType;
+  moduleType?: ModuleType;
   content: any;
 }
 
-export interface Module {
-  title: string;
-  subtitle?: string;
-  id: string;
-  lessons: Lesson[];
-}
-
-export interface Tier {
+export interface Section {
   title: string;
   subtitle?: string;
   id: string;
@@ -119,6 +112,6 @@ export interface Tier {
 export interface Course {
   title: string;
   id: string;
-  tiers: Tier[];
+  sections: Section[];
   shortname: string;
 }

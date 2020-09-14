@@ -5,17 +5,22 @@ import { ContentArg, Messages } from "@common/messages";
 import { ipcRenderer } from "electron";
 
 export const callElectron = async (arg: ContentArg, data?: any) => {
-  store.dispatch(setLoading(true));
-  console.log("callElectron", arg);
-  const res = await ipcRenderer.invoke(Messages.Content.REQUEST, {
-    arg,
-    data,
-  });
-  // const res = await ipcRenderer.callMain(Messages.Content.REQUEST, {
-  //   arg,
-  //   data,
-  // });
-  console.log("invoke returned", res);
-  store.dispatch(setLoading(false));
-  return res;
+  try {
+    store.dispatch(setLoading(true));
+    console.log("callElectron", arg);
+    const res = await ipcRenderer.invoke(Messages.Content.REQUEST, {
+      arg,
+      data,
+    });
+    // const res = await ipcRenderer.callMain(Messages.Content.REQUEST, {
+    //   arg,
+    //   data,
+    // });
+    console.log("invoke returned", res);
+    return res;
+  } catch (err) {
+    console.log("error", err);
+  } finally {
+    store.dispatch(setLoading(false));
+  }
 };

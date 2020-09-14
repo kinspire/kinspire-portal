@@ -1,5 +1,5 @@
 import { ipcMain } from "electron";
-import { ContentArg, ContentRequest, Messages } from "../../common/messages";
+import { ContentArg, Messages } from "../../common/messages";
 import { moodleContentService } from "./moodle";
 
 const service = moodleContentService;
@@ -12,12 +12,11 @@ export const registerContentListener = () => {
         return await service.getCourses();
       case ContentArg.GET_COURSE:
         return await service.getCourse(request.data.courseId);
-      case ContentArg.GET_LESSON:
-        return await service.getLesson(
+      case ContentArg.GET_MODULE:
+        return await service.getModule(
           request.data.course,
-          request.data.tier,
-          request.data.module,
-          request.data.lesson
+          request.data.section,
+          request.data.module
         );
       // divider
       case ContentArg.GET_CONTENT:

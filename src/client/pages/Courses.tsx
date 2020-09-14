@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react";
 import Selection from "../components/GridSelection";
 import Scaffold from "../components/Scaffold";
 import { View } from "../constants";
-// import { courses } from "../../common/Sample";
 import "./Courses.css";
 
 // Creates a grid of all the courses available to the account holder

@@ -7,10 +7,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { getColor, View } from "../constants";
-import { Tier } from "@common/schema";
+import { Section } from "@common/schema";
 
 interface Props {
-  tiers: Tier[];
+  tiers: Section[];
   view?: View;
   courseId: string;
 }
@@ -45,7 +45,7 @@ export default function ListSelection(props: Props) {
             <Typography style={{ fontWeight: "bold", ...textStyle }}>{tier.title}</Typography>
             {tier.subtitle ? <i style={textStyle}>{tier.subtitle}</i> : ""}
           </AccordionSummary>
-          {tier.modules.map((module, j) => (
+          {tier.modules.map((module: any, j) => (
             <AccordionDetails key={j}>
               <Link style={linkStyle} to={`/module/${courseId}/${tier.id}/${module.id}`}>
                 {module.title}

@@ -2,39 +2,34 @@ import React, { useEffect, useState } from "react";
 
 import { Button, Typography } from "@material-ui/core";
 import { Link, useParams } from "react-router-dom";
-import ListSelection from "../components/ListSelection";
+import GridSelection from "../components/GridSelection";
 import Scaffold from "../components/Scaffold";
 import { getColor, View } from "../constants";
-import { courses } from "../../common/Sample";
 
 import { callElectron } from "@app/services/content";
+import { LinkPair } from "@app/util";
 import { ContentArg } from "@common/messages";
 import { Course } from "@common/schema";
 import "./Courses.css";
 
 interface Params {
-  id: string;
+  course: string;
 }
 
 // Creates a list of all the topics within a course
 export default function Course() {
-  // extracts the course id from the url
   const params = useParams<Params>();
 
   const [course, setCourse] = useState<Course>(null);
 
   useEffect(() => {
     const getCourse = async () => {
-      setCourse(await callElectron(ContentArg.GET_COURSE, { courseId: params.id }));
+      setCourse(await callElectron(ContentArg.GET_COURSE, { courseId: params.course }));
     };
 
     getCourse();
   }, []);
 
-  // const course = courses.find((c) => {
-  //   return c.id === params.id;
-  // });
-  // console.log(course);
   return (
     <Scaffold view={View.COURSE}>
       <div className="courses-container">
@@ -45,7 +40,15 @@ export default function Course() {
             </Typography>
 
             {/* Provides links to all the topics offered */}
-            <ListSelection tiers={course.tiers} view={View.COURSES} courseId={course.id} />
+            <GridSelection
+              items={course.sections.map((s) => {
+                return {
+                  title: s.title,
+                  link: `/section/${params.course}/${s.id}`,
+                } as LinkPair;
+              })}
+              view={View.COURSE}
+            />
           </>
         )}
         <Button style={{ backgroundColor: getColor(View.COURSES) }}>
