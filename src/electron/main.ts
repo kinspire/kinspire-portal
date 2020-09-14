@@ -33,7 +33,6 @@ function createWindow() {
   });
 
   // and load the index.html of the app.
-  console.log("Is dev?", isDev);
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000/build"
