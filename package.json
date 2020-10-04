@@ -42,7 +42,6 @@
     "@types/classnames": "^2.2.10",
     "@types/history": "^4.7.3",
     "@types/lodash": "^4.14.161",
-    "@types/loglevel": "^1.6.3",
     "@types/node": "12",
     "@types/node-fetch": "^2.5.7",
     "@types/react-dom": "^16.9.8",
