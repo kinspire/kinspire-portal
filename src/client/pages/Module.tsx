@@ -19,7 +19,7 @@ export default function Module() {
   // const [course, setCourse] = useState<Course>(null);
   // useEffect(() => {
   //   const getCourse = async () => {
-  //     setCourse((await callElectron(ContentArg.GET_COURSE, { courseId })) as Course);
+  //     setCourse((await callElectronContent(ContentArg.GET_COURSE, { courseId })) as Course);
   //   };
 
   //   // getCourse();

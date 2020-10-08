@@ -11,13 +11,15 @@ export async function apiRequest(url: string, method = "GET", body?: any) {
         : body,
       method,
     });
+    const text = await res.clone().text();
+    console.log("API: ", url, "RESPONSE", text);
     const response = await res.json();
     if (!res.ok) {
       throw response;
     }
     return response;
   } catch (err) {
-    console.error("API error. Endpoint:", url, "Error lmao:", err);
+    console.error("API error. Endpoint:", url, "Error:", err);
     return Promise.reject(err);
   }
 }

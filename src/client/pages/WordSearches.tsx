@@ -7,7 +7,7 @@ import { ContentType, Content } from "@common/schema";
 import Scaffold from "../components/Scaffold";
 import Selection from "../components/GridSelection";
 import { View } from "../constants";
-import { callElectron } from "../services/content";
+import { callElectronContent } from "../services/electron";
 import { LinkPair } from "../util";
 import { ContentArg } from "@common/messages";
 
@@ -38,7 +38,7 @@ export default function WordSearches() {
   useEffect(() => {
     const fetchItems = async () => {
       // Sort stories by class level and number
-      const wordSearchList = ((await callElectron(ContentArg.GET_ALL_CONTENT, {
+      const wordSearchList = ((await callElectronContent(ContentArg.GET_ALL_CONTENT, {
         type: ContentType.WORD_SEARCH,
       })) as Content[]).sort((a, b) =>
         a.classLevel !== b.classLevel ? a.classLevel - b.classLevel : a.num - b.num

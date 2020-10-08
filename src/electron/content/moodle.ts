@@ -1,14 +1,6 @@
 import { Handler, Parser } from "htmlparser2/lib/Parser";
 import { filter, find, get, map, size, sortBy } from "lodash";
-import querystring from "querystring";
-import {
-  MAttempt,
-  MCourse,
-  MQuestion,
-  MQuestionType,
-  MQuiz,
-  MSection,
-} from "../../common/moodleSchema";
+import { MAttempt, MCourse, MQuestion, MQuestionType, MQuiz, MSection } from "../../common/moodle";
 import {
   ContentService,
   ContentType,
@@ -21,7 +13,15 @@ import {
   Section,
   Story,
 } from "../../common/schema";
-import { apiRequest } from "../util";
+import {
+  callFunction,
+  COURSE_GET_CONTENTS,
+  COURSE_GET_COURSES,
+  QUIZ_GET_ATTEMPT_DATA,
+  QUIZ_GET_ATTEMPTS,
+  QUIZ_GET_QUIZZES_IN_COURSE,
+  QUIZ_START_ATTEMPT,
+} from "../moodle";
 
 // Some constants for now
 
@@ -29,24 +29,6 @@ import { apiRequest } from "../util";
 const EXCLUDE_COURSE_ID = 1;
 // always exclude section 0
 const EXCLUDE_SECTION = 0;
-
-const WS_TOKEN = "99a1a5345fd1bf1ba90324fb9662f59a";
-
-// Functions
-
-const WS_FUNCTION = "wsfunction";
-
-const COURSE_GET_COURSES = "core_course_get_courses";
-const COURSE_GET_CONTENTS = "core_course_get_contents";
-const QUIZ_GET_ATTEMPT_DATA = "mod_quiz_get_attempt_data";
-const QUIZ_START_ATTEMPT = "mod_quiz_start_attempt";
-const QUIZ_GET_ATTEMPTS = "mod_quiz_get_user_attempts";
-const QUIZ_GET_QUIZZES_IN_COURSE = "mod_quiz_get_quizzes_by_courses";
-
-const BASE = `http://kinspire.org/portal/webservice/rest/server.php?wstoken=${WS_TOKEN}&moodlewsrestformat=json&`;
-
-const callFunction = async (func: string, params?: Record<string, any>) =>
-  await apiRequest(`${BASE}${querystring.stringify({ [WS_FUNCTION]: func, ...params })}`);
 
 // Convert moodle course to Kportal course
 const courseMap = (c: MCourse, sections: MSection[]): Course => ({

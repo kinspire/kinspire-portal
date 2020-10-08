@@ -61,3 +61,8 @@ export interface MAttemptDataResponse {
   attempt: MAttempt;
   questions: MQuestion[];
 }
+
+export interface MTok {
+  token: string;
+  privatetoken: string;
+}

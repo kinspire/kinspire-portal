@@ -11,6 +11,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "build", "client"),
     filename: "[name].[contenthash].js",
+    publicPath: "/",
   },
   resolve: {
     alias: {

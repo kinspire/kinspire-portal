@@ -12,6 +12,12 @@ export const mainReducer: Reducer<KPortalState> = (state = initialState, action)
         loading: action.payload,
       };
     }
+    case Types.SET_TOKEN: {
+      return {
+        ...state,
+        token: action.payload,
+      };
+    }
     default: {
       return state;
     }

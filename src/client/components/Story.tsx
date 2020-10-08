@@ -5,7 +5,7 @@ import { forEach, get, join, map, size } from "lodash";
 import React from "react";
 import swal from "sweetalert";
 import { getColor, View } from "../constants";
-import { callElectron } from "../services/content";
+import { callElectronContent } from "../services/electron";
 import "./Story.css";
 
 interface Props {
@@ -29,7 +29,7 @@ class StoryPage extends React.Component<Props, State> {
   // Load story and any progress the user might have had for this story
   public async componentDidMount() {
     try {
-      const module = (await callElectron(ContentArg.GET_MODULE, this.props)) as Module;
+      const module = (await callElectronContent(ContentArg.GET_MODULE, this.props)) as Module;
 
       this.setState({
         module,

@@ -6,7 +6,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import { View, getColor } from "../constants";
-import { callElectron } from "../services/content";
+import { callElectronContent } from "../services/electron";
 import "./Story.css";
 
 interface Props {
@@ -30,7 +30,7 @@ class QuizPage extends React.Component<Props, State> {
   // Load story and any progress the user might have had for this story
   public async componentDidMount() {
     try {
-      const module = (await callElectron(ContentArg.GET_MODULE, this.props)) as Module;
+      const module = (await callElectronContent(ContentArg.GET_MODULE, this.props)) as Module;
 
       this.setState({
         module: module,

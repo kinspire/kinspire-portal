@@ -6,7 +6,7 @@ import GridSelection from "../components/GridSelection";
 import Scaffold from "../components/Scaffold";
 import { getColor, View } from "../constants";
 
-import { callElectron } from "@app/services/content";
+import { callElectronContent } from "@app/services/electron";
 import { LinkPair } from "@app/util";
 import { ContentArg } from "@common/messages";
 import { Course } from "@common/schema";
@@ -24,7 +24,7 @@ export default function Course() {
 
   useEffect(() => {
     const getCourse = async () => {
-      setCourse(await callElectron(ContentArg.GET_COURSE, { courseId: params.course }));
+      setCourse(await callElectronContent(ContentArg.GET_COURSE, { courseId: params.course }));
     };
 
     getCourse();
