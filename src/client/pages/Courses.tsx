@@ -24,7 +24,7 @@ export default function Courses() {
   return (
     <Scaffold view={View.COURSES}>
       <div className="courses-container">
-        <Typography variant="h1">CLASSES</Typography>
+        <Typography variant="h1">COURSES</Typography>
 
         {/* Links to all the various courses offered */}
         <Selection

@@ -11,14 +11,13 @@ import "./Story.css";
 
 interface Props {
   course: string;
-  tier: string;
+  section: string;
   module: string;
-  lesson: string;
 }
 
 interface State {
   answers: Answer[];
-  lesson?: Module;
+  module?: Module;
   correct_answers: any[]; // TODO
 }
 
@@ -31,13 +30,13 @@ class QuizPage extends React.Component<Props, State> {
   // Load story and any progress the user might have had for this story
   public async componentDidMount() {
     try {
-      const lesson = (await callElectron(ContentArg.GET_MODULE, this.props)) as Module;
+      const module = (await callElectron(ContentArg.GET_MODULE, this.props)) as Module;
 
       this.setState({
-        lesson,
+        module: module,
         // If there are no answers, then set up default answers
-        answers: map(get(lesson.content, "questions"), (q) => (q.type === "mcq" ? -1 : "")),
-        correct_answers: map(get(lesson.content, "questions"), (q) =>
+        answers: map(get(module.content, "questions"), (q) => (q.type === "mcq" ? -1 : "")),
+        correct_answers: map(get(module.content, "questions"), (q) =>
           q.type === "mcq" ? (q as McqQuestion).correctChoice : ""
         ),
       });
@@ -90,11 +89,11 @@ class QuizPage extends React.Component<Props, State> {
 
   // Generate the questions HTML based on state
   public generateQuestions = () => {
-    if (!this.state.lesson || !this.state.lesson.content) {
+    if (!this.state.module || !this.state.module.content) {
       return "";
     }
 
-    const questions = this.state.lesson.content.questions;
+    const questions = this.state.module.content.questions;
 
     // Iterate through the questions and create JSX in `output`
     const output: any[] = [];
@@ -159,7 +158,7 @@ class QuizPage extends React.Component<Props, State> {
         <Grid container justify="center" alignItems="center" spacing={1}>
           <Grid item xs={12}>
             <Typography variant="h4" style={{ color: getColor(View.COURSES) }}>
-              {get(this.state.lesson, "title")}
+              {get(this.state.module, "title")}
             </Typography>
           </Grid>
         </Grid>
