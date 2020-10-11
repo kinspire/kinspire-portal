@@ -7,19 +7,17 @@ import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import { View, getColor } from "../constants";
 import { callElectron } from "../services/content";
-import Scaffold from "./Scaffold";
 import "./Story.css";
 
 interface Props {
   course: string;
-  tier: string;
+  section: string;
   module: string;
-  lesson: string;
 }
 
 interface State {
   answers: Answer[];
-  lesson?: Module;
+  module?: Module;
   correct_answers: any[]; // TODO
 }
 
@@ -32,13 +30,13 @@ class QuizPage extends React.Component<Props, State> {
   // Load story and any progress the user might have had for this story
   public async componentDidMount() {
     try {
-      const lesson = (await callElectron(ContentArg.GET_MODULE, this.props)) as Module;
+      const module = (await callElectron(ContentArg.GET_MODULE, this.props)) as Module;
 
       this.setState({
-        lesson,
+        module: module,
         // If there are no answers, then set up default answers
-        answers: map(get(lesson.content, "questions"), (q) => (q.type === "mcq" ? -1 : "")),
-        correct_answers: map(get(lesson.content, "questions"), (q) =>
+        answers: map(get(module.content, "questions"), (q) => (q.type === "mcq" ? -1 : "")),
+        correct_answers: map(get(module.content, "questions"), (q) =>
           q.type === "mcq" ? (q as McqQuestion).correctChoice : ""
         ),
       });
@@ -89,82 +87,13 @@ class QuizPage extends React.Component<Props, State> {
     }
   };
 
-  // Generates the HTML for the story based on the given JSON blob
-  public generateStory = () => {
-    if (!this.state.lesson || !this.state.lesson.content) {
-      return "";
-    }
-    const {
-      lesson: { content },
-    } = this.state;
-
-    const paragraphs = content.story;
-    const vocab = content.vocab || [];
-    // TODO: Implement more generalized translations
-    // const language = JSON.parse(localStorage.getItem("user") || "").preferredLanguage;
-    // if (language === "telugu") {
-    const translations = content["translation-ma"];
-
-    let i = 0;
-
-    // Convert the paragraphs array
-    return map(paragraphs, (paragraph, paragraphNum) => {
-      const paragraphContent = [];
-
-      while (i < vocab.length) {
-        // Split the paragraph on the vocab word, so that we get just the
-        // paragraph up to but not including the vocab word
-        const parts = paragraph.split(vocab[i]);
-        paragraphContent.push(<span key={`pre-vocab-${i}`}>{parts[0]}</span>);
-
-        // Fencepost for if the vocab word is not in the paragraph
-        if (parts.length < 2) {
-          break;
-        }
-
-        // Write out the vocab word
-        const vocabWord = (
-          <span className="stories-vocab" key={vocab[i]}>
-            <span className="stories-vocab-word">{vocab[i]}</span>
-            {i < size(translations) ? (
-              <span className="stories-vocab-def">{get(translations, `[${i}]`)}</span>
-            ) : (
-              ""
-            )}
-          </span>
-        );
-
-        paragraphContent.push(vocabWord);
-
-        paragraph = join(parts.slice(1), vocab[i]);
-        i++;
-      }
-
-      if (i === vocab.length) {
-        // sanity check
-        // Fencepost for last word
-        paragraphContent.push(
-          <Typography key={`pre-vocab-${i}`} component="span">
-            {paragraph}
-          </Typography>
-        );
-      }
-
-      return (
-        <Typography className="stories-story-paragraph" key={`para-${paragraphNum}`}>
-          {paragraphContent}
-        </Typography>
-      );
-    });
-  };
-
   // Generate the questions HTML based on state
   public generateQuestions = () => {
-    if (!this.state.lesson || !this.state.lesson.content) {
+    if (!this.state.module || !this.state.module.content) {
       return "";
     }
 
-    const questions = this.state.lesson.content.questions;
+    const questions = this.state.module.content.questions;
 
     // Iterate through the questions and create JSX in `output`
     const output: any[] = [];
@@ -229,30 +158,20 @@ class QuizPage extends React.Component<Props, State> {
         <Grid container justify="center" alignItems="center" spacing={1}>
           <Grid item xs={12}>
             <Typography variant="h4" style={{ color: getColor(View.COURSES) }}>
-              {get(this.state.lesson, "title")}
+              {get(this.state.module, "title")}
             </Typography>
           </Grid>
         </Grid>
         <Grid container className="stories-story" spacing={1}>
-          <Grid item xs={6}>
-            <div className="stories-story-section-story">
-              <Typography variant="h5" style={{ color: getColor(View.COURSES) }}>
-                STORY
-              </Typography>
-              <div>{this.generateStory()}</div>
-            </div>
-          </Grid>
-          <Grid item xs={6}>
-            <div className="stories-story-section stories-story-section-questions">
-              <Typography variant="h5" style={{ color: getColor(View.COURSES) }}>
-                QUESTIONS
-              </Typography>
-              <ol style={{ display: "block" }} type="1">
-                {this.generateQuestions()}
-              </ol>
-              <div id="error" />
-            </div>
-          </Grid>
+          <div className="stories-story-section stories-story-section-questions">
+            <Typography variant="h5" style={{ color: getColor(View.COURSES) }}>
+              HOMEWORK QUESTIONS
+            </Typography>
+            <ol style={{ display: "block" }} type="1">
+              {this.generateQuestions()}
+            </ol>
+            <div id="error" />
+          </div>
         </Grid>
       </div>
     );

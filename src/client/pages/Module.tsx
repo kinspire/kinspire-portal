@@ -1,3 +1,4 @@
+import QuizPage from "@app/components/Quiz";
 import Scaffold from "@app/components/Scaffold";
 import StoryPage from "@app/components/Story";
 import { Button } from "@material-ui/core";
@@ -24,8 +25,14 @@ export default function Module() {
   //   // getCourse();
   // }, []);
 
-  // Based on the course/section, use the corresponding lesson view
-  // if (get(course, "shortname") === "english") {
+  // Based on the course/tier, use the corresponding lesson view
+  // TODO what's the tier check?
+  let template = <div></div>;
+  if (section === "stories") {
+    template = <StoryPage course={course} section={section} module={module} />;
+  } else if (section === "homework") {
+    template = <QuizPage course={course} section={section} module={module} />;
+  }
   return (
     <div className="courses-container">
       <Scaffold view={View.LESSON}>
@@ -33,8 +40,13 @@ export default function Module() {
         <Button style={{ backgroundColor: getColor(View.COURSES) }}>
           <Link to={`/section/${course}/${section}`}>BACK</Link>
         </Button>
-        <Button style={{ backgroundColor: getColor(View.COURSES), float: "right" }}>
-          SUBMIT ANSWERS
+        <Button
+          style={{
+            backgroundColor: getColor(View.COURSES),
+            float: "right",
+          }}
+        >
+          <Link to={"/submit/" + course + "/" + section + "/" + module}>SUBMIT ALL ANSWERS</Link>
         </Button>
       </Scaffold>
     </div>

@@ -7,8 +7,8 @@ import "./Header.css";
 
 const SECTIONS = [
   { name: "COURSES", link: "courses", color: getColor(View.COURSES) },
-  { name: "ACTIVITIES", link: "activities", color: getColor(View.ACTIVITIES) },
-  { name: "HOME", link: "home", color: getColor(View.HOME) },
+  // { name: "ACTIVITIES", link: "activities", color: getColor(View.ACTIVITIES) },
+  // { name: "HOME", link: "home", color: getColor(View.HOME) },
   { name: "LOGOUT", link: "login", color: getColor(View.LOGOUT) },
 ];
 
