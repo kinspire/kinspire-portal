@@ -45,7 +45,13 @@ To run the Kinspire Portal in your local browser for development, in a terminal 
 $ yarn start
 ```
 
-Or you can run `yarn start:client` and `yarn start:desktop` in two separate terminal windows.
+Or you can run `yarn start:client` and `yarn start:desktop` in two separate terminal windows. Or do:
+
+- WSL:
+  - `start:client`
+  - `watch`
+- Windows
+  - `electron`
 
 This should automatically open up a desktop application window. Don't close this window while working on the Portal.
 

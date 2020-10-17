@@ -7,6 +7,10 @@ export const Messages = {
     REQUEST: "contentRequest",
     REPLY: "contentReply",
   },
+  Auth: {
+    REQUEST: "authRequest",
+    REPLY: "authReply",
+  }
 };
 
 export interface ContentRequest {
@@ -24,4 +28,8 @@ export const enum ContentArg {
   GET_CONTENT,
   GET_CONTENT_PROGRESS,
   SUBMIT_CONTENT_PROGRESS,
+}
+
+export const enum AuthArg {
+  LOGIN,
 }

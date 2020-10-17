@@ -6,7 +6,7 @@ const service = moodleContentService;
 
 export const registerContentListener = () => {
   ipcMain.handle(Messages.Content.REQUEST, async (event, request) => {
-    console.log("Answer renderer", request);
+    console.log("[Content] Answer renderer", request);
     switch (request.arg) {
       case ContentArg.GET_COURSES:
         return await service.getCourses();

@@ -4,6 +4,8 @@ import isDev from "electron-is-dev";
 
 import path from "path";
 import register from "./messageManager";
+import { callFunction, COURSE_GET_COURSES } from "./moodle";
+import { apiRequest } from "./util";
 
 // This is sad but we have to go relative to build/src
 // let electronBinary = path.join(__dirname, "..", "..", "node_modules", ".bin", "electron");
@@ -34,9 +36,7 @@ function createWindow() {
 
   // and load the index.html of the app.
   mainWindow.loadURL(
-    isDev
-      ? "http://localhost:3000/build"
-      : `file://${path.join(__dirname, "..", "client", "index.html")}`
+    isDev ? "http://localhost:3000" : `file://${path.join(__dirname, "..", "client", "index.html")}`
   );
 
   // Open the DevTools.

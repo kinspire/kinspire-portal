@@ -1,6 +1,6 @@
 import { ipcMain } from "electron";
-
 import { Messages } from "../common/messages";
+import { registerAuthListener } from "./auth";
 import { registerContentListener } from "./content";
 
 export default function register() {
@@ -11,4 +11,5 @@ export default function register() {
 
   // Register all sublisteners
   registerContentListener();
+  registerAuthListener();
 }

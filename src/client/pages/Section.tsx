@@ -1,4 +1,4 @@
-import { callElectron } from "@app/services/content";
+import { callElectronContent } from "@app/services/electron";
 import { LinkPair } from "@app/util";
 import { ContentArg } from "@common/messages";
 import { Course } from "@common/schema";
@@ -24,7 +24,7 @@ export default function Section() {
   const [course, setCourse] = useState<Course>(null);
   useEffect(() => {
     const getCourse = async () => {
-      setCourse(await callElectron(ContentArg.GET_COURSE, { courseId: params.course }));
+      setCourse(await callElectronContent(ContentArg.GET_COURSE, { courseId: params.course }));
     };
 
     getCourse();

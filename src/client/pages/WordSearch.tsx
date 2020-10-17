@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Scaffold from "../components/Scaffold";
 import { View } from "../constants";
-import { callElectron } from "../services/content";
+import { callElectronContent } from "../services/electron";
 import "./WordSearch.css";
 import { ContentArg } from "@common/messages";
 
@@ -123,8 +123,8 @@ export default function WordSearchPage() {
         num: +(num || 0),
       };
       const values = await Promise.all([
-        callElectron(ContentArg.GET_CONTENT, data),
-        callElectron(ContentArg.GET_CONTENT_PROGRESS, data),
+        callElectronContent(ContentArg.GET_CONTENT, data),
+        callElectronContent(ContentArg.GET_CONTENT_PROGRESS, data),
       ]);
       const ws = values[0] as WordSearch;
       console.log(ws);

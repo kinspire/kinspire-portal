@@ -1,4 +1,4 @@
-import { callElectron } from "@app/services/content";
+import { callElectronContent } from "@app/services/electron";
 import { LinkPair } from "@app/util";
 import { ContentArg } from "@common/messages";
 import { Course } from "@common/schema";
@@ -15,7 +15,7 @@ export default function Courses() {
 
   useEffect(() => {
     const getCourses = async () => {
-      setCourses((await callElectron(ContentArg.GET_COURSES)) as Course[]);
+      setCourses((await callElectronContent(ContentArg.GET_COURSES)) as Course[]);
     };
 
     getCourses();
