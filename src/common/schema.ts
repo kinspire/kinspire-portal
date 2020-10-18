@@ -25,6 +25,15 @@ export enum ModuleType {
   STORY = "story",
 }
 
+export interface BackendService {
+  content: ContentService;
+  auth: AuthService;
+}
+
+export interface AuthService {
+  login: () => Promise<void>;
+}
+
 export interface ContentService {
   getModule: (course: string, section: string, module: string) => Promise<Module>;
   getCourses: () => Promise<Course[]>;
@@ -50,4 +59,17 @@ export interface Course {
   id: string;
   sections: Section[];
   shortname: string;
+}
+
+// Specializations
+
+export interface StoryContent {
+  story: string[];
+  questions: Question[];
+  answers: Answer[];
+  vocab: any[];
+}
+
+export interface StoryModule extends Module {
+  content: StoryContent;
 }

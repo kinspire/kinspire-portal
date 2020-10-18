@@ -14,8 +14,8 @@ import { getColor, View } from "../constants";
 import "./Authentication.css";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("teststudent");
+  const [password, setPassword] = useState("Kinspire1!");
   const dispatch = useDispatch();
 
   // get the username entered by the user

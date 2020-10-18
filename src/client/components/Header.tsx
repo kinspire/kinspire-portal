@@ -1,6 +1,6 @@
 import { Typography } from "@material-ui/core";
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import { getColor, View } from "../constants";
 import "./Header.css";
@@ -21,54 +21,53 @@ const TITLE_MAP: Record<string, string> = {
   L: getColor("BUTTON"),
 };
 
-class Header extends Component {
-  public render() {
-    // creates the page icon in the menu
-    const menuItems = SECTIONS.map((section, i) => (
-      <div key={i} className="portal-menu-item">
-        <Link
-          style={{ color: section.color }}
-          to={`/${section.link}`}
-          className="portal-menu-item-link"
-        >
-          <div className="portal-menu-item-icon" style={{ backgroundColor: section.color }} />
-          <Typography>{section.name}</Typography>
-        </Link>
-      </div>
-    ));
+export default function Header() {
+  const loc = useLocation();
 
-    //creates the page title in the menu
-    const title = (
-      <div className="portal-title">
-        <Link to="/">
-          {"PORTAL".split("").map((x, i) => (
-            <span style={{ color: TITLE_MAP[x] }} key={i}>
-              {x}
-            </span>
-          ))}
-        </Link>
-      </div>
-    );
+  // creates the page icon in the menu
+  const menuItems = SECTIONS.map((section, i) => (
+    <div key={i} className="portal-menu-item">
+      <Link
+        style={{ color: section.color }}
+        to={`/${section.link}`}
+        className="portal-menu-item-link"
+      >
+        <div className="portal-menu-item-icon" style={{ backgroundColor: section.color }} />
+        <Typography>{section.name}</Typography>
+      </Link>
+    </div>
+  ));
 
-    // ** Make this the footer **//
-    // const menuContent = (
-    //   <div className="portal-menu-content" id="menu-content">
-    //     <div className="portal-menu-item-contact">
-    //       Kinspire UW <br />
-    //       Contact us: kinspire@uw.edu
-    //       <br />
-    //       2017
-    //     </div>
-    //   </div>
-    // );
+  //creates the page title in the menu
+  const title = (
+    <div className="portal-title">
+      <Link to="/">
+        {"PORTAL".split("").map((x, i) => (
+          <span style={{ color: TITLE_MAP[x] }} key={i}>
+            {x}
+          </span>
+        ))}
+      </Link>
+      {loc.pathname}
+    </div>
+  );
 
-    return (
-      <div className="portal-header">
-        {title}
-        <div className="menu-items">{menuItems}</div>
-      </div>
-    );
-  }
+  // ** Make this the footer **//
+  // const menuContent = (
+  //   <div className="portal-menu-content" id="menu-content">
+  //     <div className="portal-menu-item-contact">
+  //       Kinspire UW <br />
+  //       Contact us: kinspire@uw.edu
+  //       <br />
+  //       2017
+  //     </div>
+  //   </div>
+  // );
+
+  return (
+    <div className="portal-header">
+      {title}
+      <div className="menu-items">{menuItems}</div>
+    </div>
+  );
 }
-
-export default Header;

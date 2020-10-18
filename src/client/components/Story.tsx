@@ -1,5 +1,5 @@
 import { ContentArg } from "@common/messages";
-import { Answer, McqQuestion, Module } from "@common/schema";
+import { Answer, McqQuestion, Module, QuestionType, StoryModule } from "@common/schema";
 import { FormControlLabel, Grid, Radio, RadioGroup, Typography } from "@material-ui/core";
 import { forEach, get, join, map, size } from "lodash";
 import React from "react";
@@ -29,12 +29,12 @@ class StoryPage extends React.Component<Props, State> {
   // Load story and any progress the user might have had for this story
   public async componentDidMount() {
     try {
-      const module = (await callElectronContent(ContentArg.GET_MODULE, this.props)) as Module;
+      const module = (await callElectronContent(ContentArg.GET_MODULE, this.props)) as StoryModule;
 
       this.setState({
         module,
-        // If there are no answers, then set up default answers
-        answers: map(get(module.content, "questions"), (q) => (q.type === "mcq" ? -1 : "")),
+        // TODO: If there are no answers, then set up default answers
+        answers: get(module.content, "answers"),
         correct_answers: map(get(module.content, "questions"), (q) =>
           q.type === "mcq" ? (q as McqQuestion).correctChoice : ""
         ),

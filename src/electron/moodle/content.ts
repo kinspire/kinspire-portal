@@ -1,7 +1,8 @@
 import { Handler, Parser } from "htmlparser2/lib/Parser";
-import { filter, find, get, map, size, sortBy } from "lodash";
+import { filter, find, get, map, size, sortBy, unzip, zip } from "lodash";
 import { MAttempt, MCourse, MQuestion, MQuestionType, MQuiz, MSection } from "../../common/moodle";
 import {
+  Answer,
   ContentService,
   Course,
   McqQuestion,
@@ -10,6 +11,7 @@ import {
   Question,
   QuestionType,
   Section,
+  StoryContent,
 } from "../../common/schema";
 import {
   ApiHelper,
@@ -101,20 +103,19 @@ export const moodleContentService: ContentService = {
           "courseids[]": courseid,
         });
 
-        console.log("quizzes in course", quizzesInCourse);
-
         const quiz = find(quizzesInCourse.quizzes as MQuiz[], (q) => q.coursemodule === +moduleid);
 
         if (!quiz) {
           throw new Error("Can't find quiz");
         }
 
-        const [story, questions] = await getStoryFromQuiz(quiz);
+        const [story, questions, answers] = await getStoryFromQuiz(quiz);
         module.content = {
           story,
           questions,
+          answers,
           vocab: [],
-        };
+        } as StoryContent;
         break;
       default:
         console.warn("unknown module!");
@@ -155,27 +156,39 @@ class StoryHandler implements Partial<Handler> {
   }
 }
 
-// Handles any qtext-only html
-class BasicHandler implements Partial<Handler> {
+// Handles qtext + answer
+class ShortHandler implements Partial<Handler> {
   public lines: string[];
+  public answer: string;
   public level: number;
   public inQtext: boolean;
-  public done: boolean;
+  public qDone: boolean;
+  public aDone: boolean;
 
   constructor() {
     this.lines = [];
     this.level = -1;
     this.inQtext = false;
-    this.done = false;
+    this.qDone = false;
   }
 
   public onopentag(name: string, attribs: Record<string, any>) {
     if (this.level >= 0) {
       this.level++;
     }
-    if (!this.done && name === "div" && attribs.class === "qtext") {
+    if (!this.qDone && name === "div" && attribs.class === "qtext") {
       this.level = 0;
       this.inQtext = true;
+    }
+
+    if (
+      this.qDone &&
+      !this.aDone &&
+      name === "input" &&
+      (attribs.name as string).endsWith("answer")
+    ) {
+      this.answer = attribs.value;
+      this.aDone = true;
     }
   }
 
@@ -188,7 +201,7 @@ class BasicHandler implements Partial<Handler> {
   public onclosetag() {
     if (this.level >= 0) {
       if (this.level === 0) {
-        this.done = true;
+        this.qDone = true;
         this.inQtext = false;
       }
       this.level--;
@@ -197,51 +210,72 @@ class BasicHandler implements Partial<Handler> {
 }
 
 // Handles qtext + multiple choices
+// 0 = beginning, 1 = in qtext, 2 = done with qtext, 3 = in answer, 4 = done with answer
+enum McqState {
+  BEGINNING,
+  IN_QTEXT,
+  DONE_QTEXT,
+  IN_ANSWER,
+  DONE_ANSWER,
+}
+
 class McqHandler implements Partial<Handler> {
   public lines: string[];
   public choices: string[];
   public level: number;
-  // 0 = beginning, 1 = in qtext, 2 = done with qtext, 3 = in answer, 4 = done with answer
-  public state: number;
+  public state: McqState;
+  // indicates if we're in the answer block, but the text we're going to encounter isn't actually
+  // answer text. Basically used for the "a." prefix used for answers.
   public notAnswer: boolean;
+  public chosenAnswer: number;
 
   constructor() {
     this.lines = [];
     this.choices = [];
     this.level = -1;
-    this.state = 0;
+    this.state = McqState.BEGINNING;
+    this.chosenAnswer = -1;
   }
 
   public onopentag(name: string, attribs: Record<string, any>) {
     if (this.level >= 0) {
       this.level++;
     }
-    if (this.state === 0 && name === "div" && attribs.class === "qtext") {
+    if (this.state === McqState.BEGINNING && name === "div" && attribs.class === "qtext") {
       this.level = 0;
-      this.state = 1;
-    } else if (this.state === 2 && name === "div" && attribs.class === "answer") {
+      this.state = McqState.IN_QTEXT;
+    } else if (this.state === McqState.DONE_QTEXT && name === "div" && attribs.class === "answer") {
       this.level = 0;
-      this.state = 3;
-    } else if (this.state === 3 && name === "span" && attribs.class === "answernumber") {
-      this.notAnswer = true;
+      this.state = McqState.IN_ANSWER;
+    } else if (this.state === McqState.IN_ANSWER) {
+      if (name === "span" && attribs.class === "answernumber") {
+        this.notAnswer = true;
+      } else if (
+        name === "input" &&
+        (attribs.name as string).endsWith("answer") &&
+        attribs.checked === "checked"
+      ) {
+        // Uses the fact that the <input> tag is BEFORE the answer
+        this.chosenAnswer = this.choices.length;
+      }
     }
   }
 
   public ontext(text: string) {
-    if (this.state === 1) {
+    if (this.state === McqState.IN_QTEXT) {
       this.lines.push(text);
-    } else if (this.state === 3 && !this.notAnswer && text.trim()) {
+    } else if (this.state === McqState.IN_ANSWER && !this.notAnswer && text.trim()) {
       this.choices.push(text);
     }
   }
 
   public onclosetag() {
     if (this.level >= 0) {
-      if (this.state === 1 && this.level === 0) {
-        this.state = 2;
-      } else if (this.state === 3 && this.level === 0) {
-        this.state = 4;
-      } else if (this.state === 3 && this.notAnswer) {
+      if (this.state === McqState.IN_QTEXT && this.level === 0) {
+        this.state = McqState.DONE_QTEXT;
+      } else if (this.state === McqState.IN_ANSWER && this.level === 0) {
+        this.state = McqState.DONE_ANSWER;
+      } else if (this.state === McqState.IN_ANSWER && this.notAnswer) {
         this.notAnswer = false;
       }
       this.level--;
@@ -304,27 +338,33 @@ const parseStory = (story: string) => {
   return handler.lines;
 };
 
-const parseQuestionTextFromHtml = (q: MQuestion): Question => {
+const parseQuestionTextFromHtml = (q: MQuestion): [Question, Answer] => {
   if (q.type === MQuestionType.SHORT || q.type === MQuestionType.LONG) {
-    const handler = new BasicHandler();
+    const handler = new ShortHandler();
     parse(q.html, handler);
-    return {
-      question: handler.lines.join(" "),
-      type: q.type === MQuestionType.SHORT ? QuestionType.SHORT : QuestionType.LONG,
-    };
+    return [
+      {
+        question: handler.lines.join(" "),
+        type: q.type === MQuestionType.SHORT ? QuestionType.SHORT : QuestionType.LONG,
+      },
+      handler.answer,
+    ];
   } else if (q.type === MQuestionType.MULTI) {
     const handler = new McqHandler();
     parse(q.html, handler);
-    return {
-      question: handler.lines.join(" "),
-      type: QuestionType.MCQ,
-      choices: handler.choices,
-    } as McqQuestion;
+    return [
+      {
+        question: handler.lines.join(" "),
+        type: QuestionType.MCQ,
+        choices: handler.choices,
+      } as McqQuestion,
+      handler.chosenAnswer,
+    ];
   }
 };
 
 // Convert an MQuiz into an array of strings (the story) and an array of questions
-const getStoryFromQuiz = async (quiz: MQuiz): Promise<[string[], Question[]]> => {
+const getStoryFromQuiz = async (quiz: MQuiz): Promise<[string[], Question[], Answer[]]> => {
   // First identify the attempt id for this quiz
   const attempts = await ApiHelper.callFunction(QUIZ_GET_ATTEMPTS, {
     quizid: quiz.id,
@@ -348,10 +388,11 @@ const getStoryFromQuiz = async (quiz: MQuiz): Promise<[string[], Question[]]> =>
     page: 0,
   });
 
-  // TODO pipe content through here
-  const questions = attemptData.questions as MQuestion[];
+  const mquestions = attemptData.questions as MQuestion[];
   const story = parseStory(quiz.intro);
-  const processedQuestions = map(questions, (q) => parseQuestionTextFromHtml(q));
+  const qaPairs = map(mquestions, (q) => parseQuestionTextFromHtml(q));
+  // zip takes each array as a parameter
+  const [processedQs, processedAs] = zip(...qaPairs);
 
-  return [story, processedQuestions];
+  return [story, processedQs as Question[], processedAs as Answer[]];
 };
