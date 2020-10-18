@@ -3,7 +3,6 @@ import { filter, find, get, map, size, sortBy } from "lodash";
 import { MAttempt, MCourse, MQuestion, MQuestionType, MQuiz, MSection } from "../../common/moodle";
 import {
   ContentService,
-  ContentType,
   Course,
   McqQuestion,
   Module,
@@ -11,7 +10,6 @@ import {
   Question,
   QuestionType,
   Section,
-  Story,
 } from "../../common/schema";
 import {
   callFunction,
@@ -21,7 +19,7 @@ import {
   QUIZ_GET_ATTEMPTS,
   QUIZ_GET_QUIZZES_IN_COURSE,
   QUIZ_START_ATTEMPT,
-} from "../moodle";
+} from "./webservice";
 
 // Some constants for now
 
@@ -119,19 +117,6 @@ export const moodleContentService: ContentService = {
 
     return module;
   },
-
-  // TODO delete
-  getAllContent: async () => [],
-  getContent: async (c: ContentType, classLevel: number, num: number) => {
-    return { classLevel, num, questions: [], story: [] } as Story;
-  },
-  getContentProgress: async (c: ContentType, classLevel: number, num: number) => ({
-    answers: [],
-    classLevel,
-    num,
-    type: c,
-  }),
-  submitContentProgress: async () => {},
 };
 
 class StoryHandler implements Partial<Handler> {

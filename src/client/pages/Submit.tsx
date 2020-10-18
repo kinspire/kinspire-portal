@@ -1,12 +1,11 @@
+import { callElectronContent } from "@app/services/electron";
 import { ContentArg } from "@common/messages";
+import { Course } from "@common/schema";
 import { Button, Typography } from "@material-ui/core";
-import { forEach, find, get, join, map, size } from "lodash";
+import { find, get } from "lodash";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import swal from "sweetalert";
-import { View, getColor } from "../constants";
-import { callElectron } from "../services/content";
-import { Course } from "@common/schema";
+import { getColor, View } from "../constants";
 
 interface Params {
   course: string;
@@ -21,7 +20,7 @@ export default function SubmitPage() {
   const [course, setCourse] = useState<Course>(null);
   useEffect(() => {
     const getCourse = async () => {
-      setCourse(await callElectron(ContentArg.GET_COURSE, { courseId: params.course }));
+      setCourse(await callElectronContent(ContentArg.GET_COURSE, { courseId: params.course }));
     };
 
     getCourse();

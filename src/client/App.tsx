@@ -15,8 +15,6 @@ import Submit from "./pages/Submit";
 import Register from "./pages/Register";
 import Section from "./pages/Section";
 import Test from "./pages/Test";
-import WordSearch from "./pages/WordSearch";
-import WordSearches from "./pages/WordSearches";
 import { useSelector } from "./store";
 import { portalTheme } from "./Theme";
 
@@ -41,8 +39,6 @@ const App: React.FC = () => {
               <Route path="/courses" component={Courses} />
               <Route path="/test" component={Test} />
               {/* <Route path="/materials" component={Materials} /> */}
-              <Route path="/wordsearch/:classLevel/:num" component={WordSearch} />
-              <Route path="/wordsearches" component={WordSearches} />
               {/* <Route path="/story/:classLevel/:num" component={Story} /> */}
               {/* <Route path="/stories" component={Stories} /> */}
               <Route path="/" component={Home} />

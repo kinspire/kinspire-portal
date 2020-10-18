@@ -1,11 +1,10 @@
 import { ContentArg } from "@common/messages";
-import { Answer, Module, McqQuestion, Story } from "@common/schema";
-import { Button, FormControlLabel, Grid, Radio, RadioGroup, Typography } from "@material-ui/core";
-import { forEach, get, join, map, size } from "lodash";
+import { Answer, McqQuestion, Module } from "@common/schema";
+import { FormControlLabel, Grid, Radio, RadioGroup, Typography } from "@material-ui/core";
+import { forEach, get, map } from "lodash";
 import React from "react";
-import { Link } from "react-router-dom";
 import swal from "sweetalert";
-import { View, getColor } from "../constants";
+import { getColor, View } from "../constants";
 import { callElectronContent } from "../services/electron";
 import "./Story.css";
 
@@ -33,7 +32,7 @@ class QuizPage extends React.Component<Props, State> {
       const module = (await callElectronContent(ContentArg.GET_MODULE, this.props)) as Module;
 
       this.setState({
-        module: module,
+        module,
         // If there are no answers, then set up default answers
         answers: map(get(module.content, "questions"), (q) => (q.type === "mcq" ? -1 : "")),
         correct_answers: map(get(module.content, "questions"), (q) =>

@@ -4,8 +4,6 @@ import isDev from "electron-is-dev";
 
 import path from "path";
 import register from "./messageManager";
-import { callFunction, COURSE_GET_COURSES } from "./moodle";
-import { apiRequest } from "./util";
 
 // This is sad but we have to go relative to build/src
 // let electronBinary = path.join(__dirname, "..", "..", "node_modules", ".bin", "electron");

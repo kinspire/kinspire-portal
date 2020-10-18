@@ -3,7 +3,6 @@
 // the JS, so to avoid duplication I'm putting it here. Definitely worth
 // a second look.
 
-import { ContentType } from "@common/schema";
 import { FormControl } from "@material-ui/core";
 
 export enum FontType {
@@ -53,11 +52,4 @@ export const getColor = (v: View | string): string => {
       return "#fa8e47";
   }
   return "#262626";
-};
-
-// The text used per type
-export const contentStrings = {
-  [ContentType.STORY]: "Story",
-  [ContentType.WORD_SEARCH]: "Word Search",
-  [ContentType.TASK]: "Task",
 };

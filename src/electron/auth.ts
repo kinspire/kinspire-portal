@@ -1,8 +1,8 @@
-import { MTok } from "../common/moodle";
 import { ipcMain } from "electron";
 import querystring from "querystring";
-import { AuthArg, ContentArg, Messages } from "../common/messages";
-import { BASE, WS_NAME } from "./moodle";
+import { AuthArg, Messages } from "../common/messages";
+import { MTok } from "../common/moodle";
+import { BASE, WS_NAME } from "./moodle/webservice";
 import { apiRequest } from "./util";
 
 const login = async (username: string, password: string) => {

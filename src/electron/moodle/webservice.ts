@@ -1,5 +1,5 @@
 import querystring from "querystring";
-import { apiRequest } from "./util";
+import { apiRequest } from "../util";
 
 // Functions
 const WS_FUNCTION = "wsfunction";
@@ -14,11 +14,11 @@ export const QUIZ_GET_QUIZZES_IN_COURSE = "mod_quiz_get_quizzes_by_courses";
 export const QUIZ_SAVE_ATTEMPT = "mod_quiz_save_attempt";
 
 // kinspire.org
-// export const BASE = "http://kinspire.org/portal";
-// const WS_TOKEN = "99a1a5345fd1bf1ba90324fb9662f59a";
+export const BASE = "http://kinspire.org/portal";
+const WS_TOKEN = "99a1a5345fd1bf1ba90324fb9662f59a";
 // localhost
-export const BASE = "http://localhost:3123";
-const WS_TOKEN = "917f2276cc69185e43e4a384b7d98ebb";
+// export const BASE = "http://localhost:3123";
+// const WS_TOKEN = "917f2276cc69185e43e4a384b7d98ebb";
 
 export const WS_BASE = `${BASE}/webservice/rest/server.php?wstoken=${WS_TOKEN}&moodlewsrestformat=json&`;
 
