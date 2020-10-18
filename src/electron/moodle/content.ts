@@ -12,13 +12,14 @@ import {
   Section,
 } from "../../common/schema";
 import {
-  callFunction,
+  ApiHelper,
   COURSE_GET_CONTENTS,
-  COURSE_GET_COURSES,
+  ENROL_GET_COURSES,
   QUIZ_GET_ATTEMPT_DATA,
   QUIZ_GET_ATTEMPTS,
   QUIZ_GET_QUIZZES_IN_COURSE,
   QUIZ_START_ATTEMPT,
+  WEBSERVICE_GET_INFO,
 } from "./webservice";
 
 // Some constants for now
@@ -53,20 +54,25 @@ const courseMap = (c: MCourse, sections: MSection[]): Course => ({
   shortname: c.shortname,
 });
 
+// Fetch courses for the currently logged-in user
+const getCourses = async () => {
+  const { userid } = await ApiHelper.callFunction(WEBSERVICE_GET_INFO);
+  return (await ApiHelper.callFunction(ENROL_GET_COURSES, { userid })) as MCourse[];
+};
+
 export const moodleContentService: ContentService = {
   getCourses: async () => {
-    const courses: MCourse[] = await callFunction(COURSE_GET_COURSES);
-
+    const mcourses = await getCourses();
     return map(
-      filter(courses, (c) => c.id !== EXCLUDE_COURSE_ID),
+      filter(mcourses, (c) => c.id !== EXCLUDE_COURSE_ID),
       (c) => courseMap(c, [])
     );
   },
 
   getCourse: async (id: string) => {
     const [courses, sections]: [MCourse[], MSection[]] = await Promise.all([
-      callFunction(COURSE_GET_COURSES),
-      callFunction(COURSE_GET_CONTENTS, { courseid: id }),
+      getCourses(),
+      ApiHelper.callFunction(COURSE_GET_CONTENTS, { courseid: id }),
     ]);
     const course = find(courses, (c) => "" + c.id === id);
     return courseMap(course, sections);
@@ -91,7 +97,7 @@ export const moodleContentService: ContentService = {
     switch (module.moduleType) {
       case ModuleType.STORY:
         // Convert moduleid to quizid
-        const quizzesInCourse = await callFunction(QUIZ_GET_QUIZZES_IN_COURSE, {
+        const quizzesInCourse = await ApiHelper.callFunction(QUIZ_GET_QUIZZES_IN_COURSE, {
           "courseids[]": courseid,
         });
 
@@ -320,7 +326,7 @@ const parseQuestionTextFromHtml = (q: MQuestion): Question => {
 // Convert an MQuiz into an array of strings (the story) and an array of questions
 const getStoryFromQuiz = async (quiz: MQuiz): Promise<[string[], Question[]]> => {
   // First identify the attempt id for this quiz
-  const attempts = await callFunction(QUIZ_GET_ATTEMPTS, {
+  const attempts = await ApiHelper.callFunction(QUIZ_GET_ATTEMPTS, {
     quizid: quiz.id,
     includepreviews: 1,
     status: "all",
@@ -329,7 +335,7 @@ const getStoryFromQuiz = async (quiz: MQuiz): Promise<[string[], Question[]]> =>
   let attempt: MAttempt;
   if (size(attempts.attempts) === 0) {
     // Need to start a new attempt
-    const attemptStart = await callFunction(QUIZ_START_ATTEMPT, { quizid: quiz.id });
+    const attemptStart = await ApiHelper.callFunction(QUIZ_START_ATTEMPT, { quizid: quiz.id });
 
     attempt = attemptStart.attempt;
   } else {
@@ -337,11 +343,12 @@ const getStoryFromQuiz = async (quiz: MQuiz): Promise<[string[], Question[]]> =>
   }
 
   // Use the layout to understand the fields in here
-  const attemptData = await callFunction(QUIZ_GET_ATTEMPT_DATA, {
+  const attemptData = await ApiHelper.callFunction(QUIZ_GET_ATTEMPT_DATA, {
     attemptid: attempt.id,
     page: 0,
   });
 
+  // TODO pipe content through here
   const questions = attemptData.questions as MQuestion[];
   const story = parseStory(quiz.intro);
   const processedQuestions = map(questions, (q) => parseQuestionTextFromHtml(q));

@@ -35,6 +35,8 @@ Open a terminal window at the root of the project, and type:
 $ yarn
 ```
 
+Note: if you're interop'ing on WSL and Windows (like me), run `yarn` on WSL first, followed by `yarn` on Windows. If you run it on Windows first the Windows binaries can get overwritten.
+
 ---
 
 ## 3. Development

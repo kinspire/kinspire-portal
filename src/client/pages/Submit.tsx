@@ -2,16 +2,15 @@ import { callElectronContent } from "@app/services/electron";
 import { ContentArg } from "@common/messages";
 import { Course } from "@common/schema";
 import { Button, Typography } from "@material-ui/core";
-import { find, get } from "lodash";
+import { find, get, map } from "lodash";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getColor, View } from "../constants";
 
 interface Params {
   course: string;
-  tier: string;
+  section: string;
   module: string;
-  lesson: string;
 }
 
 export default function SubmitPage() {
@@ -25,15 +24,13 @@ export default function SubmitPage() {
 
     getCourse();
   }, []);
-  const tier = find(get(course, "tiers"), (t) => {
-    return t.id === params.tier;
+  const section = find(get(course, "sections"), (t) => {
+    return t.id === params.section;
   });
-  const module = find(get(tier, "modules"), (m) => {
+  const module = find(get(section, "modules"), (m) => {
     return m.id === params.module;
   });
-  const lesson = find(get(module, "lessons"), (m) => {
-    return m.id === params.lesson;
-  });
+
   return (
     <div style={{ height: "calc(100vh - 310px)" }}>
       <Typography
@@ -45,7 +42,7 @@ export default function SubmitPage() {
           textAlign: "center",
         }}
       >
-        All your responses for {get(lesson, "title")} have been submitted! Graded feedback will be
+        All your responses for {get(module, "title")} have been submitted! Graded feedback will be
         availabe to view in a few days.
       </Typography>
       <Button
