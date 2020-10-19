@@ -1,7 +1,14 @@
 import { fullUnescape } from "@app/util";
 import { ContentArg } from "@common/messages";
-import { Answer, McqQuestion, Module, QuestionType, StoryModule } from "@common/schema";
-import { FormControlLabel, Grid, Radio, RadioGroup, Typography } from "@material-ui/core";
+import { Answer, McqQuestion, Module, QuestionType, StoryModule, StoryState } from "@common/schema";
+import {
+  FormControlLabel,
+  Grid,
+  Radio,
+  RadioGroup,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import { forEach, get, join, map, set, size, unescape } from "lodash";
 import React from "react";
 import swal from "sweetalert";
@@ -197,8 +204,7 @@ class StoryPage extends React.Component<Props, State> {
           break;
         case QuestionType.SHORT:
           output.push(
-            <input
-              type="text"
+            <TextField
               key={`question-${i}-answer`}
               name={`question-${i}`}
               id={`question-${i}`}
@@ -209,7 +215,8 @@ class StoryPage extends React.Component<Props, State> {
           break;
         case QuestionType.LONG:
           output.push(
-            <textarea
+            <TextField
+              multiline
               key={`question-${i}-answer`}
               name={`question-${i}`}
               id={`question-${i}`}
@@ -251,9 +258,15 @@ class StoryPage extends React.Component<Props, State> {
               <Typography variant="h5" style={{ color: getColor(View.COURSES) }}>
                 QUESTIONS
               </Typography>
-              <ol style={{ display: "block" }} type="1">
-                {this.generateQuestions()}
-              </ol>
+              {get(this.state.module, "content.state") === StoryState.FINISHED ? (
+                <Typography style={{ color: getColor(View.COURSES) }}>
+                  Already submitted!
+                </Typography>
+              ) : (
+                <ol style={{ display: "block" }} type="1">
+                  {this.generateQuestions()}
+                </ol>
+              )}
               <div id="error" />
             </div>
           </Grid>

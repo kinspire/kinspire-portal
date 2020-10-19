@@ -36,15 +36,19 @@ export default function Module() {
   };
 
   const submitContent = async () => {
-    await callElectronContent(ContentArg.SAVE_MODULE, {
-      course,
-      section,
-      module,
-      answers,
-      submit: true,
-    });
-
-    history.push("/submit/" + course + "/" + section + "/" + module);
+    if (
+      await callElectronContent(ContentArg.SAVE_MODULE, {
+        course,
+        section,
+        module,
+        answers,
+        submit: true,
+      })
+    ) {
+      history.push("/submit/" + course + "/" + section + "/" + module);
+    } else {
+      alert("Unable to submit! :(");
+    }
   };
 
   // Based on the course/tier, use the corresponding lesson view

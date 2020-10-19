@@ -14,7 +14,15 @@ import {
   zip,
   unescape,
 } from "lodash";
-import { MAttempt, MCourse, MQuestion, MQuestionType, MQuiz, MSection } from "../../common/moodle";
+import {
+  MAttempt,
+  MAttemptState,
+  MCourse,
+  MQuestion,
+  MQuestionType,
+  MQuiz,
+  MSection,
+} from "../../common/moodle";
 import {
   Answer,
   ContentService,
@@ -26,6 +34,7 @@ import {
   QuestionType,
   Section,
   StoryContent,
+  StoryState,
 } from "../../common/schema";
 import {
   ApiHelper,
@@ -112,8 +121,14 @@ export const moodleContentService: ContentService = {
           throw new Error("Can't find quiz");
         }
 
-        const [story, questions, answers] = await getStoryFromMQuiz(quiz);
+        // First get story - we can always get that.
+        const story = parseStory(quiz.intro);
+
+        // Then try to get qs, as, and current state from the attempt
+        const { state, questions, answers } = await getQAFromAttempt(quiz.id);
+
         module.content = {
+          state,
           story,
           questions,
           answers,
@@ -175,16 +190,18 @@ export const moodleContentService: ContentService = {
         const params = {
           attemptid: mattempt.id,
           ...dataObj,
+          ...(submit
+            ? {
+                finishattempt: 1,
+              }
+            : {}),
         };
 
-        console.log("params:", params);
-
         // TODO this needs to be a POST so we don't get escaped to hell and back
-        await ApiHelper.callFunction(QUIZ_PROCESS_ATTEMPT, params);
-        break;
+        const res = await ApiHelper.callFunction(QUIZ_PROCESS_ATTEMPT, params);
+        return res.state === MAttemptState.FINISHED;
     }
-
-    return true;
+    return false;
   },
 };
 
@@ -463,16 +480,28 @@ const getMAttempt = async (quizid: number): Promise<MAttempt> => {
 
     attempt = attemptStart.attempt;
   } else {
+    // Check if it's complete
     attempt = get(sortBy(attempts.attempts, "attempt"), "[0]");
+
+    if (attempt.state === MAttemptState.FINISHED) {
+      console.log("Found existing attempt to be finished", attempt);
+
+      return null;
+    }
   }
 
   return attempt;
 };
 
-// Convert an MQuiz into an array of strings (the story) and an array of questions
-const getStoryFromMQuiz = async (quiz: MQuiz): Promise<[string[], Question[], Answer[]]> => {
-  // First identify the attempt id for this quiz
-  const attempt = await getMAttempt(quiz.id);
+// Convert an attempt into an array of strings (the story) and an array of questions
+const getQAFromAttempt = async (quizid: number): Promise<Record<string, any>> => {
+  // Identify the attempt id for this quiz
+  const attempt = await getMAttempt(quizid);
+
+  // Check for finished attempts
+  if (!attempt) {
+    return { questions: [], answers: [], state: StoryState.FINISHED };
+  }
 
   // Use the layout to understand the fields in here
   const attemptData = await ApiHelper.callFunction(QUIZ_GET_ATTEMPT_DATA, {
@@ -481,10 +510,9 @@ const getStoryFromMQuiz = async (quiz: MQuiz): Promise<[string[], Question[], An
   });
 
   const mquestions = attemptData.questions as MQuestion[];
-  const story = parseStory(quiz.intro);
   const qaPairs = map(mquestions, (q) => mquestionToQsAndAs(q));
   // zip takes each array as a parameter
-  const [processedQs, processedAs] = zip(...qaPairs);
+  const [questions, answers] = zip(...qaPairs);
 
-  return [story, processedQs as Question[], processedAs as Answer[]];
+  return { questions, answers, state: StoryState.IN_PROGRESS };
 };

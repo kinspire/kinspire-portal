@@ -52,8 +52,8 @@ export default function SubmitPage() {
           margin: "100px",
         }}
       >
-        <Link style={{ color: "white" }} to="/courses">
-          BACK TO CLASSES
+        <Link style={{ color: "white" }} to={`/section/${course}/${section}`}>
+          BACK TO SECTION
         </Link>
         {/* <Link style={{ color: "white" }} to="">
           NEXT LESSON

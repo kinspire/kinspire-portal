@@ -1,5 +1,12 @@
 import { ipcMain } from "electron";
-import { AuthArg, ContentArg, Messages } from "../common/messages";
+import {
+  AuthArg,
+  AuthArgString,
+  ContentArg,
+  ContentArgString,
+  ElectronRequest,
+  Messages,
+} from "../common/messages";
 import { moodleLogin } from "./moodle/auth";
 import { moodleContentService } from "./moodle/content";
 import { ApiHelper } from "./moodle/webservice";
@@ -18,11 +25,13 @@ export default function register() {
 const service = moodleContentService;
 
 const registerContentListener = () => {
-  ipcMain.handle(Messages.Content.REQUEST, async (event, request) => {
-    console.log("[Content] Answer renderer", request);
+  ipcMain.handle(Messages.Content.REQUEST, async (_event, request: ElectronRequest) => {
+    console.log("Content Request", ContentArgString[request.arg], request.data);
 
     if (request.data.token) {
-      console.log("Update token", request.data.token);
+      if (!ApiHelper.token) {
+        console.log("Update token", request.data.token);
+      }
       ApiHelper.token = request.data.token;
     }
 
@@ -50,8 +59,8 @@ const registerContentListener = () => {
 };
 
 export const registerAuthListener = () => {
-  ipcMain.handle(Messages.Auth.REQUEST, async (event, request) => {
-    console.log("[Auth] Answer renderer", request);
+  ipcMain.handle(Messages.Auth.REQUEST, async (_event, request: ElectronRequest) => {
+    console.log("Auth Request", AuthArgString[request.arg], request.data);
     switch (request.arg) {
       case AuthArg.LOGIN:
         return await moodleLogin(request.data.username, request.data.password);

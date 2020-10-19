@@ -41,6 +41,12 @@ export interface MAttempt {
   userid: number;
   attempt: number;
   uniqueid: number;
+  state: MAttemptState;
+}
+
+export enum MAttemptState {
+  FINISHED = "finished",
+  IN_PROGRESS = "inprogress",
 }
 
 export interface MAttemptData {
