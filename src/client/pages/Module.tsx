@@ -16,6 +16,7 @@ interface Params {
 export default function Module() {
   // extracts the topic id from the url
   const { course, section, module } = useParams<Params>();
+  const history = useHistory();
 
   // State is owned by us so we can submit it
   const [answers, setAnswers] = useState(null);
@@ -31,7 +32,19 @@ export default function Module() {
 
   // Save to backend
   const saveContent = () => {
-    callElectronContent(ContentArg.SUBMIT_MODULE, { course, section, module, answers });
+    callElectronContent(ContentArg.SAVE_MODULE, { course, section, module, answers });
+  };
+
+  const submitContent = async () => {
+    await callElectronContent(ContentArg.SAVE_MODULE, {
+      course,
+      section,
+      module,
+      answers,
+      submit: true,
+    });
+
+    history.push("/submit/" + course + "/" + section + "/" + module);
   };
 
   // Based on the course/tier, use the corresponding lesson view
@@ -60,12 +73,8 @@ export default function Module() {
           <Button style={{ backgroundColor: getColor(View.COURSES) }} onClick={saveContent}>
             SAVE
           </Button>
-          <Button
-            style={{
-              backgroundColor: getColor(View.COURSES),
-            }}
-          >
-            <Link to={"/submit/" + course + "/" + section + "/" + module}>SUBMIT ALL ANSWERS</Link>
+          <Button style={{ backgroundColor: getColor(View.COURSES) }} onClick={submitContent}>
+            SUBMIT ALL ANSWERS
           </Button>
         </div>
       </Scaffold>

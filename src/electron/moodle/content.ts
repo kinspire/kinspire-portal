@@ -128,11 +128,12 @@ export const moodleContentService: ContentService = {
     return module;
   },
 
-  submitModule: async (
+  saveModule: async (
     courseid: string,
     sectionid: string,
     moduleid: string,
-    answers: Answer[]
+    answers: Answer[],
+    submit?: boolean
   ) => {
     const module = await getModuleHelper(courseid, sectionid, moduleid);
 

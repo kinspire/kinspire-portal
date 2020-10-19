@@ -41,11 +41,12 @@ export interface ContentService {
   getModule: (course: string, section: string, module: string) => Promise<Module>;
   getCourses: () => Promise<Course[]>;
   getCourse: (id: string) => Promise<Course>;
-  submitModule: (
+  saveModule: (
     course: string,
     section: string,
     module: string,
-    answers: Answer[]
+    answers: Answer[],
+    submit?: boolean
   ) => Promise<boolean>;
 }
 

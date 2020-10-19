@@ -22,7 +22,7 @@ export const enum ContentArg {
   GET_COURSE,
   GET_COURSES,
   GET_MODULE,
-  SUBMIT_MODULE,
+  SAVE_MODULE,
 }
 
 export const enum AuthArg {

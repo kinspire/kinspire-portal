@@ -37,12 +37,13 @@ const registerContentListener = () => {
           request.data.section,
           request.data.module
         );
-      case ContentArg.SUBMIT_MODULE:
-        return await service.submitModule(
+      case ContentArg.SAVE_MODULE:
+        return await service.saveModule(
           request.data.course,
           request.data.section,
           request.data.module,
-          request.data.answers
+          request.data.answers,
+          request.data.submit
         );
     }
   });

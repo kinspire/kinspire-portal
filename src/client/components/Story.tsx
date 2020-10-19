@@ -1,7 +1,8 @@
+import { fullUnescape } from "@app/util";
 import { ContentArg } from "@common/messages";
 import { Answer, McqQuestion, Module, QuestionType, StoryModule } from "@common/schema";
 import { FormControlLabel, Grid, Radio, RadioGroup, Typography } from "@material-ui/core";
-import { forEach, get, join, map, set, size } from "lodash";
+import { forEach, get, join, map, set, size, unescape } from "lodash";
 import React from "react";
 import swal from "sweetalert";
 import { getColor, View } from "../constants";
@@ -36,11 +37,15 @@ class StoryPage extends React.Component<Props, State> {
       });
 
       // TODO: If there are no answers, then set up default answers
-
-      console.log("saved answers:", get(module.content, "answers"));
+      const answers = map(get(module.content, "answers", []), (a: Answer) => {
+        return {
+          ...a,
+          answer: fullUnescape(a.answer),
+        };
+      });
 
       // Propagate existing answers up to parent component
-      this.props.setAnswers(get(module.content, "answers", []));
+      this.props.setAnswers(answers);
     } catch (err) {
       swal(`${err}`);
     }
