@@ -10,7 +10,7 @@ export const Messages = {
   Auth: {
     REQUEST: "authRequest",
     REPLY: "authReply",
-  }
+  },
 };
 
 export interface ContentRequest {
@@ -22,12 +22,7 @@ export const enum ContentArg {
   GET_COURSE,
   GET_COURSES,
   GET_MODULE,
-  // divider
-  // TODO delete the following after WordSearch is transferred to Moodle
-  GET_ALL_CONTENT,
-  GET_CONTENT,
-  GET_CONTENT_PROGRESS,
-  SUBMIT_CONTENT_PROGRESS,
+  SUBMIT_MODULE,
 }
 
 export const enum AuthArg {

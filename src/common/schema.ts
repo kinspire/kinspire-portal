@@ -19,7 +19,10 @@ export interface McqQuestion extends Question {
   correctChoice: number;
 }
 
-export type Answer = string | number;
+export interface Answer {
+  answer: string | number;
+  sequencecheck: number;
+}
 
 export enum ModuleType {
   STORY = "story",
@@ -38,6 +41,12 @@ export interface ContentService {
   getModule: (course: string, section: string, module: string) => Promise<Module>;
   getCourses: () => Promise<Course[]>;
   getCourse: (id: string) => Promise<Course>;
+  submitModule: (
+    course: string,
+    section: string,
+    module: string,
+    answers: Answer[]
+  ) => Promise<boolean>;
 }
 
 export interface Module {

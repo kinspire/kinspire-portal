@@ -43,6 +43,11 @@ export interface MAttempt {
   uniqueid: number;
 }
 
+export interface MAttemptData {
+  attempt: MAttempt;
+  questions: MQuestion[];
+}
+
 export enum MQuestionType {
   DESCRIPTION = "description",
   SHORT = "shortanswer",
@@ -54,6 +59,7 @@ export interface MQuestion {
   slot: number;
   type: MQuestionType;
   page: 0;
+  sequencecheck: number;
   html: string;
 }
 

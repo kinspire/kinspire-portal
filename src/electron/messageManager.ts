@@ -37,6 +37,13 @@ const registerContentListener = () => {
           request.data.section,
           request.data.module
         );
+      case ContentArg.SUBMIT_MODULE:
+        return await service.submitModule(
+          request.data.course,
+          request.data.section,
+          request.data.module,
+          request.data.answers
+        );
     }
   });
 };
