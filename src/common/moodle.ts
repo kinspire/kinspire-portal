@@ -41,6 +41,17 @@ export interface MAttempt {
   userid: number;
   attempt: number;
   uniqueid: number;
+  state: MAttemptState;
+}
+
+export enum MAttemptState {
+  FINISHED = "finished",
+  IN_PROGRESS = "inprogress",
+}
+
+export interface MAttemptData {
+  attempt: MAttempt;
+  questions: MQuestion[];
 }
 
 export enum MQuestionType {
@@ -54,6 +65,7 @@ export interface MQuestion {
   slot: number;
   type: MQuestionType;
   page: 0;
+  sequencecheck: number;
   html: string;
 }
 

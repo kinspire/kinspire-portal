@@ -31,14 +31,7 @@ export default function Login() {
   // then route app to that view
 
   const handleChange = ({ target }) => {
-    switch (target.name) {
-      case "username":
-        setUsername(target.value);
-        break;
-      case "password":
-        setPassword(target.value);
-        break;
-    }
+    (target.name === "username" ? setUsername : setPassword)(target.value);
   };
 
   const handleLogin = async () => {
@@ -82,7 +75,7 @@ export default function Login() {
           />
         </form>
         <Button style={{ backgroundColor: getColor(View.HOME) }} onClick={handleLogin}>
-          <Link to="/home">LOGIN</Link>
+          <Typography>LOGIN</Typography>
         </Button>
       </div>
     </Scaffold>

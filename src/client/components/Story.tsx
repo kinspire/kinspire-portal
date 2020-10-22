@@ -1,7 +1,15 @@
+import { fullUnescape } from "@app/util";
 import { ContentArg } from "@common/messages";
-import { Answer, McqQuestion, Module } from "@common/schema";
-import { FormControlLabel, Grid, Radio, RadioGroup, Typography } from "@material-ui/core";
-import { forEach, get, join, map, size } from "lodash";
+import { Answer, McqQuestion, Module, QuestionType, StoryModule, StoryState } from "@common/schema";
+import {
+  FormControlLabel,
+  Grid,
+  Radio,
+  RadioGroup,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import { forEach, get, join, map, set, size, unescape } from "lodash";
 import React from "react";
 import swal from "sweetalert";
 import { getColor, View } from "../constants";
@@ -12,33 +20,39 @@ interface Props {
   course: string;
   section: string;
   module: string;
+  // State propagated to parent
+  answers: Answer[];
+  setAnswers: (a: Answer[]) => void;
 }
 
 interface State {
-  answers: Answer[];
-  module?: Module;
-  correct_answers: any[]; // TODO
+  module?: StoryModule;
+  // answers: Answer[];
+  // correct_answers: any[]; // TODO
 }
 
 class StoryPage extends React.Component<Props, State> {
-  public state = {
-    answers: [],
-    correct_answers: [],
-  } as State;
+  public state = {} as State;
 
   // Load story and any progress the user might have had for this story
   public async componentDidMount() {
     try {
-      const module = (await callElectronContent(ContentArg.GET_MODULE, this.props)) as Module;
+      const module = (await callElectronContent(ContentArg.GET_MODULE, this.props)) as StoryModule;
 
       this.setState({
         module,
-        // If there are no answers, then set up default answers
-        answers: map(get(module.content, "questions"), (q) => (q.type === "mcq" ? -1 : "")),
-        correct_answers: map(get(module.content, "questions"), (q) =>
-          q.type === "mcq" ? (q as McqQuestion).correctChoice : ""
-        ),
       });
+
+      // TODO: If there are no answers, then set up default answers
+      const answers = map(get(module.content, "answers", []), (a: Answer) => {
+        return {
+          ...a,
+          answer: fullUnescape(a.answer),
+        };
+      });
+
+      // Propagate existing answers up to parent component
+      this.props.setAnswers(answers);
     } catch (err) {
       swal(`${err}`);
     }
@@ -46,16 +60,16 @@ class StoryPage extends React.Component<Props, State> {
 
   // [1 of 2] Handle answer changes
   public handleOptionChange = (i: number, event: any) => {
-    const answers = this.state.answers;
-    answers[i] = parseInt(event.target.value, 10);
-    this.setState({ answers });
+    const answers = [...this.props.answers];
+    set(answers[i], "answer", parseInt(event.target.value, 10));
+    this.props.setAnswers(answers);
   };
 
   // [2 of 2] Handle answer changes
   public handleInputChange = (i: number, event: any) => {
-    const answers = this.state.answers;
-    answers[i] = event.target.value;
-    this.setState({ answers });
+    const answers = [...this.props.answers];
+    set(answers[i], "answer", event.target.value);
+    this.props.setAnswers(answers);
   };
 
   // Submit the answers
@@ -173,7 +187,7 @@ class StoryPage extends React.Component<Props, State> {
       );
 
       switch (question.type) {
-        case "mcq":
+        case QuestionType.MCQ:
           const choices = (question as McqQuestion).choices.map((choice, j) => (
             <FormControlLabel key={j} value={j} control={<Radio />} label={choice} />
           ));
@@ -181,32 +195,32 @@ class StoryPage extends React.Component<Props, State> {
             <RadioGroup
               name={`question-${i}`}
               key={i}
-              value={this.state.answers[i]}
+              value={get(this.props.answers, `[${i}].answer`, "")}
               onChange={this.handleOptionChange.bind(null, i)}
             >
               {choices}
             </RadioGroup>
           );
           break;
-        case "short":
+        case QuestionType.SHORT:
           output.push(
-            <input
-              type="text"
+            <TextField
               key={`question-${i}-answer`}
               name={`question-${i}`}
               id={`question-${i}`}
-              value={this.state.answers[i]}
+              value={get(this.props.answers, `[${i}].answer`, "")}
               onChange={this.handleInputChange.bind(this, i)}
             />
           );
           break;
-        case "long":
+        case QuestionType.LONG:
           output.push(
-            <textarea
+            <TextField
+              multiline
               key={`question-${i}-answer`}
               name={`question-${i}`}
               id={`question-${i}`}
-              value={this.state.answers[i]}
+              value={get(this.props.answers, `[${i}].answer`, "")}
               onChange={this.handleInputChange.bind(this, i)}
             />
           );
@@ -244,9 +258,15 @@ class StoryPage extends React.Component<Props, State> {
               <Typography variant="h5" style={{ color: getColor(View.COURSES) }}>
                 QUESTIONS
               </Typography>
-              <ol style={{ display: "block" }} type="1">
-                {this.generateQuestions()}
-              </ol>
+              {get(this.state.module, "content.state") === StoryState.FINISHED ? (
+                <Typography style={{ color: getColor(View.COURSES) }}>
+                  Already submitted!
+                </Typography>
+              ) : (
+                <ol style={{ display: "block" }} type="1">
+                  {this.generateQuestions()}
+                </ol>
+              )}
               <div id="error" />
             </div>
           </Grid>
