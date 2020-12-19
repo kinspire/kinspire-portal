@@ -57,7 +57,7 @@ Check out this guide to understand this communication API: [`ipcMain`](https://w
 
 In development, we need to run two top-level processes:
 
-1. React development server. This allows for live changes to code to be reflected on the client. This is run with the `start:client` script and is served at port 3000 (per the configuration at `devServer` in webpack.config.js).
+1. `start:client`: React development server. This allows for live changes to code to be reflected on the client. This is run with the `start:client` script and is served at port 3000 (per the configuration at `devServer` in webpack.config.js).
 2. Electron development. This is a bit more complicated, but makes sense when looking at the individual scripts that are run in parallel
    1. `watch`: Typescript watcher. This watches the Typescript files and when any change is made, recompiles it into Javascript under `build/`.
    2. `electron`: Electron desktop window process. This runs a local development version of the Electron desktop environment and runs what we have under `build/`.

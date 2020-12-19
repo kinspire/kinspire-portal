@@ -1,3 +1,4 @@
+import { DEBUG } from "@app/util";
 import { Typography } from "@material-ui/core";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -48,7 +49,7 @@ export default function Header() {
           </span>
         ))}
       </Link>
-      {/* {loc.pathname} */}
+      {DEBUG && loc.pathname}
     </div>
   );
 

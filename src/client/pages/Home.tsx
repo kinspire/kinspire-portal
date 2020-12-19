@@ -5,13 +5,17 @@ import Selection from "../components/GridSelection";
 import { View } from "../constants";
 
 import "./Home.css";
+import { Typography } from "@material-ui/core";
 
 export default function Home() {
   const view = View.HOME;
 
   return (
-    <Scaffold view={View.HOME}>
-      <div className="home-container">Select something from the menu to get started!</div>
+    <Scaffold view={view}>
+      <div className="home-container">
+        <Typography variant="h2">Welcome to Kinspire's Portal!</Typography>
+        <Typography>Select something from the menu to get started!</Typography>
+      </div>
     </Scaffold>
   );
 }
