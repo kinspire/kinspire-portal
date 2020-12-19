@@ -1,6 +1,6 @@
 import { ContentArg } from "@common/messages";
-import { Answer, McqQuestion, Module } from "@common/schema";
-import { FormControlLabel, Grid, Radio, RadioGroup, Typography } from "@material-ui/core";
+import { Answer, McqQuestion, Module, Question } from "@common/schema";
+import { FormControlLabel, Grid, Radio, RadioGroup, Typography, Button } from "@material-ui/core";
 import { forEach, get, join, map, size } from "lodash";
 import React from "react";
 import swal from "sweetalert";
@@ -161,15 +161,15 @@ class StoryPage extends React.Component<Props, State> {
       return "";
     }
 
-    const questions = this.state.module.content.questions;
+    const questions: Question[] = this.state.module.content.questions;
 
     // Iterate through the questions and create JSX in `output`
     const output: any[] = [];
     forEach(questions, (question, i) => {
       output.push(
-        <li key={`question-${i}`}>
+        <div key={`question-${i}`}>
           <Typography>{question.question}</Typography>
-        </li>
+        </div>
       );
 
       switch (question.type) {
@@ -215,6 +215,75 @@ class StoryPage extends React.Component<Props, State> {
           console.warn(`Unknown question type: ${question.type}`);
           break;
       }
+      // if (questions.length > question && question > 0) {
+      //   output.push(
+      //     <Button
+      //       style={{
+      //         float: "right",
+      //         marginTop: "25px",
+      //         color: getColor(View.COURSES),
+      //         backgroundColor: "none",
+      //         border: "none",
+      //         padding: "0px",
+      //         boxShadow: "none",
+      //       }}
+      //       onClick={() => {
+      //         question = question - 1;
+      //       }}
+      //     >
+      //       Last Question &lt;&lt;
+      //     </Button>
+      //   );
+      // }
+      // if (questions.length > question) {
+      //   output.push(
+      //     <Button
+      //       style={{
+      //         float: "right",
+      //         marginTop: "25px",
+      //         color: getColor(View.COURSES),
+      //         backgroundColor: "none",
+      //         border: "none",
+      //         padding: "0px",
+      //         boxShadow: "none",
+      //       }}
+      //       onClick={() => {
+      //         question += 1;
+      //       }}
+      //     >
+      //       Next Question &gt;&gt;
+      //     </Button>
+      //   );
+      // }
+      // add grade for each question here
+      // if graded
+      // then fill slot with point number
+      output.push(
+        <Typography
+          style={{
+            marginTop: "25px",
+            color: getColor(View.COURSES),
+          }}
+        >
+          __ / 1 points
+        </Typography>
+      );
+      // if feedback provide here
+      output.push(
+        <Typography
+          style={{
+            marginTop: "10px",
+            border: "1px solid",
+            borderColor: getColor(View.COURSES),
+            padding: "10px",
+            borderRadius: "5px",
+            fontSize: "18px",
+            marginBottom: "25px",
+          }}
+        >
+          Sample feedback here from tutor to improve the students knowledge.
+        </Typography>
+      );
     });
 
     return output;
