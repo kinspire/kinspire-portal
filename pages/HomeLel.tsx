@@ -4,8 +4,6 @@ import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { moodleLogin } from "../services/moodle/auth";
 
-const TOKEN_KEY = "userToken";
-
 export default function Home() {
   const [savedToken, setSavedToken] = useState("");
   const [username, setUsername] = useState("");
@@ -61,16 +59,8 @@ export default function Home() {
       />
       <Button onPress={onLogin} title="Press Me" />
       <StatusBar style="auto" />
-      {loading && <ActivityIndicator />}
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+const styles = StyleSheet.create({});
