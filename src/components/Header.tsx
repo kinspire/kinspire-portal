@@ -5,10 +5,10 @@ import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-native";
 import { TOKEN_KEY } from "../services/storage";
 import { useSelector } from "../store";
-import { setToken } from "../store/actions";
+import { setToken } from "../store/user/actions";
 
 export default function Header() {
-  const token = useSelector((state) => state.token);
+  const token = useSelector((state) => state.userState.token);
 
   const dispatch = useDispatch();
 
@@ -22,15 +22,15 @@ export default function Header() {
   return (
     <View style={styles.header}>
       <Text>{loc.pathname}</Text>
-      <Link to="/" style={styles.menuItem}>
+      <Link to="/">
         <Text>Home</Text>
       </Link>
       {token && (
         <>
-          <Link to="/courses" style={styles.menuItem}>
+          <Link to="/courses">
             <Text>Courses</Text>
           </Link>
-          <View style={styles.menuItem}>
+          <View>
             <Button onPress={handleLogout} title="Logout" />
           </View>
         </>
@@ -46,10 +46,7 @@ const styles = StyleSheet.create({
   header: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center",
-  },
-  menuItem: {
-    padding: 4,
   },
 });

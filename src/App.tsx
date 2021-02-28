@@ -9,8 +9,8 @@ import { loadInitial } from "./services/storage";
 import { useSelector } from "./store";
 
 export default function App() {
-  const loading = useSelector((state) => state.loading);
-  const token = useSelector((state) => state.token);
+  const loading = useSelector((state) => state.uiState.loading);
+  const token = useSelector((state) => state.userState.token);
 
   // Load state from storage
   useEffect(() => {
@@ -32,8 +32,8 @@ export default function App() {
             <Route path="/" component={Login} />
           </Switch>
         )}
+        {loading && <ActivityIndicator size="large" color="#654321" />}
       </View>
-      {loading && <ActivityIndicator />}
     </>
   );
 }

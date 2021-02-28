@@ -1,29 +1,29 @@
 import { TypedUseSelectorHook, useSelector as useReduxSelector } from "react-redux";
-import { createStore, Reducer } from "redux";
-import { KPortalState, Types } from "./types";
+import { combineReducers, createStore, Reducer, Store } from "redux";
+import { contentReducer } from "./content";
+import { ContentState } from "./content/types";
+import { uiReducer } from "./ui";
+import { UiState } from "./ui/types";
+import { userReducer } from "./user";
+import { UserState } from "./user/types";
 
-const initialState: KPortalState = {};
+export interface KPortalState {
+  userState: UserState;
+  uiState: UiState;
+  contentState: ContentState;
+}
 
-export const mainReducer: Reducer<KPortalState> = (state = initialState, action) => {
-  switch (action.type) {
-    case Types.SET_LOADING: {
-      return {
-        ...state,
-        loading: action.payload,
-      };
-    }
-    case Types.SET_TOKEN: {
-      return {
-        ...state,
-        token: action.payload,
-      };
-    }
-    default: {
-      return state;
-    }
-  }
-};
+const createRootReducer = () =>
+  combineReducers<KPortalState>({
+    userState: userReducer,
+    uiState: uiReducer,
+    contentState: contentReducer,
+  });
 
-export const store = createStore(mainReducer);
+function configureStore(initialState?: KPortalState): Store<KPortalState> {
+  return createStore(createRootReducer(), initialState);
+}
+
+export const store = configureStore();
 
 export const useSelector: TypedUseSelectorHook<KPortalState> = useReduxSelector;

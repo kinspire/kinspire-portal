@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { setLoading, setToken } from "../store/actions";
+import { setToken } from "../store/user/actions";
 import { useDispatch } from "react-redux";
 import { getColor, PageView } from "../../constants";
 import { Button, Text, TextInput, View } from "react-native";
 import { moodleLogin } from "../services/moodle/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TOKEN_KEY } from "../services/storage";
+import { setLoading } from "../store/ui/actions";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -14,13 +15,11 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      setLoading(true);
+      dispatch(setLoading(true));
       const token = await moodleLogin(username, password);
-      setLoading(false);
       dispatch(setToken(token));
       await AsyncStorage.setItem(TOKEN_KEY, token);
-
-      alert("token " + token);
+      dispatch(setLoading(false));
     } catch (err) {
       alert(err.toString());
     }
