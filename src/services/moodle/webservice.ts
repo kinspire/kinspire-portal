@@ -1,4 +1,5 @@
 import querystring from "querystring";
+import { store } from "../../store";
 import { apiRequest } from "../util";
 
 // Functions
@@ -18,19 +19,26 @@ export const QUIZ_PROCESS_ATTEMPT = "mod_quiz_process_attempt";
 
 // kinspire.org
 export const BASE = "http://kinspire.org/portal";
-const WS_TOKEN = "99a1a5345fd1bf1ba90324fb9662f59a";
+const ADMIN_TOKEN = "99a1a5345fd1bf1ba90324fb9662f59a";
 
 // localhost
 // export const BASE = "http://localhost:3123";
-// const WS_TOKEN = "917f2276cc69185e43e4a384b7d98ebb";
+// const ADMIN_TOKEN = "917f2276cc69185e43e4a384b7d98ebb";
 
-// TODO: quite a shitty design, needs cleanup
-export const ApiHelper = {
-  token: WS_TOKEN,
-  callFunction: async (func: string, params?: Record<string, any>) =>
-    await apiRequest(
-      `${BASE}/webservice/rest/server.php?wstoken=${
-        ApiHelper.token
-      }&moodlewsrestformat=json&${querystring.stringify({ [WS_FUNCTION]: func, ...params })}`
-    ),
+export const callFunction = async (
+  func: string,
+  params?: Record<string, any>,
+  useAdmin?: boolean
+) => {
+  const token = useAdmin ? ADMIN_TOKEN : store.getState().token;
+
+  if (!token) {
+    throw new Error("No token.");
+  }
+
+  return await apiRequest(
+    `${BASE}/webservice/rest/server.php?wstoken=${token}&moodlewsrestformat=json&${querystring.stringify(
+      { [WS_FUNCTION]: func, ...params }
+    )}`
+  );
 };
