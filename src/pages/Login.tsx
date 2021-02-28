@@ -1,21 +1,23 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useState } from "react";
+import { setLoading, setToken } from "../store/actions";
+import { useDispatch } from "react-redux";
+import { getColor, PageView } from "../../constants";
+import { Button, Text, TextInput, View } from "react-native";
 import { moodleLogin } from "../services/moodle/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { TOKEN_KEY } from "../services/storage";
 
-export default function Home() {
-  const [savedToken, setSavedToken] = useState("");
+export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
-  const onLogin = async () => {
+  const handleLogin = async () => {
     try {
       setLoading(true);
       const token = await moodleLogin(username, password);
       setLoading(false);
-      setSavedToken(token);
+      dispatch(setToken(token));
       await AsyncStorage.setItem(TOKEN_KEY, token);
 
       alert("token " + token);
@@ -24,21 +26,9 @@ export default function Home() {
     }
   };
 
-  useEffect(() => {
-    const loader = async () => {
-      const value = await AsyncStorage.getItem(TOKEN_KEY);
-      if (value !== null) {
-        setSavedToken(value.toString());
-      }
-    };
-
-    loader();
-  }, []);
-
   return (
-    <View style={styles.container}>
-      <Text>Stored token:</Text>
-      <Text style={{ fontWeight: "bold" }}>{savedToken}</Text>
+    <View>
+      <Text>Sign in with your username and password.</Text>
       <TextInput
         style={{ height: 40 }}
         placeholder="Username"
@@ -57,10 +47,7 @@ export default function Home() {
         secureTextEntry={true}
         value={password}
       />
-      <Button onPress={onLogin} title="Press Me" />
-      <StatusBar style="auto" />
+      <Button color={getColor(PageView.HOME)} onPress={handleLogin} title="LOGIN" />
     </View>
   );
 }
-
-const styles = StyleSheet.create({});
