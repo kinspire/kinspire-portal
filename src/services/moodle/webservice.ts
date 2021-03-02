@@ -1,3 +1,4 @@
+import { get } from "lodash";
 import querystring from "querystring";
 import { store } from "../../store";
 import { apiRequest } from "../util";
@@ -30,7 +31,7 @@ export const callFunction = async (
   params?: Record<string, any>,
   useAdmin?: boolean
 ) => {
-  const token = useAdmin ? ADMIN_TOKEN : store.getState().token;
+  const token = useAdmin ? ADMIN_TOKEN : get(store.getState(), "userState.token", ADMIN_TOKEN);
 
   if (!token) {
     throw new Error("No token.");

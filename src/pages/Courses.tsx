@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Course } from "../schema";
 import { Link } from "react-router-native";
 import { useDispatch } from "react-redux";
-import { setLoading } from "../store/ui/actions";
 import { Moodle } from "../services/moodle";
 import { setCourses } from "../store/content/actions";
 import { useSelector } from "../store";
@@ -15,9 +14,7 @@ export default function Courses() {
 
   useEffect(() => {
     const getCourses = async () => {
-      dispatch(setLoading(true));
       dispatch(setCourses((await Moodle.getCourses()) as Course[]));
-      dispatch(setLoading(false));
     };
 
     getCourses();
