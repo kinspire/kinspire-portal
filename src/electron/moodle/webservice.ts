@@ -17,12 +17,12 @@ export const QUIZ_GET_QUIZZES_IN_COURSE = "mod_quiz_get_quizzes_by_courses";
 export const QUIZ_PROCESS_ATTEMPT = "mod_quiz_process_attempt";
 
 // kinspire.org
-// export const BASE = "http://kinspire.org/portal";
-// const WS_TOKEN = "99a1a5345fd1bf1ba90324fb9662f59a";
+export const BASE = "http://kinspire.org/portal";
+const WS_TOKEN = "99a1a5345fd1bf1ba90324fb9662f59a";
 
 // localhost
-export const BASE = "http://localhost:3123";
-const WS_TOKEN = "917f2276cc69185e43e4a384b7d98ebb";
+// export const BASE = "http://localhost:3123";
+// const WS_TOKEN = "917f2276cc69185e43e4a384b7d98ebb";
 
 // TODO: quite a shitty design, needs cleanup
 export const ApiHelper = {
