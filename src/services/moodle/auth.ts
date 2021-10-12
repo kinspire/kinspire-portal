@@ -11,5 +11,9 @@ export const moodleLogin = async (username: string, password: string) => {
       service: WS_NAME,
     })}`
   );
+  console.log(tok);
+  if (!tok.token) {
+    throw new Error((tok as any).error);
+  }
   return tok.token;
 };

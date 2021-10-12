@@ -35,7 +35,7 @@ export default function CoursePage() {
         data={sections}
         renderItem={({ item: s }) => (
           <Link to={`/section/${courseId}/${s.id}`}>
-            <Text>{s.title}</Text>
+            <Text>&gt; {s.title}</Text>
           </Link>
         )}
         keyExtractor={(s) => s.id}

@@ -15,7 +15,7 @@ export enum PageView {
   ACTIVITIES = "ACTIVITIES",
   COURSE = "COURSE",
   WORD_SEARCH = "WORDSEARCH",
-  LESSON = "LESSON",
+  SECTION = "SECTION",
   PROFILE = "PROFILE",
   ABOUT = "ABOUT",
   LOGIN = "LOGIN",
@@ -28,7 +28,7 @@ export const getColor = (v: PageView | string): string => {
       return "#a9bb59";
     case PageView.COURSE:
       return "#D4DDAC";
-    case PageView.LESSON:
+    case PageView.SECTION:
       return "white";
     case PageView.ACTIVITIES:
       return "#79b4b3";

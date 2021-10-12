@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-native";
 import { TOKEN_KEY } from "../services/storage";
@@ -22,7 +22,7 @@ export default function Header() {
   return (
     <View style={styles.header}>
       <Text>{loc.pathname}</Text>
-      <Link to="/">
+      <Link to="/" component={TouchableOpacity} activeOpacity={0.8}>
         <Text>Home</Text>
       </Link>
       {token && (

@@ -17,11 +17,16 @@ export default function Login() {
     try {
       dispatch(setLoading(true));
       const token = await moodleLogin(username, password);
-      dispatch(setToken(token));
-      await AsyncStorage.setItem(TOKEN_KEY, token);
-      dispatch(setLoading(false));
+      if (token) {
+        dispatch(setToken(token));
+        await AsyncStorage.setItem(TOKEN_KEY, token);
+      } else {
+        alert("undefined token returned");
+      }
     } catch (err) {
       alert(err.toString());
+    } finally {
+      dispatch(setLoading(false));
     }
   };
 

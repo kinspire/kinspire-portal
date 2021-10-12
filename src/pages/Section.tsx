@@ -1,5 +1,4 @@
 import { find, get } from "lodash";
-import { stringify } from "querystring";
 import React from "react";
 import { FlatList, Text, View } from "react-native";
 import { useParams } from "react-router";
@@ -25,7 +24,7 @@ export default function SectionPage() {
         data={get(section, "modules")}
         renderItem={({ item: m }) => (
           <Link to={`/module/${courseId}/${sectionId}/${m.id}`}>
-            <Text>{m.title}</Text>
+            <Text>&gt; {m.title}</Text>
           </Link>
         )}
         keyExtractor={(s) => s.id}
